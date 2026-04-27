@@ -56,11 +56,10 @@ Before using the Pipedream MCP node you need:
 
 ## 3. Adding the Pipedream MCP Node
 
-1. Open a chatflow in the Flowise canvas.
-2. Add an **Agent** node (e.g., Tool Agent, OpenAI Function Agent).
-3. From the **Tools (MCP)** category, drag the **Pipedream MCP** node onto the canvas.
-4. Connect the Pipedream MCP node's output to the Agent node's **Tools** input.
-5. Configure the node (see next section).
+1. Openan agentflow in the Flowise canvas.
+2. Add an **Agent** node.
+3. From the **Tools (MCP)** category, select **Pipedream MCP**.
+4. Configure the node (see next section).
 
 <figure><img src="../../../.gitbook/assets/pipedream/image4.png" alt=""><figcaption></figcaption></figure>
 

@@ -257,6 +257,7 @@
       * [SearXNG](integrations/langchain/tools/searxng.md)
       * [Serp API](integrations/langchain/tools/serp-api.md)
       * [Serper](integrations/langchain/tools/serper.md)
+      * [Slack MCP](integrations/langchain/tools/pipedream-mcp-user-guide-1.md)
       * [Tavily](integrations/langchain/tools/tavily-ai.md)
       * [Web Browser](integrations/langchain/tools/web-browser.md)
       * [Write File](integrations/langchain/tools/write-file.md)
