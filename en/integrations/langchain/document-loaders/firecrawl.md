@@ -8,7 +8,7 @@ description: Load data from URL using FireCrawl.
 
 # FireCrawl Document Loader
 
-FireCrawl is a powerful web crawling and scraping service that provides advanced capabilities for extracting content from websites. This module enables loading and processing web content through the FireCrawl API.
+[FireCrawl](https://www.firecrawl.dev) is a powerful web crawling and scraping service that provides advanced capabilities for extracting content from websites. This module enables loading and processing web content through the FireCrawl API.
 
 This module provides a sophisticated web crawler that can:
 - Scrape single web pages
@@ -85,7 +85,7 @@ Each document contains:
   - Additional custom metadata
 
 ## Notes
-- Requires valid FireCrawl API key
+- Requires a valid [FireCrawl API key](https://www.firecrawl.dev/app/api-keys)
 - Supports multiple content formats
 - Handles rate limiting
 - Job status monitoring
