@@ -1,14 +1,14 @@
-
-description: LangChain Output Parser Nodes
-
+---
+description: LangChain Output Parser Node
+---
 
 # Output Parsers
 
 ***
 
-Output Parser nodes are responsible for taking the output of a model and transforming it to a more suitable format for downstream tasks. Useful when you are using LLMs to generate structured data, or to normalize output from chat models and LLMs.
+Output Parser node는 모델의 output을 받아 다운스트림 작업에 더 적합한 형식으로 변환하는 역할을 합니다. LLM을 사용하여 구조화된 데이터를 생성하거나, chat model 및 LLM의 output을 정규화할 때 유용합니다.
 
-### Output Parser Nodes:
+### Output Parser Node:
 
 * [CSV Output Parser](csv-output-parser.md)
 * [Custom List Output Parser](custom-list-output-parser.md)

@@ -1,14 +1,14 @@
 ---
-description: LangChain Cache Nodes
+description: LangChain Cache Node
 ---
 
 # Cache
 
 ***
 
-Caching can save you money by reducing the number of API calls you make to the LLM provider, if you're often requesting the same completion multiple times. It can speed up your application by reducing the number of API calls you make to the LLM provider.
+Caching은 동일한 completion을 여러 번 자주 요청하는 경우, LLM 제공자에게 보내는 API 호출 수를 줄여 비용을 절약할 수 있습니다. 또한 LLM 제공자에게 보내는 API 호출 수를 줄여 애플리케이션 속도를 높일 수 있습니다.
 
-### Cache Nodes:
+### Cache Node:
 
 * [InMemory Cache](in-memory-cache.md)
 * [InMemory Embedding Cache](inmemory-embedding-cache.md)

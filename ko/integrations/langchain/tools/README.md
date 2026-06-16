@@ -1,12 +1,15 @@
 ---
+
 description: LangChain Tool Nodes
+
 ---
 
-# Tools
+
+# 도구
 
 ***
 
-Tools are functions that agents can use to interact with the world. These tools can be generic utilities (e.g. search), other chains, or even other agents.
+도구 are functions that agents can use to interact with the world. These 도구 can be generic utilities (e.g. search), other chains, or even other agents.
 
 ### Tool Nodes:
 
@@ -19,14 +22,14 @@ Tools are functions that agents can use to interact with the world. These tools 
 * [Exa Search](exa-search.md)
 * [Google Custom Search](google-custom-search.md)
 * [OpenAPI Toolkit](openapi-toolkit.md)
-* [Python Interpreter](python-interpreter.md)
-* [Read File](read-file.md)
-* [Request Get](request-get.md)
-* [Request Post](request-post.md)
-* [Retriever Tool](retriever-tool.md)
-* [SearchApi](searchapi.md)
-* [SearXNG](searxng.md)
+* [Python 인터프리터](python-interpreter.md)
+* [파일 읽기](read-file.md)
+* [Request GET](request-get.md)
+* [Request POST](request-post.md)
+* [Retriever 도구](retriever-tool.md)
+* [SearchAPI](SearchAPI.md)
+* [SearXNG](SearXNG.md)
 * [Serp API](serp-api.md)
-* [Serper](serper.md)
+* [Serper](Serper.md)
 * [Web Browser](web-browser.md)
 * [Write File](write-file.md)

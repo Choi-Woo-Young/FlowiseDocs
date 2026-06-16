@@ -1,14 +1,17 @@
 ---
+
 description: >-
   Upsert embedded data and perform similarity or mmr search upon query using
   MongoDB Atlas, a managed cloud mongodb database.
+
 ---
+
 
 # MongoDB Atlas
 
 <figure><img src="../../../.gitbook/assets/image (161).png" alt="" width="308"><figcaption><p>MongoDB Atlas Node</p></figcaption></figure>
 
-### Cluster Configuration[​](https://js.langchain.com/docs/integrations/vectorstores/mongodb_atlas/#initial-cluster-configuration) <a href="#initial-cluster-configuration" id="initial-cluster-configuration"></a>
+### Cluster 설정[​](https://js.langchain.com/docs/integrations/vectorstores/mongodb_atlas/#initial-cluster-configuration) <a href="#initial-cluster-설정" id="initial-cluster-설정"></a>
 
 To set up a MongoDB Atlas cluster, go to the [MongoDB Atlas ](https://www.mongodb.com/)website and sign up if you don’t have an account. When prompted, create and name your cluster, which will appear under the Database section. Then, select "**Browse Collections**" to either create a new collection or use one from the sample data provided.
 
@@ -44,15 +47,15 @@ Make sure the `numDimensions` property corresponds to the dimensionality of the 
 * A collection field name of `embedding`
 * A raw text field name of `text`
 
-Ensure you initialize the vector store with field names that match your index and collection schema, as shown in the example above.
+Ensure you initialize the vector store with field names that match your index and collection schema, as shown in the 예시 above.
 
 Once this is done, proceed to build the index.
 
 {% hint style="info" %}
-This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA) to get started.
+This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution 가이드](/broken/pages/G48tdmpQ3z4CTWEspqkA) to get started.
 {% endhint %}
 
-### Flowise Configuration
+### Flowise 설정
 
 Drag and drop the MongoDB Atlas Vector Store, and add a new credential. Use the connection string provided from the MongoDB Atlas dashboard:
 
@@ -62,6 +65,6 @@ Fill in the rest of the fields:
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (2) (1).png" alt="" width="252"><figcaption></figcaption></figure>
 
-You may also configure more details from Additional Parameters:
+You may also configure more details from Additional 매개변수:
 
 <figure><img src="../../../.gitbook/assets/image (164).png" alt="" width="518"><figcaption></figcaption></figure>

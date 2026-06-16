@@ -1,10 +1,10 @@
 # Pipedream MCP
 
-The **Pipedream MCP** node connects your Flowise agents to 3,000+ APIs and 10,000+ pre-built tools through [Pipedream Connect](https://pipedream.com/docs/connect/mcp/developers). Your agents can send Slack messages, create GitHub issues, update Google Sheets, manage Notion pages, and much more — all using a standardized MCP (Model Context Protocol) interface with fully-managed OAuth.
+The **Pipedream MCP** node connects your Flowise agents to 3,000+ APIs and 10,000+ pre-built 도구 through [Pipedream Connect](https://pipedream.com/docs/connect/mcp/developers). Your agents can send Slack messages, create GitHub issues, update Google Sheets, manage Notion pages, and much more — all using a standardized MCP (Model Context Protocol) interface with fully-managed OAuth.
 
 ***
 
-## 1. Prerequisites
+## 1. 사전 요구사항
 
 Before using the Pipedream MCP node you need:
 
@@ -39,7 +39,7 @@ Before using the Pipedream MCP node you need:
 2. Click **Add Credential** and search for **Pipedream Connect**.
 3. Fill in the following fields:
 
-| Field             | Description                                                                 | Example       |
+| Field             | Description                                                                 | 예시       |
 | ----------------- | --------------------------------------------------------------------------- | ------------- |
 | **Client ID**     | The OAuth Client ID from Pipedream                                          | `wBSGhxxxx`   |
 | **Client Secret** | The OAuth Client Secret (stored securely)                                   | `••••••••`    |
@@ -50,7 +50,7 @@ Before using the Pipedream MCP node you need:
 
 <figure><img src="../../../.gitbook/assets/pipedream/image3.png" alt=""><figcaption></figcaption></figure>
 
-**Tip:** For production environments, use the narrowest scopes you need. See [Pipedream Authentication Docs](https://pipedream.com/docs/connect/api-reference/authentication) for available scopes.
+**Tip:** For production environments, use the narrowest scopes you need. See [Pipedream 인증 Docs](https://pipedream.com/docs/connect/api-reference/authentication) for available scopes.
 
 ***
 
@@ -58,22 +58,22 @@ Before using the Pipedream MCP node you need:
 
 1. Openan agentflow in the Flowise canvas.
 2. Add an **Agent** node.
-3. From the **Tools (MCP)** category, select **Pipedream MCP**.
+3. From the **도구 (MCP)** category, select **Pipedream MCP**.
 4. Configure the node (see next section).
 
 <figure><img src="../../../.gitbook/assets/pipedream/image4.png" alt=""><figcaption></figcaption></figure>
 
 ***
 
-## 4. Node Configuration Reference
+## 4. Node 설정 Reference
 
 | Parameter              | Type                     | Required | Description                                                                                                                                                                                                                                  |
 | ---------------------- | ------------------------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Connect Credential** | Credential selector      | Yes      | Select the Pipedream Connect credential you created in Step 2.                                                                                                                                                                               |
 | **Environment**        | Dropdown                 | Yes      | `Development` or `Production`. Controls which Pipedream environment your connected accounts and tool calls run against. Use `Development` for testing.                                                                                       |
-| **App Slug**           | Text                     | Yes      | The unique identifier for a Pipedream app (e.g., `slack`, `gmail`, `notion`, `linear`). Browse all available apps at [mcp.pipedream.com](https://mcp.pipedream.com). Supports **multiple apps** via comma separation (e.g., `slack,notion`). |
-| **User ID**            | Text (accepts variables) | Yes      | A unique identifier for your end user. Supports Flowise variables `{{$vars.user_email}}` and flow variables `{{$flow.sessionId}}`. See [Section 7](pipedream-mcp-user-guide.md#7-using-variables-for-user-id).                               |
-| **Tool Mode**          | Dropdown                 | Yes      | Currently supports `Tools only` mode, which exposes the app's pre-built actions as individual tools to the agent.                                                                                                                            |
+| **App Slug**           | Text                     | Yes      | The unique identifier for a Pipedream app (e.g., `Slack`, `gmail`, `notion`, `linear`). Browse all available apps at [mcp.pipedream.com](https://mcp.pipedream.com). Supports **multiple apps** via comma separation (e.g., `Slack,notion`). |
+| **User ID**            | Text (accepts variables) | Yes      | A unique identifier for your end user. Supports Flowise variables `{{$vars.user_email}}` and flow variables `{{$flow.sessionId}}`. See [Section 7](pipedream-mcp-user-가이드.md#7-using-variables-for-user-id).                               |
+| **Tool Mode**          | Dropdown                 | Yes      | Currently supports `도구 only` mode, which exposes the app's pre-built actions as individual 도구 to the agent.                                                                                                                            |
 | **Available Actions**  | Multi-select (async)     | Yes      | After filling in App Slug and User ID, click the **refresh** button to load the list of available actions for the specified app(s). Select the specific actions you want to expose to your agent.                                            |
 
 <figure><img src="../../../.gitbook/assets/pipedream/image5.png" alt=""><figcaption></figcaption></figure>
@@ -82,22 +82,22 @@ Before using the Pipedream MCP node you need:
 
 ## 5. Selecting Actions
 
-Once you provide a valid **App Slug** and **User ID**, click the refresh icon next to **Available Actions**. The node will connect to Pipedream's remote MCP server and retrieve all available tools for the specified app.
+Once you provide a valid **App Slug** and **User ID**, click the refresh icon next to **Available Actions**. The node will connect to Pipedream's remote MCP server and retrieve all available 도구 for the specified app.
 
 Each action is listed with:
 
 * **Name:** the tool identifier (displayed in uppercase), e.g., `GITHUB-GET-REPOSITORY`
 * **Description:** what the tool does, e.g., _"Get Information for a specific repository"_
 
-Select only the actions your agent needs. Fewer tools help the LLM make better decisions and reduce token usage.
+Select only the actions your agent needs. Fewer 도구 help the LLM make better decisions and reduce token 사용법.
 
 <figure><img src="../../../.gitbook/assets/pipedream/image6.png" alt=""><figcaption></figcaption></figure>
 
 ### Finding App Slugs
 
-The **app slug** is the lowercase name shown in the URL on Pipedream. For example:
+The **app slug** is the lowercase name shown in the URL on Pipedream. For 예시:
 
-* `pipedream.com/apps/slack` → slug is `slack`
+* `pipedream.com/apps/Slack` → slug is `Slack`
 * `pipedream.com/apps/google-sheets` → slug is `google-sheets`
 * `pipedream.com/apps/notion` → slug is `notion`
 
@@ -135,7 +135,7 @@ The **User ID** field identifies the end user in Pipedream Connect. This is crit
 ### Workspace Variables
 
 1. In Flowise, go to **Variables** from the sidebar.
-2. Create a variable (e.g., `user_email` with value `john@example.com`).
+2. Create a variable (e.g., `user_email` with value `john@예시.com`).
 3. In the Pipedream MCP node, set **User ID** to `{{$vars.user_email}}`.
 
 <figure><img src="../../../.gitbook/assets/pipedream/image9.png" alt=""><figcaption></figcaption></figure>
@@ -162,7 +162,7 @@ For single-user or testing scenarios, you can also enter a plain string like `te
 | **Use narrow OAuth scopes**            | In your Pipedream credential, specify only the scopes you need.                                                       |
 | **Use per-user IDs**                   | Always use a unique User ID per end user. This ensures Pipedream scopes credentials to individual users.              |
 | **Use Production environment in prod** | Switch from `Development` to `Production` when deploying. Pipedream keeps separate credential stores per environment. |
-| **Select minimal actions**             | Only expose the actions your agent needs. Fewer tools reduce the attack surface and improve LLM accuracy.             |
+| **Select minimal actions**             | Only expose the actions your agent needs. Fewer 도구 reduce the attack surface and improve LLM accuracy.             |
 | **Protect your Client Secret**         | Never expose the Client Secret in client-side code or version control. Flowise stores it encrypted.                   |
 
 ***
@@ -172,10 +172,10 @@ For single-user or testing scenarios, you can also enter a plain string like `te
 | Resource                                 | Link                                                                                                                       |
 | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | Pipedream MCP Developer Docs             | [pipedream.com/docs/connect/mcp/developers](https://pipedream.com/docs/connect/mcp/developers)                             |
-| Browse Available MCP Apps & Tools        | [mcp.pipedream.com](https://mcp.pipedream.com)                                                                             |
+| Browse Available MCP Apps & 도구        | [mcp.pipedream.com](https://mcp.pipedream.com)                                                                             |
 | Explore Pipedream Actions                | [pipedream.com/explore](https://pipedream.com/explore)                                                                     |
-| Pipedream Connect Overview               | [pipedream.com/docs/connect/mcp](https://pipedream.com/docs/connect/mcp)                                                   |
-| OAuth / Authentication Docs              | [pipedream.com/docs/connect/api-reference/authentication](https://pipedream.com/docs/connect/api-reference/authentication) |
+| Pipedream Connect 개요               | [pipedream.com/docs/connect/mcp](https://pipedream.com/docs/connect/mcp)                                                   |
+| OAuth / 인증 Docs              | [pipedream.com/docs/connect/api-reference/인증](https://pipedream.com/docs/connect/api-reference/authentication) |
 | App Discovery                            | [pipedream.com/docs/connect/app-discovery](https://pipedream.com/docs/connect/app-discovery)                               |
 | Connect Quickstart (CLI)                 | [pipedream.com/docs/connect/quickstart](https://pipedream.com/docs/connect/quickstart)                                     |
 | Pipedream Security & Privacy             | [pipedream.com/docs/privacy-and-security](https://pipedream.com/docs/privacy-and-security)                                 |

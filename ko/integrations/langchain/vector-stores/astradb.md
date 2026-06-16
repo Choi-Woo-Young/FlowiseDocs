@@ -1,6 +1,6 @@
 # AstraDB
 
-## Setup
+## 설정
 
 1. Register an account on [AstraDB](https://astra.datastax.com/)
 2. Login to portal. Create a Database
@@ -11,7 +11,7 @@
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (2) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-4. After database has been setup, grab the API Endpoint, and generate Application Token
+4. After database has been 설정, grab the API Endpoint, and generate Application Token
 
 <figure><img src="../../../.gitbook/assets/Picture7.png" alt=""><figcaption></figcaption></figure>
 

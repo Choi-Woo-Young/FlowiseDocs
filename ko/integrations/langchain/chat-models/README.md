@@ -1,14 +1,14 @@
-
-description: LangChain Chat Model Nodes
-
+---
+description: LangChain Chat Model Node
+---
 
 # Chat Models
 
 ***
 
-Chat models take a list of messages as input and return a model-generated message as output. These models such as **gpt-3.5-turbo** or **gpt4** are powerful and cheaper than its predecessor Completions models such as **text-davincii-003**.
+Chat model은 메시지 목록을 input으로 받아 모델이 생성한 메시지를 output으로 반환합니다. **gpt-3.5-turbo** 또는 **gpt4**와 같은 이러한 모델은 강력하며, 이전 세대인 **text-davincii-003**과 같은 Completion 모델보다 저렴합니다.
 
-### Chat Model Nodes:
+### Chat Model Node:
 
 * [AWS ChatBedrock](aws-chatbedrock.md)
 * [Azure ChatOpenAI](../../llamaindex/chat-models/azurechatopenai.md)

@@ -12,7 +12,7 @@
 | Field Name                | Description                                       |
 | ------------------------- | ------------------------------------------------- |
 | **Name**                  | name of the project to be created. (e.g. Flowise) |
-| **Database** **Password** | password to your postgres database                |
+| **Database** **Password** | password to your Postgres database                |
 
 <figure><img src="../../../.gitbook/assets/image (25) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -118,7 +118,7 @@ $$;
 
 <figure><img src="../../../.gitbook/assets/image (19) (1) (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
-## Setup
+## 설정
 
 1. Click **Project Settings**
 

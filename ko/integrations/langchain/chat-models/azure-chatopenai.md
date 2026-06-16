@@ -1,63 +1,63 @@
 # ChatOpenAI
 
-## Prerequisite
+## 사전 준비 (Prerequisite)
 
-1. An [OpenAI](https://openai.com/) account
-2. Create an [API key](https://platform.openai.com/api-keys)
+1. [OpenAI](https://openai.com/) 계정
+2. [API key](https://platform.openai.com/api-keys) 생성
 
-## Setup
+## 설정 (Setup)
 
-1. **Chat Models** > drag **ChatOpenAI** node
+1. **Chat Models** > **ChatOpenAI** node를 드래그합니다
 
 <figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-2. **Connect Credential** > click **Create New**
+2. **Connect Credential** > **Create New**를 클릭합니다
 
 <figure><img src="../../../.gitbook/assets/image_openAI (1).png" alt="" width="278"><figcaption></figcaption></figure>
 
-2. Fill in the **ChatOpenAI** credential
+2. **ChatOpenAI** credential을 입력합니다
 
 <figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-4. Voila [🎉](https://emojipedia.org/party-popper/), you can now use **ChatOpenAI node** in Flowise
+4. 짜잔 [🎉](https://emojipedia.org/party-popper/), 이제 Flowise에서 **ChatOpenAI node**를 사용할 수 있습니다
 
 <figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-## Custom base URL and headers
+## 커스텀 base URL 및 header
 
-Flowise supports using custom base URL and headers for Chat OpenAI. Users can easily use integrations like OpenRouter, TogetherAI and others that support OpenAI API compatibility.
+Flowise는 Chat OpenAI에 대한 커스텀 base URL 및 header 사용을 지원합니다. 사용자는 OpenAI API 호환성을 지원하는 OpenRouter, TogetherAI 등의 통합을 쉽게 사용할 수 있습니다.
 
 ### TogetherAI
 
-1. Refer to official [docs](https://docs.together.ai/docs/openai-api-compatibility#nodejs) from TogetherAI
-2. Create a new credential with TogetherAI API key
-3. Click **Additional Parameters** on ChatOpenAI node.
-4. Change the Base Path:
+1. TogetherAI의 공식 [문서](https://docs.together.ai/docs/openai-api-compatibility#nodejs)를 참조하세요
+2. TogetherAI API key로 새 credential을 생성합니다
+3. ChatOpenAI node에서 **Additional Parameters**를 클릭합니다.
+4. Base Path를 변경합니다:
 
 <figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Open Router
 
-1. Refer to official [docs](https://openrouter.ai/docs#quick-start) from OpenRouter
-2. Create a new credential with OpenRouter API key
-3. Click Additional Parameters on ChatOpenAI node
-4. Change the Base Path and Base Options:
+1. OpenRouter의 공식 [문서](https://openrouter.ai/docs#quick-start)를 참조하세요
+2. OpenRouter API key로 새 credential을 생성합니다
+3. ChatOpenAI node에서 Additional Parameters를 클릭합니다
+4. Base Path와 Base Options를 변경합니다:
 
 <figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-## Custom Model
+## 커스텀 모델 (Custom Model)
 
-For models that are not supported on ChatOpenAI node, you can use ChatOpenAI Custom for that. This allow users to fill in model name such as `mistralai/Mixtral-8x7B-Instruct-v0.1`
+ChatOpenAI node에서 지원되지 않는 모델의 경우 ChatOpenAI Custom을 사용할 수 있습니다. 이를 통해 사용자는 `mistralai/Mixtral-8x7B-Instruct-v0.1`과 같은 모델 이름을 입력할 수 있습니다.
 
 <figure><img src="../../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
 
-## Image Upload
+## 이미지 업로드 (Image Upload)
 
-You can also allow images to be uploaded and analyzed by LLM. Under the hood, Flowise will use [OpenAI Vison ](https://platform.openai.com/docs/guides/vision)model to process the image. Only works with LLMChain, Conversation Chain, ReAct Agent, and Conversational Agent.
+LLM이 이미지를 업로드하고 분석하도록 허용할 수도 있습니다. 내부적으로 Flowise는 [OpenAI Vison ](https://platform.openai.com/docs/guides/vision)모델을 사용하여 이미지를 처리합니다. LLMChain, Conversation Chain, ReAct Agent, Conversational Agent에서만 작동합니다.
 
 <figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (2).png" alt="" width="332"><figcaption></figcaption></figure>
 
-From the chat interface, you will now see a new image upload button:
+이제 채팅 인터페이스에서 새로운 이미지 업로드 버튼을 볼 수 있습니다:
 
 <figure><img src="../../../.gitbook/assets/Untitled (1).png" alt=""><figcaption></figcaption></figure>
 

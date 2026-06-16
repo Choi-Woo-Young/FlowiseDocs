@@ -1,6 +1,6 @@
 # Slack MCP
 
-## 1. Prerequisites
+## 1. 사전 요구사항
 
 Before using the Slack MCP node you need:
 
@@ -29,7 +29,7 @@ Before using the Slack MCP node you need:
 2. Click **Add Credential** and search for **Slack User Token OAuth2**.
 3. Fill in the following fields:
 
-<table><thead><tr><th>Field</th><th>Description</th><th width="250">Example</th></tr></thead><tbody><tr><td><strong>Client ID</strong></td><td>The OAuth Client ID from Slack</td><td><code>wBSGhxxxx</code></td></tr><tr><td><strong>Client Secret</strong></td><td>The OAuth Client Secret (stored securely)</td><td><code>••••••••</code></td></tr><tr><td><strong>Scopes</strong></td><td><em>(Optional)</em> Space-separated scopes.</td><td><p><code>search:read.public search:read.private search:read.mpim search:read.im search:read.files search:read.users groups:history</code></p><p><code>mpim:history</code></p><p><code>im:history</code></p><p><code>channels:history</code></p><p><code>chat:write</code></p><p><code>canvases:read canvases:write</code></p><p><code>users:read</code></p><p><code>users:read.email</code></p></td></tr></tbody></table>
+<table><thead><tr><th>Field</th><th>Description</th><th width="250">예시</th></tr></thead><tbody><tr><td><strong>Client ID</strong></td><td>The OAuth Client ID from Slack</td><td><code>wBSGhxxxx</code></td></tr><tr><td><strong>Client Secret</strong></td><td>The OAuth Client Secret (stored securely)</td><td><code>••••••••</code></td></tr><tr><td><strong>Scopes</strong></td><td><em>(Optional)</em> Space-separated scopes.</td><td><p><code>search:read.public search:read.private search:read.mpim search:read.im search:read.files search:read.users groups:history</code></p><p><code>mpim:history</code></p><p><code>im:history</code></p><p><code>channels:history</code></p><p><code>chat:write</code></p><p><code>canvases:read canvases:write</code></p><p><code>users:read</code></p><p><code>users:read.email</code></p></td></tr></tbody></table>
 
 4. Copy OAuth Redirect URL, then click **Save**.
 
@@ -60,7 +60,7 @@ Before using the Slack MCP node you need:
 
 <figure><img src="../../../.gitbook/assets/image (342).png" alt="" width="538"><figcaption></figcaption></figure>
 
-3. A slack pop-up window will appear, review the permissions and click Allow.
+3. A Slack pop-up window will appear, review the permissions and click Allow.
 
 <figure><img src="../../../.gitbook/assets/image (347).png" alt="" width="542"><figcaption></figcaption></figure>
 
@@ -68,10 +68,10 @@ Before using the Slack MCP node you need:
 
 <figure><img src="../../../.gitbook/assets/image (348).png" alt=""><figcaption></figcaption></figure>
 
-5. Select the actions. _Tip: Select only the actions your agent needs. Fewer tools help the LLM make better decisions and reduce token usage._
+5. Select the actions. _Tip: Select only the actions your agent needs. Fewer 도구 help the LLM make better decisions and reduce token 사용법._
 
 <figure><img src="../../../.gitbook/assets/image (339).png" alt="" width="452"><figcaption></figcaption></figure>
 
-6. Voila! You can start chatting with the Agent and see how its calling Slack MCP tools.
+6. Voila! You can start chatting with the Agent and see how its calling Slack MCP 도구.
 
 <figure><img src="../../../.gitbook/assets/image (349).png" alt=""><figcaption></figcaption></figure>

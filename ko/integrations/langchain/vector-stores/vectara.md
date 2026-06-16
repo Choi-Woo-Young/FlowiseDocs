@@ -9,34 +9,34 @@
 1. Register an account for [Vectara](https://vectara.com/integrations/flowise)
 2. Click **Create Corpus**
 
-<figure><img src="../../../.gitbook/assets/vectara/1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Vectara/1.png" alt=""><figcaption></figcaption></figure>
 
 Name the corpus to be created and click **Create Corpus** then wait for the corpus to finish setting up.
 
-## Setup
+## 설정
 
 1. Click on the **"Access Control"** tab in the corpus view
 
-<figure><img src="../../../.gitbook/assets/vectara/2.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Vectara/2.png" alt=""><figcaption></figcaption></figure>
 
 2. Click on the **"Create API Key"** button, choose a name for the API key and pick the **QueryService & IndexService** option
 
-<figure><img src="../../../.gitbook/assets/vectara/3.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Vectara/3.png" alt=""><figcaption></figcaption></figure>
 
 3. Click **Create** to create the API key
 4. Get your **Corpus ID, API Key, and Customer ID** by clicking the down-arrow under "copy" for your new API key:
 
-<figure><img src="../../../.gitbook/assets/vectara/4.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Vectara/4.png" alt=""><figcaption></figcaption></figure>
 
 5. Back to Flowise canvas, and create your chatflow. Click **Create New** from the Credentials dropdown ane enter your Vectara credentials.
 
-<figure><img src="../../../.gitbook/assets/vectara/5.png" alt="" width="500"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Vectara/5.png" alt="" width="500"><figcaption></figcaption></figure>
 
 6. Enjoy!
 
-## Vectara Query Parameters
+## Vectara Query 매개변수
 
-For finer control over the Vectara query parameters, click on "**Additional Parameters**" and then you can update the following parameters from their default:
+For finer control over the Vectara query 매개변수, click on "**Additional 매개변수**" and then you can update the following 매개변수 from their default:
 
 * Metadata Filter: Vectara supports meta-data filtering. To use [filtering](https://docs.vectara.com/docs/common-use-cases/filtering-by-metadata/filter-overview), ensure that metadata fields you want to filter by are defined in your Vectara corpus.
 * "Sentences before" and "Sentences after": these control how many sentences before/after the matching text are returned as results from the Vectara retrieval engine
@@ -44,7 +44,7 @@ For finer control over the Vectara query parameters, click on "**Additional Para
 * Top-K: how many results to return from Vectara for the query
 * MMR-K: number of results to use for [MMR](https://docs.vectara.com/docs/api-reference/search-apis/reranking#maximal-marginal-relevance-mmr-reranker) (max marginal relvance)
 
-<figure><img src="../../../.gitbook/assets/vectara/6.png" alt="" width="500"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Vectara/6.png" alt="" width="500"><figcaption></figcaption></figure>
 
 ## Resources
 

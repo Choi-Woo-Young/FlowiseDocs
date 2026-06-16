@@ -1,7 +1,10 @@
+---
 
 description: >-
   Upsert embedded data and perform similarity search upon query using Pinecone,
   a leading fully managed hosted vector database.
+
+---
 
 
 # Pinecone
@@ -21,13 +24,13 @@ description: >-
 
 4. Click **Create Index**
 
-## Setup
+## 설정
 
 1.  Get/Create your **API Key**
 
 <figure><img src="../../../.gitbook/assets/pinecone_3.png" alt=""><figcaption></figcaption></figure>
 
-2.  Add a new **Pinecone** node to canvas and fill in the parameters:
+2.  Add a new **Pinecone** node to canvas and fill in the 매개변수:
     - Pinecone Index
     - Pinecone namespace (optional)
 

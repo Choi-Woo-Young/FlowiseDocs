@@ -1,14 +1,17 @@
 ---
+
 description: >-
   Upsert embedded data and perform similarity search upon query using pgvector
   on Postgres.
+
 ---
+
 
 # Postgres
 
 <figure><img src="../../../.gitbook/assets/image (163).png" alt="" width="292"><figcaption><p>Postgres Node</p></figcaption></figure>
 
-There are multiple methods to connect to Postgres based on how your instance is set up. Below is an example of a local configuration using a prebuilt Docker image provided by the pgvector team.
+There are multiple methods to connect to Postgres based on how your instance is set up. Below is an 예시 of a local 설정 using a prebuilt Docker image provided by the pgvector team.
 
 Create a file named `docker-compose.yml` with the content below:
 
@@ -37,17 +40,17 @@ Create new credential with the configured user and password:
 
 <figure><img src="../../../.gitbook/assets/image (50).png" alt="" width="526"><figcaption></figcaption></figure>
 
-Fill in the node's field with values configured in `docker-compose.yml`. For example:
+Fill in the node's field with values configured in `docker-compose.yml`. For 예시:
 
 * Host: **localhost**
 * Database: **api**
 * Port: **5432**
 
-Voila! You have now successfully setup Postgres Vector ready to be used.
+Voila! You have now successfully 설정 Postgres Vector ready to be used.
 
 ### Troubleshooting
 
-If both Flowise and Postgres are running on Docker, you might see the error: <mark style="color:red;">**AggregateError**</mark>.
+If both Flowise and Postgres are running on Docker, you might see the 오류: <mark style="color:red;">**AggregateError**</mark>.
 
 Try to change the Host value from `localhost` to `host.docker.internal`
 
