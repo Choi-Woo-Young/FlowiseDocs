@@ -1,4 +1,4 @@
-# Assistants
+# 어시스턴트
 
 {% openapi-operation spec="flowiseai-api" path="/assistants" method="post" %}
 [Broken link](broken-reference)

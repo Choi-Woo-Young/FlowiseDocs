@@ -1,11 +1,18 @@
 ---
-description: Wrapper around AWS Bedrock large language models that use the Chat endpoint.
+description: AWS Bedrock의 챗 모델을 통한 텍스트 생성입니다.
 ---
 
 # AWS ChatBedrock
 
-<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (2).png" alt="" width="265"><figcaption><p>AWS ChatBedrock</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (281).png" alt="" width="271"><figcaption><p>AWS Bedrock Node</p></figcaption></figure>
 
-{% hint style="info" %}
-This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA) to get started.
-{% endhint %}
+AWS Bedrock 챗 모델에 대한 더 많은 정보는 [공식 문서](https://aws.amazon.com/bedrock/)를 참조하세요.
+
+## 입력
+
+- **Language Model**: 쿼리 처리에 사용할 언어 모델입니다.
+- **Temperature**: 0과 1 사이의 값으로, 값이 높을수록 응답이 더 창의적입니다.
+
+## 출력
+
+텍스트 생성 결과를 반환합니다.
