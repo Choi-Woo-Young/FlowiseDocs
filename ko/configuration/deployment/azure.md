@@ -1,38 +1,41 @@
 ---
-description: Azure에 Flowise를 배포하는 방법을 알아봅니다
+
+description: Learn how to deploy Flowise on Azure
+
 ---
+
 
 # Azure
 
 ***
 
-## Postgres와 함께 Azure App Service로 Flowise 배포하기: Terraform 사용
+## Flowise as Azure App Service with Postgres: Using Terraform
 
 ### 사전 요구사항
 
-1. **Azure 계정**: 활성 구독이 있는 Azure 계정이 있는지 확인합니다. 계정이 없는 경우 [Azure Portal](https://portal.azure.com/)에서 가입하세요.
-2. **Terraform**: 머신에 Terraform CLI를 설치합니다. [Terraform 웹사이트](https://www.terraform.io/downloads.html)에서 다운로드하세요.
-3. **Azure CLI**: Azure CLI를 설치합니다. 설치 방법은 [Azure CLI 문서 페이지](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)에서 확인할 수 있습니다.
+1. **Azure Account**: Ensure you have an Azure account with an active subscription. If you do not have one, sign up at [Azure Portal](https://portal.azure.com/).
+2. **Terraform**: Install Terraform CLI on your machine. Download it from [Terraform's website](https://www.terraform.io/downloads.html).
+3. **Azure CLI**: Install Azure CLI. Instructions can be found on the [Azure CLI documentation page](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
 
-### 환경 설정
+### Setting Up Your Environment
 
-1. **Azure 로그인**: 터미널 또는 명령 프롬프트를 열고 다음을 사용하여 Azure CLI에 로그인합니다:
+1. **Login to Azure**: Open your terminal or command prompt and login to Azure CLI using:
 
 ```bash
 az login --tenant <Your Subscription ID> --use-device-code 
 ```
 
-프롬프트를 따라 로그인 과정을 완료합니다.
+Follow the prompts to complete the login process.
 
-2. **구독 설정**: 로그인한 후 다음을 사용하여 Azure 구독을 설정합니다:
+2. **Set Subscription**: After logging in, set the Azure subscription using:
 
 ```bash
 az account set --subscription <Your Subscription ID>
 ```
 
-3. **Terraform 초기화**:
+3. **Initialize Terraform**:
 
-Terraform 프로젝트 디렉터리에 `terraform.tfvars` 파일이 아직 없다면 생성하고 다음 내용을 추가합니다:
+Create a `terraform.tfvars` file in your Terraform project directory, if it's not already there, and add the following content:
 
 ```hcl
 subscription_name = "subscrpiton_name"
@@ -61,9 +64,9 @@ source_image = "flowiseai/flowise:latest"
 tagged_image = "flow:v1"
 ```
 
-플레이스홀더를 본인의 설정에 맞는 실제 값으로 교체합니다.
+Replace the placeholders with actual values for your 설정.
 
-파일 트리 구조는 다음과 같습니다:
+The file tree structure is as follows:
 
 ```
 flow
@@ -80,11 +83,11 @@ flow
 
 ```
 
-Terraform 구성의 각 `.tf` 파일은 일반적으로 인프라스트럭처 코드(IaC)의 서로 다른 측면을 포함합니다:
+Each `.tf` file in the Terraform 설정 likely contains a different aspect of the infrastructure as code:
 
 <details>
 
-<summary>`database.tf`는 Postgres 데이터베이스에 대한 구성을 정의합니다.</summary>
+<summary>`database.tf` would define the 설정 for the Postgres database.</summary>
 
 ```yaml
 
@@ -146,7 +149,7 @@ resource "azurerm_postgresql_flexible_server_configuration" "postgres_config" {
 
 <details>
 
-<summary>`main.tf`는 Azure 공급자 구성을 포함하고 Azure 리소스 그룹을 정의하는 기본 구성 파일일 수 있습니다.</summary>
+<summary>`main.tf` could be the main 설정 file that may include the Azure provider 설정 and defines the Azure resource group.</summary>
 
 ```yaml
 // main.tf
@@ -189,7 +192,7 @@ resource "azurerm_storage_share" "flowise-share" {
 
 <details>
 
-<summary>`network.tf`는 가상 네트워크, 서브넷, 네트워크 보안 그룹 등의 네트워킹 리소스를 포함합니다.</summary>
+<summary>`network.tf` would include networking resources such as virtual networks, subnets, and network security groups.</summary>
 
 ```yaml
 // network.tf
@@ -260,7 +263,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "postgres" {
 
 <details>
 
-<summary>`providers.tf`는 Azure와 같은 Terraform 공급자를 정의합니다.</summary>
+<summary>`providers.tf` would define the Terraform providers, such as Azure.</summary>
 
 ```yaml
 // providers.tf
@@ -289,7 +292,7 @@ provider "azurerm" {
 
 <details>
 
-<summary>`variables.tf`는 모든 `.tf` 파일에서 사용되는 변수를 선언합니다.</summary>
+<summary>`variables.tf` would declare variables used across all `.tf` files.</summary>
 
 ```yaml
 // variables.tf
@@ -371,7 +374,7 @@ variable "tagged_image" {
 
 <details>
 
-<summary>`webapp.tf` 서비스 플랜과 Linux 웹 앱을 포함하는 Azure App Services</summary>
+<summary>`webapp.tf` Azure App Services that includes a service plan and linux web app</summary>
 
 ```yaml
 // webapp.tf
@@ -471,87 +474,87 @@ resource "azurerm_app_service_virtual_network_swift_connection" "webappvnetinteg
 
 </details>
 
-참고: `.terraform` 디렉터리는 프로젝트를 초기화할 때(`terraform init`) Terraform에 의해 생성되며, Terraform 실행에 필요한 플러그인과 바이너리 파일을 포함합니다. `.terraform.lock.hcl` 파일은 사용 중인 정확한 공급자 버전을 기록하여 서로 다른 머신에서 일관된 설치를 보장하는 데 사용됩니다.
+Note: The `.terraform` directory is created by Terraform when initializing a project (`terraform init`) and it contains the plugins and binary files needed for Terraform to run. The `.terraform.lock.hcl` file is used to record the exact provider versions that are being used to ensure consistent installs across different machines.
 
-Terraform 프로젝트 디렉터리로 이동하여 다음을 실행합니다:
+Navigate to your Terraform project directory and run:
 
 ```bash
 terraform init
 ```
 
-이는 Terraform을 초기화하고 필요한 공급자를 다운로드합니다.
+This will initialize Terraform and download the required providers.
 
-### Terraform 변수 구성
+### Configuring Terraform Variables
 
-### Terraform으로 배포하기
+### Deploying with Terraform
 
-1.  **배포 계획**: Terraform plan 명령어를 실행하여 어떤 리소스가 생성될지 확인합니다:
+1.  **Plan the Deployment**: Run the Terraform plan command to see what resources will be created:
 
     ```bash
     terraform plan
     ```
-2.  **배포 적용**: 계획이 만족스럽다면 변경 사항을 적용합니다:
+2.  **Apply the Deployment**: If you are satisfied with the plan, apply the changes:
 
     ```bash
     terraform apply
     ```
 
-    프롬프트가 표시되면 작업을 확인하고, Terraform이 리소스 생성을 시작합니다.
-3. **배포 확인**: Terraform이 완료되면 IP 주소나 도메인 이름과 같이 정의된 출력값을 출력합니다. Azure Portal에서 리소스가 올바르게 배포되었는지 확인합니다.
+    Confirm the action when prompted, and Terraform will begin creating the resources.
+3. **Verify the Deployment**: Once Terraform has completed, it will output any defined outputs such as IP addresses or domain names. Verify that the resources are correctly deployed in your Azure Portal.
 
 ***
 
-## Azure Container Instance: Azure Portal UI 또는 Azure CLI 사용
+## Azure Continer Instance: Using Azure Portal UI or Azure CLI
 
 ### 사전 요구사항
 
-1. _(선택 사항)_ CLI 기반 명령어를 따라하려면 [Azure CLI를 설치](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)합니다
+1. _(Optional)_ [Install Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) if you'd like to follow the cli based commands
 
-## 영구 스토리지 없이 Container Instance 생성
+## Create a Container Instance without Persistent Storage
 
-영구 스토리지가 없으면 데이터가 메모리에 보관됩니다. 즉, 컨테이너를 재시작하면 저장한 모든 데이터가 사라집니다.
+Without persistent storage your data is kept in memory. This means that on a container restart, all the data that you stored will disappear.
 
-### Portal에서
+### In Portal
 
-1. Marketplace에서 Container Instances를 검색하고 Create를 클릭합니다:
+1. Search for Container Instances in Marketplace and click Create:
 
-<figure><img src="../../.gitbook/assets/azure/deployment/1.png" alt=""><figcaption><p>Azure Marketplace의 Container Instances 항목</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Azure/deployment/1.png" alt=""><figcaption><p>Container Instances entry in Azure's Marketplace</p></figcaption></figure>
 
-2. 리소스 그룹, 컨테이너 이름, 리전, 이미지 소스 `Other registry`, 이미지 유형, 이미지 `flowiseai/flowise`, OS 유형, 크기를 선택하거나 생성합니다. 그런 다음 "Next: Networking"을 클릭하여 Flowise 포트를 구성합니다:
+2. Select or create a Resource group, Container name, Region, Image source `Other registry`, Image type, Image `flowiseai/flowise`, OS type and Size. Then click "Next: Networking" to configure Flowise ports:
 
-<figure><img src="../../.gitbook/assets/azure/deployment/2.png" alt=""><figcaption><p>Container Instance 생성 마법사의 첫 번째 페이지</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Azure/deployment/2.png" alt=""><figcaption><p>First page in the Container Instance create wizard</p></figcaption></figure>
 
-3. 기본 `80 (TCP)` 옆에 새 포트 `3000 (TCP)`을 추가합니다. 그런 다음 "Next: Advanced"를 선택합니다:
+3. Add a new port `3000 (TCP)` next to the default `80 (TCP)`. Then Select "Next: Advanced":
 
-<figure><img src="../../.gitbook/assets/azure/deployment/3.png" alt=""><figcaption><p>Container Instance 생성 마법사의 두 번째 페이지. 네트워킹 유형과 포트를 묻습니다.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Azure/deployment/3.png" alt=""><figcaption><p>Second page in the Container Instance create wizard. It asks for netowrking type and ports.</p></figcaption></figure>
 
-4. Restart policy를 `On failure`로 설정합니다. Command override `["/bin/sh", "-c", "flowise start"]`를 추가합니다. 마지막으로 "Review + create"를 클릭합니다:
+4. Set Restart policy to `On failure`. Add Command override `["/bin/sh", "-c", "flowise start"]`. Finally click "Review + create":
 
-<figure><img src="../../.gitbook/assets/azure/deployment/4.png" alt=""><figcaption><p>Container Instance 생성 마법사의 세 번째 페이지. 재시작 정책, 환경 변수, 컨테이너 시작 시 실행되는 명령을 묻습니다.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Azure/deployment/4.png" alt=""><figcaption><p>Third page in the Container Instance create wizard. It asks for restart policy, environment variables and command that runs on container start.</p></figcaption></figure>
 
-5. 최종 설정을 검토하고 "Create"를 클릭합니다:
+5. Review final settings and click "Create":
 
-<figure><img src="../../.gitbook/assets/azure/deployment/5.png" alt=""><figcaption><p>Container Instance의 최종 검토 및 생성 페이지.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Azure/deployment/5.png" alt=""><figcaption><p>Final review and create page for a Container Instance.</p></figcaption></figure>
 
-6. 생성이 완료되면 "Go to resource"를 클릭합니다
+6. Once creation is completed, click on "Go to resource"
 
-<figure><img src="../../.gitbook/assets/azure/deployment/6.png" alt=""><figcaption><p>Azure의 리소스 생성 결과 페이지.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Azure/deployment/6.png" alt=""><figcaption><p>Resource creation result page in Azure.</p></figcaption></figure>
 
-7. IP 주소를 복사하고 포트로 :3000을 추가하여 Flowise 인스턴스를 방문합니다:
+7. Visit your Flowise instance by copying IP address and adding :3000 as a port:
 
-<figure><img src="../../.gitbook/assets/azure/deployment/7.png" alt=""><figcaption><p>Container Instance 개요 페이지</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Azure/deployment/7.png" alt=""><figcaption><p>Container Instance 개요 page</p></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/azure/deployment/8.png" alt=""><figcaption><p>Container Instance로 배포된 Flowise 애플리케이션</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Azure/deployment/8.png" alt=""><figcaption><p>Flowise application deployed as Container Instance</p></figcaption></figure>
 
-### Azure CLI를 사용하여 생성
+### Create using Azure CLI
 
-1. 리소스 그룹을 생성합니다 (이미 있는 경우 생략)
+1. Create a resource group (if you don't already have one)
 
 ```bash
 az group create --name flowise-rg --location "West US"
 ```
 
-2. Container Instance를 생성합니다
+2. Create a Container Instance
 
 ```bash
 az container create -g flowise-rg \
@@ -563,21 +566,21 @@ az container create -g flowise-rg \
 	--restart-policy OnFailure
 ```
 
-3. 위 명령어의 출력에서 출력된 IP 주소(포트 :3000 포함)를 방문합니다.
+3. Visit the IP address (including port :3000) printed from the output of the above command.
 
-## 영구 스토리지와 함께 Container Instance 생성
+## Create a Container Instance with Persistent Storage
 
-영구 스토리지를 포함한 Container Instance 생성은 CLI를 사용해서만 가능합니다:
+The creation of a Container Instance with persistent storage is only possible using CLI:
 
-1. 리소스 그룹을 생성합니다 (이미 있는 경우 생략)
+1. Create a resource group (if you don't already have one)
 
 ```bash
 az group create --name flowise-rg --location "West US"
 ```
 
-2. 위 리소스 그룹 내에 Storage Account 리소스를 생성합니다 (또는 기존 것을 사용). 방법은 [여기](https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-portal?tabs=azure-portal)에서 확인할 수 있습니다.
-3. Azure Storage 내에서 새 File share를 생성합니다. 방법은 [여기](https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-portal?tabs=azure-portal)에서 확인할 수 있습니다.
-4. Container Instance를 생성합니다
+2. Create the Storage Account resource (or use existing one) inside above resource group. You can check how to do it [here](https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-portal?tabs=azure-portal).
+3. Inside Azure Storage create new File share. You can check how to do it [here](https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-portal?tabs=azure-portal).
+4. Create a Container Instance
 
 ```bash
 az container create -g flowise-rg \
@@ -594,9 +597,9 @@ az container create -g flowise-rg \
 	--azure-file-volume-mount-path /opt/flowise/.flowise
 ```
 
-5. 위 명령어의 출력에서 출력된 IP 주소(포트 :3000 포함)를 방문합니다.
-6. 이제부터 데이터는 File share에서 찾을 수 있는 SQLite 데이터베이스에 저장됩니다.
+5. Visit the IP address (including port :3000) printed from the output of the above command.
+6. From now on your data will be stored in an SQLite database which you can find in your File share.
 
-Azure Container Instance에 배포하는 동영상 튜토리얼을 시청하세요:
+Watch video tutorial on deploying to Azure Container Instance:
 
 {% embed url="https://www.youtube.com/watch?v=yDebxDfn2yk" %}

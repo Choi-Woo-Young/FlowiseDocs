@@ -1,12 +1,15 @@
 ---
-description: Learn how to use the Flowise Document Stores, written by @toi500
+
+description: Learn 사용 방법 the Flowise 문서 저장소, written by @toi500
+
 ---
 
-# Document Stores
+
+# 문서 저장소
 
 ***
 
-Flowise's Document Stores offer a versatile approach to data management, enabling you to upload, split, and prepare your dataset and upsert it in a single location.
+Flowise's 문서 저장소 offer a versatile approach to data management, enabling you to upload, split, and prepare your dataset and upsert it in a single location.
 
 This centralized approach simplifies data handling and allows for efficient management of various data formats, making it easier to organize and access your data within the Flowise app.
 
@@ -14,11 +17,11 @@ This centralized approach simplifies data handling and allows for efficient mana
 
 In this tutorial, we will set up a [Retrieval Augmented Generation (RAG)](broken-reference/) system to retrieve information about the _LibertyGuard Deluxe Homeowners Policy_, a topic that LLMs are not extensively trained on.
 
-Using the **Flowise Document Stores**, we'll prepare and upsert data about LibertyGuard and its set of home insurance policies. This will enable our RAG system to accurately answer user queries about LibertyGuard's home insurance offerings.
+Using the **Flowise 문서 저장소**, we'll prepare and upsert data about LibertyGuard and its set of home insurance policies. This will enable our RAG system to accurately answer user queries about LibertyGuard's home insurance offerings.
 
-## 1. 추가 a Document Store
+## 1. Add a Document Store
 
-Start by adding a Document Store and naming it. In our case, "LibertyGuard Deluxe Homeowners 정책".
+Start by adding a Document Store and naming it. In our case, "LibertyGuard Deluxe Homeowners Policy".
 
 <figure><img src="../.gitbook/assets/ds01.png" alt=""><figcaption></figcaption></figure>
 
@@ -47,48 +50,48 @@ Document Loaders are specialized nodes that handle the ingestion of various docu
 * Select the [Text Splitter](../integrations/langchain/text-splitters/) you want to use to chunk your data. In our particular case, we will use the [Recursive Character Text Splitter](../integrations/langchain/text-splitters/recursive-character-text-splitter.md).
 *   Text splitter is used to split the loaded documents into smaller pieces, documents, or chunks. This is a crucial preprocessing step for 2 main reasons:
 
-    * **Retrieval speed and relevance:** Storing and querying large documents as single entities in a vector database can lead to slower retrieval times and potentially less relevant results. Splitting the document into smaller chunks allows for more targeted retrieval. By querying against smaller, more focused units of information, we can achieve faster response times and improve the precision of the retrieved results.
-    * **Cost-effective:** Since we only retrieve relevant chunks rather than the entire document, the number of tokens processed by the LLM is significantly reduced. This targeted retrieval approach directly translates to lower usage costs for our LLM, as billing is typically based on token consumption. By minimizing the amount of irrelevant information sent to the LLM, we also optimize for cost.
+    * **Retrieval speed and relevance:** Storing and querying large documents as single entities in a vector database can lead to slower retrieval times and potentially less relevant results. Splitting the document into smaller chunks allows for more targeted retrieval. By querying against smaller, more focused units of information, we can achieve faster 응답 times and improve the precision of the retrieved results.
+    * **Cost-effective:** Since we only retrieve relevant chunks rather than the entire document, the number of tokens processed by the LLM is significantly reduced. This targeted retrieval approach directly translates to lower 사용법 costs for our LLM, as billing is typically based on token consumption. By minimizing the amount of irrelevant information sent to the LLM, we also optimize for cost.
 
     There are different text chunking strategies, including:
 
     * **Character Text Splitting:** Dividing the text into chunks of a fixed number of characters. This method is straightforward but may split words or phrases across chunks, potentially disrupting context.
-    * **토큰 Text Splitting:** Segmenting the text based on word boundaries or tokenization schemes specific to the chosen embedding model. This approach often leads to more semantically coherent chunks, as it preserves word boundaries and considers the underlying linguistic structure of the text.
+    * **Token Text Splitting:** Segmenting the text based on word boundaries or tokenization schemes specific to the chosen embedding model. This approach often leads to more semantically coherent chunks, as it preserves word boundaries and considers the underlying linguistic structure of the text.
     * **Recursive Character Text Splitting:** This strategy aims to divide text into chunks that maintain semantic coherence while staying within a specified size limit. It's particularly well-suited for hierarchical documents with nested sections or headings. Instead of blindly splitting at the character limit, it recursively analyzes the text to find logical breakpoints, such as sentence endings or section breaks. This approach ensures that each chunk represents a meaningful unit of information, even if it slightly exceeds the target size.
     * **Markdown Text Splitter:** Designed specifically for markdown-formatted documents, this splitter logically segments the text based on markdown headings and structural elements, creating chunks that correspond to logical sections within the document.
     * **Code Text Splitter:** Tailored for splitting code files, this strategy considers code structure, function definitions, and other programming language-specific elements to create meaningful chunks that are suitable for tasks like code search and documentation.
     * **HTML-to-Markdown Text Splitter:** This specialized splitter first converts HTML content to Markdown and then applies the Markdown Text Splitter, allowing for structured segmentation of web pages and other HTML documents.
 
-    You can also customize the parameters such as:
+    You can also customize the 매개변수 such as:
 
-    * **Chunk 크기:** The desired maximum size of each chunk, usually defined in characters or tokens.
+    * **Chunk Size:** The desired maximum size of each chunk, usually defined in characters or tokens.
     * **Chunk Overlap:** The number of characters or tokens to overlap between consecutive chunks, useful for maintaining contextual flow across chunks.
 
 {% hint style="info" %}
-In this guide, we've added a generous **Chunk Overlap** size to ensure no relevant data gets missed between chunks. However, the optimal overlap size is dependent on the complexity of your data. You may need to adjust this value based on your specific dataset and the nature of the information you want to extract.
+In this 가이드, we've added a generous **Chunk Overlap** size to ensure no relevant data gets missed between chunks. However, the optimal overlap size is dependent on the complexity of your data. You may need to adjust this value based on your specific dataset and the nature of the information you want to extract.
 {% endhint %}
 
 <figure><img src="../.gitbook/assets/ds05.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## 4. Preview Your Data
 
-We can now preview how our data will be chunked using our current [Text Splitter](../integrations/langchain/text-splitters/) configuration; `chunk_size=1500`and `chunk_overlap=750`.
+We can now preview how our data will be chunked using our current [Text Splitter](../integrations/langchain/text-splitters/) 설정; `chunk_size=1500`and `chunk_overlap=750`.
 
 <figure><img src="../.gitbook/assets/ds06.png" alt=""><figcaption></figcaption></figure>
 
-It's important to experiment with different [Text Splitters](../integrations/langchain/text-splitters/), Chunk Sizes, and Overlap values to find the optimal configuration for your specific dataset. This preview allows you to refine the chunking process and ensure that the resulting chunks are suitable for your RAG system.
+It's important to experiment with different [Text Splitters](../integrations/langchain/text-splitters/), Chunk Sizes, and Overlap values to find the optimal 설정 for your specific dataset. This preview allows you to refine the chunking process and ensure that the resulting chunks are suitable for your RAG system.
 
 <figure><img src="../.gitbook/assets/ds07.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-참고 that our custom metadata `company: "liberty"` has been inserted into each chunk. This metadata allows us to easily filter and retrieve information from this specific dataset later on, even if we use the same vector store index for other datasets.
+Note that our custom metadata `company: "liberty"` has been inserted into each chunk. This metadata allows us to easily filter and retrieve information from this specific dataset later on, even if we use the same vector store index for other datasets.
 {% endhint %}
 
 ### Understanding Chunk Overlap <a href="#understanding-chunk-overlap" id="understanding-chunk-overlap"></a>
 
-In the context of vector-based retrieval and LLM querying, chunk overlap plays an **important role in maintaining contextual continuity** and **improving response accuracy**, especially when dealing with limited retrieval depth or **top K**, which is the parameter that determines the maximum number of most similar chunks that are retrieved from the [Vector Store](https://docs.flowiseai.com/integrations/langchain/vector-stores) in response to a query.
+In the context of vector-based retrieval and LLM querying, chunk overlap plays an **important role in maintaining contextual continuity** and **improving 응답 accuracy**, especially when dealing with limited retrieval depth or **top K**, which is the parameter that determines the maximum number of most similar chunks that are retrieved from the [Vector Store](https://docs.flowiseai.com/integrations/langchain/vector-stores) in 응답 to a query.
 
-During query processing, the LLM executes a similarity search against the Vector Store to retrieve the most semantically relevant chunks to the given query. If the retrieval depth, represented by the top K parameter, is set to a small value, 4 for default, the LLM initially uses information only from these 4 chunks to generate its response.
+During query processing, the LLM executes a similarity search against the Vector Store to retrieve the most semantically relevant chunks to the given query. If the retrieval depth, represented by the top K parameter, is set to a small value, 4 for default, the LLM initially uses information only from these 4 chunks to generate its 응답.
 
 This scenario presents us with a problem, since relying solely on a limited number of chunks without overlap can lead to incomplete or inaccurate answers, particularly when dealing with queries that require information spanning multiple chunks.
 
@@ -106,11 +109,11 @@ Therefore, by introducing chunk overlap during the text splitting phase, we enha
 So, to further optimize the trade-off between retrieval accuracy and cost, two primary strategies can be used:
 
 1. **Increase/Decrease Chunk Overlap:** Adjusting the overlap percentage during text splitting allows for fine-grained control over the amount of shared context between chunks. Higher overlap percentages generally lead to improved context preservation but may also increase costs since you would need to use more chunks to encompass the entire document. Conversely, lower overlap percentages can reduce costs but risk losing key contextual information between chunks, potentially leading to less accurate or incomplete answers from the LLM.
-2. **Increase/Decrease Top K:** Raising the default top K value (4) expands the number of chunks considered for response generation. While this can improve accuracy, it also increases cost.
+2. **Increase/Decrease Top K:** Raising the default top K value (4) expands the number of chunks considered for 응답 generation. While this can improve accuracy, it also increases cost.
 
-**Tip:** The choice of optimal **overlap** and **top K** values depends on factors such as document complexity, embedding model characteristics, and the desired balance between accuracy and cost. Experimentation with these values is important for finding the ideal configuration for a specific need.
+**Tip:** The choice of optimal **overlap** and **top K** values depends on factors such as document complexity, embedding model characteristics, and the desired balance between accuracy and cost. Experimentation with these values is important for finding the ideal 설정 for a specific need.
 
-## 5. 프로세스 Your Data
+## 5. Process Your Data
 
 Once you are satisfied with the chunking process, it's time to process your data.
 
@@ -120,9 +123,9 @@ After processing your data, you retain the ability to refine individual chunks b
 
 * **Enhanced Accuracy:** Identify and rectify inaccuracies or inconsistencies present in the original data, ensuring the information used in your application is reliable.
 * **Improved Relevance:** Refine chunk content to emphasize key information and remove irrelevant sections, thereby increasing the precision and effectiveness of your retrieval process.
-* **쿼리 최적화:** Tailor chunks to better align with anticipated user queries, making them more targeted and improving the overall user experience.
+* **Query Optimization:** Tailor chunks to better align with anticipated user queries, making them more targeted and improving the overall user experience.
 
-## 6. Configure the Upsert 프로세스
+## 6. Configure the Upsert Process
 
 With our data properly processed - loaded via a Document Loader and appropriately chunked -, we can now proceed to configure the upsert process.
 
@@ -132,7 +135,7 @@ The upsert process comprises three fundamental steps:
 
 * **Embedding:** We begin by choosing the appropriate embedding model to encode our dataset. This model will transform our data into a numerical vector representation.
 * **Vector Store:** Next, we determine the Vector Store where our dataset will reside.
-* **레코드 관리자 (선택 사항):** Finally, we have the option to implement a 레코드 관리자. This component provides the functionalities for managing our dataset once it's stored within the Vector Store.
+* **Record Manager (Optional):** Finally, we have the option to implement a Record Manager. This component provides the functionalities for managing our dataset once it's stored within the Vector Store.
 
 <figure><img src="../.gitbook/assets/dastore003.png" alt=""><figcaption></figcaption></figure>
 
@@ -146,7 +149,7 @@ These vectors allow LLMs to compare and search for similar pieces of text within
 
 #### Understanding Embeddings/Vector Store dimensions <a href="#understanding-embeddings-vector-store-dimensions" id="understanding-embeddings-vector-store-dimensions"></a>
 
-The number of dimensions in a Vector Store index is determined by the embedding model used when we upsert our data, and vice versa. Each dimension represents a specific feature or concept within the data. For example, a **dimension** might **represent a particular topic, sentiment, or other aspect of the text**.
+The number of dimensions in a Vector Store index is determined by the embedding model used when we upsert our data, and vice versa. Each dimension represents a specific feature or concept within the data. For 예시, a **dimension** might **represent a particular topic, sentiment, or other aspect of the text**.
 
 The more dimensions we use to embed our data, the greater the potential for capturing nuanced meaning from our text. However, this increase comes at the cost of higher computational requirements per query.
 
@@ -164,7 +167,7 @@ To ensure compatibility between an embedding model and a Vector Store index, dim
 
 Click on the "Select Vector Store" card and choose your preferred [Vector Store](../integrations/langchain/vector-stores/). In our case, as we need a production-ready option, we will select Upstash.
 
-Vector store is a special type of database that is used to store the vector embeddings. We can finetune parameters like "**top K**" that determines the maximum number of most similar chunks that are retrieved from the Vector Store in response to a query.
+Vector store is a special type of database that is used to store the vector embeddings. We can finetune 매개변수 like "**top K**" that determines the maximum number of most similar chunks that are retrieved from the Vector Store in 응답 to a query.
 
 {% hint style="info" %}
 A lower top K value will yield fewer but potentially more relevant results, while a higher value will return a broader range of results, potentially capturing more information.
@@ -172,13 +175,13 @@ A lower top K value will yield fewer but potentially more relevant results, whil
 
 <figure><img src="../.gitbook/assets/dastore005.png" alt=""><figcaption></figcaption></figure>
 
-### Step 3: Select 레코드 관리자
+### Step 3: Select Record Manager
 
-레코드 관리자 is an optional but incredibly useful addition to our upserting flow. It allows us to maintain records of all the chunks that have been upserted to our Vector Store, enabling us to efficiently add or delete chunks as needed.
+Record Manager is an optional but incredibly useful addition to our upserting flow. It allows us to maintain records of all the chunks that have been upserted to our Vector Store, enabling us to efficiently add or delete chunks as needed.
 
 In other words, any changes to your documents during a new upsert will not result in duplicate vector embeddings being stored in the vector store.
 
-Detailed instructions on how to set up and utilize this feature can be found in the dedicated [guide](../integrations/langchain/record-managers.md).
+Detailed instructions on how to set up and utilize this feature can be found in the dedicated [가이드](../integrations/langchain/record-managers.md).
 
 <figure><img src="../.gitbook/assets/dastore006.png" alt=""><figcaption></figcaption></figure>
 
@@ -194,7 +197,7 @@ As illustrated in the image below, our data has been successfully upserted into 
 
 ## 8. Test Your Dataset
 
-To quickly test the functionality of your dataset without navigating away from the Document Store, simply utilize the "Retrieval 쿼리" button. This initiates a test query, allowing you to verify the accuracy and effectiveness of your data retrieval process.
+To quickly test the functionality of your dataset without navigating away from the Document Store, simply utilize the "Retrieval Query" button. This initiates a test query, allowing you to verify the accuracy and effectiveness of your data retrieval process.
 
 <figure><img src="../.gitbook/assets/dastore010.png" alt=""><figcaption></figcaption></figure>
 
@@ -204,7 +207,7 @@ In our case, we see that when querying for information about kitchen flooring co
 
 ## 9. Test Your RAG
 
-Finally, our Retrieval-Augmented Generation (RAG) system is operational. It's noteworthy how the LLM effectively interprets the query and successfully leverages relevant information from the chunked data to construct a comprehensive response.
+Finally, our Retrieval-Augmented Generation (RAG) system is operational. It's noteworthy how the LLM effectively interprets the query and successfully leverages relevant information from the chunked data to construct a comprehensive 응답.
 
 #### Agentflow
 
@@ -235,17 +238,17 @@ There are also APIs support for creating, updating and deleting document store. 
 * Upsert
 * Refresh
 
-For details, see the [Document Store API 참조](../api-reference/document-store.md).
+For details, see the [Document Store API Reference](../api-reference/document-store.md).
 
 ### Upsert API
 
 There are a few different scenarios for upserting process, and each have different outcomes.
 
-#### 시나리오 1: In the same document store, use an existing document loader configuration, upsert as new document loader.
+#### Scenario 1: In the same document store, use an existing document loader 설정, upsert as new document loader.
 
 <figure><img src="../.gitbook/assets/Untitled-2025-02-02-1727.png" alt="" width="496"><figcaption></figcaption></figure>
 
-{% hint style="success" %}
+{% hint style="성공" %}
 **`docId`** represents the existing document loader ID. It is required in the request body for this scenario.
 {% endhint %}
 
@@ -313,11 +316,11 @@ query(formData).then((response) => {
 {% endtab %}
 {% endtabs %}
 
-#### 시나리오 2: In the same document store, replace an existing document loader with new files.
+#### Scenario 2: In the same document store, replace an existing document loader with new files.
 
 <figure><img src="../.gitbook/assets/Untitled-2025-03-02-1727.png" alt="" width="563"><figcaption></figcaption></figure>
 
-{% hint style="success" %}
+{% hint style="성공" %}
 **`docId`** and **`replaceExisting`** are both required in the request body for this scenario.
 {% endhint %}
 
@@ -387,11 +390,11 @@ query(formData).then((response) => {
 {% endtab %}
 {% endtabs %}
 
-#### 시나리오 3: In the same document store, upsert as new document loader from scratch.
+#### Scenario 3: In the same document store, upsert as new document loader from scratch.
 
 <figure><img src="../.gitbook/assets/Untitled-2025-04-02-1727.png" alt="" width="439"><figcaption></figcaption></figure>
 
-{% hint style="success" %}
+{% hint style="성공" %}
 **`loader`, `splitter`, `embedding`, `vectorStore`** are all required in the request body for this scenario. **`recordManager`** is optional.
 {% endhint %}
 
@@ -535,14 +538,14 @@ query();
 {% endtabs %}
 
 {% hint style="danger" %}
-Creating from scratch is not recommended as it exposes your credential ID. The recommended way is to create a placeholder document store and configure the parameters on the UI. Then use the placeholder as the base for adding new document loader or creating new document store.
+Creating from scratch is not recommended as it exposes your credential ID. The recommended way is to create a placeholder document store and configure the 매개변수 on the UI. Then use the placeholder as the base for adding new document loader or creating new document store.
 {% endhint %}
 
-#### 시나리오 4: Create new document store for every upsert
+#### Scenario 4: Create new document store for every upsert
 
 <figure><img src="../.gitbook/assets/Untitled-2025-056-02-1727.png" alt="" width="533"><figcaption></figcaption></figure>
 
-{% hint style="success" %}
+{% hint style="성공" %}
 **`createNewDocStore`** and **`docStore`** are both required in the request body for this scenario.
 {% endhint %}
 
@@ -622,7 +625,7 @@ A: You can find the respective IDs from the URL.
 
 #### Q: Where can I find the available configs to override?
 
-A: You can find the available configs from the **뷰 API** button on each document loader:
+A: You can find the available configs from the **View API** button on each document loader:
 
 <figure><img src="../.gitbook/assets/image (4) (3).png" alt=""><figcaption></figcaption></figure>
 
@@ -636,7 +639,7 @@ For each upsert, there are 5 elements involved:
 * **`vectorStore`**
 * **`recordManager`**
 
-You can override existing configuration with the **`config`** body of the element. For example, using the screenshot above, you can create a new document loader with a new **`url`**:
+You can override existing 설정 with the **`config`** body of the element. For 예시, using the screenshot above, you can create a new document loader with a new **`url`**:
 
 {% tabs %}
 {% tab title="Python" %}
@@ -696,7 +699,7 @@ query({
 
 What if the loader has file upload? Yes, you guessed it right, we have to use form data as body!
 
-Using the image below as an example, we can override the **`usage`** parameter of the PDF File Loader like so:
+Using the image below as an 예시, we can override the **`사용법`** parameter of the PDF File Loader like so:
 
 <figure><img src="../.gitbook/assets/image (4) (3) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -778,12 +781,12 @@ query(formData).then((response) => {
 
 #### Q: When to use Form Data vs JSON as the body of API request?
 
-A: For [Document Loaders](../integrations/langchain/document-loaders/) that have File 업로드 functionality, such as PDF, DOCX, TXT, etc, body must be sent as Form Data.
+A: For [Document Loaders](../integrations/langchain/document-loaders/) that have File Upload functionality, such as PDF, DOCX, TXT, etc, body must be sent as Form Data.
 
 {% hint style="warning" %}
 Make sure the sent file type is compatible with the expected file type from document loader.
 
-For example, if a [PDF File Loader](../integrations/langchain/document-loaders/pdf-file.md) is being used, you should only send **.pdf** files.
+For 예시, if a [PDF File Loader](../integrations/langchain/document-loaders/pdf-file.md) is being used, you should only send **.pdf** files.
 
 To avoid having separate loaders for different file types, we recommend to use [File Loader](../integrations/langchain/document-loaders/file-loader.md)
 {% endhint %}
@@ -841,7 +844,7 @@ query(formData).then((response) => {
 {% endtab %}
 {% endtabs %}
 
-For other [Document Loaders](https://docs.flowiseai.com/integrations/langchain/document-loaders) nodes without 업로드 File functionality, the API body is in **JSON** format:
+For other [Document Loaders](https://docs.flowiseai.com/integrations/langchain/document-loaders) nodes without Upload File functionality, the API body is in **JSON** format:
 
 {% tabs %}
 {% tab title="Python API" %}
@@ -887,7 +890,7 @@ query({
 {% endtab %}
 {% endtabs %}
 
-#### Q: can I add new metadata?
+#### Q: Can I add new metadata?
 
 A: You can provide new metadata by passing the **`metadata`** inside the body request:
 
@@ -943,7 +946,7 @@ query().then((response) => {
 {% endtab %}
 {% endtabs %}
 
-You can also override existing configuration of specific document loader:
+You can also override existing 설정 of specific document loader:
 
 {% tabs %}
 {% tab title="Python API" %}
@@ -1013,22 +1016,22 @@ query({
 {% endtab %}
 {% endtabs %}
 
-## 11. 요약
+## 11. Summary
 
-We started by creating a Document Store to organize the LibertyGuard Deluxe Homeowners 정책 data. This data was then prepared by uploading, chunking, processing, and upserting it, making it ready for our RAG system.
+We started by creating a Document Store to organize the LibertyGuard Deluxe Homeowners Policy data. This data was then prepared by uploading, chunking, processing, and upserting it, making it ready for our RAG system.
 
 **Advantages of the Document Store:**
 
-Document Stores offer several benefits for managing and preparing data for Retrieval Augmented Generation (RAG) systems:
+문서 저장소 offer several benefits for managing and preparing data for Retrieval Augmented Generation (RAG) systems:
 
 * **Organization and Management:** They provide a central location for storing, managing, and preparing your data.
-* **Data 품질:** The chunking process helps structure data for accurate retrieval and analysis.
-* **Flexibility:** Document Stores allow for refining and adjusting data as needed, improving the accuracy and relevance of your RAG system.
+* **Data Quality:** The chunking process helps structure data for accurate retrieval and analysis.
+* **Flexibility:** 문서 저장소 allow for refining and adjusting data as needed, improving the accuracy and relevance of your RAG system.
 
 ## 12. Video Tutorials
 
-### RAG Like a Boss - Flowise Document Store 튜토리얼
+### RAG Like a Boss - Flowise Document Store Tutorial
 
-In this video, [Leon](https://youtube.com/@leonvanzyl) provides a step by step tutorial on using Document Stores to easily manage your RAG knowledge bases in FlowiseAI.
+In this video, [Leon](https://youtube.com/@leonvanzyl) provides a step by step tutorial on using 문서 저장소 to easily manage your RAG knowledge bases in FlowiseAI.
 
 {% embed url="https://youtu.be/PLuSfAkOHOA" %}

@@ -1,17 +1,17 @@
 ---
-description: Learn about some core functionalities built into Flowise
+description: Flowise에 내장된 핵심 기능에 대해 알아보세요
 ---
 
-# Using Flowise
+# Flowise 사용하기 (Using Flowise)
 
 ***
 
-This section provides in-depth guides on core Flowise functionalities.
+이 섹션에서는 Flowise의 핵심 기능에 대한 심층 가이드를 제공합니다.
 
-## Guides
+## 가이드 (Guides)
 
 * [Agentflow V2](agentflowv2.md)
-* [Agentflow V1 (Deprecating)](agentflowv1/)
+* [Agentflow V1 (지원 중단 예정)](agentflowv1/)
   * [Multi-Agents](agentflowv1/multi-agents.md)
   * [Sequential Agents](agentflowv1/sequential-agents/)
 * [Prediction](prediction.md)

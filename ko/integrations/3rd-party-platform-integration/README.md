@@ -1,11 +1,11 @@
 ---
-description: Learn how to integrate Flowise with third-party platforms
+description: Flowise를 third-party 플랫폼과 통합하는 방법을 알아보세요
 ---
 
-# External Integrations
+# 외부 통합 (External Integrations)
 
 ***
 
-Flowise can also be used in 3rd party platform. Here are some usage examples:
+Flowise는 third-party 플랫폼에서도 사용할 수 있습니다. 다음은 몇 가지 사용 예시입니다:
 
 * [Zapier Zaps](zapier-zaps.md)
