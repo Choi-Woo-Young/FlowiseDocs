@@ -1,16 +1,16 @@
 ---
-description: Flowise의 이전 버전에 대해 알아보기
+description: Flowise의 레거시 버전에 대해 알아봅니다.
 ---
 
-# 마이그레이션 가이드
+# Migration Guide
 
 ***
 
-Flowise는 일반적으로 하위 호환성을 제공하며, 업데이트가 지속적인 개발 경로를 따릅니다. 그러나 때때로 주요 변경 사항이 있을 수 있습니다.
+Flowise는 일반적으로 역호환성을 제공합니다. 즉, 업데이트는 지속적인 개발 경로를 따릅니다. 그러나 때때로 breaking changes가 있을 수 있습니다.
 
-이 섹션은 주요 변경 사항이 있는 버전으로 마이그레이션할 때 도움이 되는 가이드를 제공합니다.
+이 섹션은 다양한 breaking 버전으로 마이그레이션할 때 지침을 제공합니다.
 
-## 버전
+## Versions
 
 * [Cloud Migration](cloud-migration.md)
 * [v1.3.0 Migration Guide](v1.3.0-migration-guide.md)

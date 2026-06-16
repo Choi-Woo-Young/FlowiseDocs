@@ -11,7 +11,7 @@ We highly recommend using Document Stores as it provides a unified interface to 
 
 In this guide, we are going to cover another method - Chatflow Upsert. This is an older method prior to Document Stores.
 
-For details, see the [Vector Upsert Endpoint API 참조](../api-reference/vector-upsert.md).
+For details, see the [Vector Upsert Endpoint API Reference](../api-reference/vector-upsert.md).
 
 ## Understanding the upserting process
 
@@ -19,15 +19,15 @@ Chatflow allows you to create a flow that can do both upserting and RAG querying
 
 <figure><img src="../.gitbook/assets/ud_01.png" alt=""><figcaption><p>Upsert vs. RAG</p></figcaption></figure>
 
-## 설정
+## Setup
 
 For an upsert process to work, we would need to create an **upserting flow** with 5 different nodes:
 
 1. Document Loader
 2. Text Splitter
-3. Embedding  모델
+3. Embedding  Model
 4. Vector Store
-5. 레코드 관리자 (선택 사항)
+5. Record Manager (Optional)
 
 All of the elements have been covered in [Document Stores](document-stores.md), refer there for more details.
 
@@ -41,23 +41,23 @@ The upsert process can also be carried out via API:
 
 <figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-## Base URL and 인증
+## Base URL and Authentication
 
 **Base URL**: `http://localhost:3000` (or your Flowise instance URL)
 
 **Endpoint**: `POST /api/v1/vector/upsert/:id`
 
-**인증**: Refer [인증 for Flows](../configuration/authorization/chatflow-level.md)
+**Authentication**: Refer [Authentication for Flows](../configuration/authorization/chatflow-level.md)
 
-## 요청 Methods
+## Request Methods
 
 The API supports two different request methods depending on your chatflow configuration:
 
-#### 1. Form Data (File 업로드)
+#### 1. Form Data (File Upload)
 
 Used when your chatflow contains Document Loaders with file upload capability.
 
-#### 2. JSON 본문 (No File 업로드)
+#### 2. JSON Body (No File Upload)
 
 Used when your chatflow uses Document Loaders that don't require file uploads (e.g., web scrapers, database connectors).
 
@@ -67,7 +67,7 @@ To override any node configurations such as files, metadata, etc., you must expl
 
 <figure><img src="../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-### Document Loaders with File 업로드
+### Document Loaders with File Upload
 
 #### Supported Document Types
 
@@ -85,14 +85,14 @@ To override any node configurations such as files, metadata, etc., you must expl
 | Unstructured File | Multiple   |
 
 {% hint style="info" %}
-**중요**: Ensure the file type matches your Document Loader configuration. For maximum flexibility, consider using the File Loader which supports multiple file types.
+**Important**: Ensure the file type matches your Document Loader configuration. For maximum flexibility, consider using the File Loader which supports multiple file types.
 {% endhint %}
 
-#### 요청 형식 (Form Data)
+#### Request Format (Form Data)
 
 When uploading files, use `multipart/form-data` instead of JSON:
 
-#### 예제
+#### Examples
 
 {% tabs %}
 {% tab title="Python" %}
@@ -234,7 +234,7 @@ document.getElementById('fileInput').addEventListener('change', async function(e
 ```
 {% endtab %}
 
-{% tab title="Javascript (노드.js)" %}
+{% tab title="Javascript (Node.js)" %}
 ```javascript
 const fs = require('fs');
 const path = require('path');
@@ -355,11 +355,11 @@ curl -X POST "http://localhost:3000/api/v1/vector/upsert/your-chatflow-id" \
 {% endtab %}
 {% endtabs %}
 
-### Document Loaders without File 업로드
+### Document Loaders without File Upload
 
-For Document Loaders that don't require file uploads (e.g., web scrapers, database connectors, API integrations), use JSON format similar to the 예측 API.
+For Document Loaders that don't require file uploads (e.g., web scrapers, database connectors, API integrations), use JSON format similar to the Prediction API.
 
-#### 예제
+#### Examples
 
 {% tabs %}
 {% tab title="Python" %}
@@ -542,16 +542,16 @@ curl -X POST "http://localhost:3000/api/v1/vector/upsert/your-chatflow-id" \
 {% endtab %}
 {% endtabs %}
 
-## 응답 필드
+## Response Fields
 
-| 필드        | 타입   | 설명                                                 |
+| Field        | Type   | Description                                                 |
 | ------------ | ------ | ----------------------------------------------------------- |
 | `numAdded`   | number | Number of new chunks added to vector store                  |
-| `numDeleted` | number | Number of chunks deleted (if using 레코드 관리자)          |
-| `numSkipped` | number | Number of chunks skipped (if using 레코드 관리자)          |
-| `numUpdated` | number | Number of existing chunks updated (if using 레코드 관리자) |
+| `numDeleted` | number | Number of chunks deleted (if using Record Manager)          |
+| `numSkipped` | number | Number of chunks skipped (if using Record Manager)          |
+| `numUpdated` | number | Number of existing chunks updated (if using Record Manager) |
 
-## 최적화 Strategies
+## Optimization Strategies
 
 ### 1. Batch Processing Strategies
 
@@ -589,7 +589,7 @@ def intelligent_batch_processing(files: List[str], chatflow_id: str) -> Dict[str
     return results
 ```
 
-### 2. Metadata 최적화
+### 2. Metadata Optimization
 
 ```python
 import requests
@@ -663,15 +663,15 @@ for i, result in enumerate(results):
     print(f"Upload {i+1}: {result.get('numAdded', 0)} chunks added")
 ```
 
-## 문제 해결
+## Troubleshooting
 
-1. **File 업로드 Fails**
+1. **File Upload Fails**
    * Check file format compatibility
    * Verify file size limits
-2. **Processing 타임아웃**
+2. **Processing Timeout**
    * Increase request timeout
    * Break large files into smaller parts
    * Optimize chunk size
-3. **Vector Store 오류**
+3. **Vector Store Errors**
    * Check vector store connectivity
    * Verify embedding model dimension compatibility

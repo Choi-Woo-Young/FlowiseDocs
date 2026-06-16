@@ -6,7 +6,7 @@ description: Instructions for creating chatflows with a Hugging Face chat model.
 
 ## Prerequisite
 
-1. [Log in](__PRESERVE_URL_1__) or [sign up](__PRESERVE_URL_2__) to [Hugging Face](__PRESERVE_URL_3__).
+1. [Log in](https://huggingface.co/login) or [sign up](https://huggingface.co/join) to [Hugging Face](https://huggingface.co).
 2. Create an API key if you haven't done so:
    1. From your Hugging Face profile, select **Access Tokens** > **Create new token**.
    2.  Create a _Fine-grained_ token. Select all the read and write access you need. Ensure that you also select either:
@@ -21,7 +21,7 @@ description: Instructions for creating chatflows with a Hugging Face chat model.
     <figure><img src="../../../.gitbook/assets/huggingface/HF-models.png" alt="Page listing Hugging Face LLM models."><figcaption><p>Hugging Face Models</p></figcaption></figure>
 4. On the LLM model page that opens:
    1. Click the icon next to the model name to copy the model name to the clipboard or save to another location for later retrieval.
-   2.  참고 the default Inference Provider for the model.
+   2.  Note the default Inference Provider for the model.
 
        <figure><img src="../../../.gitbook/assets/huggingface/HF-LLMmodel.png" alt="Screenshot of a Hugging Face LLM model page."><figcaption><p>Hugging Face LLM Model Page</p></figcaption></figure>
    3. If your provider is a third-party provider that requires a custom API key, first create the API key on the provider site, then copy and set the API key on your Hugging Face profile settings:
@@ -30,7 +30,7 @@ description: Instructions for creating chatflows with a Hugging Face chat model.
       3. Select the **Settings** tab.
       4. Select **Set a custom API key** for the provider, and paste in the API key.
 
-## 설정
+## Setup
 
 ### Flowise
 
@@ -39,8 +39,8 @@ To get started, you need to deploy Flowise. Install and run Flowise, either loca
 To create a chatflow in Flowise with a ChatHuggingFace chat model:
 
 1. From **Chatflows**, click **+ Add New** to create a new chatflow.
-2. Click **+** and drag **Chains** > **LLM 체인**.
-3.  Click **+** and drag **채팅 모델** > **ChatHuggingFace**:
+2. Click **+** and drag **Chains** > **LLM Chain**.
+3.  Click **+** and drag **Chat Models** > **ChatHuggingFace**:
 
     *   **Connect Credential**: Click **Create New** to create a new credential and enter the Hugging Face access token in the **HuggingFace API Key** field.
 
@@ -52,12 +52,12 @@ To create a chatflow in Flowise with a ChatHuggingFace chat model:
    * Expand the Template and enter an instruction. Example: "User Question: {question}".
 5. Connect the **ChatHuggingFace** output to the **Language Model** input of the LLM Chain.
 6. Connect the **PromptTemplate** output to the **Prompt** input of the LLM Chain.
-7. Save your 구성 before running your chatflow.
-8.  Voila [🎉](__PRESERVE_URL_4__), you have created a chatflow with a **ChatHuggingFace node** in Flowise.
+7. Save your configuration before running your chatflow.
+8.  Voila [🎉](https://emojipedia.org/party-popper/), you have created a chatflow with a **ChatHuggingFace node** in Flowise.
 
     <figure><img src="../../../.gitbook/assets/huggingface/HF-chain.png" alt="Screenshot of an LLM Chain with ChatHuggingFace chat model."><figcaption><p>Hugging Face Chatflow</p></figcaption></figure>
 
 ## Resources
 
-* [HuggingFace Documentation](__PRESERVE_URL_5__)
-* [HuggingFace Forum](__PRESERVE_URL_6__)
+* [HuggingFace Documentation](https://huggingface.co/docs)
+* [HuggingFace Forum](https://discuss.huggingface.co/)

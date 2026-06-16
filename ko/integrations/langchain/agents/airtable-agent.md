@@ -2,15 +2,15 @@
 description: Agent used to to answer queries on Airtable table.
 ---
 
-# Airtable 에이전트
+# Airtable Agent
 
-<figure><img src="../../../.gitbook/assets/image_airtable.png" alt="" width="271"><figcaption><p>Airtable 에이전트 Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image_airtable.png" alt="" width="271"><figcaption><p>Airtable Agent Node</p></figcaption></figure>
 
-## Airtable 에이전트 기능
+## Airtable Agent Functionality
 
 The Airtable Agent is designed to facilitate interactions between Flowise AI and Airtable tables, enabling users to query Airtable data in a conversational manner. By using this agent, users can ask questions about the contents of their Airtable base and receive relevant responses based on the stored data. This can be particularly useful for quickly extracting specific pieces of information, automating workflows, or generating summaries from the data stored in Airtable.
 
-For example, the Airtable 에이전트 can be used to answer questions like:
+For example, the Airtable Agent can be used to answer questions like:
 
 * "How many tasks are still incomplete in my project tracker table?"
 * "What are the contact details of the clients listed in the CRM?"
@@ -18,9 +18,9 @@ For example, the Airtable 에이전트 can be used to answer questions like:
 
 This functionality helps users get insights from their Airtable bases without needing to navigate through the Airtable interface, making it easier to manage and analyze their data in a seamless, interactive way.
 
-## 입력
+## Inputs
 
-The Airtable 에이전트 requires the following inputs to function effectively:
+The Airtable Agent requires the following inputs to function effectively:
 
 * **Language Model**: The language model to be used for processing queries. This input is required and helps determine the quality and accuracy of responses provided by the agent.
 * **Input Moderation**: Optional input that enables content moderation. This helps ensure that queries are appropriate and do not contain offensive or harmful content.

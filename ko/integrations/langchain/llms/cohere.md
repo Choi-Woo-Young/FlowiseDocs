@@ -1,11 +1,9 @@
 ---
-description: Cohere 대규모 언어 모델 래퍼.
+description: Cohere 대규모 언어 모델 주변의 wrapper입니다.
 ---
 
 # Cohere
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2).png" alt="" width="338"><figcaption><p>Cohere 노드</p></figcaption></figure>
-
 {% hint style="info" %}
-이 섹션은 작성 중입니다. 이 섹션을 완성하는 데 도움을 주실 수 있으시면 감사하겠습니다. 시작하려면 [기여 가이드](/broken/pages/G48tdmpQ3z4CTWEspqkA)를 확인하세요.
+이 섹션은 작업 진행 중입니다. 이 섹션을 완료하는 데 도움을 주실 수 있으면 감사하겠습니다.
 {% endhint %}

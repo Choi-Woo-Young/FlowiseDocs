@@ -6,7 +6,7 @@ description: Learn how to use variables in Flowise
 
 ***
 
-Flowise allow users to create variables that can be used in the nodes. Variables can be Static or 런타임.
+Flowise allow users to create variables that can be used in the nodes. Variables can be Static or Runtime.
 
 ### Static
 
@@ -14,17 +14,17 @@ Static variable will be saved with the value specified, and retrieved as it is.
 
 <figure><img src="../.gitbook/assets/image (13) (1) (1) (1) (1) (1).png" alt="" width="542"><figcaption></figcaption></figure>
 
-### 런타임
+### Runtime
 
-값 of the variable will be fetched from **.env** file using `process.env`
+Value of the variable will be fetched from **.env** file using `process.env`
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="537"><figcaption></figcaption></figure>
 
-### 오버라이드 or setting variable through API
+### Override or setting variable through API
 
 In order to override variable value, user must explicitly enable it from the top right button:
 
-**Settings** -> **구성** -> **보안** tab:
+**Settings** -> **Configuration** -> **Security** tab:
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
@@ -47,10 +47,10 @@ Variables can be used by the nodes in Flowise. For instance, a variable named **
 
 <figure><img src="../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
 
-We can then use this variable as **`$vars.<variable-name>`** in the 함수 of the following nodes:
+We can then use this variable as **`$vars.<variable-name>`** in the Function of the following nodes:
 
-* [Custom 도구](../integrations/langchain/tools/custom-tool.md)
-* [Custom 함수](../integrations/utilities/custom-js-function.md)
+* [Custom Tool](../integrations/langchain/tools/custom-tool.md)
+* [Custom Function](../integrations/utilities/custom-js-function.md)
 * [Custom Loader](../integrations/langchain/document-loaders/custom-document-loader.md)
 * [If Else](../integrations/utilities/if-else.md)
 * Custom MCP
@@ -61,14 +61,14 @@ Besides, user can also use the variable in text input of any node with the follo
 
 **`{{$vars.<variable-name>}}`**
 
-For example, in Agent 시스템 메시지:
+For example, in Agent System Message:
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (2) (1).png" alt="" width="508"><figcaption></figcaption></figure>
 
-In Prompt 템플릿:
+In Prompt Template:
 
 <figure><img src="../.gitbook/assets/image (157).png" alt=""><figcaption></figcaption></figure>
 
 ## Resources
 
-* [Pass Variables to 함수](../integrations/langchain/tools/custom-tool.md#pass-variables-to-function)
+* [Pass Variables to Function](../integrations/langchain/tools/custom-tool.md#pass-variables-to-function)

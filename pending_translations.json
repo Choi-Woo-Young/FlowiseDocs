@@ -1,0 +1,242 @@
+[
+  {
+    "file": "configuration/environment-variables.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/environment-variables.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/environment-variables.md"
+  },
+  {
+    "file": "configuration/rate-limit.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/rate-limit.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/rate-limit.md"
+  },
+  {
+    "file": "configuration/running-flowise-behind-company-proxy.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/running-flowise-behind-company-proxy.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/running-flowise-behind-company-proxy.md"
+  },
+  {
+    "file": "configuration/running-flowise-using-queue.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/running-flowise-using-queue.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/running-flowise-using-queue.md"
+  },
+  {
+    "file": "configuration/running-in-production.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/running-in-production.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/running-in-production.md"
+  },
+  {
+    "file": "configuration/sso.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/sso.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/sso.md"
+  },
+  {
+    "file": "configuration/authorization/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/authorization/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/authorization/README.md"
+  },
+  {
+    "file": "configuration/authorization/app-level.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/authorization/app-level.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/authorization/app-level.md"
+  },
+  {
+    "file": "configuration/authorization/chatflow-level.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/authorization/chatflow-level.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/authorization/chatflow-level.md"
+  },
+  {
+    "file": "configuration/deployment/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/deployment/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/deployment/README.md"
+  },
+  {
+    "file": "configuration/deployment/aws.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/deployment/aws.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/deployment/aws.md"
+  },
+  {
+    "file": "configuration/deployment/azure.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/deployment/azure.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/deployment/azure.md"
+  },
+  {
+    "file": "configuration/deployment/digital-ocean.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/deployment/digital-ocean.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/deployment/digital-ocean.md"
+  },
+  {
+    "file": "configuration/deployment/gcp.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/deployment/gcp.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/deployment/gcp.md"
+  },
+  {
+    "file": "configuration/deployment/hugging-face.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/deployment/hugging-face.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/deployment/hugging-face.md"
+  },
+  {
+    "file": "configuration/deployment/railway.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/deployment/railway.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/deployment/railway.md"
+  },
+  {
+    "file": "configuration/deployment/render.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/deployment/render.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/deployment/render.md"
+  },
+  {
+    "file": "configuration/deployment/replit.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/deployment/replit.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/deployment/replit.md"
+  },
+  {
+    "file": "configuration/deployment/sealos.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/deployment/sealos.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/deployment/sealos.md"
+  },
+  {
+    "file": "configuration/deployment/zeabur.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/configuration/deployment/zeabur.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/configuration/deployment/zeabur.md"
+  },
+  {
+    "file": "contributing/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/contributing/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/contributing/README.md"
+  },
+  {
+    "file": "contributing/building-node.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/contributing/building-node.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/contributing/building-node.md"
+  },
+  {
+    "file": "migration-guide/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/migration-guide/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/migration-guide/README.md"
+  },
+  {
+    "file": "migration-guide/cloud-migration.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/migration-guide/cloud-migration.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/migration-guide/cloud-migration.md"
+  },
+  {
+    "file": "migration-guide/v1.3.0-migration-guide.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/migration-guide/v1.3.0-migration-guide.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/migration-guide/v1.3.0-migration-guide.md"
+  },
+  {
+    "file": "migration-guide/v1.4.3-migration-guide.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/migration-guide/v1.4.3-migration-guide.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/migration-guide/v1.4.3-migration-guide.md"
+  },
+  {
+    "file": "migration-guide/v2.1.4-migration-guide.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/migration-guide/v2.1.4-migration-guide.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/migration-guide/v2.1.4-migration-guide.md"
+  },
+  {
+    "file": "integrations/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/README.md"
+  },
+  {
+    "file": "integrations/3rd-party-platform-integration/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/3rd-party-platform-integration/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/3rd-party-platform-integration/README.md"
+  },
+  {
+    "file": "integrations/langchain/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/README.md"
+  },
+  {
+    "file": "integrations/langchain/agents/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/agents/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/agents/README.md"
+  },
+  {
+    "file": "integrations/langchain/agents/openai-assistant/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/agents/openai-assistant/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/agents/openai-assistant/README.md"
+  },
+  {
+    "file": "integrations/langchain/agents/openai-assistant/threads.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/agents/openai-assistant/threads.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/agents/openai-assistant/threads.md"
+  },
+  {
+    "file": "integrations/langchain/cache/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/cache/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/cache/README.md"
+  },
+  {
+    "file": "integrations/langchain/chains/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/chains/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/chains/README.md"
+  },
+  {
+    "file": "integrations/langchain/chains/vectara-chain.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/chains/vectara-chain.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/chains/vectara-chain.md"
+  },
+  {
+    "file": "integrations/langchain/chat-models/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/chat-models/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/chat-models/README.md"
+  },
+  {
+    "file": "integrations/langchain/chat-models/google-ai.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/chat-models/google-ai.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/chat-models/google-ai.md"
+  },
+  {
+    "file": "integrations/langchain/document-loaders/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/document-loaders/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/document-loaders/README.md"
+  },
+  {
+    "file": "integrations/langchain/moderation/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/moderation/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/moderation/README.md"
+  },
+  {
+    "file": "integrations/langchain/moderation/openai-moderation.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/moderation/openai-moderation.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/moderation/openai-moderation.md"
+  },
+  {
+    "file": "integrations/langchain/moderation/simple-prompt-moderation.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/moderation/simple-prompt-moderation.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/moderation/simple-prompt-moderation.md"
+  },
+  {
+    "file": "integrations/langchain/output-parsers/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/output-parsers/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/output-parsers/README.md"
+  },
+  {
+    "file": "integrations/langchain/prompts/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/prompts/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/prompts/README.md"
+  },
+  {
+    "file": "integrations/langchain/retrievers/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/retrievers/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/retrievers/README.md"
+  },
+  {
+    "file": "integrations/langchain/text-splitters/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/text-splitters/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/text-splitters/README.md"
+  },
+  {
+    "file": "integrations/langchain/tools/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/tools/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/tools/README.md"
+  },
+  {
+    "file": "integrations/langchain/vector-stores/README.md",
+    "source": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en/integrations/langchain/vector-stores/README.md",
+    "target": "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/langchain/vector-stores/README.md"
+  }
+]

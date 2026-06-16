@@ -1,0 +1,187 @@
+{
+  "timestamp": "2026-06-16T10:34:21.194403",
+  "total": 52,
+  "translated": 11,
+  "pending": 41,
+  "missing": 0,
+  "translated_files": [
+    "text-splitters/charater-text-splitter.md",
+    "configuration/README.md",
+    "configuration/databases.md",
+    "configuration/rate-limit.md",
+    "configuration/running-flowise-behind-company-proxy.md",
+    "migration-guide/README.md",
+    "migration-guide/cloud-migration.md",
+    "migration-guide/v1.3.0-migration-guide.md",
+    "migration-guide/v1.4.3-migration-guide.md",
+    "migration-guide/v2.1.4-migration-guide.md",
+    "integrations/langchain/document-loaders/README.md"
+  ],
+  "pending_files": [
+    {
+      "file": "README.md",
+      "tag": "kr_intro"
+    },
+    {
+      "file": "configuration/environment-variables.md",
+      "tag": "kr_env_vars"
+    },
+    {
+      "file": "configuration/running-flowise-using-queue.md",
+      "tag": "kr_queue"
+    },
+    {
+      "file": "configuration/running-in-production.md",
+      "tag": "kr_production"
+    },
+    {
+      "file": "configuration/sso.md",
+      "tag": "kr_sso"
+    },
+    {
+      "file": "configuration/authorization/README.md",
+      "tag": "kr_auth_readme"
+    },
+    {
+      "file": "configuration/authorization/app-level.md",
+      "tag": "kr_app_level"
+    },
+    {
+      "file": "configuration/authorization/chatflow-level.md",
+      "tag": "kr_chatflow_level"
+    },
+    {
+      "file": "configuration/deployment/README.md",
+      "tag": "kr_deploy_readme"
+    },
+    {
+      "file": "configuration/deployment/aws.md",
+      "tag": "kr_aws"
+    },
+    {
+      "file": "configuration/deployment/azure.md",
+      "tag": "kr_azure"
+    },
+    {
+      "file": "configuration/deployment/digital-ocean.md",
+      "tag": "kr_do"
+    },
+    {
+      "file": "configuration/deployment/gcp.md",
+      "tag": "kr_gcp"
+    },
+    {
+      "file": "configuration/deployment/hugging-face.md",
+      "tag": "kr_hf"
+    },
+    {
+      "file": "configuration/deployment/railway.md",
+      "tag": "kr_railway"
+    },
+    {
+      "file": "configuration/deployment/render.md",
+      "tag": "kr_render"
+    },
+    {
+      "file": "configuration/deployment/replit.md",
+      "tag": "kr_replit"
+    },
+    {
+      "file": "configuration/deployment/sealos.md",
+      "tag": "kr_sealos"
+    },
+    {
+      "file": "configuration/deployment/zeabur.md",
+      "tag": "kr_zeabur"
+    },
+    {
+      "file": "contributing/README.md",
+      "tag": "kr_contrib_readme"
+    },
+    {
+      "file": "contributing/building-node.md",
+      "tag": "kr_building_node"
+    },
+    {
+      "file": "integrations/README.md",
+      "tag": "kr_int_readme"
+    },
+    {
+      "file": "integrations/3rd-party-platform-integration/README.md",
+      "tag": "kr_3rdparty_readme"
+    },
+    {
+      "file": "integrations/langchain/README.md",
+      "tag": "kr_langchain_readme"
+    },
+    {
+      "file": "integrations/langchain/agents/README.md",
+      "tag": "kr_agents_readme"
+    },
+    {
+      "file": "integrations/langchain/agents/openai-assistant/README.md",
+      "tag": "kr_openai_asst_readme"
+    },
+    {
+      "file": "integrations/langchain/agents/openai-assistant/threads.md",
+      "tag": "kr_threads"
+    },
+    {
+      "file": "integrations/langchain/cache/README.md",
+      "tag": "kr_cache_readme"
+    },
+    {
+      "file": "integrations/langchain/chains/README.md",
+      "tag": "kr_chains_readme"
+    },
+    {
+      "file": "integrations/langchain/chains/vectara-chain.md",
+      "tag": "kr_vectara"
+    },
+    {
+      "file": "integrations/langchain/chat-models/README.md",
+      "tag": "kr_chat_models_readme"
+    },
+    {
+      "file": "integrations/langchain/chat-models/google-ai.md",
+      "tag": "kr_google_ai"
+    },
+    {
+      "file": "integrations/langchain/moderation/README.md",
+      "tag": "kr_moderation_readme"
+    },
+    {
+      "file": "integrations/langchain/moderation/openai-moderation.md",
+      "tag": "kr_openai_moderation"
+    },
+    {
+      "file": "integrations/langchain/moderation/simple-prompt-moderation.md",
+      "tag": "kr_prompt_moderation"
+    },
+    {
+      "file": "integrations/langchain/output-parsers/README.md",
+      "tag": "kr_output_parsers_readme"
+    },
+    {
+      "file": "integrations/langchain/prompts/README.md",
+      "tag": "kr_prompts_readme"
+    },
+    {
+      "file": "integrations/langchain/retrievers/README.md",
+      "tag": "kr_retrievers_readme"
+    },
+    {
+      "file": "integrations/langchain/text-splitters/README.md",
+      "tag": "kr_text_splitters_readme"
+    },
+    {
+      "file": "integrations/langchain/tools/README.md",
+      "tag": "kr_tools_readme"
+    },
+    {
+      "file": "integrations/langchain/vector-stores/README.md",
+      "tag": "kr_vector_stores_readme"
+    }
+  ],
+  "missing_files": []
+}

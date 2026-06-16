@@ -1,14 +1,14 @@
 # Workspaces
 
 {% hint style="info" %}
-Workspaces are only available for 클라우드 and Enterprise plans
+Workspaces are only available for Cloud and Enterprise plans
 {% endhint %}
 
-Upon your initial login, a default workspace will be automatically generated for you. Workspaces serve to partition resources among various teams or business units. Inside each workspace, 역할-Based Access 제어 (RBAC) is used to manage permissions and access, ensuring users have access only to the resources and settings required for their role.
+Upon your initial login, a default workspace will be automatically generated for you. Workspaces serve to partition resources among various teams or business units. Inside each workspace, Role-Based Access Control (RBAC) is used to manage permissions and access, ensuring users have access only to the resources and settings required for their role.
 
 <figure><img src="../.gitbook/assets/Untitled-2024-10-19-0050.png" alt=""><figcaption></figcaption></figure>
 
-## 설정 up 관리자 계정
+## Setting up Admin Account
 
 <details>
 
@@ -32,35 +32,35 @@ By default, new installation of Flowise will require an admin setup, similar to 
 
 <figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (2).png" alt="" width="478"><figcaption></figcaption></figure>
 
-After setting up, user will be brought to Flowise dashboard. From the left side bar, you will see 사용자 & Workspace Management section. A default workspace was automatically created.
+After setting up, user will be brought to Flowise dashboard. From the left side bar, you will see User & Workspace Management section. A default workspace was automatically created.
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Creating Workspace
 
-To create a new Workspace, click 추가 New:
+To create a new Workspace, click Add New:
 
 <figure><img src="../.gitbook/assets/image (3) (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
-You will see yourself added as the Organization 관리자 in the workspace you created.
+You will see yourself added as the Organization Admin in the workspace you created.
 
 <figure><img src="../.gitbook/assets/image (4) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
-To invite new users to the workspace, you need to create a 역할 first.
+To invite new users to the workspace, you need to create a Role first.
 
-## Creating 역할
+## Creating Role
 
-Navigate to Roles in the left side bar, and click 추가 역할:
+Navigate to Roles in the left side bar, and click Add Role:
 
 <figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-사용자 can specify granular control of permissions for each resources. The only exceptions are the resources in **사용자 & Workspace Management** (Roles, Users, Workspaces, Login Activity). These are only available for 계정 관리자 for now.
+User can specify granular control of permissions for each resources. The only exceptions are the resources in **User & Workspace Management** (Roles, Users, Workspaces, Login Activity). These are only available for Account Admin for now.
 
 Here, we create an editor role which has access to everything. And another role with view-only permissions.
 
 <figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-## Invite 사용자
+## Invite User
 
 <details>
 
@@ -80,7 +80,7 @@ Navigate to Users in left side bar, you will see yourself as the account admin. 
 
 <figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-Click Invite 사용자, and enter email to be invited, the workspace to be assigned, and the role as well.
+Click Invite User, and enter email to be invited, the workspace to be assigned, and the role as well.
 
 <figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -92,25 +92,25 @@ Upon clicking the invitation link, invited user will be brought to a Sign Up pag
 
 <figure><img src="../.gitbook/assets/image (10) (1) (1) (1) (1) (1).png" alt="" width="463"><figcaption></figcaption></figure>
 
-After signed up and logged in as invited user, you will be in the workspace assigned, and there will be no 사용자 & Workspace Management section:
+After signed up and logged in as invited user, you will be in the workspace assigned, and there will be no User & Workspace Management section:
 
 <figure><img src="../.gitbook/assets/image (11) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-If you are invited into multiple workspaces, you can switch to different workspaces from the top right dropdown button. Here we are assigned to Workspace 2 with **view only** permission. You can notice the 추가 New button for Chatflow is no longer visible. This ensure user can only view, not create, update nor delete. The same RBAC rules apply for API as well.
+If you are invited into multiple workspaces, you can switch to different workspaces from the top right dropdown button. Here we are assigned to Workspace 2 with **view only** permission. You can notice the Add New button for Chatflow is no longer visible. This ensure user can only view, not create, update nor delete. The same RBAC rules apply for API as well.
 
 <figure><img src="../.gitbook/assets/image (12) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-Now, back to 계정 관리자, you will be able to see the users invited, their status, roles, and active workspace:
+Now, back to Account Admin, you will be able to see the users invited, their status, roles, and active workspace:
 
 <figure><img src="../.gitbook/assets/image (14) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-계정 admin can also modify the settings for other users:
+Account admin can also modify the settings for other users:
 
 <figure><img src="../.gitbook/assets/image (15) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Login Activity
 
-관리자 will be able to see every login and logout from all users:
+Admin will be able to see every login and logout from all users:
 
 <figure><img src="../.gitbook/assets/image (13) (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
@@ -134,25 +134,25 @@ The diagram below illustrates the relationship between organizations, workspaces
 
 You can share credential to other workspaces. This allow users to reuse same set of credentials in different workspaces.
 
-After creating a credential, 계정 관리자 or user with Share Credential permission from the RBAC will be able to click Share:
+After creating a credential, Account Admin or user with Share Credential permission from the RBAC will be able to click Share:
 
 <figure><img src="../.gitbook/assets/image (18) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-사용자 can select the workspaces to share the credential with:
+User can select the workspaces to share the credential with:
 
 <figure><img src="../.gitbook/assets/image (19) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-Now, switch to the workspace where the credential was shared, you will see the Shared Credential. 사용자 is not able to edit shared credential.
+Now, switch to the workspace where the credential was shared, you will see the Shared Credential. User is not able to edit shared credential.
 
 <figure><img src="../.gitbook/assets/image (20) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Deleting a Workspace
 
-Currently only 계정 관리자 can delete workspaces. By default, you are not able to delete a workspace if there are still users within that workspace.
+Currently only Account Admin can delete workspaces. By default, you are not able to delete a workspace if there are still users within that workspace.
 
 <figure><img src="../.gitbook/assets/image (21) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-You will need to unlink all of the invited users first. This allow flexibility in case you just want to remove certain users from a workspace. 참고 that Organization Owner who created the workspace is not able to be unlinked from a workspace.
+You will need to unlink all of the invited users first. This allow flexibility in case you just want to remove certain users from a workspace. Note that Organization Owner who created the workspace is not able to be unlinked from a workspace.
 
 <figure><img src="../.gitbook/assets/image (22) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -164,4 +164,4 @@ Deleting a workspace is an irreversible action and will cascade delete all items
 
 <figure><img src="../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
 
-After deleting a workspace, user will fallback to the 기본값 workspace. 기본값 workspace that was automatically created at the start is not able to be deleted.
+After deleting a workspace, user will fallback to the Default workspace. Default workspace that was automatically created at the start is not able to be deleted.

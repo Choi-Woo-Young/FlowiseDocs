@@ -21,10 +21,10 @@ Certain chat models allow you to input images. Always refer to the official docu
 {% hint style="warning" %}
 Image processing only works with certain chains/agents in Chatflow.
 
-[LLMChain](../integrations/langchain/chains/llm-chain.md), [Conversation 체인](../integrations/langchain/chains/conversation-chain.md), [ReAct Agent](../integrations/langchain/agents/react-agent-chat.md), [Conversational Agent](../integrations/langchain/agents/conversational-agent.md), [도구 Agent](../integrations/langchain/agents/tool-agent.md)
+[LLMChain](../integrations/langchain/chains/llm-chain.md), [Conversation Chain](../integrations/langchain/chains/conversation-chain.md), [ReAct Agent](../integrations/langchain/agents/react-agent-chat.md), [Conversational Agent](../integrations/langchain/agents/conversational-agent.md), [Tool Agent](../integrations/langchain/agents/tool-agent.md)
 {% endhint %}
 
-If you enable **Allow Image 업로드**, you can upload images from the chat interface.
+If you enable **Allow Image Upload**, you can upload images from the chat interface.
 
 <div align="center"><figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="255"><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/Screenshot 2024-02-29 011714.png" alt="" width="290"><figcaption></figcaption></figure></div>
 
@@ -90,7 +90,7 @@ query({
 
 ## Audio
 
-In the Chatflow 구성, you can select a speech-to-text module. Supported integrations include:
+In the Chatflow Configuration, you can select a speech-to-text module. Supported integrations include:
 
 * OpenAI
 * AssemblyAI
@@ -263,7 +263,7 @@ query(formData).then((response) => {
 {% endtab %}
 {% endtabs %}
 
-2. Use the [예측 API](/broken/pages/F2AfRpI7qYixNiBWpmIe#prediction) with `uploads` and the `chatId` from step 1:
+2. Use the [Prediction API](/broken/pages/F2AfRpI7qYixNiBWpmIe#prediction) with `uploads` and the `chatId` from step 1:
 
 {% tabs %}
 {% tab title="Python" %}
@@ -329,7 +329,7 @@ query({
 
 With RAG file uploads, you can't work with structured data like spreadsheets or tables, and you can't perform full summarization due to lack of full context. In some cases, you might want to include all the file content directly in the prompt for an LLM, especially with models like Gemini and Claude that have longer context windows. [This research paper](https://arxiv.org/html/2407.16833v1) is one of many that compare RAG with longer context windows.
 
-To enable full file uploads, go to **Chatflow 구성**, open the **File 업로드** tab, and click the switch:
+To enable full file uploads, go to **Chatflow Configuration**, open the **File Upload** tab, and click the switch:
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -337,7 +337,7 @@ You can see the **File Attachment** button in the chat, where you can upload one
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-참고 that if your chatflow uses a Chat Prompt 템플릿 node, an input must be created from **형식 Prompt Values** to pass the file data. The specified input name (e.g. {file}) should be included in the **Human 메시지** field.
+Note that if your chatflow uses a Chat Prompt Template node, an input must be created from **Format Prompt Values** to pass the file data. The specified input name (e.g. {file}) should be included in the **Human Message** field.
 
 <figure><img src="../.gitbook/assets/chat-prompt-template-file-attachment.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -409,5 +409,5 @@ As you can see in the examples, uploads require a base64 string. To get a base64
 
 Both Full and RAG (Retrieval-Augmented Generation) file uploads serve different purposes.
 
-* **Full File 업로드**: This method parses the entire file into a string and sends it to the LLM (Large Language 모델). It's beneficial for summarizing the document or extracting key information. However, with very large files, the model might produce inaccurate results or "hallucinations" due to token limitations.
-* **RAG File 업로드**: Recommended if you aim to reduce token costs by not sending the entire text to the LLM. This approach is suitable for Q\&A tasks on the documents but isn't ideal for summarization since it lacks the full document context. This approach might takes longer time because of the upsert process.
+* **Full File Upload**: This method parses the entire file into a string and sends it to the LLM (Large Language Model). It's beneficial for summarizing the document or extracting key information. However, with very large files, the model might produce inaccurate results or "hallucinations" due to token limitations.
+* **RAG File Upload**: Recommended if you aim to reduce token costs by not sending the entire text to the LLM. This approach is suitable for Q\&A tasks on the documents but isn't ideal for summarization since it lacks the full document context. This approach might takes longer time because of the upsert process.
