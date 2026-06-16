@@ -1,6 +1,6 @@
----
+
 description: Load data from a Figma file.
----
+
 
 # Figma Document Loader
 
@@ -45,9 +45,7 @@ This module provides a sophisticated Figma document loader that can:
 
 ## File Key Format
 The file key can be found in the Figma file URL:
-```
-https://www.figma.com/file/:key/:title
-```
+__CODE_BLOCK_0__
 Example: In `https://www.figma.com/file/12345/Website`, the file key is `12345`
 
 ## Node IDs

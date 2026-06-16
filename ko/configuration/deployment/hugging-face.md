@@ -1,31 +1,31 @@
 ---
-description: Learn how to deploy Flowise on Hugging Face
+description: Hugging Face에 Flowise를 배포하는 방법을 알아봅니다
 ---
 
 # Hugging Face
 
 ***
 
-### Create a new space
+### 새 Space 생성
 
-1. Sign in to [Hugging Face](https://huggingface.co/login)
-2. Start creating a [new Space](https://huggingface.co/new-space) with your preferred name.
-3. Select **Docker** as **Space SDK** and choose **Blank** as the Docker template.
-4. Select **CPU basic ∙ 2 vCPU ∙ 16GB ∙ FREE** as **Space hardware**.
-5. Click **Create Space**.
+1. [Hugging Face](https://huggingface.co/login)에 로그인합니다.
+2. 원하는 이름으로 [새 Space](https://huggingface.co/new-space)를 생성하기 시작합니다.
+3. **Space SDK**로 **Docker**를 선택하고, Docker 템플릿으로 **Blank**을 선택합니다.
+4. **Space hardware**로 **CPU basic ∙ 2 vCPU ∙ 16GB ∙ FREE**를 선택합니다.
+5. **Create Space**를 클릭합니다.
 
-### Set the environment variables
+### 환경 변수 설정
 
-1. Go to **Settings** of your new space and find the **Variables and Secrets** section
-2. Click on **New variable** and add the name as `PORT` with value `7860`
-3. Click on **Save**
-4. _(Optional)_ Click on **New secret**
-5. _(Optional)_ Fill in with your environment variables, such as database credentials, file paths, etc. You can check for valid fields in the `.env.example` [here](https://github.com/FlowiseAI/Flowise/blob/main/docker/.env.example)
+1. 새로 만든 space의 **Settings**로 이동하여 **Variables and Secrets** 섹션을 찾습니다.
+2. **New variable**을 클릭하고 이름을 `PORT`, 값을 `7860`으로 추가합니다.
+3. **Save**를 클릭합니다.
+4. _(선택 사항)_ **New secret**을 클릭합니다.
+5. _(선택 사항)_ 데이터베이스 자격 증명, 파일 경로 등 환경 변수를 입력합니다. 유효한 필드는 [여기](https://github.com/FlowiseAI/Flowise/blob/main/docker/.env.example)의 `.env.example`에서 확인할 수 있습니다.
 
-### Create a Dockerfile
+### Dockerfile 생성
 
-1. At the files tab, click on button _**+ Add file**_ and click on **Create a new file** (or Upload files if you prefer to)
-2. Create a file called **Dockerfile** and paste the following:
+1. files 탭에서 _**+ Add file**_ 버튼을 클릭한 후 **Create a new file**을 클릭합니다(원한다면 Upload files를 사용해도 됩니다).
+2. **Dockerfile**이라는 이름의 파일을 생성하고 다음 내용을 붙여 넣습니다:
 
 ```Dockerfile
 FROM node:20-alpine
@@ -56,8 +56,8 @@ WORKDIR /data
 CMD ["npx", "flowise", "start"]
 ```
 
-3. Click on **Commit file to `main`** and it will start to build your app.
+3. **Commit file to `main`**을 클릭하면 앱 빌드가 시작됩니다.
 
-### Done 🎉
+### 완료 🎉
 
-When the build finishes you can click on the **App** tab to see your app running.
+빌드가 완료되면 **App** 탭을 클릭하여 실행 중인 앱을 확인할 수 있습니다.

@@ -48,10 +48,7 @@ This module provides a sophisticated JSONL document loader that can:
 
 For JSONL content:
 
-```jsonl
-{"key": "value1", "source": "file1.txt"}
-{"key": "value2", "source": "file2.txt"}
-```
+__CODE_BLOCK_0__
 
 With pointer "key", extracts: "value1", "value2"
 
@@ -59,12 +56,7 @@ With pointer "key", extracts: "value1", "value2"
 
 You can extract values as metadata using JSON pointers:
 
-```json
-{
-    "source": "/source",
-    "custom": "/metadata/field"
-}
-```
+__CODE_BLOCK_1__
 
 ## Document Structure
 

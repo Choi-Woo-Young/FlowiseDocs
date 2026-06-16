@@ -1,6 +1,6 @@
----
+
 description: Custom function for loading documents.
----
+
 
 # Custom Document Loader
 
@@ -42,35 +42,15 @@ This module provides a flexible document loader that can:
 
 ## Document Structure
 When returning documents, each object must have:
-```javascript
-{
-  pageContent: 'Document Content',
-  metadata: {
-    title: 'Document Title',
-    // ... other metadata
-  }
-}
-```
+__CODE_BLOCK_0__
 
 ## Example Usage
 
 ### Document Output
-```javascript
-return [
-  {
-    pageContent: 'Document Content',
-    metadata: {
-      title: 'Document Title',
-      source: 'Custom Source'
-    }
-  }
-]
-```
+__CODE_BLOCK_1__
 
 ### Text Output
-```javascript
-return "Processed text content"
-```
+__CODE_BLOCK_2__
 
 ## Available Context
 - **$input**: Input value passed to the function

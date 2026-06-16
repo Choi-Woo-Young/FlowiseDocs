@@ -1,6 +1,6 @@
----
+
 description: Schema to represent a chat prompt.
----
+
 
 # Chat Prompt Template
 

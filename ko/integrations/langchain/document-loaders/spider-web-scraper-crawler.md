@@ -1,6 +1,6 @@
----
+
 description: Scrape & Crawl the web with Spider - the fastest open source web scraper & crawler.
----
+
 
 # Spider Web Scraper/Crawler
 
@@ -61,30 +61,10 @@ Each document contains:
 ## Usage Examples
 
 ### Basic Scraping
-```json
-{
-  "mode": "scrape",
-  "url": "https://example.com",
-  "limit": 1
-}
-```
+__CODE_BLOCK_0__
 
 ### Advanced Crawling
-```json
-{
-  "mode": "crawl",
-  "url": "https://example.com",
-  "limit": 25,
-  "additional_metadata": {
-    "category": "blog",
-    "source_type": "web"
-  },
-  "params": {
-    "anti_bot": true,
-    "wait_for": ".content-loaded"
-  }
-}
-```
+__CODE_BLOCK_1__
 
 ## Example
 

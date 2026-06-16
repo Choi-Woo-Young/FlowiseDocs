@@ -1,8 +1,8 @@
----
+
 description: >-
   Use Unstructured.io to load data from a folder. Note: Currently doesn't
   support .png and .heic until unstructured is updated.
----
+
 
 # Unstructured Folder Loader
 
@@ -107,30 +107,10 @@ Each processed document includes:
 ## Usage Examples
 
 ### Basic Configuration
-```json
-{
-  "folderPath": "/path/to/documents",
-  "strategy": "auto",
-  "encoding": "utf-8"
-}
-```
+__CODE_BLOCK_0__
 
 ### Advanced Processing
-```json
-{
-  "folderPath": "/path/to/documents",
-  "strategy": "hi_res",
-  "hiResModelName": "detectron2_onnx",
-  "ocrLanguages": ["eng", "spa", "fra"],
-  "chunkingStrategy": "by_title",
-  "maxCharacters": 500,
-  "coordinates": true,
-  "metadata": {
-    "source": "company_docs",
-    "department": "legal"
-  }
-}
-```
+__CODE_BLOCK_1__
 
 ## Best Practices
 1. Choose appropriate strategy based on document quality and processing needs

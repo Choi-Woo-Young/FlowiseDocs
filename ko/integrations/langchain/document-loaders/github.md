@@ -1,6 +1,6 @@
----
+
 description: Load data from a GitHub repository.
----
+
 
 # GitHub Document Loader
 

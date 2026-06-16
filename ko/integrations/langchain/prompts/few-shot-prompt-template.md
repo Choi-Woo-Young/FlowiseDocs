@@ -1,6 +1,6 @@
----
+
 description: Prompt template you can build with examples.
----
+
 
 # Few Shot Prompt Template
 

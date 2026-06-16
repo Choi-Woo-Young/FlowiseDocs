@@ -6,24 +6,16 @@
 
 To use ChatLocalAI within Flowise, follow the steps below:
 
-1. ```bash
-   git clone https://github.com/go-skynet/LocalAI
-   ```
+1. __CODE_BLOCK_0__
 2. <pre class="language-bash"><code class="lang-bash"><strong>cd LocalAI
    </strong></code></pre>
-3. ```bash
-   # copy your models to models/
-   cp your-model.bin models/
-   ```
+3. __CODE_BLOCK_1__
 
 For example:
 
 Download one of the models from [gpt4all.io](https://gpt4all.io/index.html)
 
-```bash
-# Download gpt4all-j to models/
-wget https://gpt4all.io/models/ggml-gpt4all-j.bin -O models/ggml-gpt4all-j
-```
+__CODE_BLOCK_2__
 
 In the `/models` folder, you should be able to see the downloaded model in there:
 
@@ -31,16 +23,10 @@ In the `/models` folder, you should be able to see the downloaded model in there
 
 Refer [here](https://localai.io/model-compatibility/index.html) for list of supported models.
 
-4. ```bash
-   docker compose up -d --pull always
-   ```
+4. __CODE_BLOCK_3__
 5. Now API is accessible at localhost:8080
 
-```bash
-# Test API
-curl http://localhost:8080/v1/models
-# {"object":"list","data":[{"id":"ggml-gpt4all-j.bin","object":"model"}]}
-```
+__CODE_BLOCK_4__
 
 ## Flowise Setup
 

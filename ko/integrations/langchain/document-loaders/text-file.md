@@ -1,6 +1,6 @@
----
+
 description: Load data from text files.
----
+
 
 # Text File
 
@@ -77,27 +77,10 @@ Each document contains:
 ## Usage Examples
 
 ### Single File Processing
-```json
-{
-  "txtFile": "example.txt",
-  "metadata": {
-    "source": "local",
-    "category": "documentation"
-  }
-}
-```
+__CODE_BLOCK_0__
 
 ### Multiple Files Processing
-```json
-{
-  "txtFile": ["doc1.txt", "doc2.md", "code.py"],
-  "metadata": {
-    "batch": "docs-2024",
-    "processor": "text-loader"
-  },
-  "omitMetadataKeys": "source, timestamp"
-}
-```
+__CODE_BLOCK_1__
 
 ## Storage Integration
 The loader supports two file source modes:

@@ -1,23 +1,23 @@
 ---
-description: Learn how to set up and run Flowise instances
+description: Flowise 인스턴스를 설정하고 실행하는 방법을 알아봅니다
 ---
 
-# Configuration
+# 설정
 
 ***
 
-This section will guide you through various configuration options to customize your Flowise instances for development, testing, and production environments.
+이 섹션에서는 개발, 테스트, 프로덕션 환경에 맞게 Flowise 인스턴스를 사용자 정의할 수 있는 다양한 설정 옵션을 안내합니다.
 
-We'll also provide in-depth guides for deploying Flowise on different Platform as a Service (PaaS) options, ensuring a smooth and successful deployment.
+또한 여러 PaaS(Platform as a Service) 옵션에서 Flowise를 배포하는 방법을 심층적으로 안내하여, 원활하고 성공적인 배포를 보장합니다.
 
-## Guides
+## 가이드
 
 * [Auth](authorization/)
-* [Databases](databases.md)
-* [Deployment](deployment/)
-* [Environment Variables](environment-variables.md)
-* [Rate Limit](rate-limit.md)
-* [Proxy](running-flowise-behind-company-proxy.md)
+* [데이터베이스](databases.md)
+* [배포](deployment/)
+* [환경 변수](environment-variables.md)
+* [속도 제한](rate-limit.md)
+* [프록시](running-flowise-behind-company-proxy.md)
 * [SSO](sso.md)
-* [Queue Mode](running-flowise-using-queue.md)
-* [Production Ready](running-in-production.md)
+* [큐 모드](running-flowise-using-queue.md)
+* [프로덕션 준비](running-in-production.md)

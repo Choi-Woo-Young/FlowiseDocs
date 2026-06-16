@@ -1,6 +1,6 @@
----
+
 description: Use Unstructured.io to load data from a file path.
----
+
 
 # Unstructured File Loader
 
@@ -83,27 +83,10 @@ The loader can identify various element types:
 ## Usage Examples
 
 ### Basic Configuration
-```typescript
-{
-  "apiKey": "your-api-key",
-  "strategy": "hi_res",
-  "ocrLanguages": ["eng"]
-}
-```
+__CODE_BLOCK_0__
 
 ### Advanced Processing
-```typescript
-{
-  "apiKey": "your-api-key",
-  "strategy": "hi_res",
-  "coordinates": true,
-  "pdfInferTableStructure": true,
-  "chunkingStrategy": "by_title",
-  "multiPageSections": true,
-  "combineUnderNChars": 100,
-  "maxCharacters": 4000
-}
-```
+__CODE_BLOCK_1__
 
 ## Notes
 - API calls are made for each file processing request

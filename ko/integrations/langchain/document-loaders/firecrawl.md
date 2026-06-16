@@ -1,6 +1,6 @@
----
+
 description: Load data from URL using FireCrawl.
----
+
 
 # FireCrawl
 

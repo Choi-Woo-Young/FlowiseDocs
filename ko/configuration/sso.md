@@ -1,10 +1,10 @@
 # SSO
 
 {% hint style="info" %}
-SSO is only available for Enterprise plan
+SSO는 Enterprise 플랜에서만 사용 가능합니다
 {% endhint %}
 
-Flowise supports [OIDC](https://openid.net/) that allows users to use _single sign_-on (_SSO_) to access application. Currently only the [Organization Admin](../using-flowise/workspaces.md#setting-up-admin-account) can configure the SSO configurations.
+Flowise는 사용자가 애플리케이션에 액세스하기 위해 _SSO_(Single Sign-On)를 사용할 수 있도록 하는 [OIDC](https://openid.net/)를 지원합니다. 현재 [조직 관리자](../using-flowise/workspaces.md#setting-up-admin-account)만 SSO 설정을 구성할 수 있습니다.
 
 ## Microsoft
 
@@ -109,18 +109,18 @@ To enable Sign In With Google on your website, you first need to set up your Goo
 
 <figure><img src="../.gitbook/assets/image (234).png" alt="" width="563"><figcaption></figcaption></figure>
 
-## Inviting users for SSO sign in
+## SSO 로그인을 위한 사용자 초대
 
-In order for new user to be able to login, you have to invite new users into Flowise application. This is essential to keep a record of the role/workspace of the invited user. Refer to [Invite Users](../using-flowise/workspaces.md#invite-user) section for env variables configuration.
+새 사용자가 로그인할 수 있으려면 Flowise 애플리케이션에 새 사용자를 초대해야 합니다. 이는 초대된 사용자의 역할/워크스페이스 레코드를 유지하는 데 필수적입니다. 환경 변수 설정에 대해서는 [사용자 초대](../using-flowise/workspaces.md#invite-user) 섹션을 참조하세요.
 
-Invited user will be receiving invitation link to login:
+초대된 사용자는 로그인 초대 링크를 받을 것입니다:
 
 <figure><img src="../.gitbook/assets/image (222).png" alt="" width="449"><figcaption></figcaption></figure>
 
-Clicking the button will bring the invited user directly to Flowise SSO login screen:
+버튼을 클릭하면 초대된 사용자가 직접 Flowise SSO 로그인 화면으로 이동합니다:
 
 <figure><img src="../.gitbook/assets/image (210).png" alt="" width="400"><figcaption></figcaption></figure>
 
-Or navigate to Flowise app and Sign in with SSO:
+또는 Flowise 앱으로 이동하여 SSO로 로그인합니다:
 
 <figure><img src="../.gitbook/assets/image (211).png" alt="" width="437"><figcaption></figcaption></figure>

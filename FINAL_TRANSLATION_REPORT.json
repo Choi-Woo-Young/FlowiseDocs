@@ -1,0 +1,136 @@
+{
+  "timestamp": "2026-06-16T12:18:25.513037",
+  "summary": {
+    "total_files": 346,
+    "translated": 301,
+    "untranslated": 45,
+    "completion_percentage": 86
+  },
+  "by_category": {
+    "README.md": {
+      "total": 1,
+      "translated": 1,
+      "untranslated": 0,
+      "percentage": 100
+    },
+    "SUMMARY.md": {
+      "total": 1,
+      "translated": 1,
+      "untranslated": 0,
+      "percentage": 100
+    },
+    "api-reference": {
+      "total": 14,
+      "translated": 14,
+      "untranslated": 0,
+      "percentage": 100
+    },
+    "cli-reference": {
+      "total": 2,
+      "translated": 2,
+      "untranslated": 0,
+      "percentage": 100
+    },
+    "configuration": {
+      "total": 22,
+      "translated": 22,
+      "untranslated": 0,
+      "percentage": 100
+    },
+    "contributing": {
+      "total": 2,
+      "translated": 2,
+      "untranslated": 0,
+      "percentage": 100
+    },
+    "getting-started": {
+      "total": 1,
+      "translated": 1,
+      "untranslated": 0,
+      "percentage": 100
+    },
+    "integrations": {
+      "total": 254,
+      "translated": 211,
+      "untranslated": 43,
+      "percentage": 83
+    },
+    "migration-guide": {
+      "total": 5,
+      "translated": 5,
+      "untranslated": 0,
+      "percentage": 100
+    },
+    "text-splitters": {
+      "total": 1,
+      "translated": 0,
+      "untranslated": 1,
+      "percentage": 0
+    },
+    "tutorials": {
+      "total": 12,
+      "translated": 12,
+      "untranslated": 0,
+      "percentage": 100
+    },
+    "use-cases": {
+      "total": 8,
+      "translated": 8,
+      "untranslated": 0,
+      "percentage": 100
+    },
+    "using-flowise": {
+      "total": 23,
+      "translated": 22,
+      "untranslated": 1,
+      "percentage": 95
+    }
+  },
+  "untranslated_files": [
+    "integrations/langchain/chains/vectara-chain.md",
+    "integrations/langchain/chat-models/azure-chatopenai.md",
+    "integrations/langchain/chat-models/google-ai.md",
+    "integrations/langchain/chat-models/ibm-watsonx.md",
+    "integrations/langchain/chat-models/mistral-ai.md",
+    "integrations/langchain/chat-models/nvidia-nim.md",
+    "integrations/langchain/document-loaders/bravesearch-api.md",
+    "integrations/langchain/document-loaders/cheerio-web-scraper.md",
+    "integrations/langchain/document-loaders/epub-file.md",
+    "integrations/langchain/document-loaders/file-loader.md",
+    "integrations/langchain/document-loaders/folder.md",
+    "integrations/langchain/document-loaders/google-drive.md",
+    "integrations/langchain/document-loaders/google-sheets.md",
+    "integrations/langchain/document-loaders/jira.md",
+    "integrations/langchain/document-loaders/microsoft-excel.md",
+    "integrations/langchain/document-loaders/microsoft-powerpoint.md",
+    "integrations/langchain/document-loaders/microsoft-word.md",
+    "integrations/langchain/document-loaders/notion.md",
+    "integrations/langchain/document-loaders/pdf-file.md",
+    "integrations/langchain/document-loaders/plain-text.md",
+    "integrations/langchain/document-loaders/playwright-web-scraper.md",
+    "integrations/langchain/document-loaders/puppeteer-web-scraper.md",
+    "integrations/langchain/document-loaders/s3-file-loader.md",
+    "integrations/langchain/memory/buffer-memory.md",
+    "integrations/langchain/memory/buffer-window-memory.md",
+    "integrations/langchain/memory/conversation-summary-buffer-memory.md",
+    "integrations/langchain/memory/conversation-summary-memory.md",
+    "integrations/langchain/memory/mem0-memory.md",
+    "integrations/langchain/retrievers/extract-metadata-retriever.md",
+    "integrations/langchain/tools/gmail.md",
+    "integrations/langchain/tools/google-calendar.md",
+    "integrations/langchain/tools/google-drive.md",
+    "integrations/langchain/tools/google-sheets.md",
+    "integrations/langchain/tools/microsoft-outlook.md",
+    "integrations/langchain/tools/microsoft-teams.md",
+    "integrations/langchain/tools/pipedream-mcp-user-guide-1.md",
+    "integrations/langchain/tools/pipedream-mcp-user-guide.md",
+    "integrations/langchain/tools/python-interpreter.md",
+    "integrations/langchain/vector-stores/astradb.md",
+    "integrations/langchain/vector-stores/elastic.md",
+    "integrations/langchain/vector-stores/singlestore.md",
+    "integrations/langchain/vector-stores/upstash-vector.md",
+    "integrations/langchain/vector-stores/vectara.md",
+    "text-splitters/charater-text-splitter.md",
+    "using-flowise/analytics/langfuse.md"
+  ]
+}

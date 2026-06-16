@@ -1,7 +1,7 @@
----
+
 description: >-
   Upsert embedded data and perform similarity search using the Faiss library from Meta.
----
+
 
 # Faiss
 

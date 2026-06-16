@@ -1,5 +1,5 @@
 ---
-description: Learn how to deploy Flowise on Zeabur
+description: Zeabur에 Flowise를 배포하는 방법을 알아봅니다
 ---
 
 # Zeabur
@@ -7,36 +7,36 @@ description: Learn how to deploy Flowise on Zeabur
 ***
 
 {% hint style="warning" %}
-Please note that the following template made by Zeabur is outdated (from 2024-01-24).
+Zeabur에서 만든 다음 템플릿은 오래된 것(2024-01-24 기준)이라는 점에 유의하세요.
 {% endhint %}
 
-1. Click the following prebuilt [template](https://zeabur.com/templates/2JYZTR) or the button below.
+1. 다음의 사전 구성된 [템플릿](https://zeabur.com/templates/2JYZTR) 또는 아래 버튼을 클릭합니다.
 
 [![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/2JYZTR)
 
-2. Click Deploy
+2. Deploy를 클릭합니다.
 
 <figure><img src="../../.gitbook/assets/zeabur/1.png" alt="zeabur template"><figcaption></figcaption></figure>
 
-3. Select your favorite region and continue
+3. 원하는 리전을 선택하고 계속 진행합니다.
 
 <figure><img src="../../.gitbook/assets/zeabur/2.png" alt="select region"><figcaption></figcaption></figure>
 
-4. You will be redirected to Zeabur's dashboard and you will see the deployment process
+4. Zeabur 대시보드로 리디렉션되며 배포 과정을 확인할 수 있습니다.
 
 <figure><img src="../../.gitbook/assets/zeabur/3.png" alt="deployment process"><figcaption></figcaption></figure>
 
-5. To add authorization, navigate to Variables tab and add:
+5. 인증을 추가하려면 Variables 탭으로 이동하여 다음을 추가합니다:
 
 * FLOWISE\_USERNAME
 * FLOWISE\_PASSWORD
 
 <figure><img src="../../.gitbook/assets/zeabur/4.png" alt="authorization"><figcaption></figcaption></figure>
 
-6. There are list of env variables you can configure. Refer to [environment-variables.md](../environment-variables.md "mention")
+6. 구성할 수 있는 환경 변수 목록이 있습니다. [environment-variables.md](../environment-variables.md "mention")를 참고하세요.
 
-That's it! You now have a deployed Flowise on Zeabur [🎉](https://emojipedia.org/party-popper/)[🎉](https://emojipedia.org/party-popper/)
+이것으로 끝입니다! 이제 Zeabur에 Flowise가 배포되었습니다 [🎉](https://emojipedia.org/party-popper/)[🎉](https://emojipedia.org/party-popper/)
 
-## Persistent Volume
+## 영구 볼륨(Persistent Volume)
 
-Zeabur will automatically create a persistent volume for you so you don't have to worry about it.
+Zeabur가 자동으로 영구 볼륨을 생성해 주므로 이에 대해 걱정할 필요가 없습니다.

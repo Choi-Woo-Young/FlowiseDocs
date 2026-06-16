@@ -53,20 +53,7 @@ Then, you want to filter by it. Qdrant supports following [syntax](https://qdran
 
 **API**
 
-```json
-"overrideConfig": {
-    "qdrantFilter": {
-        "should": [
-            {
-                "key": "metadata.source",
-                "match": {
-                    "value": "apple"
-                }
-            }
-        ]
-    }
-}
-```
+__CODE_BLOCK_0__
 
 ## Resources
 

@@ -1,6 +1,6 @@
----
+
 description: Load data from real-time search results.
----
+
 
 # SearchApi For Web Search
 

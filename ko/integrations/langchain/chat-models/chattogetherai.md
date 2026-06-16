@@ -1,6 +1,6 @@
----
+
 description: Wrapper around TogetherAI large language models
----
+
 
 # ChatTogetherAI
 

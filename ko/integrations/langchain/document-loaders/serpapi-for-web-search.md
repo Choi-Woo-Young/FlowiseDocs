@@ -1,6 +1,6 @@
----
+
 description: Load and process data from web search results.
----
+
 
 # SerpApi For Web Search
 
@@ -73,17 +73,4 @@ Two ways to customize metadata:
 - Supports both document and text output formats
 
 ## Example Usage
-```typescript
-// Example search query
-query: "artificial intelligence latest developments"
-
-// Example additional metadata
-metadata: {
-  "source": "serpapi",
-  "category": "tech",
-  "timestamp": "2024-03-21"
-}
-
-// Example metadata keys to omit
-omitMetadataKeys: "snippet, position, link"
-```
+__CODE_BLOCK_0__

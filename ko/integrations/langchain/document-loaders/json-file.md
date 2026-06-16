@@ -1,6 +1,6 @@
----
+
 description: Load data from JSON files.
----
+
 
 # Json File
 
@@ -42,25 +42,10 @@ This module provides a sophisticated JSON document loader that can:
 
 For a JSON document like:
 
-```json
-[
-    {
-        "url": "https://www.google.com",
-        "body": "This is body 1"
-    },
-    {
-        "url": "https://www.yahoo.com",
-        "body": "This is body 2"
-    }
-]
-```
+__CODE_BLOCK_0__
 
 You can extract specific fields as metadata using:
 
-```json
-{
-    "source": "/url"
-}
-```
+__CODE_BLOCK_1__
 
 This will add the URL value as metadata with key "source" for each document.

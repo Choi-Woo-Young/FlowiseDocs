@@ -1,6 +1,6 @@
----
+
 description: Parse the output of an LLM call into a given (JSON) structure.
----
+
 
 # Structured Output Parser
 

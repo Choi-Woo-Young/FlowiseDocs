@@ -1,6 +1,6 @@
----
+
 description: An agent that uses OpenAI Assistant API to pick the tool and args to call.
----
+
 
 # OpenAI Assistant
 

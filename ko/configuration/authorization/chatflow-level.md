@@ -1,33 +1,31 @@
 ---
-description: Learn how to set up chatflow-level access control for your Flowise instances
+description: Flowise 인스턴스에 대한 Chatflow 수준 접근 제어를 설정하는 방법을 알아봅니다
 ---
 
 # Flows
 
 ***
 
-After you have a chatflow / agentflow constructed, by default, your flow is available to public. Anyone that has access to the Chatflow ID is able to run prediction through Embed or API.
+Chatflow / Agentflow를 구성하고 나면, 기본적으로 해당 플로우는 누구나 접근할 수 있는 공개 상태입니다. Chatflow ID에 접근할 수 있는 사람은 누구나 Embed 또는 API를 통해 예측(prediction)을 실행할 수 있습니다.
 
-In cases where you might want to allow certain people to be able to access and interact with it, you can do so by assigning an API key for that specific chatflow.
+특정 사용자에게만 접근과 상호작용을 허용하고 싶은 경우, 해당 Chatflow에 API 키를 할당하여 이를 구현할 수 있습니다.
 
-## API Key
+## API 키
 
-In dashboard, navigate to API Keys section, and you should be able to see a DefaultKey created. You can also add or delete any keys.
+대시보드에서 API Keys 섹션으로 이동하면 생성된 DefaultKey를 확인할 수 있습니다. 키를 추가하거나 삭제할 수도 있습니다.
 
 <figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Chatflow
 
-Navigate to the chatflow, and now you can select the API Key you want to use to protect the chatflow.
+Chatflow로 이동하면, 이제 해당 Chatflow를 보호하는 데 사용할 API 키를 선택할 수 있습니다.
 
 <figure><img src="../../.gitbook/assets/image (16) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-After assigning an API key, one can only access the chatflow API when the Authorization header is provided with the correct API key specified during a HTTP call.
+API 키를 할당한 후에는, HTTP 호출 시 Authorization 헤더에 지정된 올바른 API 키를 제공해야만 Chatflow API에 접근할 수 있습니다.
 
-```json
-"Authorization": "Bearer <your-api-key>"
-```
+__CODE_BLOCK_0__
 
-An example of calling the API using POSTMAN
+POSTMAN을 사용하여 API를 호출하는 예시입니다.
 
 <figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
