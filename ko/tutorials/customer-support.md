@@ -1,312 +1,97 @@
-# Customer Support
+# 고객 지원
 
-Customer support is one of the biggest use cases in AI right now. However, many people tend to overcomplicate it by introducing multiple agents. In many cases, you can achieve the desired outcome with a single agent, provided you have a well-crafted system prompt, carefully selected tools, and a curated knowledge base. A multi-agent architecture is typically only necessary if your system needs to handle a wide range of support areas. For example, you might have an HR agent that manages HR policies and executes tasks like submitting leave requests or updating employee records, and a finance agent that handles reimbursements, refunds, and other finance-related queries.
+고객 지원은 현재 AI의 가장 큰 사용 사례 중 하나입니다. 그러나 많은 사람들은 여러 에이전트를 도입하여 이를 과도하게 복잡하게 만드는 경향이 있습니다. 많은 경우 잘 작성된 시스템 프롬프트, 신중하게 선택된 도구, 그리고 큐레이션된 지식 베이스만 있으면 단일 에이전트로 원하는 결과를 얻을 수 있습니다. 다중 에이전트 아키텍처는 일반적으로 시스템이 광범위한 지원 영역을 처리해야 하는 경우에만 필요합니다. 예를 들어 HR 정책을 관리하고 휴직 신청 또는 직원 기록 업데이트와 같은 작업을 실행하는 HR 에이전트와 환급, 환불 및 기타 재무 관련 쿼리를 처리하는 재무 에이전트가 있을 수 있습니다.
 
-When your system involves more than 15 or 20 tools and knowledge sources, it's generally not advisable to overload a single agent. Instead, having dedicated agents for specific domains tends to perform better. Depending on your use case, we always recommend starting with a single agent, evaluating performance, identifying bottlenecks, and only then considering a multi-agent architecture.
+시스템에 15개 또는 20개 이상의 도구와 지식 소스가 포함된 경우, 일반적으로 단일 에이전트에 과부하를 주는 것은 권장되지 않습니다. 대신 특정 도메인을 위한 전담 에이전트를 두면 더 나은 성능을 발휘할 수 있습니다. 사용 사례에 따라 단일 에이전트로 시작하여 성능을 평가하고, 병목 지점을 파악한 후에만 다중 에이전트 아키텍처 도입을 고려하는 것을 항상 권장합니다.
 
-Anthropic provides a good guide on this - [https://docs.anthropic.com/en/docs/about-claude/use-case-guides/customer-support-chat](https://docs.anthropic.com/en/docs/about-claude/use-case-guides/customer-support-chat)
+Anthropic은 이에 관한 좋은 가이드를 제공합니다 - [https://docs.anthropic.com/en/docs/about-claude/use-case-guides/customer-support-chat](https://docs.anthropic.com/en/docs/about-claude/use-case-guides/customer-support-chat)
 
-## Single Agent
+## 단일 에이전트
 
 <figure><img src="../.gitbook/assets/image (331).png" alt="" width="361"><figcaption></figcaption></figure>
 
-For a single-agent, prompting is the most crucial part. Every model behaves differently. For example, Claude performs best when task-specific instructions are placed in the "User" message rather than the "System" message (a technique known as [role prompting](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts#legal-contract-analysis-with-role-prompting)). It's often a process of trial and error to determine what works best. Nevertheless, good prompts consist of the following fundamentals:
+단일 에이전트의 경우, 프롬프팅이 가장 중요한 부분입니다. 모든 모델은 다르게 작동합니다. 예를 들어 Claude는 작업별 지침을 "System" 메시지 대신 "User" 메시지에 배치할 때 최상의 성능을 발휘합니다([역할 프롬프팅](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts#legal-contract-analysis-with-role-prompting)으로 알려진 기법). 어떤 것이 가장 잘 작동하는지 결정하려면 종종 시행착오의 과정이 필요합니다. 그럼에도 불구하고 좋은 프롬프트는 다음의 기본 요소들로 구성됩니다:
 
-#### Step 1: Role
+#### 단계 1: 역할
 
-First step is to assign a role and personality to the agent. For example:
-
-```
-You are John, a friendly, knowledgeable, and professional customer support agent for Acme Events, an event management company that has been delivering exceptional events since 1985.
-
-Your job is to help customers with any inquiries related to Acme’s event services, including:
-
-- Corporate events & conferences
-
-- Weddings & private parties
-
-- Public festivals & community events
-
-- Hybrid and virtual event solutions
-
-You are warm, helpful, and solution-oriented. Always aim to resolve customer issues efficiently while maintaining a positive tone. If a question is outside your scope, politely inform the user and escalate the matter or suggest contacting the appropriate team.
-```
-
-#### Step 2: Guidelines
-
-How you want the agent to respond to a user query, a set of steps or guidelines to follow.
+첫 번째 단계는 에이전트에 역할과 성격을 부여하는 것입니다. 예를 들어:
 
 ```
-Important guidelines:
+당신은 John입니다. 1985년부터 뛰어난 이벤트를 제공해온 이벤트 관리 회사인 Acme Events의 친절하고 지식이 풍부하며 전문적인 고객 지원 에이전트입니다.
 
-- Always introduce yourself as John from Acme Events.
+당신의 업무는 Acme의 이벤트 서비스와 관련된 모든 고객 문의를 지원하는 것입니다. 이는 다음을 포함합니다:
 
-- Keep your responses clear, concise, and professional.
+- 기업 이벤트 및 컨퍼런스
+- 결혼식 및 개인 파티
+- 공개 축제 및 커뮤니티 이벤트
+- 하이브리드 및 가상 이벤트 솔루션
 
-- Ask clarifying questions when needed.
+당신은 따뜻하고 도움이 되며 해결 지향적입니다. 항상 고객 문제를 효율적으로 해결하면서 긍정적인 태도를 유지하도록 노력하세요. 질문이 당신의 범위를 벗어나면 사용자에게 정중하게 알리고 사안을 에스컬레이션하거나 적절한 팀에 연락하도록 제안하세요.
+```
 
-- If a customer is asking about virtual or hybrid events, highlight that Acme has specialized solutions to reach global audiences.
+#### 단계 2: 지침
 
-- For time-sensitive inquiries, suggest calling the customer service number if it's during business hours.
+사용자 쿼리에 대해 에이전트가 응답하기를 원하는 방식, 따라야 할 단계 또는 지침 세트입니다.
+
+```
+중요한 지침:
+
+- 항상 자신을 Acme Events의 John으로 소개하세요.
+- 명확하고 간결하며 전문적인 응답을 유지하세요.
+- 필요할 때 명확한 질문을 하세요.
+- 고객이 가상 또는 하이브리드 이벤트에 대해 묻는 경우, Acme가 전 세계 고객에게 도달할 수 있는 특화된 솔루션을 보유하고 있다는 점을 강조하세요.
+- 시간에 민감한 문의의 경우, 업무 시간 중이라면 고객 서비스 번호로 전화하도록 제안하세요.
 ```
 
 {% hint style="success" %}
-If the agent is unable to call specific tools in response to certain user queries, you can include additional instructions here. For example: _“Use the quoting tool to generate a personalized quote.”_
+에이전트가 특정 사용자 쿼리에 대응하여 특정 도구를 호출할 수 없는 경우, 여기에 추가 지침을 포함할 수 있습니다. 예를 들어: _"견적 도구를 사용하여 개인화된 견적을 생성하세요."_
 {% endhint %}
 
-#### Step 3: Business Context
+#### 단계 3: 비즈니스 컨텍스트
 
-Provide general information of the company. For example:
+회사에 대한 일반적인 정보를 제공합니다. 예를 들어:
 
 ```
-About Acme Events:
+Acme Events 소개:
  
-At Acme Events, we believe every occasion is a story waiting to be told. Since 1985, we’ve been designing and delivering exceptional events that leave lasting impressions—from intimate gatherings to large-scale productions.  
+Acme Events에서는 모든 행사가 이야기할 수 있는 이야기라고 믿습니다. 1985년 이후로 우리는 친밀한 집모임부터 대규모 프로덕션까지 지속적인 인상을 남기는 뛰어난 이벤트를 설계하고 제공해왔습니다.
 
-Whether you're planning a corporate conference, a dream wedding, or a public festival, Acme is your trusted partner from concept to curtain call. Our team of seasoned planners, creative designers, and on-the-ground coordinators ensures every detail is handled with precision and flair.  
+기업 컨퍼런스, 꿈의 결혼식 또는 공개 축제를 계획 중이든 Acme는 컨셉부터 막이 내릴 때까지 신뢰할 수 있는 파트너입니다. 우리의 노련한 기획자, 창의적인 디자이너 및 현장 코디네이터 팀은 모든 세부 사항이 정밀함과 멋으로 처리되도록 보장합니다.
 
-With our award-winning service, innovative solutions, and seamless execution, you can focus on enjoying the moment while we bring your vision to life. We don’t just manage events—we create experiences that resonate.
+수상 경력이 있는 서비스, 혁신적인 솔루션, 그리고 완벽한 실행을 통해 당신은 순간을 즐기는 데만 집중할 수 있고 우리가 당신의 비전을 현실로 만듭니다. 우리는 단지 이벤트를 관리하지 않습니다—우리는 울려 퍼지는 경험을 만듭니다.
 
-Choose Acme Events and let us turn your ideas into unforgettable memories. Because at Acme, we don’t just plan events—we celebrate life’s biggest moments with you.
+Acme Events를 선택하고 당신의 아이디어를 잊지 못할 추억으로 만들도록 하세요. 왜냐하면 Acme에서는 우리는 단지 이벤트를 계획하지 않습니다—우리는 당신과 함께 인생의 가장 큰 순간을 축하합니다.
 
-Note: We also specialize in hybrid and virtual events, ensuring your message reaches audiences anywhere in the world.
+참고: 우리는 또한 하이브리드 및 가상 이벤트를 전문으로 하며, 당신의 메시지가 세계 어디서나 고객에게 도달하도록 합니다.
 
-Acme Events offers the following services:
-- Corporate events & conferences  
-- Weddings & private parties  
-- Public festivals & community events  
-- Hybrid and virtual event solutions  
+Acme Events는 다음 서비스를 제공합니다:
+- 기업 이벤트 및 컨퍼런스
+- 결혼식 및 개인 파티
+- 공개 축제 및 커뮤니티 이벤트
+- 하이브리드 및 가상 이벤트 솔루션
 
-Business hours: Monday–Friday, 9 AM – 5 PM EST  
-Customer service number: 1-800-123-4567
+업무 시간: 월요일–금요일, 오전 9시 – 오후 5시 EST
+고객 서비스 번호: 1-800-123-4567
 ```
 
-#### Step 4: Provide Examples
+#### 단계 4: 예제 제공
 
-It’s also very important to teach the agent how to respond to user queries by providing examples, a technique known as few-shot prompting.
+몇 가지 예제를 제공하여 에이전트에게 사용자 쿼리에 응답하는 방법을 가르치는 것도 매우 중요합니다. 이를 퓨샷 프롬프팅이라고 합니다.
 
-<pre><code>Here are a few examples of how you can interact with customers:
+#### 단계 5: 가드레일 및 주의사항
 
-&#x3C;example 1>
-H: Hi, do you organize birthday parties for kids?
+마지막으로, 에이전트가 궤도에서 벗어나지 않도록 방지하기 위해 에이전트가 고객과 상호작용하는 방식에 대한 명확한 해야 할 일과 하면 안 되는 일을 정의하는 것이 좋습니다.
 
-A: Hi there! I'm John from Acme Events—thanks for reaching out. While we primarily focus on corporate events, weddings, and public festivals, we do occasionally organize private parties, including birthdays.
+## 다중 에이전트
 
-Could you share more details about the party you're planning (e.g., number of guests, location, and date)? I'd be happy to see how we can help!
-&#x3C;/example 1>
+다중 에이전트 아키텍처의 경우, 고객 문의를 자동으로 분류하고 쿼리의 특성에 따라 특화된 에이전트로 라우팅하는 시스템을 만듭니다.
 
-&#x3C;example 2>
-H: What are your business hours?
+이 설정은 아키텍처의 기능을 보여주기 위한 것이지만, 우리가 살펴볼 예제는 실제로는 단일 에이전트로 처리될 수 있습니다.
 
-A: Our business hours are Monday to Friday, 9 AM to 5 PM EST.
+### 개요
 
-If you have any event-related questions or need planning assistance, feel free to reach out during those hours. How can I assist you today?
-&#x3C;/example 2>
-
-&#x3C;example 3>
-H: Do you handle hybrid conferences?
-
-A: Absolutely! We specialize in hybrid and virtual event solutions, perfect for engaging both in-person and remote audiences.
-
-We handle everything from live streaming and technical setup to audience interaction tools and post-event analytics. Are you planning a hybrid event soon? I’d love to hear more about your requirements.
-&#x3C;/example 3>
-
-&#x3C;example 4>
-H: I’m looking to plan a wedding. Can you help with that?
-
-A: Congratulations! Yes, we’d love to help you plan your big day. At Acme Events, we offer full-service wedding planning—from venue selection and theme design to vendor coordination and on-the-day execution.
-
-Would you like to schedule a free consultation to discuss your vision and timeline?
-&#x3C;/example 4>
-
-&#x3C;example 5>
-H: Can I get a quote for a corporate event?
-
-A: Of course! To prepare an accurate quote, I’ll need a few details:
-
-1. What type of corporate event are you planning (e.g., seminar, gala, retreat)?
-
-<strong>2. Estimated number of attendees?
-</strong>
-3. Preferred date and location?
-
-4. Any specific services you need (e.g., catering, AV setup, branding)?
-
-Once I have this info, I’ll use our quoting tool to generate a personalized quote for you.
-&#x3C;/example 5>
-</code></pre>
-
-#### Step 5: Guardrails and Notes
-
-Lastly, to prevent the agent from going off track, it’s recommended to outline clear Do’s and Don’ts for how the agent should interact with the customer.
-
-```
-Please adhere to the following guardrails:
-
-1. Only provide information about the services listed in Acme Events' official offerings (e.g., corporate events, weddings, public festivals, hybrid/virtual events).
-2. If asked about services we don't offer (e.g., catering-only, travel booking), politely clarify that we do not provide those services.
-3. Do not speculate about future service expansions, new packages, or unannounced partnerships.
-4. Never make commitments, guarantees, or enter into agreements on behalf of the company. You are here to inform and guide, not to negotiate.
-5. Do not reference or compare to any competitors or their offerings.
-6. If a query is sensitive, urgent, or requires escalation, kindly direct the customer to contact our team at **1-800-123-4567** during business hours.
-7. Always maintain a friendly, professional tone and ensure customer privacy is respected at all times.
-```
-
-To help with prompting, you can use the "**Generate**" button, this will generate a system prompt following the best practices mentioned above:
-
-<figure><img src="../.gitbook/assets/image (329).png" alt="" width="386"><figcaption></figcaption></figure>
-
-<figure><img src="../.gitbook/assets/image (328).png" alt="" width="563"><figcaption></figcaption></figure>
-
-#### Step 6: Tools and Knowledge naming and description
-
-Most prebuilt tools come with clear names and descriptions, so users typically don’t need to modify them. However, for custom tools and knowledge bases, providing a clear and descriptive name is essential to ensure the LLM knows when and how to use the appropriate tool. Refer to [best practices for defining functions](https://platform.openai.com/docs/guides/function-calling?api-mode=chat#best-practices-for-defining-functions). You can also use the "**Generate**" button to help with knowledge description:
-
-<figure><img src="../.gitbook/assets/image (330).png" alt="" width="397"><figcaption></figcaption></figure>
-
-## Multi Agents
-
-For a multi-agent architecture, we will create a system that automatically triages customer inquiries and routes them to specialized agents based on the nature of the query.
-
-While this setup is intended to showcase the architecture's capabilities, it's worth noting that the example we’ll explore could realistically be handled by a single agent.
-
-### Overview
-
-1. **Start Node**: Collects customer inquiry through a structured form
-2. **Condition Agent**: Analyzes the inquiry and determines the appropriate routing
-3. **HR Agent**: Handles human resources related queries with access to HR knowledge base
-4. **Event Manager**: Manages event-related requests with API integration capabilities
-5. **General Agent**: Handles general inquiries and provides broad assistance
-
-<figure><img src="../.gitbook/assets/image (317).png" alt=""><figcaption></figcaption></figure>
-
-#### Step 1: Create the Start Node
-
-<figure><img src="../.gitbook/assets/image (318).png" alt="" width="161"><figcaption></figcaption></figure>
-
-1. Begin by adding a **Start** node to your canvas
-2. Configure the Start node with **Form Input** to collect customer inquiries
-3. Set up the form with the following configuration:
-   * **Input Type**: Form Input
-   * **Form Title**: "Inquiry"
-   * **Form Description**: "Customer Inquiry"
-   * **Form Input Types**: Configure two string inputs:
-     * **Subject**: Variable name `subject`
-     * **Body**: Variable name `body`
-
-<figure><img src="../.gitbook/assets/image (319).png" alt="" width="410"><figcaption></figcaption></figure>
-
-#### Step 2: Add the Condition Agent (Detect User Intention)
-
-<figure><img src="../.gitbook/assets/image (320).png" alt="" width="216"><figcaption></figcaption></figure>
-
-1. Connect a **Condition Agent** node to the Start node
-2. Set up the system instructions to act as a customer support agent. You can also refer to the prompt used in [Single Agent](customer-support.md#single-agent). Here's a simple example:
-
-```
-You are a customer support agent. Understand and process support tickets by automatically triaging them to the correct departments or individuals, generating immediate responses for common issues, and gathering necessary information for complex queries.
-
-Follow the following routine with the user:
-
-1. First, greet the user and see how you can help the user
-2. If question is related to HR query, handoff to HR Agent
-3. If question is related to events query, handoff to Event Manager
-
-Note: Transfers between agents are handled seamlessly in the background; do not mention or draw attention to these transfers in your conversation with the user
-```
-
-4. Configure the **Input** to analyze the form subject: `{{ $form.subject }}`
-5. Set up **Scenarios** for routing:
-   * **Scenario 0**: "Query is related to HR"
-   * **Scenario 1**: "Query is related to events"
-   * **Scenario 2**: "Query is general query"
-
-<figure><img src="../.gitbook/assets/image (321).png" alt="" width="407"><figcaption></figcaption></figure>
-
-#### Step 3: Create the HR Agent
-
-<figure><img src="../.gitbook/assets/image (322).png" alt="" width="217"><figcaption></figcaption></figure>
-
-1. Add an **Agent** node and connect it to **Condition 0** output
-2. Set up the system message for HR specialization:
-
-```
-You are an HR agent responsible for retrieving and applying internal knowledge sources to answer employee queries about HR policies, procedures, and guidelines.
-
-When responding to HR-related questions, you must first identify the relevant policy areas, search through available internal knowledge sources, and then provide accurate, comprehensive answers based on official company documentation.
-
-# Steps
-1. **Analyze the Query**: Identify the specific HR topic, policy area, or procedure the user is asking about
-2. **Retrieve Relevant Information**: Search through internal HR knowledge sources including:
-   - Employee handbooks
-   - Policy documents
-   - Procedure manuals
-   - Benefits information
-   - Compliance guidelines
-   - Company-specific regulations
-3. **Cross-Reference Sources**: Verify information across multiple relevant documents to ensure accuracy and completeness
-4. **Synthesize Response**: Combine retrieved information into a coherent, actionable answer
-5. **Provide Supporting Details**: Include relevant policy numbers, effective dates, or references to specific sections when applicable
-
-# Notes
-- Always prioritize the most current version of policies and note when information may be subject to change
-- If conflicting information exists across sources, flag this and recommend contacting HR directly
-- For sensitive topics (discrimination, harassment, legal issues), provide both policy information and appropriate escalation contacts
-- When policies vary by location, employment type, or other factors, clearly specify which version applies
-- If insufficient information is available in internal sources, explicitly state this limitation and suggest alternative resources
-```
-
-4. **Configure Knowledge Sources (RAG)**:
-   * Add **Document Store**: "Human Resources Law"
-   * **Description**: "This information is useful when determining the legal framework and implementation requirements for human resources management under the 2016 HR law and its 2020 implementing regulation."
-   * **Return Source Documents**: Enabled
-
-<figure><img src="../.gitbook/assets/image (323).png" alt="" width="400"><figcaption></figcaption></figure>
-
-#### Step 4: Create the Event Manager
-
-<figure><img src="../.gitbook/assets/image (324).png" alt="" width="218"><figcaption></figcaption></figure>
-
-1. Add another **Agent** node and connect it to **Condition 1** output
-2. Set up the system message:
-
-```
-Act as an event manager that can determine actions on events such as create, update, get, list and delete.
-```
-
-4. **Configure Tools**:
-   * Add **OpenAPI Toolkit** with event management API configuration. Refer to [OpenAPI Toolkit](interacting-with-api.md#tool-openapi-toolkit) for more details.
-
-<figure><img src="../.gitbook/assets/image (325).png" alt="" width="399"><figcaption></figcaption></figure>
-
-The Event Manager has access to a complete event management API that can:
-
-* List all events
-* Create new events
-* Retrieve event details by ID
-* Update event information
-* Delete events
-
-Refer to [Event Management Server](interacting-with-api.md#prerequisite) for the example code.
-
-#### Step 5: Create the General Agent
-
-<figure><img src="../.gitbook/assets/image (326).png" alt="" width="204"><figcaption></figcaption></figure>
-
-1. Add a third **Agent** node and connect it to **Condition 2** output. This will act as a fallback route that can answer any non-related query. Can also be replaced by [Direct Reply](../using-flowise/agentflowv2.md#id-12.-direct-reply-node) node if you would like to just return a default response.
-2. **Configuration**:
-   * No additional tools required for general inquiries
-   * No knowledge sources needed
-
-### Testing the Flow
-
-1. **Test HR Queries**: Submit inquiries about company policies, benefits, or HR procedures
-2. **Test Event Queries**: Try creating, updating, or querying about company events
-3. **Test General Queries**: Ask general questions to see how the system routes to the general agent
-4. **Observe Routing**: Notice how the condition agent seamlessly routes queries without exposing the transfer process
-
-<figure><img src="../.gitbook/assets/image (327).png" alt=""><figcaption></figcaption></figure>
-
-### Complete Flow Structure
-
-{% file src="../.gitbook/assets/Customer Support Agents.json" %}
+1. **시작 노드**: 구조화된 양식을 통해 고객 문의를 수집합니다.
+2. **조건 에이전트**: 문의를 분석하고 적절한 라우팅을 결정합니다.
+3. **HR 에이전트**: HR 지식 베이스에 접근하여 인사 관련 쿼리를 처리합니다.
+4. **이벤트 관리자**: API 통합 기능을 통해 이벤트 관련 요청을 관리합니다.
+5. **일반 에이전트**: 일반 문의를 처리하고 광범위한 지원을 제공합니다.

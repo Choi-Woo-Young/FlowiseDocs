@@ -1,32 +1,32 @@
 ---
-description: Flowise 인스턴스를 데이터베이스에 연결하는 방법을 알아봅시다
+description: Learn how to connect your Flowise instance to a database
 ---
 
-# 데이터베이스
+# Databases
 
 ---
 
-## 설정
+## Setup
 
-Flowise는 4가지 데이터베이스 유형을 지원합니다:
+Flowise supports 4 database types:
 
 - SQLite
 - MySQL
 - PostgreSQL
 - MariaDB
 
-### SQLite (기본값)
+### SQLite (Default)
 
-SQLite가 기본 데이터베이스가 됩니다. 이러한 데이터베이스는 다음 환경 변수로 구성할 수 있습니다:
+SQLite will be the default database. These databases can be configured with following env variables:
 
 ```sh
 DATABASE_TYPE=sqlite
 DATABASE_PATH=/root/.flowise #your preferred location
 ```
 
-`database.sqlite` 파일이 생성되어 `DATABASE_PATH`로 지정된 경로에 저장됩니다. 지정하지 않으면 기본 저장 경로는 홈 디렉토리 -> .flowise가 됩니다.
+A `database.sqlite` file will be created and saved in the path specified by `DATABASE_PATH`. If not specified, the default store path will be in your home directory -> .flowise
 
-**참고:** 환경 변수가 지정되지 않으면 SQLite가 fallback 데이터베이스 선택이 됩니다.
+**Note:** If none of the env variables is specified, SQLite will be the fallback database choice.
 
 ### MySQL
 
@@ -62,20 +62,20 @@ DATABASE_USER="flowise"
 DATABASE_PASSWORD="mypassword"
 ```
 
-### Flowise 데이터베이스 SQLite 및 MySQL/MariaDB 사용 방법
+### How to use Flowise databases SQLite and MySQL/MariaDB
 
 {% embed url="https://youtu.be/R-6uV1Cb8I8" %}
 
-## 백업
+## Backup
 
-1. FlowiseAI 애플리케이션을 종료합니다.
-2. 다른 애플리케이션에 대한 데이터베이스 연결이 꺼져 있는지 확인합니다.
-3. 데이터베이스를 백업합니다.
-4. 백업 데이터베이스를 테스트합니다.
+1. Shut down FlowiseAI application.
+2. Ensure that the database connection to other applications is turned off.
+3. Backup your database.
+4. Test backup database.
 
 ### SQLite
 
-1. 파일 이름을 변경합니다.
+1. Rename file name.
 
    Windows:
 
@@ -89,7 +89,7 @@ DATABASE_PASSWORD="mypassword"
    mv DATABASE_PATH/database.sqlite DATABASE_PATH/BACKUP_FILE_NAME.sqlite
    ```
 
-2. 데이터베이스를 백업합니다.
+2. Backup database.
 
    Windows:
 
@@ -103,35 +103,34 @@ DATABASE_PASSWORD="mypassword"
    cp DATABASE_PATH/BACKUP_FILE_NAME.sqlite DATABASE_PATH/database.sqlite
    ```
 
-3. Flowise를 실행하여 백업 데이터베이스를 테스트합니다.
+3. Test backup database by running Flowise.
 
 ### PostgreSQL
 
-1. 데이터베이스를 백업합니다.
+1. Backup database.
 
    ```bash
    pg_dump -U USERNAME -h HOST -p PORT -d DATABASE_NAME -f /PATH/TO/BACKUP_FILE_NAME.sql
    ```
 
-2. 데이터베이스 암호를 입력합니다.
-3. 테스트 데이터베이스를 생성합니다.
+2. Enter database password.
+3. Create test database.
    ```bash
    psql -U USERNAME -h HOST -p PORT -d TEST_DATABASE_NAME -f /PATH/TO/BACKUP_FILE_NAME.sql
    ```
-4. `.env` 파일을 수정하여 백업 데이터베이스를 가리키도록 하여 Flowise를 실행함으로써 백업 데이터베이스를 테스트합니다.
+4. Test the backup database by running Flowise with the `.env` file modified to point to the backup database.
 
 ### MySQL & MariaDB
 
-1. 데이터베이스를 백업합니다.
+1. Backup database.
 
    ```bash
    mysqldump -u USERNAME -p DATABASE_NAME > BACKUP_FILE_NAME.sql
    ```
 
-2. 데이터베이스 암호를 입력합니다.
-3. 테스트 데이터베이스를 생성합니다.
+2. Enter database password.
+3. Create test database.
    ```bash
    mysql -u USERNAME -p TEST_DATABASE_NAME < BACKUP_FILE_NAME.sql
    ```
-
-4. `.env` 파일을 수정하여 백업 데이터베이스를 가리키도록 하여 Flowise를 실행함으로써 백업 데이터베이스를 테스트합니다.
+4. Test the backup database by running Flowise with the `.env` file modified to point to the backup database.

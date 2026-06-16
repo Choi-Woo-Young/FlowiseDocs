@@ -1,5 +1,5 @@
-# CLI Reference
+# CLI 레퍼런스
 
-Using Flowise CLI, you can programmatically execute many of the same tasks as you can in the GUI. This section introduces Flowise Command Line Interface.
+Flowise CLI를 사용하면 GUI에서 수행할 수 있는 많은 작업을 프로그래매틱하게 실행할 수 있습니다. 이 섹션에서는 Flowise 커맨드 라인 인터페이스를 소개합니다.
 
-- [User](user.md)
+- [사용자](user.md)

@@ -1,19 +1,19 @@
-# Tools & MCP
+# 도구 및 MCP
 
-In the previous [**Interacting with API**](interacting-with-api.md) tutorial, we explored how to enable LLMs to call external APIs. To enhance the user experience, Flowise provides a list of prebuilt tools. Refer to the [**Tools**](../integrations/langchain/tools/) section for the full list of available integrations.
+이전 [**API와 상호 작용**](interacting-with-api.md) 튜토리얼에서 LLM이 외부 API를 호출하는 방법을 살펴봤습니다. 사용자 경험을 강화하기 위해 Flowise는 미리 만들어진 도구 목록을 제공합니다. 사용 가능한 통합의 전체 목록은 [**도구**](../integrations/langchain/tools/) 섹션을 참조하세요.
 
-In cases where the tool you need is not yet available, you can create a **Custom Tool** to suit your requirements.
+필요한 도구가 아직 사용 가능하지 않은 경우 요구사항을 충족하도록 **사용자 정의 도구**를 만들 수 있습니다.
 
-## Custom Tool
+## 사용자 정의 도구
 
-We are going to use the same [Event Management Server](interacting-with-api.md#prerequisite), and create a custom tool which can call the HTTP POST request for `/events`.
+동일한 [이벤트 관리 서버](interacting-with-api.md#prerequisite)를 사용하고 `/events` POST 요청을 호출할 수 있는 사용자 정의 도구를 만듭니다.
 
 <figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-* **Tool Name:** `create_event`
-* **Tool Description:** `Use this when you want to create a new event.`
-* **Input Schema:** A JSON schema of the API request body which allows LLM to know how to automatically generate the correct JSON body. For instance:
-* **Javascript Function**: The actual function to execute once this tool is called
+* **도구명:** `create_event`
+* **도구 설명:** `새 이벤트를 만들고 싶을 때 사용합니다.`
+* **입력 스키마:** LLM이 올바른 JSON 본문을 자동으로 생성하는 방법을 알 수 있도록 해주는 API 요청 본문의 JSON 스키마입니다. 예를 들어:
+* **JavaScript 함수**: 이 도구가 호출되면 실행할 실제 함수입니다.
 
 ```javascript
 const fetch = require('node-fetch');
@@ -39,72 +39,72 @@ try {
 }
 ```
 
-### How to use function:
+### 함수 사용 방법:
 
-* You can use any libraries imported in Flowise.
-* You can use properties specified in Input Schema as variables with prefix `$`:
-  * Property from Input Schema = `name`
-  * Variable to be used in Function = `$name`
-* You can get default flow config:
+* Flowise에서 가져온 모든 라이브러리를 사용할 수 있습니다.
+* 입력 스키마에 지정된 속성을 `$` 접두사가 있는 변수로 사용할 수 있습니다:
+  * 입력 스키마의 속성 = `name`
+  * 함수에서 사용할 변수 = `$name`
+* 기본 플로우 구성을 가져올 수 있습니다:
   * `$flow.sessionId`
   * `$flow.chatId`
   * `$flow.chatflowId`
   * `$flow.input`
   * `$flow.state`
-* You can get custom variables: `$vars.<variable-name>`
-* Must return a string value at the end of function
+* 사용자 정의 변수 가져오기: `$vars.<variable-name>`
+* 함수 끝에 문자열 값을 반환해야 합니다.
 
-### Use custom tool on Agent
+### 에이전트에서 사용자 정의 도구 사용
 
-After custom tool has been created, you can use it on the Agent node.
+사용자 정의 도구가 생성되면 에이전트 노드에서 사용할 수 있습니다.
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="341"><figcaption></figcaption></figure>
 
-From the Tool dropdown, select the custom tool. You can also turn on **Return Direc**t if you want to directly return the output from custom tool.
+도구 드롭다운에서 사용자 정의 도구를 선택합니다. 사용자 정의 도구의 출력을 직접 반환하려면 **직접 반환**을 켜켤 수도 있습니다.
 
 <figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="392"><figcaption></figcaption></figure>
 
-### Use custom tool on Tool
+### 도구 노드에서 사용자 정의 도구 사용
 
-It can also be used as a Tool Node in a determined workflow scenario.\
-In this case, **Tool Input Arguments must be explicitly defined and filled with values**, because there is no LLM to automatically determine the values.
+결정된 워크플로우 시나리오에서 도구 노드로도 사용할 수 있습니다.
+이 경우 **도구 입력 인수를 명시적으로 정의하고 값으로 채워야 합니다.** LLM이 값을 자동으로 결정하지 않기 때문입니다.
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## MCP
 
-MCP ([Model Context Protocol](https://modelcontextprotocol.io/introduction)) provides a standardized way to connect AI models to different data sources and tools. In other words, instead of relying on Flowise built in tools or creating custom tool, one can uses MCP servers that have been created by others. MCP is widely considered an industry standard and is typically supported and maintained by the official providers. For example, the GitHub MCP is developed and maintained by the GitHub team, with similar support provided for Atlassian Jira, Brave Search, and others. You can find the list of supported servers [here](https://modelcontextprotocol.io/examples).
+MCP ([모델 컨텍스트 프로토콜](https://modelcontextprotocol.io/introduction))은 AI 모델을 다양한 데이터 소스 및 도구에 연결하는 표준화된 방법을 제공합니다. 즉, Flowise 내장 도구나 사용자 정의 도구에 의존하는 대신 다른 사람이 만든 MCP 서버를 사용할 수 있습니다. MCP는 널리 업계 표준으로 간주되며 일반적으로 공식 제공자가 지원하고 유지보수합니다. 예를 들어, GitHub MCP는 GitHub 팀에서 개발하고 유지보수하며, 유사한 지원이 Atlassian Jira, Brave Search 등에도 제공됩니다. 지원되는 서버 목록은 [여기](https://modelcontextprotocol.io/examples)에서 찾을 수 있습니다.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="413"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="413"><figcaption></figcaption></figure>
 
-## Custom MCP
+## 사용자 정의 MCP
 
-Apart from the prebuilt MCP tools, the most powerful feature is **Custom MCP**, which allows users to connect to any MCP server of their choice.
+미리 만들어진 MCP 도구 외에도 가장 강력한 기능은 사용자가 자신의 선택에 따라 모든 MCP 서버에 연결할 수 있는 **사용자 정의 MCP**입니다.
 
-MCP follows a client-server architecture where:
+MCP는 클라이언트-서버 아키텍처를 따르며 여기서:
 
-* **Hosts** are LLM applications (like Flowise) that initiate connections
-* **Clients** maintain 1:1 connections with servers, inside the host application (like Custom MCP)
-* **Servers** provide context, tools, and prompts to clients (example [servers](https://modelcontextprotocol.io/examples))
+* **호스트**는 LLM 애플리케이션(Flowise 같은)이 연결을 시작합니다.
+* **클라이언트**는 호스트 애플리케이션 내(사용자 정의 MCP와 같은) 서버와의 1:1 연결을 유지합니다.
+* **서버**는 클라이언트(예: [서버](https://modelcontextprotocol.io/examples))에 컨텍스트, 도구 및 프롬프트를 제공합니다.
 
-To handle the actual communication between clients and servers. MCP supports multiple transport mechanisms:
+클라이언트와 서버 간의 실제 통신을 처리하기 위해 MCP는 여러 전송 메커니즘을 지원합니다:
 
-1. **Stdio transport**
-   * Uses standard input/output for communication
-   * Ideal for local processes
-2. **Streamable HTTP transport**
-   * Uses HTTP with optional Server-Sent Events for streaming
-   * HTTP POST for client-to-server messages
+1. **Stdio 전송**
+   * 표준 입출력 스트림을 통한 통신
+   * 로컬 프로세스에 이상적
+2. **스트리밍 가능 HTTP 전송**
+   * 선택적 Server-Sent Events를 사용한 HTTP
+   * 클라이언트-서버 메시지의 경우 HTTP POST
 
 ### Stdio
 
-Stdio transport enables communication through standard input and output streams. This is particularly useful for local integrations and command-line tools.
+Stdio 전송은 표준 입력 및 출력 스트림을 통한 통신을 활성화합니다. 이는 로컬 통합 및 명령줄 도구에 특히 유용합니다.
 
-Only use this when using Flowise locally, not when deployed to cloud services. This is because running command like `npx` will install the MCP server package (ex: `@modelcontextprotocol/server-sequential-thinking`)  locally, and it often takes long time for that.&#x20;
+Flowise가 클라우드 서비스에 배포된 경우가 아니라 로컬에서만 사용하세요. 이는 `npx` 같은 명령을 실행하면 MCP 서버 패키지(예: `@modelcontextprotocol/server-sequential-thinking`)가 로컬에 설치되며 오래 걸릴 수 있기 때문입니다.
 
-It is more suited for desktop application like Claude Desktop, VS Code etc.
+데스크톱 애플리케이션(Claude Desktop, VS Code 등)에 더 적합합니다.
 
-#### **NPX command**
+#### **NPX 명령**
 
 ```json
 {
@@ -118,11 +118,11 @@ It is more suited for desktop application like Claude Desktop, VS Code etc.
 
 <figure><img src="../.gitbook/assets/image (16) (1) (1).png" alt="" width="419"><figcaption></figcaption></figure>
 
-For Windows, refer to this [guide](https://gist.github.com/feveromo/7a340d7795fca1ccd535a5802b976e1f).
+Windows의 경우 [이 가이드](https://gist.github.com/feveromo/7a340d7795fca1ccd535a5802b976e1f)를 참조하세요.
 
-#### **Docker command**
+#### **Docker 명령**
 
-The Docker command is suitable when the machine running Flowise also has access to Docker. However, it is not suitable for deployments on cloud services where Docker access is restricted or unavailable.
+Docker 명령은 Flowise를 실행 중인 시스템이 Docker에 접근할 수 있을 때 적합합니다. 그러나 Docker 접근이 제한되거나 사용 불가능한 클라우드 서비스 배포에는 적합하지 않습니다.
 
 ```json
 {
@@ -138,16 +138,16 @@ The Docker command is suitable when the machine running Flowise also has access 
 
 <figure><img src="../.gitbook/assets/image (312).png" alt="" width="416"><figcaption></figcaption></figure>
 
-Docker provides a list of MCP servers, which can be found [here](https://hub.docker.com/catalogs/mcp). Here's how it works:
+Docker는 MCP 서버 목록을 제공합니다. [여기](https://hub.docker.com/catalogs/mcp)에서 찾을 수 있습니다. 작동 방식은 다음과 같습니다:
 
-1. Make sure Docker is running.
-2. Locate the MCP server configuration and add it to **Custom MCP**. For example: [https://hub.docker.com/r/mcp/sequentialthinking](https://hub.docker.com/r/mcp/sequentialthinking)
-3. Refresh the **Available Actions**. If the image is not found locally, Docker will automatically pull the latest image. Once the image is pulled, you will see the list of available actions.
+1. Docker가 실행 중인지 확인합니다.
+2. MCP 서버 구성을 찾아 **사용자 정의 MCP**에 추가합니다. 예: [https://hub.docker.com/r/mcp/sequentialthinking](https://hub.docker.com/r/mcp/sequentialthinking)
+3. **사용 가능한 작업**을 새로 고칩니다. 이미지를 로컬에서 찾을 수 없으면 Docker가 자동으로 최신 이미지를 가져옵니다. 이미지를 가져온 후 사용 가능한 작업 목록이 표시됩니다.
 
 ```
-Unable to find image 'mcp/sequentialthinking:latest' locally
-latest: Pulling from mcp/sequentialthinking
-f18232174bc9: Already exists
+로컬에서 'mcp/sequentialthinking:latest' 이미지를 찾을 수 없습니다.
+latest: mcp/sequentialthinking에서 가져오는 중
+f18232174bc9: 이미 존재
 cb2bde55f71f: Pull complete
 9d0e0719fbe0: Pull complete
 6f063dbd7a5d: Pull complete
@@ -157,30 +157,30 @@ e2e59f8d7891: Pull complete
 4f4fb700ef54: Pull complete
 d0900e07408c: Pull complete
 Digest: sha256:cd3174b2ecf37738654cf7671fb1b719a225c40a78274817da00c4241f465e5f
-Status: Downloaded newer image for mcp/sequentialthinking:latest
+Status: mcp/sequentialthinking:latest를 위해 새 이미지 다운로드됨
 Sequential Thinking MCP Server running on stdio
 ```
 
-#### When to use
+#### 사용 시기
 
-* Building command-line tools
-* Implementing local integrations
-* Needing simple process communication
-* Working with shell scripts
+* 명령줄 도구 구축
+* 로컬 통합 구현
+* 간단한 프로세스 통신 필요
+* 셸 스크립트와 함께 작동
 
-### Streamable HTTP (Recommended)
+### 스트리밍 가능 HTTP (권장)
 
-We will use Github Remote MCP as an example. The beautiful part of [Remote GitHub MCP server](https://github.com/github/github-mcp-server), you don’t need to install or run it locally, new updates are applied automatically.
+GitHub Remote MCP를 예로 사용합니다. [원격 GitHub MCP 서버](https://github.com/github/github-mcp-server)의 장점은 로컬에 설치하거나 실행할 필요가 없다는 것입니다. 새 업데이트가 자동으로 적용됩니다.
 
-#### Step 1: Create a variable for Github PAT
+#### 단계 1: Github PAT를 위한 변수 만들기
 
-In order to access the MCP server, we need to create a Personal Access Token from Github. Refer to [guide](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic). Once PAT has been created, create a variable to store the token. This variable will be used in Custom MCP.
+MCP 서버에 접근하려면 Github에서 Personal Access Token을 만들어야 합니다. [가이드](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)를 참조하세요. PAT를 만든 후 토큰을 저장할 변수를 만듭니다. 이 변수는 사용자 정의 MCP에서 사용됩니다.
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="508"><figcaption></figcaption></figure>
 
-#### Step 2: Create Custom MCP
+#### 단계 2: 사용자 정의 MCP 만들기
 
-Create an Agent node, and add a new Custom MCP tool. For streamable HTTP, we just need to put in the URL and other necessary headers. You can use [variables](../using-flowise/variables.md) in the MCP Server Config with double curly braces `{{ }}` and prefix `$vars.<variableName>`.
+에이전트 노드를 만들고 새 사용자 정의 MCP 도구를 추가합니다. 스트리밍 가능 HTTP의 경우 URL과 다른 필요한 헤더만 추가하면 됩니다. [변수](../using-flowise/variables.md)를 `{{ }}` 이중 중괄호와 `$vars.<variableName>` 접두사를 사용하여 MCP 서버 구성에서 사용할 수 있습니다.
 
 ```json
 {
@@ -191,32 +191,32 @@ Create an Agent node, and add a new Custom MCP tool. For streamable HTTP, we jus
 }
 ```
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="414"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="414"><figcaption></figcaption></figure>
 
-#### Step 3: Select the actions
+#### 단계 3: 작업 선택
 
-If the MCP server configuration is working correctly, you can refresh the **Available Actions**, and Flowise will automatically pull in all available actions from the MCP server.
+MCP 서버 구성이 올바르게 작동하면 **사용 가능한 작업**을 새로 고치면 Flowise가 MCP 서버에서 사용 가능한 모든 작업을 자동으로 가져옵니다.
 
 <figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt="" width="359"><figcaption></figcaption></figure>
 
-#### Example Interactions:
+#### 예제 상호 작용:
 
-> Give me the most recent issue
+> 가장 최근 이슈를 주세요.
 
 <figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-The agent is able to identify the appropriate actions from MCP and use them to answer the user's query.
+에이전트는 MCP에서 적절한 작업을 식별하고 사용자의 쿼리에 답하는 데 사용할 수 있습니다.
 
-#### When to use
+#### 사용 시기
 
-Use Streamable HTTP when:
+스트리밍 가능 HTTP를 사용하는 경우:
 
-* Building web-based integrations
-* Needing client-server communication over HTTP
-* Requiring stateful sessions
-* Supporting multiple concurrent clients
-* Implementing resumable connections
+* 웹 기반 통합 구축
+* HTTP를 통한 클라이언트-서버 통신 필요
+* 상태 있는 세션 필요
+* 여러 동시 클라이언트 지원
+* 재개 가능한 연결 구현
 
-## Video Tutorial
+## 비디오 튜토리얼
 
 {% embed url="https://youtu.be/7FClI-QM3tk?si=zBNEShd3NlcrOBrO" %}

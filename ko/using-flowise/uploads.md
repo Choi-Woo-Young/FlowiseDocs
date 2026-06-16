@@ -1,14 +1,14 @@
 ---
-description: Learn how to use upload images, audio, and other files
+description: 이미지, 오디오, 기타 파일을 업로드하는 방법을 알아봅니다.
 ---
 
-# Uploads
+# 업로드
 
-Flowise lets you upload images, audio, and other files from the chat. In this section, you'll learn how to enable and use these features.
+플로우와이즈는 채팅에서 이미지, 오디오 및 기타 파일을 업로드할 수 있습니다. 이 섹션에서는 이러한 기능을 활성화하고 사용하는 방법을 배웁니다.
 
-## Image
+## 이미지
 
-Certain chat models allow you to input images. Always refer to the official documentation of the LLM to confirm if the model supports image input.
+특정 채팅 모델에서는 이미지를 입력할 수 있습니다. LLM이 이미지 입력을 지원하는지 확인하려면 항상 LLM의 공식 설명서를 참조하세요.
 
 * [ChatOpenAI](../integrations/llamaindex/chat-models/chatopenai.md)
 * [AzureChatOpenAI](../integrations/llamaindex/chat-models/azurechatopenai.md)
@@ -19,16 +19,16 @@ Certain chat models allow you to input images. Always refer to the official docu
 * [Google Vertex AI](../integrations/langchain/llms/googlevertex-ai.md)
 
 {% hint style="warning" %}
-Image processing only works with certain chains/agents in Chatflow.
+이미지 처리는 챗플로우의 특정 체인/에이전트에서만 작동합니다.
 
 [LLMChain](../integrations/langchain/chains/llm-chain.md), [Conversation Chain](../integrations/langchain/chains/conversation-chain.md), [ReAct Agent](../integrations/langchain/agents/react-agent-chat.md), [Conversational Agent](../integrations/langchain/agents/conversational-agent.md), [Tool Agent](../integrations/langchain/agents/tool-agent.md)
 {% endhint %}
 
-If you enable **Allow Image Upload**, you can upload images from the chat interface.
+**이미지 업로드 허용**을 활성화하면 채팅 인터페이스에서 이미지를 업로드할 수 있습니다.
 
 <div align="center"><figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="255"><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/Screenshot 2024-02-29 011714.png" alt="" width="290"><figcaption></figcaption></figure></div>
 
-To upload images with the API:
+API를 사용하여 이미지를 업로드하려면:
 
 {% tabs %}
 {% tab title="Python" %}
@@ -88,19 +88,19 @@ query({
 {% endtab %}
 {% endtabs %}
 
-## Audio
+## 오디오
 
-In the Chatflow Configuration, you can select a speech-to-text module. Supported integrations include:
+챗플로우 설정에서 음성-텍스트 변환 모듈을 선택할 수 있습니다. 지원되는 통합은 다음과 같습니다.
 
 * OpenAI
 * AssemblyAI
 * [LocalAI](../integrations/langchain/chat-models/chatlocalai.md)
 
-When this is enabled, users can speak directly into the microphone. Their speech is be transcribed into text.
+이 기능이 활성화되면 사용자는 마이크에 직접 말할 수 있으며, 음성이 텍스트로 변환됩니다.
 
 <div align="left"><figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/Screenshot 2024-02-29 012538.png" alt="" width="431"><figcaption></figcaption></figure></div>
 
-To upload audio with the API:
+API를 사용하여 오디오를 업로드하려면:
 
 {% tabs %}
 {% tab title="Python" %}
@@ -158,28 +158,28 @@ query({
 {% endtab %}
 {% endtabs %}
 
-## Files
+## 파일
 
-You can upload files in two ways:
+파일을 두 가지 방식으로 업로드할 수 있습니다.
 
-* Retrieval augmented generation (RAG) file uploads
-* Full file uploads
+* 검색 증강 생성(RAG) 파일 업로드
+* 전체 파일 업로드
 
-When both options are on, full file uploads take precedence.
+두 옵션이 모두 활성화된 경우 전체 파일 업로드가 우선합니다.
 
-### RAG File Uploads
+### RAG 파일 업로드
 
-You can upsert uploaded files on the fly to the vector store. To enable file uploads, make sure you meet these prerequisites:
+업로드된 파일을 벡터 저장소에 즉시 업서트할 수 있습니다. 파일 업로드를 활성화하려면 다음 필수 조건을 충족해야 합니다.
 
-* You must include a vector store that supports file uploads in the chatflow.
+* 파일 업로드를 지원하는 벡터 저장소를 챗플로우에 포함해야 합니다.
   * [Pinecone](../integrations/langchain/vector-stores/pinecone.md)
   * [Milvus](../integrations/langchain/vector-stores/milvus.md)
   * [Postgres](../integrations/langchain/vector-stores/postgres.md)
   * [Qdrant](../integrations/langchain/vector-stores/qdrant.md)
   * [Upstash](../integrations/langchain/vector-stores/upstash-vector.md)
-* If you have multiple vector stores in a chatflow, you can only turn on file upload for one vector store at a time.
-* You must connect at least one document loader node to the vector store's document input.
-* Supported document loaders:
+* 챣플로우에 여러 벡터 저장소가 있는 경우 한 번에 한 벡터 저장소만 파일 업로드를 켤 수 있습니다.
+* 벡터 저장소의 문서 입력에 최소한 하나의 문서 로더 노드를 연결해야 합니다.
+* 지원되는 문서 로더:
   * [CSV File](../integrations/langchain/document-loaders/csv-file.md)
   * [Docx File](../integrations/langchain/document-loaders/docx-file.md)
   * [Json File](../integrations/langchain/document-loaders/json-file.md)
@@ -190,26 +190,26 @@ You can upsert uploaded files on the fly to the vector store. To enable file upl
 
 <figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-You can upload one or more files in the chat:
+채팅에서 하나 이상의 파일을 업로드할 수 있습니다.
 
 <div align="left"><figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="380"><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/Screenshot 2024-08-26 170456.png" alt=""><figcaption></figcaption></figure></div>
 
-Here's how it works:
+동작 방식은 다음과 같습니다.
 
-1. The metadata for uploaded files is updated with the chatId.
-2. This associates the file with the chatId.
-3. When querying, an **OR** filter applies:
+1. 업로드된 파일의 메타데이터가 chatId로 업데이트됩니다.
+2. 이는 파일을 chatId와 연결합니다.
+3. 쿼리 시 **OR** 필터가 적용됩니다.
 
-* Metadata contains `flowise_chatId`, and the value is the current chat session ID
-* Metadata does not contain `flowise_chatId`
+* 메타데이터에 `flowise_chatId`가 포함되어 있고 값이 현재 채팅 세션 ID입니다.
+* 메타데이터에 `flowise_chatId`가 포함되지 않습니다.
 
-An example of a vector embedding upserted on Pinecone:
+Pinecone에 업서트된 벡터 임베딩의 예:
 
 <figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-To do this with the API, follow these two steps:
+API를 사용하려면 다음 두 단계를 따르세요.
 
-1. Use the [Vector Upsert API](/broken/pages/F2AfRpI7qYixNiBWpmIe#vector-upsert-api) with `formData` and `chatId`:
+1. [Vector Upsert API](/broken/pages/F2AfRpI7qYixNiBWpmIe#vector-upsert-api)를 `formData`와 `chatId`와 함께 사용합니다.
 
 {% tabs %}
 {% tab title="Python" %}
@@ -263,7 +263,7 @@ query(formData).then((response) => {
 {% endtab %}
 {% endtabs %}
 
-2. Use the [Prediction API](/broken/pages/F2AfRpI7qYixNiBWpmIe#prediction) with `uploads` and the `chatId` from step 1:
+2. [Prediction API](/broken/pages/F2AfRpI7qYixNiBWpmIe#prediction)를 `uploads`과 1단계의 `chatId`와 함께 사용합니다.
 
 {% tabs %}
 {% tab title="Python" %}
@@ -325,19 +325,19 @@ query({
 {% endtab %}
 {% endtabs %}
 
-### Full File Uploads
+### 전체 파일 업로드
 
-With RAG file uploads, you can't work with structured data like spreadsheets or tables, and you can't perform full summarization due to lack of full context. In some cases, you might want to include all the file content directly in the prompt for an LLM, especially with models like Gemini and Claude that have longer context windows. [This research paper](https://arxiv.org/html/2407.16833v1) is one of many that compare RAG with longer context windows.
+RAG 파일 업로드를 사용하면 스프레드시트나 표와 같은 구조화된 데이터를 처리할 수 없으며 전체 컨텍스트 부족으로 인해 전체 요약을 수행할 수 없습니다. 경우에 따라 더 긴 컨텍스트 윈도우를 가진 Gemini와 Claude와 같은 모델, 특히 전체 파일 내용을 프롬프트에 직접 포함하려고 할 수 있습니다. [이 논문](https://arxiv.org/html/2407.16833v1)은 RAG와 더 긴 컨텍스트 윈도우를 비교하는 많은 논문 중 하나입니다.
 
-To enable full file uploads, go to **Chatflow Configuration**, open the **File Upload** tab, and click the switch:
+전체 파일 업로드를 활성화하려면 **챗플로우 설정**으로 이동하여 **파일 업로드** 탭을 열고 스위치를 클릭합니다.
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2) (1).png" alt=""><figcaption></figcaption></figure>
 
-You can see the **File Attachment** button in the chat, where you can upload one or more files. Under the hood, the [File Loader](../integrations/langchain/document-loaders/file-loader.md) processes each file and converts it into text.
+채팅에서 **파일 첨부** 버튼이 보이며, 여기서 하나 이상의 파일을 업로드할 수 있습니다. 내부적으로 [파일 로더](../integrations/langchain/document-loaders/file-loader.md)는 각 파일을 처리하고 텍스트로 변환합니다.
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-Note that if your chatflow uses a Chat Prompt Template node, an input must be created from **Format Prompt Values** to pass the file data. The specified input name (e.g. {file}) should be included in the **Human Message** field.
+챣플로우에서 Chat Prompt Template 노드를 사용하는 경우 **Format Prompt Values**에서 입력을 만들어야 파일 데이터를 전달할 수 있습니다. 지정된 입력 이름(예: {file})이 **Human Message** 필드에 포함되어야 합니다.
 
 <figure><img src="../.gitbook/assets/chat-prompt-template-file-attachment.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -403,11 +403,11 @@ query({
 {% endtab %}
 {% endtabs %}
 
-As you can see in the examples, uploads require a base64 string. To get a base64 string for a file, use the [Create Attachments API](../api-reference/attachments.md).
+예제에서 볼 수 있듯이 업로드에는 base64 문자열이 필요합니다. 파일의 base64 문자열을 얻으려면 [Create Attachments API](../api-reference/attachments.md)를 사용합니다.
 
-### Difference between Full & RAG Uploads
+### 전체 업로드와 RAG 업로드의 차이점
 
-Both Full and RAG (Retrieval-Augmented Generation) file uploads serve different purposes.
+전체 파일 업로드와 RAG(Retrieval-Augmented Generation) 파일 업로드는 서로 다른 목적을 제공합니다.
 
-* **Full File Upload**: This method parses the entire file into a string and sends it to the LLM (Large Language Model). It's beneficial for summarizing the document or extracting key information. However, with very large files, the model might produce inaccurate results or "hallucinations" due to token limitations.
-* **RAG File Upload**: Recommended if you aim to reduce token costs by not sending the entire text to the LLM. This approach is suitable for Q\&A tasks on the documents but isn't ideal for summarization since it lacks the full document context. This approach might takes longer time because of the upsert process.
+* **전체 파일 업로드**: 이 방법은 전체 파일을 문자열로 구문 분석하여 LLM(대규모 언어 모델)에 보냅니다. 문서를 요약하거나 주요 정보를 추출하는 데 유용합니다. 그러나 매우 큰 파일의 경우 토큰 제한으로 인해 모델이 부정확한 결과 또는 "환각"을 생성할 수 있습니다.
+* **RAG 파일 업로드**: LLM에 전체 텍스트를 보내지 않아 토큰 비용을 줄이려는 경우 권장됩니다. 이 접근 방식은 문서에 대한 Q&A 작업에 적합하지만 전체 문서 컨텍스트가 없어 요약에는 이상적이지 않습니다. 업서트 프로세스로 인해 이 접근 방식은 시간이 더 걸릴 수 있습니다.

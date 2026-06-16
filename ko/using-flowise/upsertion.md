@@ -1,77 +1,77 @@
 # Upsertion
 
-Upsert refers to the process of uploading and processing documents into vector stores, forming the foundation of Retrieval Augmented Generation (RAG) systems.
+Upsert는 문서를 벡터 저장소에 업로드하고 처리하는 프로세스를 나타내며, Retrieval Augmented Generation (RAG) 시스템의 기초를 형성합니다.
 
-There are two fundamental ways to upsert data into vector store:
+벡터 저장소에 데이터를 업서트하는 두 가지 기본 방법이 있습니다.
 
-* [Document Stores (Recommended)](document-stores.md)
+* [Document Stores (권장)](document-stores.md)
 * Chatflow Upsert
 
-We highly recommend using Document Stores as it provides a unified interface to help with the RAG pipelines - retrieveing data from different sources, chunking strategy, upserting to vector database, syncing with updated data.
+Document Stores 사용을 강력히 권장합니다. 왜냐하면 RAG 파이프라인을 지원하는 통합 인터페이스를 제공하기 때문입니다. 다양한 소스에서 데이터 검색, 청킹 전략, 벡터 데이터베이스로의 업서팅, 업데이트된 데이터와의 동기화를 지원합니다.
 
-In this guide, we are going to cover another method - Chatflow Upsert. This is an older method prior to Document Stores.
+이 가이드에서는 다른 방법인 Chatflow Upsert를 다룹니다. 이것은 Document Stores 이전의 이전 방법입니다.
 
-For details, see the [Vector Upsert Endpoint API Reference](../api-reference/vector-upsert.md).
+자세한 내용은 [Vector Upsert Endpoint API 참조](../api-reference/vector-upsert.md)를 참조하세요.
 
-## Understanding the upserting process
+## 업서팅 프로세스 이해
 
-Chatflow allows you to create a flow that can do both upserting and RAG querying process, both can be run idenpendently.
+Chatflow를 사용하면 업서팅과 RAG 쿼리 프로세스를 모두 수행할 수 있는 플로우를 생성할 수 있습니다. 두 프로세스 모두 독립적으로 실행할 수 있습니다.
 
 <figure><img src="../.gitbook/assets/ud_01.png" alt=""><figcaption><p>Upsert vs. RAG</p></figcaption></figure>
 
-## Setup
+## 설정
 
-For an upsert process to work, we would need to create an **upserting flow** with 5 different nodes:
+업서팅 프로세스가 작동하려면 5개의 다른 노드가 있는 **업서팅 플로우**를 생성해야 합니다.
 
 1. Document Loader
 2. Text Splitter
-3. Embedding  Model
+3. Embedding 모델
 4. Vector Store
-5. Record Manager (Optional)
+5. Record Manager (선택 사항)
 
-All of the elements have been covered in [Document Stores](document-stores.md), refer there for more details.
+모든 요소는 [Document Stores](document-stores.md)에서 다루었으므로, 자세한 내용은 해당 링크를 참조하세요.
 
-Once flow is setup correctly, there will be a green button at the top right that allows user to start the upsert process.
+플로우가 올바르게 설정되면 사용자가 업서팅 프로세스를 시작할 수 있는 녹색 버튼이 우측 상단에 나타납니다.
 
 <figure><img src="../.gitbook/assets/Picture1.png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-The upsert process can also be carried out via API:
+업서팅 프로세스는 API를 통해서도 수행할 수 있습니다.
 
 <figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-## Base URL and Authentication
+## Base URL 및 인증
 
-**Base URL**: `http://localhost:3000` (or your Flowise instance URL)
+**Base URL**: `http://localhost:3000` (또는 Flowise 인스턴스 URL)
 
 **Endpoint**: `POST /api/v1/vector/upsert/:id`
 
-**Authentication**: Refer [Authentication for Flows](../configuration/authorization/chatflow-level.md)
+**인증**: [Flows 인증](../configuration/authorization/chatflow-level.md) 참조
 
-## Request Methods
+## 요청 방법
 
-The API supports two different request methods depending on your chatflow configuration:
+API는 챗플로우 구성에 따라 두 가지 다른 요청 방법을 지원합니다.
 
-#### 1. Form Data (File Upload)
+#### 1. Form Data (파일 업로드)
 
-Used when your chatflow contains Document Loaders with file upload capability.
+챗플로우에 파일 업로드 기능이 있는 Document Loaders가 포함되어 있을 때 사용합니다.
 
-#### 2. JSON Body (No File Upload)
+#### 2. JSON Body (파일 업로드 없음)
 
-Used when your chatflow uses Document Loaders that don't require file uploads (e.g., web scrapers, database connectors).
+파일 업로드가 필요하지 않은 Document Loaders를 사용하는 챗플로우에서 사용합니다 (예: 웹 스크래퍼, 데이터베이스 커넥터).
 
 {% hint style="warning" %}
-To override any node configurations such as files, metadata, etc., you must explicitly enable that option.
+파일, 메타데이터 등 노드 구성을 재정의하려면 해당 옵션을 명시적으로 활성화해야 합니다.
 {% endhint %}
 
 <figure><img src="../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-### Document Loaders with File Upload
+### 파일 업로드가 있는 Document Loaders
 
-#### Supported Document Types
+#### 지원되는 문서 유형
 
-| Document Loader   | File Types |
+| Document Loader   | 파일 형식  |
 | ----------------- | ---------- |
 | CSV File          | `.csv`     |
 | Docx/Word File    | `.docx`    |
@@ -81,18 +81,18 @@ To override any node configurations such as files, metadata, etc., you must expl
 | Text File         | `.txt`     |
 | Excel File        | `.xlsx`    |
 | Powerpoint File   | `.pptx`    |
-| File Loader       | Multiple   |
-| Unstructured File | Multiple   |
+| File Loader       | 여러 개    |
+| Unstructured File | 여러 개    |
 
 {% hint style="info" %}
-**Important**: Ensure the file type matches your Document Loader configuration. For maximum flexibility, consider using the File Loader which supports multiple file types.
+**중요**: 파일 형식이 Document Loader 구성과 일치하는지 확인하세요. 최대 유연성을 위해 여러 파일 형식을 지원하는 File Loader 사용을 고려하세요.
 {% endhint %}
 
-#### Request Format (Form Data)
+#### 요청 형식 (Form Data)
 
-When uploading files, use `multipart/form-data` instead of JSON:
+파일을 업로드할 때 JSON 대신 `multipart/form-data`를 사용하세요.
 
-#### Examples
+#### 예제
 
 {% tabs %}
 {% tab title="Python" %}
@@ -102,30 +102,30 @@ import os
 
 def upsert_document(chatflow_id, file_path, config=None):
     """
-    Upsert a single document to a vector store.
+    벡터 저장소에 단일 문서를 업서트합니다.
     
-    Args:
-        chatflow_id (str): The chatflow ID configured for vector upserting
-        file_path (str): Path to the file to upload
-        return_source_docs (bool): Whether to return source documents in response
-        config (dict): Optional configuration overrides
+    인수:
+        chatflow_id (str): 벡터 업서팅을 위해 구성된 챗플로우 ID
+        file_path (str): 업로드할 파일의 경로
+        return_source_docs (bool): 응답에서 소스 문서를 반환할지 여부
+        config (dict): 선택 사항 구성 재정의
     
-    Returns:
-        dict: API response containing upsert results
+    반환:
+        dict: 업서팅 결과를 포함하는 API 응답
     """
     url = f"http://localhost:3000/api/v1/vector/upsert/{chatflow_id}"
     
-    # Prepare file data
+    # 파일 데이터 준비
     files = {
         'files': (os.path.basename(file_path), open(file_path, 'rb'))
     }
     
-    # Prepare form data
+    # form 데이터 준비
     data = {}
     
-    # Add configuration overrides if provided
+    # 제공된 경우 구성 재정의 추가
     if config:
-        data['overrideConfig'] = str(config).replace("'", '"')  # Convert to JSON string
+        data['overrideConfig'] = str(config).replace("'", '"')  # JSON 문자열로 변환
     
     try:
         response = requests.post(url, files=files, data=data)
@@ -137,10 +137,10 @@ def upsert_document(chatflow_id, file_path, config=None):
         print(f"Upload failed: {e}")
         return None
     finally:
-        # Always close the file
+        # 항상 파일 닫기
         files['files'][1].close()
 
-# Example usage
+# 사용 예제
 result = upsert_document(
     chatflow_id="your-chatflow-id",
     file_path="documents/knowledge_base.pdf",
@@ -168,10 +168,10 @@ class VectorUploader {
     
     async upsertDocument(chatflowId, file, config = {}) {
         /**
-         * Upload a file to vector store from browser
-         * @param {string} chatflowId - The chatflow ID
-         * @param {File} file - File object from input element
-         * @param {Object} config - Optional configuration
+         * 브라우저에서 벡터 저장소에 파일을 업로드합니다
+         * @param {string} chatflowId - 챗플로우 ID
+         * @param {File} file - 입력 요소의 파일 객체
+         * @param {Object} config - 선택 사항 구성
          */
         
         const formData = new FormData();
@@ -203,10 +203,10 @@ class VectorUploader {
   
 }
 
-// Example usage in browser
+// 브라우저에서의 사용 예제
 const uploader = new VectorUploader();
 
-// Single file upload
+// 단일 파일 업로드
 document.getElementById('fileInput').addEventListener('change', async function(e) {
     const file = e.target.files[0];
     if (file) {
@@ -248,10 +248,10 @@ class NodeVectorUploader {
     
     async upsertDocument(chatflowId, filePath, config = {}) {
         /**
-         * Upload a file to vector store from Node.js
-         * @param {string} chatflowId - The chatflow ID
-         * @param {string} filePath - Path to the file
-         * @param {Object} config - Optional configuration
+         * Node.js에서 벡터 저장소에 파일을 업로드합니다
+         * @param {string} chatflowId - 챗플로우 ID
+         * @param {string} filePath - 파일의 경로
+         * @param {Object} config - 선택 사항 구성
          */
         
         if (!fs.existsSync(filePath)) {
@@ -303,12 +303,12 @@ class NodeVectorUploader {
     }
 }
 
-// Example usage
+// 사용 예제
 async function main() {
     const uploader = new NodeVectorUploader();
     
     try {
-        // Single file upload
+        // 단일 파일 업로드
         const result = await uploader.upsertDocument(
             'your-chatflow-id',
             './documents/manual.pdf',
@@ -326,7 +326,7 @@ async function main() {
     }
 }
 
-// Run if this file is executed directly
+// 이 파일을 직접 실행하는 경우 실행
 if (require.main === module) {
     main();
 }
@@ -337,16 +337,16 @@ module.exports = { NodeVectorUploader };
 
 {% tab title="cURL" %}
 ```bash
-# Basic file upload with cURL
+# cURL로 기본 파일 업로드
 curl -X POST "http://localhost:3000/api/v1/vector/upsert/your-chatflow-id" \
   -F "files=@documents/knowledge_base.pdf"
 
-# File upload with configuration override
+# 구성 재정의로 파일 업로드
 curl -X POST "http://localhost:3000/api/v1/vector/upsert/your-chatflow-id" \
   -F "files=@documents/manual.pdf" \
   -F 'overrideConfig={"chunkSize": 1000, "chunkOverlap": 200}'
 
-# Upload with custom headers for authentication (if configured)
+# 인증을 위한 사용자 정의 헤더로 업로드 (구성된 경우)
 curl -X POST "http://localhost:3000/api/v1/vector/upsert/your-chatflow-id" \
   -H "Authorization: Bearer your-api-token" \
   -F "files=@documents/faq.txt" \
@@ -355,11 +355,11 @@ curl -X POST "http://localhost:3000/api/v1/vector/upsert/your-chatflow-id" \
 {% endtab %}
 {% endtabs %}
 
-### Document Loaders without File Upload
+### 파일 업로드가 없는 Document Loaders
 
-For Document Loaders that don't require file uploads (e.g., web scrapers, database connectors, API integrations), use JSON format similar to the Prediction API.
+파일 업로드가 필요하지 않은 Document Loaders (예: 웹 스크래퍼, 데이터베이스 커넥터, API 통합)의 경우, Prediction API와 유사한 JSON 형식을 사용하세요.
 
-#### Examples
+#### 예제
 
 {% tabs %}
 {% tab title="Python" %}
@@ -369,14 +369,14 @@ from typing import Dict, Any, Optional
 
 def upsert(chatflow_id: str, config: Optional[Dict[str, Any]] = None) -> Optional[Dict[str, Any]]:
     """
-    Trigger vector upserting for chatflows that don't require file uploads.
+    파일 업로드가 필요하지 않은 챗플로우의 벡터 업서팅을 트리거합니다.
     
-    Args:
-        chatflow_id: The chatflow ID configured for vector upserting
-        config: Optional configuration overrides
+    인수:
+        chatflow_id: 벡터 업서팅을 위해 구성된 챗플로우 ID
+        config: 선택 사항 구성 재정의
     
-    Returns:
-        API response containing upsert results
+    반환:
+        업서팅 결과를 포함하는 API 응답
     """
     url = f"http://localhost:3000/api/v1/vector/upsert/{chatflow_id}"
     
@@ -420,9 +420,9 @@ class NoFileUploader {
     
     async upsertWithoutFiles(chatflowId, config = {}) {
         /**
-         * Trigger vector upserting for flows that don't need file uploads
-         * @param {string} chatflowId - The chatflow ID
-         * @param {Object} config - Configuration overrides
+         * 파일 업로드가 필요하지 않은 플로우의 벡터 업서팅을 트리거합니다
+         * @param {string} chatflowId - 챗플로우 ID
+         * @param {Object} config - 구성 재정의
          */
         
         const payload = {
@@ -452,9 +452,9 @@ class NoFileUploader {
     
     async scheduledUpsert(chatflowId, interval = 3600000) {
         /**
-         * Set up scheduled upserting for dynamic content sources
-         * @param {string} chatflowId - The chatflow ID
-         * @param {number} interval - Interval in milliseconds (default: 1 hour)
+         * 동적 콘텐츠 소스를 위한 예약된 업서팅을 설정합니다
+         * @param {string} chatflowId - 챗플로우 ID
+         * @param {number} interval - 간격 (밀리초 단위, 기본값: 1시간)
          */
         
         console.log(`Starting scheduled upsert every ${interval/1000} seconds`);
@@ -477,15 +477,15 @@ class NoFileUploader {
             }
         };
         
-        // Perform initial upsert
+        // 초기 업서트 수행
         await performUpsert();
         
-        // Set up recurring upserts
+        // 반복 업서트 설정
         return setInterval(performUpsert, interval);
     }
 }
 
-// Example usage
+// 사용 예제
 const uploader = new NoFileUploader();
 
 async function performUpsert() {
@@ -505,27 +505,27 @@ async function performUpsert() {
     }
 }
 
-// One time upsert
+// 일회성 업서트
 await performUpsert();
 
-// Set up scheduled updates (every 30 minutes)
+// 예약된 업데이트 설정 (30분마다)
 const schedulerHandle = await uploader.scheduledUpsert(
     'dynamic-content-chatflow-id',
     30 * 60 * 1000
 );
 
-// To stop scheduled updates later:
+// 나중에 예약된 업데이트를 중지하려면:
 // clearInterval(schedulerHandle);
 ```
 {% endtab %}
 
 {% tab title="cURL" %}
 ```bash
-# Basic upsert with cURL
+# cURL로 기본 업서트
 curl -X POST "http://localhost:3000/api/v1/vector/upsert/your-chatflow-id" \
   -H "Content-Type: application/json"
 
-# Upsert with configuration override
+# 구성 재정의로 업서트
 curl -X POST "http://localhost:3000/api/v1/vector/upsert/your-chatflow-id" \
   -H "Content-Type: application/json" \
   -d '{
@@ -534,7 +534,7 @@ curl -X POST "http://localhost:3000/api/v1/vector/upsert/your-chatflow-id" \
     }
   }'
   
-# Upsert with custom headers for authentication (if configured)
+# 인증을 위한 사용자 정의 헤더로 업서트 (구성된 경우)
 curl -X POST "http://localhost:3000/api/v1/vector/upsert/your-chatflow-id" \
   -H "Authorization: Bearer your-api-token" \
   -H "Content-Type: application/json"
@@ -542,24 +542,24 @@ curl -X POST "http://localhost:3000/api/v1/vector/upsert/your-chatflow-id" \
 {% endtab %}
 {% endtabs %}
 
-## Response Fields
+## 응답 필드
 
-| Field        | Type   | Description                                                 |
+| 필드        | 타입   | 설명                                                 |
 | ------------ | ------ | ----------------------------------------------------------- |
-| `numAdded`   | number | Number of new chunks added to vector store                  |
-| `numDeleted` | number | Number of chunks deleted (if using Record Manager)          |
-| `numSkipped` | number | Number of chunks skipped (if using Record Manager)          |
-| `numUpdated` | number | Number of existing chunks updated (if using Record Manager) |
+| `numAdded`   | number | 벡터 저장소에 추가된 새로운 청크의 수                  |
+| `numDeleted` | number | 삭제된 청크의 수 (Record Manager 사용 시)          |
+| `numSkipped` | number | 건너뛴 청크의 수 (Record Manager 사용 시)          |
+| `numUpdated` | number | 업데이트된 기존 청크의 수 (Record Manager 사용 시) |
 
-## Optimization Strategies
+## 최적화 전략
 
-### 1. Batch Processing Strategies
+### 1. 배치 처리 전략
 
 ```python
 def intelligent_batch_processing(files: List[str], chatflow_id: str) -> Dict[str, Any]:
-    """Process files in optimized batches based on size and type."""
+    """크기 및 유형에 따라 최적화된 배치로 파일을 처리합니다."""
     
-    # Group files by size and type
+    # 파일을 크기 및 유형별로 그룹화
     small_files = []
     large_files = []
     
@@ -572,24 +572,24 @@ def intelligent_batch_processing(files: List[str], chatflow_id: str) -> Dict[str
     
     results = {'successful': [], 'failed': [], 'totalChunks': 0}
     
-    # Process large files individually
+    # 큰 파일을 개별적으로 처리
     for file_path in large_files:
         print(f"Processing large file: {file_path}")
-        # Individual processing with custom config
-        # ... implementation
+        # 사용자 정의 구성으로 개별 처리
+        # ... 구현
     
-    # Process small files in batches
+    # 작은 파일을 배치로 처리
     batch_size = 5
     for i in range(0, len(small_files), batch_size):
         batch = small_files[i:i + batch_size]
         print(f"Processing batch of {len(batch)} small files")
-        # Batch processing
-        # ... implementation
+        # 배치 처리
+        # ... 구현
     
     return results
 ```
 
-### 2. Metadata Optimization
+### 2. 메타데이터 최적화
 
 ```python
 import requests
@@ -600,11 +600,11 @@ from typing import Dict, Any
 def upsert_with_optimized_metadata(chatflow_id: str, file_path: str, 
                                  department: str = None, category: str = None) -> Dict[str, Any]:
     """
-    Upsert document with automatically optimized metadata.
+    자동으로 최적화된 메타데이터를 사용하여 문서를 업서트합니다.
     """
     url = f"http://localhost:3000/api/v1/vector/upsert/{chatflow_id}"
     
-    # Generate optimized metadata
+    # 최적화된 메타데이터 생성
     custom_metadata = {
         'department': department or 'general',
         'category': category or 'documentation',
@@ -614,7 +614,7 @@ def upsert_with_optimized_metadata(chatflow_id: str, file_path: str,
     
     optimized_metadata = optimize_metadata(file_path, custom_metadata)
     
-    # Prepare request
+    # 요청 준비
     files = {'files': (os.path.basename(file_path), open(file_path, 'rb'))}
     data = {
         'overrideConfig': str({
@@ -629,10 +629,10 @@ def upsert_with_optimized_metadata(chatflow_id: str, file_path: str,
     finally:
         files['files'][1].close()
 
-# Example usage with different document types
+# 다양한 문서 유형의 사용 예제
 results = []
 
-# Technical documentation
+# 기술 문서
 tech_result = upsert_with_optimized_metadata(
     chatflow_id="tech-docs-chatflow",
     file_path="docs/api_reference.pdf",
@@ -641,7 +641,7 @@ tech_result = upsert_with_optimized_metadata(
 )
 results.append(tech_result)
 
-# HR policies
+# HR 정책
 hr_result = upsert_with_optimized_metadata(
     chatflow_id="hr-docs-chatflow", 
     file_path="policies/employee_handbook.pdf",
@@ -650,7 +650,7 @@ hr_result = upsert_with_optimized_metadata(
 )
 results.append(hr_result)
 
-# Marketing materials
+# 마케팅 자료
 marketing_result = upsert_with_optimized_metadata(
     chatflow_id="marketing-chatflow",
     file_path="marketing/product_brochure.pdf", 
@@ -663,15 +663,15 @@ for i, result in enumerate(results):
     print(f"Upload {i+1}: {result.get('numAdded', 0)} chunks added")
 ```
 
-## Troubleshooting
+## 문제 해결
 
-1. **File Upload Fails**
-   * Check file format compatibility
-   * Verify file size limits
-2. **Processing Timeout**
-   * Increase request timeout
-   * Break large files into smaller parts
-   * Optimize chunk size
-3. **Vector Store Errors**
-   * Check vector store connectivity
-   * Verify embedding model dimension compatibility
+1. **파일 업로드 실패**
+   * 파일 형식 호환성 확인
+   * 파일 크기 제한 확인
+2. **처리 시간 초과**
+   * 요청 타임아웃 증가
+   * 큰 파일을 작은 부분으로 나누기
+   * 청크 크기 최적화
+3. **벡터 저장소 오류**
+   * 벡터 저장소 연결 확인
+   * 임베딩 모델 차원 호환성 확인

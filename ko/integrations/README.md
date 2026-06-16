@@ -1,12 +1,12 @@
 ---
-description: Flowise에서 사용 가능한 모든 통합 / 노드에 대해 알아봅시다
+description: Learn about all available integrations / nodes in Flowise
 ---
 
-# 통합
+# Integrations
 
 ***
 
-Flowise에서 노드는 통합으로 참조됩니다. LEGO와 유사하게 Flowise에서 사용 가능한 모든 통합으로 사용자 정의된 LLM 오케스트레이션 흐름, 챗봇, 에이전트를 구축할 수 있습니다.
+In Flowise, nodes are referred to as integrations. Similar to LEGO, you can build a customized LLM ochestration flow, a chatbot, an agent with all the integrations available in Flowise.
 
 ### LangChain
 
@@ -37,7 +37,7 @@ Flowise에서 노드는 통합으로 참조됩니다. LEGO와 유사하게 Flowi
 * [Tools](llamaindex/tools/)
 * [Vector Stores](llamaindex/vector-stores/)
 
-### 유틸리티
+### Utilities
 
 * [Custom JS Function](utilities/custom-js-function.md)
 * [Set/Get Variable](utilities/set-get-variable.md)
@@ -45,6 +45,6 @@ Flowise에서 노드는 통합으로 참조됩니다. LEGO와 유사하게 Flowi
 * [Set Variable](broken-reference)
 * [Sticky Note](utilities/sticky-note.md)
 
-### 외부 통합
+### External Integrations
 
 * [Zapier Zaps](3rd-party-platform-integration/zapier-zaps.md)

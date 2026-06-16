@@ -1,88 +1,88 @@
 ---
-description: 실시간 검색 결과에서 데이터를 로드합니다.
+description: Load data from real-time search results.
 ---
 
 # SearchApi For Web Search
 
 <figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (2).png" alt="" width="322"><figcaption><p>SearchApi For Web Search</p></figcaption></figure>
 
-SearchApi For Web Search loader는 SearchApi 서비스를 사용하여 여러 검색 엔진의 실시간 검색 결과에 대한 액세스를 제공합니다. 이 loader를 통해 검색 결과를 가져오고, 처리하고, workflow에서 사용할 수 있는 documents로 구조화할 수 있습니다.
+The SearchApi For Web Search loader provides access to real-time search results from multiple search engines using the SearchApi service. This loader enables you to fetch, process, and structure search results as documents that can be used in your workflow.
 
 ## Features
 
-* 여러 검색 엔진의 실시간 검색 결과
-* 사용자 정의 가능한 검색 매개변수
-* Text splitting 기능
-* 유연한 메타데이터 처리
-* 다중 출력 형식
-* API key 인증
+* Real-time search results from multiple search engines
+* Customizable search parameters
+* Text splitting capabilities
+* Flexible metadata handling
+* Multiple output formats
+* API key authentication
 
 ## Inputs
 
-### 필수 매개변수
+### Required Parameters
 
-* **Connect Credential**: SearchApi API key 자격증명
-* 다음 중 최소 하나:
-  * **Query**: 검색 쿼리 문자열
-  * **Custom Parameters**: 검색 매개변수를 포함하는 JSON 객체
+* **Connect Credential**: SearchApi API key credential
+* At least one of:
+  * **Query**: Search query string
+  * **Custom Parameters**: JSON object with search parameters
 
-### 선택사항 매개변수
+### Optional Parameters
 
-* **Query**: 실행할 검색 쿼리 (custom parameters를 사용하지 않는 경우)
-* **Custom Parameters**: 추가 검색 매개변수를 포함하는 JSON 객체
-  * [SearchApi 문서](https://www.searchapi.io/docs/google)의 모든 매개변수 지원
-  * 기본 설정을 override할 수 있음
-  * engine 특정 구성 허용
-* **Text Splitter**: 추출된 콘텐츠를 처리하는 text splitter
-* **Additional Metadata**: documents에 추가할 추가 메타데이터가 포함된 JSON 객체
-* **Omit Metadata Keys**: 제외할 메타데이터 키의 쉼표 구분 목록
-  * 형식: `key1, key2, key3.nestedKey1`
-  * 모든 기본 메타데이터를 제거하려면 \*를 사용
+* **Query**: The search query to execute (if not using custom parameters)
+* **Custom Parameters**: JSON object with additional search parameters
+  * Supports all parameters from [SearchApi documentation](https://www.searchapi.io/docs/google)
+  * Can override default settings
+  * Allows engine-specific configurations
+* **Text Splitter**: A text splitter to process the extracted content
+* **Additional Metadata**: JSON object with additional metadata to add to documents
+* **Omit Metadata Keys**: Comma-separated list of metadata keys to exclude
+  * Format: `key1, key2, key3.nestedKey1`
+  * Use \* to remove all default metadata
 
 ## Outputs
 
-* **Document**: 다음을 포함하는 document 객체의 배열:
-  * metadata: 검색 결과 메타데이터
-  * pageContent: 검색 결과 콘텐츠
-* **Text**: 모든 검색 결과의 콘텐츠의 연결된 문자열
+* **Document**: Array of document objects containing:
+  * metadata: Search result metadata
+  * pageContent: Search result content
+* **Text**: Concatenated string of all search results' content
 
 ## Document Structure
 
-각 document 포함:
+Each document contains:
 
-* **pageContent**: 검색 결과의 주요 콘텐츠
+* **pageContent**: The main content from the search result
 * **metadata**:
-  * 기본 검색 결과 메타데이터
-  * 사용자 정의 메타데이터 (지정된 경우)
-  * 필터링된 메타데이터 (omitted keys 기반)
+  * Default search result metadata
+  * Custom metadata (if specified)
+  * Filtered metadata (based on omitted keys)
 
 ## Metadata Handling
 
-메타데이터를 사용자 정의하는 두 가지 방법:
+Two ways to customize metadata:
 
 1. **Additional Metadata**
-   * JSON을 통해 새 메타데이터 필드 추가
-   * 기존 메타데이터와 병합됨
-   * 사용자 정의 tracking 또는 categorization 추가에 유용
+   * Add new metadata fields via JSON
+   * Merged with existing metadata
+   * Useful for adding custom tracking or categorization
 2. **Omit Metadata Keys**
-   * 원하지 않는 메타데이터 필드 제거
-   * 제외할 키의 쉼표 구분 목록
-   * 중첩 key 제거 지원
-   * 모든 기본 메타데이터를 제거하려면 \*를 사용
+   * Remove unwanted metadata fields
+   * Comma-separated list of keys to exclude
+   * Support for nested key removal
+   * Use \* to remove all default metadata
 
 ## Usage Tips
 
-* 더 나은 결과를 위해 특정 검색 쿼리 제공
-* 고급 검색 구성을 위해 custom parameters 사용
-* 큰 검색 결과에 대해 text splitters 사용 고려
-* 관련 정보를 유지하기 위해 메타데이터 관리
-* 적절한 쿼리 간격을 통해 속도 제한 처리
+* Provide specific search queries for better results
+* Use custom parameters for advanced search configurations
+* Consider using text splitters for large search results
+* Manage metadata to keep relevant information
+* Handle rate limits through appropriate query spacing
 
 ## Notes
 
-* SearchApi API key 필요
-* API 속도 제한 준수
-* 여러 검색 엔진 지원
-* 실시간 검색 결과
-* 메모리 효율적인 처리
-* API 요청에 대한 오류 처리
+* Requires SearchApi API key
+* Respects API rate limits
+* Supports multiple search engines
+* Real-time search results
+* Memory-efficient processing
+* Error handling for API requests

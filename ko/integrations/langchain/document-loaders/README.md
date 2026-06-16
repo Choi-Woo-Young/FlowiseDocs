@@ -1,18 +1,18 @@
 ---
-description: LangChain Document Loader Nodes
+description: LangChain 문서 로더 노드
 ---
 
-# Document Loaders
+# 문서 로더
 
 ***
 
-Document loaders를 사용하면 PDF, TXT, CSV, Notion, Confluence 등 다양한 소스에서 문서를 로드할 수 있습니다. 이들은 종종 [Vector Stores](../vector-stores/)와 함께 사용되어 임베딩으로 업서트되며, 쿼리 시 검색될 수 있습니다.
+문서 로더를 사용하면 PDF, TXT, CSV, Notion, Confluence 등 다양한 소스에서 문서를 로드할 수 있습니다. 이들은 [Vector Stores](../vector-stores/)와 함께 사용되어 임베딩으로 업서트되고, 쿼리 시 검색될 수 있습니다.
 
-### Document Loaders 소개 영상 보기
+### 문서 로더 입문 영상 보기
 
 {% embed url="https://youtu.be/kMtf9sNIcao" %}
 
-### Document Loader Nodes:
+### 문서 로더 노드:
 
 * [Airtable](airtable.md)
 * [API Loader](api-loader.md)

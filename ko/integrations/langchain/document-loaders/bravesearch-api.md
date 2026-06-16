@@ -1,50 +1,50 @@
 # BraveSearch API Document Loader
 
-BraveSearch는 웹 검색을 위한 강력한 API를 제공하는 프라이버시 중심의 검색 엔진입니다. 이 모듈은 BraveSearch의 검색 결과를 로드하고 documents로 처리할 수 있게 합니다.
+BraveSearch is a privacy-focused search engine that provides a powerful API for web search. This module enables loading and processing search results from BraveSearch into documents.
 
-이 모듈은 다음을 수행할 수 있는 정교한 search document loader를 제공합니다:
-- BraveSearch API를 사용하여 웹 검색 실행
-- 검색 결과를 구조화된 documents로 변환
-- 결과에서 snippets 및 메타데이터 추출
-- text splitters를 사용한 결과 처리
-- 메타데이터 추출 사용자 정의
+This module provides a sophisticated search document loader that can:
+- Execute web searches using BraveSearch API
+- Convert search results into structured documents
+- Extract snippets and metadata from results
+- Process results with text splitters
+- Customize metadata extraction
 
 ## Inputs
 
-### 필수 매개변수
-- **Query**: 실행할 검색 쿼리
-- **Connect Credential**: BraveSearch API 자격증명
+### Required Parameters
+- **Query**: The search query to execute
+- **Connect Credential**: BraveSearch API credentials
 
-### 선택사항 매개변수
-- **Text Splitter**: 추출된 콘텐츠를 처리하는 text splitter
-- **Additional Metadata**: 추가 메타데이터가 포함된 JSON 객체
-- **Omit Metadata Keys**: 생략할 메타데이터 키의 쉼표 구분 목록
+### Optional Parameters
+- **Text Splitter**: A text splitter to process the extracted content
+- **Additional Metadata**: JSON object with additional metadata
+- **Omit Metadata Keys**: Comma-separated list of metadata keys to omit
 
 ## Outputs
 
-- **Document**: 메타데이터 및 pageContent를 포함하는 document 객체의 배열
-- **Text**: documents의 pageContent에서 연결된 문자열
+- **Document**: Array of document objects containing metadata and pageContent
+- **Text**: Concatenated string from pageContent of documents
 
 ## Features
-- 프라이버시 중심의 웹 검색
-- 구조화된 결과 처리
-- 자동 메타데이터 추출
-- 결과 콘텐츠 분할
-- 사용자 정의 가능한 메타데이터 처리
-- API 응답에 대한 오류 처리
+- Privacy-focused web search
+- Structured result processing
+- Automatic metadata extraction
+- Result content splitting
+- Customizable metadata handling
+- Error handling for API responses
 
 ## Document Structure
-각 검색 결과는 다음과 같은 document로 변환됩니다:
-- **pageContent**: 검색 결과의 snippet/콘텐츠
+Each search result is converted into a document with:
+- **pageContent**: The snippet/content from the search result
 - **metadata**:
-  - title: 웹페이지의 제목
-  - link: 웹페이지의 URL
-  - 지정된 추가 사용자 정의 메타데이터
+  - title: The title of the webpage
+  - link: The URL of the webpage
+  - Additional custom metadata as specified
 
 ## Notes
-- 유효한 BraveSearch API 키 필요
-- 결과에는 웹페이지 snippets 및 메타데이터 포함
-- 콘텐츠 처리를 위해 text splitters와 결합될 수 있음
-- 사용자 정의 메타데이터 추가 및 생략 지원
-- API 속도 제한 및 오류 처리
-- 프라이버시 중심의 검색 기능 유지
+- Requires valid BraveSearch API key
+- Results include webpage snippets and metadata
+- Can be combined with text splitters for content processing
+- Supports custom metadata addition and omission
+- Handles API rate limits and errors
+- Preserves privacy-focused search features 

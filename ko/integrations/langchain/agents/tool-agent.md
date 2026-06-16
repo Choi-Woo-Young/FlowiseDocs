@@ -2,9 +2,9 @@
 description: Agent that uses Function Calling to pick the tools and args to call.
 ---
 
-# Tool Agent
+# 도구 에이전트
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="337"><figcaption><p>Tool Agent Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="337"><figcaption><p>도구 에이전트 Node</p></figcaption></figure>
 
 {% hint style="info" %}
 This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA) to get started.

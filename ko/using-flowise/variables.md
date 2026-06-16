@@ -1,34 +1,34 @@
 ---
-description: Learn how to use variables in Flowise
+description: Flowise에서 변수를 사용하는 방법 배우기
 ---
 
-# Variables
+# 변수
 
 ***
 
-Flowise allow users to create variables that can be used in the nodes. Variables can be Static or Runtime.
+Flowise는 사용자가 노드에서 사용할 수 있는 변수를 생성할 수 있도록 합니다. 변수는 정적 또는 런타임일 수 있습니다.
 
-### Static
+### 정적
 
-Static variable will be saved with the value specified, and retrieved as it is.
+정적 변수는 지정된 값으로 저장되며 그대로 검색됩니다.
 
 <figure><img src="../.gitbook/assets/image (13) (1) (1) (1) (1) (1).png" alt="" width="542"><figcaption></figcaption></figure>
 
-### Runtime
+### 런타임
 
-Value of the variable will be fetched from **.env** file using `process.env`
+변수의 값은 `process.env`를 사용하여 **.env** 파일에서 가져옵니다.
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="537"><figcaption></figcaption></figure>
 
-### Override or setting variable through API
+### API를 통한 변수 재정의 또는 설정
 
-In order to override variable value, user must explicitly enable it from the top right button:
+변수 값을 재정의하려면 우측 상단 버튼에서 명시적으로 활성화해야 합니다.
 
-**Settings** -> **Configuration** -> **Security** tab:
+**설정** -> **구성** -> **보안** 탭:
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
-If there is an existing variable created, variable value provided in the API will override the existing value.
+기존 변수가 있으면 API에서 제공된 변수 값이 기존 값을 재정의합니다.
 
 ```json
 {
@@ -41,13 +41,13 @@ If there is an existing variable created, variable value provided in the API wil
 }
 ```
 
-### Using Variables
+### 변수 사용
 
-Variables can be used by the nodes in Flowise. For instance, a variable named **`character`** is created:
+변수는 Flowise의 노드에서 사용할 수 있습니다. 예를 들어, **`character`**라는 변수가 생성되었습니다.
 
 <figure><img src="../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
 
-We can then use this variable as **`$vars.<variable-name>`** in the Function of the following nodes:
+다음 노드의 함수에서 변수를 **`$vars.<variable-name>`** 형식으로 사용할 수 있습니다.
 
 * [Custom Tool](../integrations/langchain/tools/custom-tool.md)
 * [Custom Function](../integrations/utilities/custom-js-function.md)
@@ -57,18 +57,18 @@ We can then use this variable as **`$vars.<variable-name>`** in the Function of 
 
 <figure><img src="../.gitbook/assets/image (105).png" alt="" width="283"><figcaption></figcaption></figure>
 
-Besides, user can also use the variable in text input of any node with the following format:
+또한 사용자는 다음 형식으로 모든 노드의 텍스트 입력에서 변수를 사용할 수 있습니다.
 
 **`{{$vars.<variable-name>}}`**
 
-For example, in Agent System Message:
+예를 들어, Agent 시스템 메시지에서:
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (2) (1).png" alt="" width="508"><figcaption></figcaption></figure>
 
-In Prompt Template:
+Prompt Template에서:
 
 <figure><img src="../.gitbook/assets/image (157).png" alt=""><figcaption></figcaption></figure>
 
-## Resources
+## 리소스
 
-* [Pass Variables to Function](../integrations/langchain/tools/custom-tool.md#pass-variables-to-function)
+* [함수에 변수 전달](../integrations/langchain/tools/custom-tool.md#pass-variables-to-function)

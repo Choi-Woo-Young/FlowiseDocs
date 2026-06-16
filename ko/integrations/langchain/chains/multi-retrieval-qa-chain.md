@@ -4,9 +4,9 @@ description: >-
   retrievers.
 ---
 
-# Multi Retrieval QA Chain
+# 다중 검색 QA 체인
 
-<figure><img src="../../../.gitbook/assets/image (34).png" alt="" width="333"><figcaption><p>Multi Retrieval QA Chain Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (34).png" alt="" width="333"><figcaption><p>다중 검색 QA 체인 Node</p></figcaption></figure>
 
 {% hint style="info" %}
 This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA) to get started.

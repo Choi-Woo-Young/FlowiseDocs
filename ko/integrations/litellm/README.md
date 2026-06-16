@@ -1,22 +1,22 @@
 ---
-description: Flowise가 LiteLLM Proxy와 통합되는 방법을 알아봅니다.
+description: Learn how Flowise integrates with LiteLLM Proxy
 ---
 
 # LiteLLM Proxy
 
-Flowise와 함께 [LiteLLM Proxy](https://docs.litellm.ai/docs/simple_proxy)를 사용하여:
+Use [LiteLLM Proxy](https://docs.litellm.ai/docs/simple_proxy) with Flowise to:
 
-- Azure OpenAI/LLM endpoints 로드 밸런싱
-- OpenAI Format에서 100+ LLMs 호출
-- Virtual Keys를 사용하여 예산, 속도 제한 설정 및 사용량 추적
+- Load balance Azure OpenAI/LLM endpoints
+- Call 100+ LLMs in the OpenAI Format 
+- Use Virtual Keys to set budgets, rate limits and track usage
 
-## LiteLLM Proxy를 Flowise와 함께 사용하는 방법
+## How to use LiteLLM Proxy with Flowise
 
-### Step 1: LiteLLM config.yaml 파일에 LLM Models를 정의합니다.
+### Step 1: Define your LLM Models in the LiteLLM config.yaml file
 
-LiteLLM은 모든 모델이 정의된 config가 필요합니다 - 이 파일을 `litellm_config.yaml`이라고 부를 것입니다.
+LiteLLM Requires a config with all your models defined - we will call this file `litellm_config.yaml`
 
-[litellm config 설정 방법에 대한 상세 문서 - 여기](https://docs.litellm.ai/docs/proxy/configs)
+[Detailed docs on how to setup litellm config - here](https://docs.litellm.ai/docs/proxy/configs)
 
 ```yaml
 model_list:
@@ -39,7 +39,7 @@ model_list:
 ```
 
 
-### Step 2. litellm proxy 시작
+### Step 2. Start litellm proxy
 
 ```shell
 docker run \
@@ -49,12 +49,12 @@ docker run \
     --config /app/config.yaml --detailed_debug
 ```
 
-성공하면, proxy가 `http://localhost:4000/`에서 실행됩니다.
+On success, the proxy will start running on `http://localhost:4000/`
 
-### Step 3: Flowise에서 LiteLLM Proxy를 사용합니다.
+### Step 3: Use the LiteLLM Proxy in Flowise
 
-Flowise에서, **표준 OpenAI nodes (Azure OpenAI nodes가 아닌)를 지정합니다** -- 이는 **chat models, embeddings, llms -- 모든 것**에 적용됩니다.
+In Flowise, specify the **standard OpenAI nodes (not the Azure OpenAI nodes)** -- this goes for **chat models, embeddings, llms -- everything**
 
-- `BasePath`를 LiteLLM Proxy URL (`http://localhost:4000` 로컬에서 실행할 때)로 설정합니다.
-- 다음 headers `Authorization: Bearer <your-litellm-master-key>`를 설정합니다.
+- Set `BasePath` to LiteLLM Proxy URL (`http://localhost:4000` when running locally)
+- Set the following headers `Authorization: Bearer <your-litellm-master-key>`
 

@@ -1,4 +1,4 @@
-# Conversational Retrieval QA Chain
+# 대화형 검색 QA 체인
 
 A chain for performing question-answering tasks with a retrieval component.
 
@@ -10,21 +10,21 @@ A chain for performing question-answering tasks with a retrieval component.
 **Retrieval-Based Chatbots:** Retrieval-based chatbots are chatbots that generate responses by selecting pre-defined responses from a database or a set of possible responses. They "retrieve" the most appropriate response based on the input from the user.\
 **QA (Question Answering):** QA systems are designed to answer questions posed in natural language. They typically involve understanding the question and searching for or generating an appropriate answer.
 
-## Inputs
+## 입력
 
 * [Language Model](../chat-models/)
 * [Vector Store Retriever](../vector-stores/)
 * [Memory (optional)](../memory/)
 
-## Parameters
+## 매개변수
 
 | Name                    | Description                                                                                                                                               |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Return Source Documents | To return citations/sources that were used to build up the response                                                                                       |
 | System Message          | An instruction for LLM on how to answer query                                                                                                             |
-| Chain Option            | Method on how to summarize, answer questions, and extract information from documents. Read [more](https://js.langchain.com/docs/modules/chains/document/) |
+| Chain Option            | Method on how to summarize, answer questions, and extract information from documents. Read [more](__PRESERVE_URL_0__) |
 
-## Outputs
+## 출력
 
 | Name                           | Description                   |
 | ------------------------------ | ----------------------------- |

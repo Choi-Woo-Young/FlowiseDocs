@@ -1,82 +1,82 @@
 ---
-description: GitHub 저장소에서 데이터를 로드합니다.
+description: Load data from a GitHub repository.
 ---
 
 # GitHub Document Loader
 
 <figure><img src="../../../.gitbook/assets/image (79).png" alt="" width="260"><figcaption><p>Github Node</p></figcaption></figure>
 
-GitHub는 버전 관리 및 협업을 위한 플랫폼입니다. 이 모듈은 GitHub 저장소에서 콘텐츠를 로드하고 처리하는 기능을 제공하며, public 및 private 저장소를 모두 지원합니다.
+GitHub is a platform for version control and collaboration. This module provides functionality to load and process content from GitHub repositories, supporting both public and private repositories.
 
-이 모듈은 다음을 수행할 수 있는 정교한 GitHub document loader를 제공합니다:
-- GitHub 저장소에서 콘텐츠 로드
-- private 저장소 액세스 지원
-- 저장소를 재귀적으로 처리
-- 사용자 정의 GitHub 인스턴스 처리
-- concurrency 및 retries 제어
-- 파일 필터링 사용자 정의
-- text splitters를 사용한 콘텐츠 처리
+This module provides a sophisticated GitHub document loader that can:
+- Load content from GitHub repositories
+- Support private repository access
+- Process repositories recursively
+- Handle custom GitHub instances
+- Control concurrency and retries
+- Customize file filtering
+- Process content with text splitters
 
 ## Inputs
 
-### 필수 매개변수
-- **Repo Link**: GitHub 저장소 URL (예: https://github.com/FlowiseAI/Flowise)
-- **Branch**: 콘텐츠를 로드할 branch (기본값: main)
+### Required Parameters
+- **Repo Link**: The GitHub repository URL (e.g., https://github.com/FlowiseAI/Flowise)
+- **Branch**: The branch to load content from (default: main)
 
-### 선택사항 매개변수
-- **Connect Credential**: GitHub API 자격증명 (private repos 필요)
-- **Recursive**: 하위 디렉토리를 처리할지 여부
-- **Max Concurrency**: 최대 동시 파일 로드 수
-- **Github Base URL**: enterprise 인스턴스용 사용자 정의 GitHub base URL
-- **Github Instance API**: enterprise 인스턴스용 사용자 정의 GitHub API URL
-- **Ignore Paths**: 무시할 경로의 glob 패턴 배열
-- **Max Retries**: 최대 재시도 횟수
-- **Text Splitter**: 추출된 콘텐츠를 처리하는 text splitter
-- **Additional Metadata**: 추가 메타데이터가 포함된 JSON 객체
-- **Omit Metadata Keys**: 생략할 메타데이터 키의 쉼표 구분 목록
+### Optional Parameters
+- **Connect Credential**: GitHub API credentials (required for private repos)
+- **Recursive**: Whether to process subdirectories
+- **Max Concurrency**: Maximum number of concurrent file loads
+- **Github Base URL**: Custom GitHub base URL for enterprise instances
+- **Github Instance API**: Custom GitHub API URL for enterprise instances
+- **Ignore Paths**: Array of glob patterns for paths to ignore
+- **Max Retries**: Maximum number of retry attempts
+- **Text Splitter**: A text splitter to process the extracted content
+- **Additional Metadata**: JSON object with additional metadata
+- **Omit Metadata Keys**: Comma-separated list of metadata keys to omit
 
 ## Outputs
 
-- **Document**: 메타데이터 및 pageContent를 포함하는 document 객체의 배열
-- **Text**: documents의 pageContent에서 연결된 문자열
+- **Document**: Array of document objects containing metadata and pageContent
+- **Text**: Concatenated string from pageContent of documents
 
 ## Features
-- Public/private repo 지원
-- Enterprise 인스턴스 지원
-- 재귀적 디렉토리 처리
-- Concurrency 제어
-- Retry 메커니즘
-- 경로 필터링
-- Text splitting 지원
-- 메타데이터 사용자 정의
+- Public/private repo support
+- Enterprise instance support
+- Recursive directory processing
+- Concurrency control
+- Retry mechanism
+- Path filtering
+- Text splitting support
+- Metadata customization
 
 ## Authentication Methods
 
 ### Public Repositories
-- 인증 불필요
-- 속도 제한 적용
-- public 콘텐츠로 제한
+- No authentication required
+- Rate limits apply
+- Limited to public content
 
 ### Private Repositories
-- GitHub access token 필요
-- 더 높은 속도 제한
-- private 콘텐츠 액세스
-- Enterprise 지원
+- Requires GitHub access token
+- Higher rate limits
+- Access to private content
+- Enterprise support
 
 ## Document Structure
-각 document 포함:
-- **pageContent**: 파일 콘텐츠
+Each document contains:
+- **pageContent**: File content
 - **metadata**:
-  - source: 저장소의 파일 경로
-  - branch: 저장소 branch
+  - source: File path in repository
+  - branch: Repository branch
   - commit: Commit hash
-  - 추가 사용자 정의 메타데이터
+  - Additional custom metadata
 
 ## Notes
-- public 및 private repos 지원
-- Enterprise GitHub 인스턴스 지원
-- 속도 제한이 자동으로 처리됨
-- Retries를 위한 exponential backoff
-- glob 패턴을 사용한 경로 필터링
-- 메모리 효율적인 처리
-- 잘못된 repos에 대한 오류 처리
+- Supports both public and private repos
+- Enterprise GitHub instances supported
+- Rate limiting handled automatically
+- Exponential backoff for retries
+- Path filtering with glob patterns
+- Memory-efficient processing
+- Error handling for invalid repos

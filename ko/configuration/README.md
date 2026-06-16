@@ -1,16 +1,16 @@
 ---
-description: Flowise 인스턴스를 설정하고 실행하는 방법을 알아봅시다
+description: Learn how to set up and run Flowise instances
 ---
 
-# 구성
+# Configuration
 
 ***
 
-이 섹션은 개발, 테스트 및 프로덕션 환경에서 Flowise 인스턴스를 사용자 정의하기 위한 다양한 구성 옵션을 안내합니다.
+This section will guide you through various configuration options to customize your Flowise instances for development, testing, and production environments.
 
-또한 다양한 플랫폼 서비스(PaaS) 옵션에 Flowise를 배포하기 위한 심화 가이드를 제공하여 원활하고 성공적인 배포를 보장합니다.
+We'll also provide in-depth guides for deploying Flowise on different Platform as a Service (PaaS) options, ensuring a smooth and successful deployment.
 
-## 가이드
+## Guides
 
 * [Auth](authorization/)
 * [Databases](databases.md)

@@ -1,10 +1,10 @@
 # SSO
 
 {% hint style="info" %}
-SSO는 Enterprise 플랜에서만 사용 가능합니다
+SSO is only available for Enterprise plan
 {% endhint %}
 
-Flowise는 사용자가 _single sign_-on (_SSO_)을 사용하여 애플리케이션에 액세스할 수 있도록 하는 [OIDC](https://openid.net/)를 지원합니다. 현재 [Organization Admin](../using-flowise/workspaces.md#setting-up-admin-account)만 SSO 구성을 구성할 수 있습니다.
+Flowise supports [OIDC](https://openid.net/) that allows users to use _single sign_-on (_SSO_) to access application. Currently only the [Organization Admin](../using-flowise/workspaces.md#setting-up-admin-account) can configure the SSO configurations.
 
 ## Microsoft
 

@@ -2,11 +2,11 @@
 description: Conversational agent for a chat model. It will utilize chat specific prompts.
 ---
 
-# Conversational Agent
+# 대화형 에이전트
 
-<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1).png" alt="" width="271"><figcaption><p>Conversational Agent Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1).png" alt="" width="271"><figcaption><p>대화형 에이전트 Node</p></figcaption></figure>
 
-## Set Up the Conversational Agent
+## Set Up the 대화형 에이전트
 
 ## Prerequisites:
 * Set up Flowise.
@@ -19,20 +19,20 @@ description: Conversational agent for a chat model. It will utilize chat specifi
 ## Context:
 Unlike standard large language models (LLMs), which provide general-purpose models for performing language-based tasks, conversational agents are more sophisticated as they are designed specifically for managing conversations effectively.
 
-You can use Flowise conversational agent to create a comprehensive and interactive conversation experience.
+You can use Flowise 대화형 에이전트 to create a comprehensive and interactive conversation experience.
 
 ## Steps:
-1. Access the Chatflows menu.
+1. Access the 챗플로우 menu.
     1. Open your browser and go to http://localhost:3000.
-    2. In Flowise, click **Chatflows**.
+    2. In Flowise, click **챗플로우**.
 
 2. Create a new chatflow:
     1. Click **Add New**.
     2. Enter a name for your chatflow and click **Save**.
 
-3. Add a conversational agent node:
+3. Add a 대화형 에이전트 node:
     1. Click **Add Node**.
-    2. Search for the conversational agent.
+    2. Search for the 대화형 에이전트.
     3. Drag and drop the conversational agent node into your chatflow workspace.
 
 4. Add a SearchAPI node. This node enables the agent to fetch data from Google search results:
@@ -69,7 +69,7 @@ By following these steps, you will have successfully created a conversational ag
 ## Next Steps:
 Click the chat icon to interact with your newly created conversational agent. If you are running Redis locally, ensure that your Docker container for Redis is running before you start the chat.
 
-## Related Links and Troubleshooting:
-For additional information and troubleshooting, see https://redis.io/tutorials/howtos/solutions/flowise/conversational-agent/.
+## Related Links and 문제 해결:
+For additional information and 문제 해결, see https://redis.io/tutorials/howtos/solutions/flowise/conversational-agent/.
 
 
