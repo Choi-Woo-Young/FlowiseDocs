@@ -1,8 +1,8 @@
 ---
-description: Flowise의 레거시 버전에 대해 알아봅니다.
+description: Flowise의 다양한 버전 마이그레이션에 대해 알아봅시다
 ---
 
-# Migration Guide
+# 마이그레이션 가이드
 
 ***
 
@@ -10,7 +10,7 @@ Flowise는 일반적으로 역호환성을 제공합니다. 즉, 업데이트는
 
 이 섹션은 다양한 breaking 버전으로 마이그레이션할 때 지침을 제공합니다.
 
-## Versions
+## 버전
 
 * [Cloud Migration](cloud-migration.md)
 * [v1.3.0 Migration Guide](v1.3.0-migration-guide.md)
