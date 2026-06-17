@@ -1,11 +1,11 @@
+---
+description: LLM 호출의 출력을 쉼표로 구분된 값 목록으로 파싱합니다.
+---
 
-description: Parse the output of an LLM call as a comma-separated list of values.
+# CSV 출력 파서
 
-
-# CSV Output Parser
-
-<figure><img src="../../../.gitbook/assets/image (115).png" alt="" width="304"><figcaption><p>CSV Output Parser Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (115).png" alt="" width="304"><figcaption><p>CSV 출력 파서 노드</p></figcaption></figure>
 
 {% hint style="info" %}
-This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA) to get started.
+이 섹션은 진행 중입니다. 이 섹션을 완성하는 데 도움을 주시면 감사하겠습니다. 시작하려면 [기여 가이드](/broken/pages/G48tdmpQ3z4CTWEspqkA)를 확인하세요.
 {% endhint %}

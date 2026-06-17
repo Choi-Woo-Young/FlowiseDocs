@@ -1,17 +1,14 @@
 ---
-
-description: LangChain Tool Nodes
-
+description: LangChain Tool Node
 ---
 
-
-# 도구
+# Tool
 
 ***
 
-도구 are functions that agents can use to interact with the world. These 도구 can be generic utilities (e.g. search), other chains, or even other agents.
+Tool은 Agent가 세상과 상호작용하기 위해 사용할 수 있는 함수입니다. 이러한 Tool은 일반 유틸리티 (예: 검색), 다른 Chain 또는 심지어 다른 Agent일 수 있습니다.
 
-### Tool Nodes:
+### Tool Node:
 
 * [BraveSearch API](bravesearch-api.md)
 * [Browserless MCP](browserless-mcp.md)
@@ -22,14 +19,14 @@ description: LangChain Tool Nodes
 * [Exa Search](exa-search.md)
 * [Google Custom Search](google-custom-search.md)
 * [OpenAPI Toolkit](openapi-toolkit.md)
-* [Python 인터프리터](python-interpreter.md)
-* [파일 읽기](read-file.md)
-* [Request GET](request-get.md)
-* [Request POST](request-post.md)
-* [Retriever 도구](retriever-tool.md)
-* [SearchAPI](SearchAPI.md)
-* [SearXNG](SearXNG.md)
+* [Python Interpreter](python-interpreter.md)
+* [Read File](read-file.md)
+* [Request Get](request-get.md)
+* [Request Post](request-post.md)
+* [Retriever Tool](retriever-tool.md)
+* [SearchApi](searchapi.md)
+* [SearXNG](searxng.md)
 * [Serp API](serp-api.md)
-* [Serper](Serper.md)
+* [Serper](serper.md)
 * [Web Browser](web-browser.md)
 * [Write File](write-file.md)

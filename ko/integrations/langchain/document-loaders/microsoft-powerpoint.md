@@ -1,84 +1,60 @@
-# Microsoft PowerPoint Document Loader
+---
+설명: Microsoft PowerPoint 파일에서 데이터 로드
+---
 
-<figure><img src="../../../.gitbook/assets/image (286).png" alt="" width="234"><figcaption></figcaption></figure>
+# Microsoft PowerPoint
 
-Microsoft PowerPoint is a presentation program for creating and displaying slide shows. This module provides functionality to load and process PowerPoint files using officeparser.
+<figure><img src="../../../.gitbook/assets/image_powerpoint.png" alt="" width="271"><figcaption><p>Microsoft PowerPoint 노드</p></figcaption></figure>
 
-This module provides a sophisticated PowerPoint document loader that can:
-- Load PowerPoint presentations
-- Extract text from slides
-- Split content into individual slides
-- Handle slide numbering
-- Process metadata per slide
-- Support multiple slide formats
-- Handle various slide separators
+Microsoft PowerPoint Document Loader를 사용하여 PowerPoint 파일의 슬라이드와 콘텐츠를 로드하고 Document로 변환할 수 있습니다.
 
-## Inputs
+이 모듈은 다음을 수행할 수 있는 정교한 PowerPoint Document Loader를 제공합니다:
 
-### Required Parameters
-- **PowerPoint File**: The PowerPoint file(s) to process (.ppt, .pptx)
+* PowerPoint 파일 로드
+* 각 슬라이드 텍스트 추출
+* 제목 및 내용 처리
+* 슬라이드 메타데이터 추출
+* Text Splitter와 통합
+* 슬라이드 번호 정보 유지
 
-### Optional Parameters
-- **Text Splitter**: A text splitter to process the extracted content
-- **Additional Metadata**: JSON object with additional metadata
-- **Omit Metadata Keys**: Comma-separated list of metadata keys to omit
+## 입력
 
-## Outputs
+### 필수 파라미터
 
-- **Document**: Array of document objects containing metadata and pageContent
-- **Text**: Concatenated string from pageContent of documents
+* **File Upload**: 로드할 PowerPoint 파일
 
-## Features
-- Text extraction
-- Slide separation
-- Metadata handling
-- Error handling
-- Memory-efficient processing
-- Heuristic slide detection
-- Content filtering
+### 선택적 파라미터
 
-## Slide Detection Methods
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **Slide Range**: 로드할 슬라이드 범위 (예: 1-10)
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
 
-### Pattern Recognition
-The loader attempts to identify slides using common patterns:
-- "Slide X" markers
-- "Page X" markers
-- "X/Y" page numbers
-- Underscore separators
-- Dash separators
-- Multiple newlines
+## 출력
 
-### Fallback Mechanisms
-If pattern recognition fails:
-1. Split by double newlines
-2. Treat content as single slide
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-## Document Structure
-Each document contains:
-- **pageContent**: Extracted text content from the slide
-- **metadata**:
-  - slideNumber: Sequential slide number
-  - documentType: "powerpoint"
-  - Additional custom metadata
+## 기능
 
-## Content Processing
-- Empty slides are filtered out
-- Leading/trailing whitespace removed
-- Minimum content length validation
-- Reasonable slide count validation
+* PowerPoint 파일 파싱
+* 슬라이드별 텍스트 추출
+* 메타데이터 추출
+* 슬라이드 범위 선택
+* Text Splitter 지원
+* 오류 처리
 
-## Metadata Attributes
-Default attributes include:
-- slideNumber: Slide number (number)
-- documentType: Type of document (string)
-- Custom metadata from input
+## 지원 형식
 
-## Notes
-- Uses officeparser for extraction
-- Handles various slide formats
-- Intelligent slide detection
-- Content validation
-- Memory-efficient processing
-- Error handling for invalid files
-- Flexible output formats
-- Robust fallback mechanisms
+* .pptx (PowerPoint 2007+)
+* 텍스트 박스 및 제목
+* 표 및 목록
+* 슬라이드 메모
+
+## 참고사항
+
+* 유효한 PowerPoint 파일 형식 필수
+* 이미지와 차트는 텍스트로 추출되지 않음
+* 매우 큰 프레젠테이션의 처리 시간 주의
+* 암호 보호 파일은 지원 안 함
+* 슬라이드 메모도 추출 가능

@@ -1,86 +1,60 @@
-# File
+---
+설명: 다양한 파일 형식에서 데이터 로드
+---
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2).png" alt="" width="282"><figcaption></figcaption></figure>
+# File Loader
 
-The File Loader is a versatile document loader that supports multiple file formats including TXT, JSON, CSV, DOCX, PDF, Excel, PowerPoint, and more. This module provides a unified interface for loading and processing various file types.
+<figure><img src="../../../.gitbook/assets/image_file_loader.png" alt="" width="271"><figcaption><p>File Loader 노드</p></figcaption></figure>
 
-This module provides a sophisticated file loader that can:
+File Loader는 다양한 파일 형식 (PDF, DOCX, TXT, JSON 등)을 자동으로 감지하고 적절한 loader를 사용하여 문서를 로드합니다. 이를 통해 여러 파일 형식을 하나의 노드에서 처리할 수 있습니다.
 
-* Load multiple file formats
-* Support both base64-encoded files and files from storage
-* Handle PDF-specific processing options
-* Process JSON and JSONL with pointer extraction
-* Support text splitting
-* Customize metadata extraction
-* Handle file storage integration
+이 모듈은 다음을 수행할 수 있습니다:
 
-## Inputs
+* 다양한 파일 형식 자동 감지
+* 파일 형식에 따른 최적의 loader 선택
+* 일괄 파일 처리
+* 통일된 Document 구조 생성
+* Text Splitter와 통합
+* Metadata 추출
 
-### Required Parameters
+## 입력
 
-* **File**: The file(s) to process (supports multiple formats)
+### 필수 파라미터
 
-### Optional Parameters
+* **Files**: 로드할 파일 (여러 파일 지원)
 
-* **Text Splitter**: A text splitter to process the extracted content
-* **PDF Usage**: Choose between:
-  * One document per page
-  * One document per file
-* **Use Legacy Build**: Use legacy build for PDF compatibility issues
-* **JSONL Pointer Extraction**: Pointer name for JSONL files
-* **Additional Metadata**: JSON object with additional metadata
-* **Omit Metadata Keys**: Comma-separated list of metadata keys to omit
+### 선택적 파라미터
 
-## Outputs
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
 
-* **Document**: Array of document objects containing metadata and pageContent
-* **Text**: Concatenated string from pageContent of documents
+## 출력
 
-## Supported File Types
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-* Text Files (.txt)
-* JSON Files (.json)
-* JSONL Files (.jsonl)
-* CSV Files (.csv)
-* PDF Files (.pdf)
-* Word Documents (.docx)
-* Excel Files (.xlsx, .xls)
-* PowerPoint Files (.pptx, .ppt)
-* And more...
+## 지원 파일 형식
 
-## Features
+* PDF (.pdf)
+* Word Documents (.docx, .doc)
+* Text Files (.txt, .md)
+* JSON (.json)
+* CSV (.csv)
+* EPUB (.epub)
+* PowerPoint (.pptx)
 
-* Multi-format support
-* Storage integration
-* PDF processing options
-* JSON pointer extraction
-* Text splitting support
-* Metadata customization
-* Error handling
-* MIME type detection
+## 기능
 
-## File Processing Options
+* 다중 파일 형식 지원
+* 자동 형식 감지
+* 일괄 처리
+* Text Splitter 지원
+* 오류 처리
 
-### PDF Processing
+## 참고사항
 
-* Per-page splitting
-* Single document mode
-* Legacy build support
-* OCR compatibility
-
-### JSON/JSONL Processing
-
-* Pointer-based extraction
-* Structured data handling
-* Array processing
-* Nested object support
-
-## Notes
-
-* Automatically detects file type
-* Handles multiple files simultaneously
-* Supports file storage integration
-* Preserves file metadata
-* Handles large files efficiently
-* Error handling for invalid files
-* Memory-efficient processing
+* 모든 파일 형식이 지원되지 않을 수 있음
+* 파일 크기 제한 확인
+* 지원 형식에 대해서는 별도의 loader 참조
+* 성능 최적화를 위해 파일 수 제한

@@ -1,13 +1,12 @@
 ---
 description: >-
-  Chain automatically picks an appropriate prompt from multiple prompt
-  templates.
+  체인이 여러 프롬프트 템플릿에서 적절한 프롬프트를 자동으로 선택합니다.
 ---
 
-# 다중 프롬프트 체인
+# Multi Prompt Chain
 
-<figure><img src="../../../.gitbook/assets/image (32).png" alt="" width="334"><figcaption><p>다중 프롬프트 체인 Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (32).png" alt="" width="334"><figcaption><p>Multi Prompt Chain Node</p></figcaption></figure>
 
 {% hint style="info" %}
-This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA) to get started.
+이 섹션은 진행 중입니다. 이 섹션을 완성하는 데 도움을 주실 수 있다면 감사하겠습니다. 시작하려면 [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA)를 확인해 주십시오.
 {% endhint %}

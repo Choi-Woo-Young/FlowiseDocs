@@ -1,75 +1,75 @@
 ---
-description: Conversational agent for a chat model. It will utilize chat specific prompts.
+description: 채팅 모델용 Conversational Agent입니다. 채팅 특화 프롬프트를 활용합니다.
 ---
 
-# 대화형 에이전트
+# Conversational Agent
 
-<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1).png" alt="" width="271"><figcaption><p>대화형 에이전트 Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1).png" alt="" width="271"><figcaption><p>Conversational Agent Node</p></figcaption></figure>
 
-## Set Up the 대화형 에이전트
+## Conversational Agent 설정
 
-## Prerequisites:
-* Set up Flowise.
-* Download and install Docker.
-* Download and install the Ollama language model locally on your machine.
+## 필수 요구사항:
+* Flowise를 설정합니다.
+* Docker를 다운로드하고 설치합니다.
+* Ollama 언어 모델을 로컬로 다운로드하고 설치합니다.
     * https://ollama.com/
-* Download and install Redis for AI.
+* Redis for AI를 다운로드하고 설치합니다.
     * https://redis.io/redis-for-ai/
 
-## Context:
-Unlike standard large language models (LLMs), which provide general-purpose models for performing language-based tasks, conversational agents are more sophisticated as they are designed specifically for managing conversations effectively.
+## 컨텍스트:
+일반적인 용도의 언어 기반 작업을 수행하는 표준 대규모 언어 모델(LLM)과 달리, Conversational Agent는 대화를 효과적으로 관리하도록 특별히 설계되었으므로 더 정교합니다.
 
-You can use Flowise 대화형 에이전트 to create a comprehensive and interactive conversation experience.
+Flowise conversational agent를 사용하여 포괄적이고 대화식의 대화 경험을 만들 수 있습니다.
 
-## Steps:
-1. Access the 챗플로우 menu.
-    1. Open your browser and go to http://localhost:3000.
-    2. In Flowise, click **챗플로우**.
+## 단계:
+1. Chatflows 메뉴에 접근합니다.
+    1. 브라우저를 열고 http://localhost:3000으로 이동합니다.
+    2. Flowise에서 **Chatflows**를 클릭합니다.
 
-2. Create a new chatflow:
-    1. Click **Add New**.
-    2. Enter a name for your chatflow and click **Save**.
+2. 새로운 chatflow를 생성합니다:
+    1. **Add New**를 클릭합니다.
+    2. chatflow의 이름을 입력하고 **Save**를 클릭합니다.
 
-3. Add a 대화형 에이전트 node:
-    1. Click **Add Node**.
-    2. Search for the 대화형 에이전트.
-    3. Drag and drop the conversational agent node into your chatflow workspace.
+3. Conversational Agent 노드를 추가합니다:
+    1. **Add Node**를 클릭합니다.
+    2. Conversational Agent를 검색합니다.
+    3. Conversational Agent 노드를 chatflow 워크스페이스로 드래그하여 놓습니다.
 
-4. Add a SearchAPI node. This node enables the agent to fetch data from Google search results:
-    1. Click **Add Node**.
-    2. Search for the SearchAPI node. It displays in the **Tools** section of the search results.
-    3. Drag and drop the SearchAPI node into your chatflow workspace.
-    4. Create a free SearchAPI account and retrieve your SearchAPI API key. The SearchAPI node needs this key to authenticate and perform search queries.
-    5. On the SearchAPI node, click **Connect Credentials > Create New**.
-    6. Enter a name for your credentials e.g. SearchAPI Credentials, copy and paste your SearchAPI API key into the SearchAPI API Key field and click **Add**.
-    7. Connect the SearchAPI node to the Conversational Agent node by drawing a line from the Output section of the SearchAPI node to the Allowed Tools Inputs section of the Conversational Agent node.
-    8. Click **Save Chatflow** to save your progress.
+4. SearchAPI 노드를 추가합니다. 이 노드는 agent가 Google 검색 결과에서 데이터를 가져올 수 있게 합니다:
+    1. **Add Node**를 클릭합니다.
+    2. SearchAPI 노드를 검색합니다. 검색 결과의 **Tools** 섹션에 표시됩니다.
+    3. SearchAPI 노드를 chatflow 워크스페이스로 드래그하여 놓습니다.
+    4. 무료 SearchAPI 계정을 만들고 SearchAPI API 키를 검색합니다. SearchAPI 노드는 인증 및 검색 쿼리를 수행하기 위해 이 키가 필요합니다.
+    5. SearchAPI 노드에서 **Connect Credentials > Create New**를 클릭합니다.
+    6. 자격증명 이름(예: SearchAPI Credentials)을 입력하고, SearchAPI API 키를 SearchAPI API Key 필드에 복사하여 붙여넣은 후 **Add**를 클릭합니다.
+    7. SearchAPI 노드의 Output 섹션에서 Conversational Agent 노드의 Allowed Tools Inputs 섹션으로 선을 그려 SearchAPI 노드를 Conversational Agent 노드에 연결합니다.
+    8. **Save Chatflow**를 클릭하여 진행상황을 저장합니다.
 
-5. Add a ChatOllama chat model node. This node enables the agent to use Ollama language models to generate responses:
-    1. Click **Add Node**.
-    2. Search for the ChatOllama node. It displays in the **Chat Models** section of the search results.
-    3. Drag and drop the ChatOllama node into your chatflow workspace.
-    4. On the **Model Name** field, enter the model you’d like to use. We recommend llama3.2.
-    5. On the **Temperature** field, set a temperature value between 0 and 1. The temperature parameter controls the randomness of the model's responses. Low temperature produces deterministic and focused responses. High temperature produces creative and varied responses. We recommend a temperature value of 0.5.
-    6. Connect the ChatOllama node to the Conversational Agent node by drawing a line from the Output section of the ChatOllama node to the Chat Model Inputs section of the Conversational Agent node.
-    7. Click **Save Chatflow** to save your progress.
+5. ChatOllama 채팅 모델 노드를 추가합니다. 이 노드는 agent가 Ollama 언어 모델을 사용하여 응답을 생성할 수 있게 합니다:
+    1. **Add Node**를 클릭합니다.
+    2. ChatOllama 노드를 검색합니다. 검색 결과의 **Chat Models** 섹션에 표시됩니다.
+    3. ChatOllama 노드를 chatflow 워크스페이스로 드래그하여 놓습니다.
+    4. **Model Name** 필드에 사용할 모델을 입력합니다. llama3.2를 권장합니다.
+    5. **Temperature** 필드에서 0부터 1 사이의 온도 값을 설정합니다. 온도 매개변수는 모델의 응답의 무작위성을 제어합니다. 낮은 온도는 결정론적이고 초점이 맞춰진 응답을 생성합니다. 높은 온도는 창의적이고 다양한 응답을 생성합니다. 온도 값 0.5를 권장합니다.
+    6. ChatOllama 노드의 Output 섹션에서 Conversational Agent 노드의 Chat Model Inputs 섹션으로 선을 그려 ChatOllama 노드를 Conversational Agent 노드에 연결합니다.
+    7. **Save Chatflow**를 클릭하여 진행상황을 저장합니다.
 
-6. Add a Redis chat memory node. This node enables the agent to remember previous interactions and store them in the chat history, enhancing the overall user experience:
-    1. Click **Add Node**.
-    2. Search for the Redis-Backed Chat Memory node. It displays in the **Memory** section of the search results.
-    3. Drag and drop the Redis-Backed Chat Memory node into your chatflow workspace.
-    4. On the Redis-Backed Chat Memory node, click **Connect Credentials > Create New**.
-    5. Enter either your Redis API username and password or your Redis credential name and URL and click **Add**.
-    6. Connect the Redis-Backed Chat Memory node to the Conversational Agent node by drawing a line from the Output section of the Redis node to the Memory Inputs section of the Conversational Agent node.
-    7. Click **Save Chatflow** to save your progress.
+6. Redis 채팅 메모리 노드를 추가합니다. 이 노드는 agent가 이전 상호작용을 기억하고 채팅 히스토리에 저장하여 전체 사용자 경험을 향상시킵니다:
+    1. **Add Node**를 클릭합니다.
+    2. Redis-Backed Chat Memory 노드를 검색합니다. 검색 결과의 **Memory** 섹션에 표시됩니다.
+    3. Redis-Backed Chat Memory 노드를 chatflow 워크스페이스로 드래그하여 놓습니다.
+    4. Redis-Backed Chat Memory 노드에서 **Connect Credentials > Create New**를 클릭합니다.
+    5. Redis API 사용자명과 비밀번호, 또는 Redis 자격증명 이름과 URL을 입력하고 **Add**를 클릭합니다.
+    6. Redis 노드의 Output 섹션에서 Conversational Agent 노드의 Memory Inputs 섹션으로 선을 그려 Redis-Backed Chat Memory 노드를 Conversational Agent 노드에 연결합니다.
+    7. **Save Chatflow**를 클릭하여 진행상황을 저장합니다.
 
-## Result:
-By following these steps, you will have successfully created a conversational agent that you can chat with and ask questions.
+## 결과:
+이 단계들을 따르면 대화할 수 있고 질문할 수 있는 conversational agent를 성공적으로 만들 수 있습니다.
 
-## Next Steps:
-Click the chat icon to interact with your newly created conversational agent. If you are running Redis locally, ensure that your Docker container for Redis is running before you start the chat.
+## 다음 단계:
+채팅 아이콘을 클릭하여 새로 만든 conversational agent와 상호작용합니다. Redis를 로컬에서 실행하는 경우, 채팅을 시작하기 전에 Redis용 Docker 컨테이너가 실행 중인지 확인하십시오.
 
-## Related Links and 문제 해결:
-For additional information and 문제 해결, see https://redis.io/tutorials/howtos/solutions/flowise/conversational-agent/.
+## 관련 링크 및 문제 해결:
+추가 정보 및 문제 해결은 https://redis.io/tutorials/howtos/solutions/flowise/conversational-agent/를 참조하십시오.
 
 

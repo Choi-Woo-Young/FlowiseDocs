@@ -1,111 +1,63 @@
+---
+설명: Google Drive 파일에서 데이터 로드
+---
+
 # Google Drive
 
-<figure><img src="../../../.gitbook/assets/image (282).png" alt="" width="317"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image_google_drive.png" alt="" width="271"><figcaption><p>Google Drive 노드</p></figcaption></figure>
 
-Google Drive is a cloud storage and file synchronization service. This module provides functionality to load and process files from Google Drive, supporting various file formats and Google Workspace documents.
+Google Drive Document Loader를 사용하여 Google Drive의 파일을 로드하고 Document로 변환할 수 있습니다. 이를 통해 Google Docs, Google Sheets, 업로드된 파일 등을 처리할 수 있습니다.
 
-This module provides a sophisticated Google Drive document loader that can:
+이 모듈은 다음을 수행할 수 있는 정교한 Google Drive Document Loader를 제공합니다:
 
-* Load multiple file types
-* Process Google Workspace documents
-* Handle folder-based loading
-* Support shared drives
-* Process files recursively
-* Customize file type filtering
-* Handle OAuth2 authentication
+* Google Drive의 파일 로드
+* 폴더 지정
+* 파일 검색 및 필터링
+* Google Docs 콘텐츠 추출
+* Google Sheets 데이터 추출
+* Text Splitter와 통합
 
-### Required Parameters
+## 입력
 
-* **Connect Credential**: Google Drive OAuth2 credentials. Refer to [#Google Drive](../tools/google-drive.md)
-* **Select Files** or **Folder ID**: Choose specific files or provide a folder ID
+### 필수 파라미터
 
-### Optional Parameters
+* **Folder ID**: Google Drive 폴더 ID
+* **Connect Credential**: Google Drive API 자격증명
 
-* **File Types**: Types of files to load:
-  * Google Docs
-  * Google Sheets
-  * Google Slides
-  * PDF Files
-  * Text Files
-  * Word Documents
-  * PowerPoint
-  * Excel Files
-* **Include Subfolders**: Process files in subfolders
-* **Include Shared Drives**: Access files from shared drives
-* **Max Files**: Maximum number of files to load (default: 50)
-* **Text Splitter**: A text splitter to process the extracted content
-* **Additional Metadata**: JSON object with additional metadata
-* **Omit Metadata Keys**: Comma-separated list of metadata keys to omit
+### 선택적 파라미터
 
-## Outputs
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **File Extensions**: 처리할 파일 확장명의 쉼표로 구분된 목록
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
 
-* **Document**: Array of document objects containing metadata and pageContent
-* **Text**: Concatenated string from pageContent of documents
+## 출력
 
-## Supported File Types
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-### Google Workspace
+## 기능
 
-* Google Docs (application/vnd.google-apps.document)
-* Google Sheets (application/vnd.google-apps.spreadsheet)
-* Google Slides (application/vnd.google-apps.presentation)
+* Google Drive 파일 로드
+* 폴더 탐색
+* 파일 검색
+* Google Docs 추출
+* Google Sheets 추출
+* Text Splitter 지원
 
-### Microsoft Office
+## 지원 파일 형식
 
-* Word (.docx)
-* Excel (.xlsx)
-* PowerPoint (.pptx)
+* Google Docs
+* Google Sheets
+* PDF
+* Microsoft Word
+* Microsoft Excel
+* Text Files
 
-### Other Formats
+## 참고사항
 
-* PDF (.pdf)
-* Text Files (.txt)
-
-## Features
-
-* OAuth2 authentication
-* Multiple file type support
-* Folder processing
-* Shared drive access
-* File type filtering
-* Text splitting support
-* Metadata customization
-* Error handling
-
-## Loading Methods
-
-### File Selection Mode
-
-* Direct file selection
-* Multiple file support
-* File type filtering
-* Metadata preservation
-
-### Folder Mode
-
-* Recursive folder processing
-* Subfolder support
-* File type filtering
-* Batch processing
-
-## Document Structure
-
-Each document contains:
-
-* **pageContent**: Extracted content from the file
-* **metadata**:
-  * fileName: Original file name
-  * fileType: MIME type
-  * fileId: Google Drive file ID
-  * source: File path/URL
-  * Additional custom metadata
-
-## Notes
-
-* Requires OAuth2 authentication
-* Handles rate limiting
-* Supports large files
-* Temporary file management
-* Memory-efficient processing
-* Error handling for invalid files
-* Automatic token refresh
+* Google Drive API 자격증명 필요
+* 폴더 공유 권한 필요
+* API rate limit 적용
+* 대용량 파일의 로드 시간 주의
+* 특정 파일만 로드하려면 파일 ID 사용 가능

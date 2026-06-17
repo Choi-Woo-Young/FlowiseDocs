@@ -1,5 +1,5 @@
 ---
-description: Learn about how to build agentic systems in Flowise
+description: Flowise에서 에이전트 시스템을 구축하는 방법을 배웁니다
 ---
 
 # Agentflows

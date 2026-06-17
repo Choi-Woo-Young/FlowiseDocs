@@ -1,15 +1,11 @@
 ---
-description: Anthropic의 Claude 모델을 사용하는 챗 모델입니다.
+description: Chat 엔드포인트를 사용하는 ChatAnthropic 대규모 언어 모델 주변의 래퍼입니다.
 ---
 
 # ChatAnthropic
 
-<figure><img src="../../../.gitbook/assets/image (48).png" alt="" width="271"><figcaption><p>ChatAnthropic Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (43).png" alt="" width="265"><figcaption><p>ChatAnthropic Node</p></figcaption></figure>
 
-Claude 챗 모델에 대한 더 많은 정보는 [Anthropic 공식 문서](https://www.anthropic.com/)를 참조하세요.
-
-## 입력
-
-- **Language Model**: 쿼리 처리에 사용할 Claude 모델입니다.
-- **API Key**: Anthropic API 키입니다.
-- **Temperature**: 0과 1 사이의 값으로, 값이 높을수록 응답이 더 창의적입니다.
+{% hint style="info" %}
+이 섹션은 진행 중입니다. 이 섹션을 완성하는 데 도움을 주실 수 있다면 감사하겠습니다. 시작하려면 [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA)를 확인해 주십시오.
+{% endhint %}

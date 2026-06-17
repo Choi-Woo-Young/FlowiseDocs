@@ -1,41 +1,41 @@
-# Flowise Documentation Translation Guide
+# Flowise Documentation Korean Translation Guide
 
 ## Overview
 
-This guide explains how to translate the Flowise documentation from English to Korean using the provided translation script.
+This guide explains how to use the Korean translation tool to translate Flowise documentation files from English to Korean using the Anthropic Claude API.
 
 ## Current Status
 
-- **Total files**: 346 markdown files
-- **English source**: `./en/` directory
-- **Korean target**: `./ko/` directory
-- **All 346 files have been copied to Korean folder but still contain English content**
+The translation tool supports translating markdown files from the `ko/` directory. These files currently contain English content and need to be translated to Korean.
 
-## Files to Translate
+## Files to Translate (Batch of 17)
 
-The translation script will process all `.md` files in the following directories:
+The default translation batch includes these 17 files:
 
-- `api-reference/` (16 files)
-- `cli-reference/` (3 files)
-- `configuration/` (12 files)
-- `contributing/` (2 files)
-- `getting-started/` (6 files)
-- `integrations/` (150+ files)
-- `migration-guide/` (7 files)
-- `text-splitters/` (2 files)
-- `tutorials/` (9 files)
-- `use-cases/` (8 files)
-- `using-flowise/` (16 files)
-- `README.md` and `SUMMARY.md` (2 files)
-
-**Excluded**: `.gitbook/` directory (GitBook assets and configuration)
+1. `ko/integrations/llamaindex/README.md`
+2. `ko/integrations/README.md`
+3. `ko/text-splitters/charater-text-splitter.md`
+4. `ko/migration-guide/v1.4.3-migration-guide.md`
+5. `ko/migration-guide/v2.1.4-migration-guide.md`
+6. `ko/migration-guide/v1.3.0-migration-guide.md`
+7. `ko/use-cases/multiple-documents-qna.md`
+8. `ko/use-cases/web-scrape-qna.md`
+9. `ko/use-cases/sql-qna.md`
+10. `ko/use-cases/README.md`
+11. `ko/use-cases/webhook-tool.md`
+12. `ko/use-cases/interacting-with-api.md`
+13. `ko/use-cases/upserting-data.md`
+14. `ko/using-flowise/agentflowv1/README.md`
+15. `ko/using-flowise/analytics/langfuse.md`
+16. `ko/integrations/utilities/README.md`
+17. `ko/integrations/llamaindex/vector-stores/README.md`
 
 ## Prerequisites
 
 ### 1. Install Python Dependencies
 
 ```bash
-pip install anthropic
+pip install requests
 ```
 
 ### 2. Get Your Anthropic API Key
@@ -55,93 +55,123 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 Or temporarily for one command:
 
 ```bash
-ANTHROPIC_API_KEY="your-api-key-here" python3 translate_to_korean.py
+ANTHROPIC_API_KEY="your-api-key-here" python3 scripts/translate_to_korean.py
 ```
 
 ## Usage
 
-### Basic Translation
+### Basic Translation (All Default Files)
 
 ```bash
 cd /Users/service_one/StudioProjects/navisProjects/FlowiseDocs
-python3 translate_to_korean.py
+python3 scripts/translate_to_korean.py
+```
+
+Or using the shell wrapper:
+
+```bash
+./scripts/translate.sh
+```
+
+### Translate Specific Files
+
+```bash
+python3 scripts/translate_to_korean.py \
+  ko/integrations/llamaindex/README.md \
+  ko/integrations/README.md
 ```
 
 ### What the Script Does
 
-1. **Reads all English files** from the `en/` directory
-2. **Extracts code blocks** to preserve them unchanged
-3. **Translates content** to Korean using Claude API
-4. **Restores code blocks** to the translated content
-5. **Creates Korean files** in the `ko/` directory with the same structure
-6. **Reports progress** with file counts and any errors
+1. **Reads markdown files** from the `ko/` directory
+2. **Extracts content** to be translated
+3. **Calls Anthropic Claude API** for translation
+4. **Preserves code blocks** completely unchanged
+5. **Keeps technical terms in English** (API, LLM, RAG, etc.)
+6. **Writes translated content** back to the same files
+7. **Reports progress** with success/failure counts
 
-## Translation Rules Enforced by Script
+## Translation Rules
+
+The script enforces these translation rules:
 
 ### Content to Translate
 - All headings (# ## ### etc.)
 - Paragraphs and descriptions
 - List items (both bullet and numbered)
 - Table headers and cells
-- Image captions
+- Link text and image captions
+- YAML frontmatter metadata (description field)
 
-### Content to Preserve (English)
-- **Technical Terms**: API, LLM, RAG, Node, Agent, Tool, Flowise, JSON, HTTP, REST, CLI, SDK, Docker, Kubernetes, AWS, Azure, GCP, Redis, PostgreSQL, MongoDB, JavaScript, TypeScript, Python, Node.js, Express, React, OpenAI, Anthropic, Claude, GPT, LLAMA, and 100+ other technical terms
-- **Code blocks** (``` blocks and inline `code`)
-- **URLs and file paths** (completely unchanged)
+### Content to Preserve (Keep in English)
+- **Code blocks**: All content inside ``` ... ``` blocks
+- **Technical Terms**: Flowise, API, LLM, RAG, Agent, Flow, OpenAI, Azure, Docker, GitHub, HTTP, REST, JSON, YAML, Python, Node.js, JavaScript, TypeScript, React, Vue, Kubernetes, AWS, GCP, SQL, MongoDB, Redis, PostgreSQL, MySQL, LlamaIndex, Agents, Vector Stores, Embeddings, ChatGPT, GPT-4, OpenAI API, Node, Express, Next.js, FastAPI, Flask, and other established technical terms
+- **URLs and file paths**: Completely unchanged (only translate link text)
+- **Environment variables and configuration keys**: Keep as-is
+- **Command-line flags and options**: Preserve in English
 - **Markdown formatting** (# ## ###, -, *, **, [text](url), tables, etc.)
 - **HTML tags** (if present)
 
 ### Link Translation
 For markdown links: `[English text](url)` becomes `[한국어 텍스트](url)`
 
+Example:
+- Input: `[Click here](https://example.com)` 
+- Output: `[여기를 클릭하세요](https://example.com)`
+
 ## Expected Output
 
 ### Successful Run
 ```
-Found 346 markdown files to process
-Source: /Users/service_one/StudioProjects/navisProjects/FlowiseDocs/en
-Target: /Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko
+Starting translation of 17 files...
+Using model: claude-opus-4-1-20250805
 
-Starting translation...
-
-[1/346] README.md ✓
-[2/346] SUMMARY.md ✓
-[3/346] api-reference/README.md ✓
+[1/17] README.md... ✓
+[2/17] charater-text-splitter.md... ✓
+[3/17] v1.4.3-migration-guide.md... ✓
 ...
-[346/346] use-cases/some-file.md ✓
+[17/17] vector-stores/README.md... ✓
 
-================================================================================
-Translation Summary:
-================================================================================
-Successfully translated: 345
-Failed:                  1
-Skipped:                 0
-Total processed:         346
-
-================================================================================
-✓ All translations completed successfully!
-  345 files translated to Korean
+==================================================
+최종 배치 완료: 17개 파일 번역 완료
+실패: 0개
+==================================================
 ```
 
 ### File Structure After Translation
 
+The script translates files in-place. The `ko/` directory structure remains unchanged, but the content is now in Korean:
+
 ```
 FlowiseDocs/
-├── en/
-│   ├── README.md
-│   ├── api-reference/
-│   │   ├── README.md
-│   │   ├── assistants.md
-│   │   └── ...
-│   └── ...
 └── ko/
-    ├── README.md
-    ├── api-reference/
-    │   ├── README.md (Translated to Korean)
-    │   ├── assistants.md (Translated to Korean)
-    │   └── ...
-    └── ...
+    ├── integrations/
+    │   ├── llamaindex/
+    │   │   ├── README.md (Now in Korean!)
+    │   │   └── vector-stores/
+    │   │       └── README.md (Now in Korean!)
+    │   ├── utilities/
+    │   │   └── README.md (Now in Korean!)
+    │   └── README.md (Now in Korean!)
+    ├── text-splitters/
+    │   └── charater-text-splitter.md (Now in Korean!)
+    ├── migration-guide/
+    │   ├── v1.4.3-migration-guide.md (Now in Korean!)
+    │   ├── v2.1.4-migration-guide.md (Now in Korean!)
+    │   └── v1.3.0-migration-guide.md (Now in Korean!)
+    ├── use-cases/
+    │   ├── multiple-documents-qna.md (Now in Korean!)
+    │   ├── web-scrape-qna.md (Now in Korean!)
+    │   ├── sql-qna.md (Now in Korean!)
+    │   ├── webhook-tool.md (Now in Korean!)
+    │   ├── interacting-with-api.md (Now in Korean!)
+    │   ├── upserting-data.md (Now in Korean!)
+    │   └── README.md (Now in Korean!)
+    └── using-flowise/
+        ├── agentflowv1/
+        │   └── README.md (Now in Korean!)
+        └── analytics/
+            └── langfuse.md (Now in Korean!)
 ```
 
 ## Verification
@@ -151,57 +181,76 @@ After translation completes, verify the results:
 ### 1. Check a Sample File
 
 ```bash
-head -20 ko/configuration/running-flowise-using-queue.md
+head -20 ko/integrations/llamaindex/README.md
 ```
 
-Expected: Korean text with preserved English technical terms and code blocks.
+Expected: Korean text with preserved English technical terms and code blocks. For example:
+```
+---
+description: Flowise가 LlamaIndex 프레임워크와 통합되는 방법을 알아보세요
+---
+
+# LlamaIndex
+...
+```
 
 ### 2. Verify Korean Characters
 
 ```bash
-# Should show many Korean characters (유니코드 한글)
-grep -o '[가-힣]' ko/README.md | wc -l
+# Should show many Korean characters
+grep -o '[가-힣]' ko/integrations/llamaindex/README.md | wc -l
 ```
+
+Should return a number greater than 0.
 
 ### 3. Check Code Blocks Preserved
 
 ```bash
 # Should find code blocks intact
-grep -c '```' ko/configuration/environment-variables.md
+grep -c '```' ko/use-cases/sql-qna.md
 ```
 
-Should be the same count as in English version:
-
-```bash
-grep -c '```' en/configuration/environment-variables.md
-```
+Should match the English version (code blocks unchanged).
 
 ### 4. Verify URLs Unchanged
 
 ```bash
 # Should find all URLs preserved
-grep -o 'https://[^)]\+' ko/getting-started/README.md
+grep -o 'https://[^)]\+' ko/integrations/README.md
 ```
 
-Compare with English version to ensure they match.
+URLs should remain exactly as in the original English files.
 
 ## Troubleshooting
 
-### Error: ANTHROPIC_API_KEY environment variable not set
+### Error: ANTHROPIC_API_KEY environment variable is not set
 
 **Solution**: Set the API key before running the script:
 ```bash
 export ANTHROPIC_API_KEY="your-api-key-here"
-python3 translate_to_korean.py
+python3 scripts/translate_to_korean.py
 ```
 
-### Error: Request failed with status 401
+To make it permanent, add to your shell profile (`~/.bashrc` or `~/.zshrc`):
+```bash
+echo "export ANTHROPIC_API_KEY='your-api-key-here'" >> ~/.zshrc
+source ~/.zshrc
+```
+
+### Error: requests library not found
+
+**Solution**: Install the requests library:
+```bash
+pip install requests
+```
+
+### Error: API error 401 Unauthorized
 
 **Cause**: Invalid or expired API key
 
 **Solution**:
 1. Check your API key is correct
-2. Log into Anthropic Console and regenerate if needed
+2. Log into [Anthropic Console](https://console.anthropic.com) and regenerate if needed
 3. Update the environment variable
 
 ### Some Files Failed to Translate
@@ -214,86 +263,111 @@ python3 translate_to_korean.py
 **Solution**:
 - The script reports which files failed
 - You can re-run the script to retry failed files
-- Check that ko/ directory has the correct structure before re-running
+- Increase the delay between requests: `--delay 5.0`
 - Wait a few minutes if rate limited
 
-### Code Blocks Appear Translated
+### API Error: 429 Too Many Requests
 
-**Cause**: Regex pattern didn't correctly identify code blocks
+**Solution**: Increase the delay between API calls:
+```bash
+python3 scripts/translate_to_korean.py --delay 5.0
+```
+
+### Code Blocks Appear to Have Korean Characters
+
+**Cause**: API incorrectly translated code
 
 **Solution**:
 - Check the file's backtick formatting
-- Ensure code blocks use ``` with optional language specifier
-- Report the file for debugging
+- Ensure code blocks use ``` with language specifier
+- Report the specific file for investigation
 
 ## Performance Notes
 
-- **Average speed**: ~2-3 seconds per file (depends on file size and internet)
-- **Total time for 346 files**: ~15-30 minutes
-- **Cost**: Approximately $0.50-$1.00 USD (using Claude 3.5 Sonnet)
-- **Rate limit**: 50 requests per minute by default with Anthropic API
+- **Model**: Claude Opus 4.1 (20250805) - Best for translation quality
+- **Average speed**: ~3-5 seconds per file (depends on file size and internet)
+- **Total time for 17 files**: ~1-2 minutes
+- **Cost**: Approximately $0.05-0.15 USD for 17 files
+- **Rate limit**: 2 second delay between requests (configurable)
 
-## Advanced: Processing Specific Directories
+## Custom Options
 
-To translate only certain directories, modify the script to filter files:
-
-```python
-# In process_files() function, add:
-if "integrations" not in en_file.parts:
-    continue
-```
-
-Then run with that filter applied.
-
-## Advanced: Batch Processing
-
-For very large translation jobs, you can split the work:
+### Adjust API Request Delay
 
 ```bash
-# Get all files
-find en -name "*.md" > all_files.txt
+# Faster (but may hit rate limits)
+python3 scripts/translate_to_korean.py --delay 1.0
 
-# Split into batches of 100
-split -l 100 all_files.txt batch_
-
-# Process each batch in parallel or sequentially
-# Then combine results
+# Slower (safer for rate limits)
+python3 scripts/translate_to_korean.py --delay 5.0
 ```
+
+### Translate from Custom Base Path
+
+```bash
+python3 scripts/translate_to_korean.py --base-path /custom/path
+```
+
+### Add More Files to Translation
+
+Edit `scripts/translate_to_korean.py` and update the `DEFAULT_FILES` list to include additional files.
 
 ## Updating Translations
 
-If English files are updated:
+If you need to re-translate files:
 
-1. **For new files**: Run the full script again (it will translate new files)
-2. **For modified files**: Delete the translated Ko file and re-run script
-3. **For sync**: Keep both `en/` and `ko/` in sync by regularly running this script
+1. **For new files**: Add to the `DEFAULT_FILES` list in the script
+2. **For modified files**: Simply run the script again (overwrites with new translation)
+3. **For partial updates**: Pass specific files as arguments to the script
+
+## Quality Assurance
+
+After translation:
+
+1. **Review a sample file** for accuracy and tone
+2. **Check code blocks** are not translated
+3. **Verify technical terms** remain in English
+4. **Test links** are not broken
+5. **Check YAML frontmatter** metadata is properly translated
 
 ## SEO Considerations
 
 Since translations are for technical documentation:
-- Korean headings should accurately reflect English content for better search indexing
-- Preserve technical terms in English (they're searchable in Korean tech documentation)
-- Meta descriptions should be translated for Korean search engines
+- Korean headings accurately reflect content for search indexing
+- Technical terms remain in English (searchable in Korean tech documentation)
+- Meta descriptions are translated to Korean for Korean search engines
+- File structure and URLs remain unchanged for proper redirects
+
+## Commit and Deploy
+
+After successful translation and verification:
+
+```bash
+# Stage translated files
+git add ko/
+
+# Create meaningful commit message
+git commit -m "Translate 17 Flowise documentation files to Korean
+
+- Translated integrations, migration guides, use cases, and analytics docs
+- Preserved code blocks and technical terms in English
+- Updated YAML frontmatter descriptions"
+
+# Push to repository
+git push origin main
+```
 
 ## Support
 
 If issues occur:
-1. Check that ANTHROPIC_API_KEY is set correctly
+1. Check that `ANTHROPIC_API_KEY` is set correctly
 2. Verify internet connection
-3. Check API quota/rate limits at console.anthropic.com
+3. Check API quota/rate limits at [Anthropic Console](https://console.anthropic.com)
 4. Review the failed files list for patterns
-5. Check Python version: Python 3.7+
+5. Ensure Python 3.7+ is installed
 
-## Next Steps
+## Script Location
 
-1. Run the translation script
-2. Verify a sample of translated files
-3. Commit translated files to git
-4. Deploy Korean documentation site
-
-```bash
-# After verification:
-git add ko/
-git commit -m "Translate Flowise documentation to Korean"
-git push origin main
-```
+- **Main script**: `/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/scripts/translate_to_korean.py`
+- **Shell wrapper**: `/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/scripts/translate.sh`
+- **This guide**: `/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/TRANSLATION_GUIDE.md`

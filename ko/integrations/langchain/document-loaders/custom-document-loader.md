@@ -1,71 +1,65 @@
-
-description: Custom function for loading documents.
-
+---
+설명: 커스텀 함수를 사용하여 문서 로드
+---
 
 # Custom Document Loader
 
-<figure><img src="../../../.gitbook/assets/image_custom-loader (1).png" alt="" width="269"><figcaption><p>Custom Document Loader Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image_custom_loader.png" alt="" width="271"><figcaption><p>Custom Document Loader 노드</p></figcaption></figure>
 
-The Custom Document Loader provides the ability to create custom document loading functionality using JavaScript. This module enables flexible and customized document processing through user-defined functions.
+Custom Document Loader를 사용하면 JavaScript 함수를 작성하여 사용자 정의 방식으로 콘텐츠를 로드하고 Document로 변환할 수 있습니다. 이를 통해 기본 제공 loader로 지원되지 않는 데이터 소스와 형식을 처리할 수 있습니다.
 
-This module provides a flexible document loader that can:
-- Execute custom JavaScript functions for document loading
-- Handle input variables dynamically
-- Support both document and text outputs
-- Run in a sandboxed environment
-- Access flow context and variables
-- Process custom metadata
+이 모듈은 다음을 수행할 수 있는 유연한 커스텀 로더를 제공합니다:
 
-## Inputs
+* 커스텀 JavaScript 함수 정의
+* 외부 API 호출 및 통합
+* 복잡한 데이터 변환 로직
+* Document 구조 커스터마이징
+* Metadata 추출 및 처리
+* 동적 콘텐츠 처리
 
-### Required Parameters
-- **Javascript Function**: Custom code that returns either:
-  - Array of document objects (for Document output)
-  - String (for Text output)
+## 입력
 
-### Optional Parameters
-- **Input Variables**: JSON object containing variables accessible in the function with $ prefix
+### 필수 파라미터
 
-## Outputs
+* **Custom Loader Code**: Document Loader를 구현하는 JavaScript 함수
 
-- **Document**: Array of document objects containing metadata and pageContent
-- **Text**: Concatenated string from pageContent of documents
+### 선택적 파라미터
 
-## Features
-- Sandboxed execution environment
-- Variable injection support
-- Flow context access
-- Custom dependency support
-- Error handling
-- Timeout protection
-- Input validation
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Function Parameters**: 커스텀 함수에 전달할 파라미터
 
-## Document Structure
-When returning documents, each object must have:
-__CODE_BLOCK_0__
+## 출력
 
-## Example Usage
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-### Document Output
-__CODE_BLOCK_1__
+## 기능
 
-### Text Output
-__CODE_BLOCK_2__
+* 완전한 커스터마이징 가능
+* JavaScript 함수 작성
+* 외부 API 통합
+* 복잡한 데이터 처리
+* 동적 콘텐츠 생성
+* 오류 처리
 
-## Available Context
-- **$input**: Input value passed to the function
-- **$vars**: Access to flow variables
-- **$flow**: Flow context object containing:
-  - chatflowId
-  - sessionId
-  - chatId
-  - input
+## 예제 구조
 
-## Notes
-- Functions run in a secure sandbox
-- 10-second execution timeout
-- Built-in dependencies available
-- External dependencies configurable
-- Input variables must be valid JSON
-- Error handling for invalid returns
-- Supports async operations
+커스텀 함수는 다음과 같은 구조를 따라야 합니다:
+
+```javascript
+async function loader(input) {
+    // 로딩 로직 구현
+    const documents = [];
+    // Document 객체 생성
+    return documents;
+}
+```
+
+## 참고사항
+
+* JavaScript 코드 문법 검증 필요
+* 보안 고려사항 - 신뢰할 수 있는 코드만 실행
+* API 자격증명은 환경 변수로 관리
+* 오류 처리 및 예외 관리 필수
+* 성능 및 타임아웃 고려
+* Document 구조 일관성 유지

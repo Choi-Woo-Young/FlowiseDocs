@@ -1,72 +1,72 @@
 # Google Sheets
 
-## Create credential in Flowise
+## Flowise에서 자격증명 생성
 
-1. Add a new Google Sheets OAuth2 credential
-2. Enter a name for the credential.
-3. Copy the OAuth Redirect URL.
-4. Note that the following fields need to be filled in:
+1. 새로운 Google Sheets OAuth2 자격증명 추가
+2. 자격증명의 이름을 입력합니다.
+3. OAuth Redirect URL을 복사합니다.
+4. 다음 필드를 채워야 합니다:
    * Client ID
    * Client Secret
 
 <figure><img src="../../../.gitbook/assets/image (271).png" alt="" width="429"><figcaption></figcaption></figure>
 
-## Create/Use Google Project
+## Google 프로젝트 생성/사용
 
-1. Log in to your [**Google Cloud**](https://console.cloud.google.com/) account.
-2. Navigate to [**Google Cloud Console > APIs & Services**](https://console.cloud.google.com/apis/credentials), and select the project you want to use from the dropdown at the top left (or create a new project and select it).
-3. Set up the **OAuth consent screen** if you haven't configured one before.
+1. [**Google Cloud**](https://console.cloud.google.com/) 계정에 로그인합니다.
+2. [**Google Cloud Console > APIs & Services**](https://console.cloud.google.com/apis/credentials)로 이동하고 왼쪽 상단의 드롭다운에서 사용하려는 프로젝트를 선택합니다 (또는 새 프로젝트를 생성하고 선택합니다).
+3. 아직 구성하지 않았다면 **OAuth 동의 화면**을 설정합니다.
 
 <figure><img src="../../../.gitbook/assets/image (256).png" alt="" width="563"><figcaption></figcaption></figure>
 
-4. Go to **Credentials**, then click **+ CREATE CREDENTIALS > OAuth client ID**.
+4. **자격증명**으로 이동한 후 **+ CREATE CREDENTIALS > OAuth client ID**를 클릭합니다.
 
 <figure><img src="../../../.gitbook/assets/image (257).png" alt="" width="563"><figcaption></figcaption></figure>
 
-5. In the **Application type** dropdown, select **Web application**.
-6. Under **Authorized redirect URIs**, click **+ ADD URI** and paste the OAuth redirect URL copied earlier.
-7. Click **Create**.
+5. **Application type** 드롭다운에서 **Web application**을 선택합니다.
+6. **Authorized redirect URIs** 아래에서 **+ ADD URI**를 클릭하고 앞서 복사한 OAuth Redirect URL을 붙여넣습니다.
+7. **Create**을 클릭합니다.
 
 <figure><img src="../../../.gitbook/assets/image (258).png" alt="" width="407"><figcaption></figcaption></figure>
 
-8. Copy the Client ID and Client Secret:
+8. Client ID와 Client Secret을 복사합니다:
 
 <figure><img src="../../../.gitbook/assets/image (259).png" alt="" width="489"><figcaption></figcaption></figure>
 
-9. In **Enabled APIs & Services**, click **+ ENABLE APIS AND SERVICES**.
-10. Search for and enable the **Google Sheets API**.
+9. **Enabled APIs & Services**에서 **+ ENABLE APIS AND SERVICES**를 클릭합니다.
+10. **Google Sheets API**를 검색하고 활성화합니다.
 
 <figure><img src="../../../.gitbook/assets/image (272).png" alt="" width="560"><figcaption></figcaption></figure>
 
-11. Return to **Credentials**, click the newly created credential under **OAuth 2.0 Client IDs**, and on the detail page, you’ll find the **Client ID** and **Client Secret**.
+11. **자격증명**으로 돌아가서 **OAuth 2.0 Client IDs** 아래에서 새로 생성한 자격증명을 클릭하고 상세 페이지에서 **Client ID**와 **Client Secret**을 찾을 수 있습니다.
 
-## Finish setup in Flowise
+## Flowise에서 설정 완료
 
-1. Fill in all the values copied earlier. Then click "**Authenticate**":
+1. 앞서 복사한 모든 값을 입력합니다. 그런 다음 "**Authenticate**"를 클릭합니다:
 
 <figure><img src="../../../.gitbook/assets/image (273).png" alt="" width="431"><figcaption></figcaption></figure>
 
-2. A Google login window will pop up:
+2. Google 로그인 창이 팝업됩니다:
 
 <figure><img src="../../../.gitbook/assets/image (261).png" alt="" width="448"><figcaption></figcaption></figure>
 
-3. Grant the permissions:
+3. 권한을 승인합니다:
 
 <figure><img src="../../../.gitbook/assets/image (263).png" alt="" width="373"><figcaption></figcaption></figure>
 
-4. Pop up window will be closed automatically and credential will be saved and ready to be used.
+4. 팝업 창이 자동으로 닫히고 자격증명이 저장되어 사용할 준비가 됩니다.
 
-## Use as Agent Tool
+## Agent Tool로 사용
 
-Multiple actions can be selected to let the Agent intelligently choose the appropriate one.\
-Parameters can be left empty to allow the Agent to determine the values on its own. However, if the user provides values, those will override the Agent's choices.
+여러 작업을 선택하여 Agent가 적절한 작업을 지능적으로 선택하도록 할 수 있습니다.\
+매개변수를 비워둘 수 있으므로 Agent가 값을 자체적으로 결정할 수 있습니다. 하지만 사용자가 값을 제공하면 Agent의 선택을 재정의합니다.
 
 <figure><img src="../../../.gitbook/assets/image (274).png" alt=""><figcaption></figcaption></figure>
 
-## Use as Tool Node
+## Tool Node로 사용
 
-It can also be used as a Tool Node in a determined workflow scenario. For example, get a specific spreadsheet before proceeding to the next step.\
-In this mode, **Tool Input Arguments must be explicitly defined and filled with values**.\
-Unlike the [**Use as Agent Tool**](google-sheets.md#use-as-agent-tool) option, there is no Agent to automatically determine the inputs. The user must manually populate the fields, either by entering fixed values or using variables enclosed in double curly brackets `{{ }}`.
+결정된 워크플로 시나리오에서 Tool Node로도 사용할 수 있습니다. 예를 들어 다음 단계로 진행하기 전에 특정 스프레드시트를 가져옵니다.\
+이 모드에서는 **Tool Input Arguments를 명시적으로 정의하고 값으로 채워야 합니다**.\
+[**Agent Tool로 사용**](google-sheets.md#use-as-agent-tool) 옵션과 달리 입력을 자동으로 결정하는 Agent가 없습니다. 사용자는 고정 값을 입력하거나 이중 중괄호 `{{ }}`로 묶인 변수를 사용하여 필드를 수동으로 채워야 합니다.
 
 <figure><img src="../../../.gitbook/assets/image (275).png" alt=""><figcaption></figcaption></figure>

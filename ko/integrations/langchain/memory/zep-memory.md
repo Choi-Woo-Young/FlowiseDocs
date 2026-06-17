@@ -1,29 +1,29 @@
-# Zep Memory
+# Zep 메모리
 
-[Zep](https://github.com/getzep/zep) is long-term memory store for LLM applications. It stores, summarizes, embeds, indexes, and enriches LLM app / chatbot histories, and exposes them via simple, low-latency APIs.
+[Zep](https://github.com/getzep/zep)는 LLM 애플리케이션을 위한 장기 메모리 저장소입니다. LLM 앱/챗봇 이력을 저장, 요약, 임베드, 인덱싱 및 보강하며, 간단하고 낮은 지연 시간의 API를 통해 이를 노출합니다.
 
-## Guide to Deploy Zep to Render
+## Zep를 Render에 배포하는 가이드
 
-You can easily deploy Zep to cloud services like [Render](https://render.com/), [Flyio](https://fly.io/). If you prefer to test it locally, you can also spin up a docker container by following their [quick guide](https://github.com/getzep/zep#quick-start).
+[Render](https://render.com/), [Flyio](https://fly.io/)와 같은 클라우드 서비스에 Zep을 쉽게 배포할 수 있습니다. 로컬에서 테스트하는 것을 선호한다면 [빠른 시작 가이드](https://github.com/getzep/zep#quick-start)를 따라 Docker 컨테이너를 실행할 수도 있습니다.
 
-In this example, we are going to deploy to Render.
+이 예제에서는 Render에 배포하겠습니다.
 
-1. Head over to [Zep Repo](https://github.com/getzep/zep#quick-start) and click **Deploy to Render**
-2. This will bring you to Render's Blueprint page and simply click **Create New Resources**
+1. [Zep Repo](https://github.com/getzep/zep#quick-start)로 이동하여 **Deploy to Render**를 클릭합니다.
+2. Render의 Blueprint 페이지로 이동하고 **Create New Resources**를 클릭합니다.
 
 <figure><img src="../../../.gitbook/assets/image (21) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-3. When the deployment is done, you should see 3 applications created on your dashboard
+3. 배포가 완료되면 대시보드에 3개의 애플리케이션이 생성된 것을 볼 수 있습니다.
 
 <figure><img src="../../../.gitbook/assets/image (1) (2).png" alt=""><figcaption></figcaption></figure>
 
-4. Simply click the first one called **zep** and copy the deployed URL
+4. **zep**이라고 이름이 붙은 첫 번째를 클릭하고 배포된 URL을 복사합니다.
 
 <figure><img src="../../../.gitbook/assets/image (38) (1).png" alt=""><figcaption></figcaption></figure>
 
-## Guide to Deploy Zep to Digital Ocean (via Docker)
+## Zep를 Digital Ocean에 배포하는 가이드 (Docker를 통해)
 
-1. Clone the Repo
+1. 저장소 클론
 
 ```bash
 git clone https://github.com/getzep/zep.git
@@ -32,7 +32,7 @@ nano .env
 
 ```
 
-2. Add IN your OpenAI API Key in.ENV
+2. .env 파일에 OpenAI API 키 추가
 
 ```bash
 ZEP_OPENAI_API_KEY=
@@ -43,78 +43,78 @@ ZEP_OPENAI_API_KEY=
 docker compose up -d --build
 ```
 
-3. Allow firewall access to port 8000
+3. 포트 8000에 대한 방화벽 접근 허용
 
 ```bash
 sudo ufw allow from any to any port 8000 proto tcp
 ufw status numbered
 ```
 
-If using Digital ocean separate firewall from dashboard, make sure port 8000 is added there too
+Digital Ocean에서 대시보드와 별도로 방화벽을 사용하는 경우, 포트 8000도 거기에 추가되었는지 확인하세요.
 
-## Use in Flowise UI
+## Flowise UI에서 사용
 
-1. Back to Flowise application, simply create a new canvas or use one of the template from marketplace. In this example, we are going to use **Simple Conversational Chain**
+1. Flowise 애플리케이션으로 돌아가 새 캔버스를 만들거나 마켓플레이스의 템플릿 중 하나를 사용합니다. 이 예제에서는 **Simple Conversational Chain**을 사용하겠습니다.
 
 <figure><img src="../../../.gitbook/assets/Untitled (3) (1).png" alt=""><figcaption></figcaption></figure>
 
-2. Replace **Buffer Memory** with **Zep Memory**. Then replace the **Base URL** with the Zep URL you have copied above
+2. **Buffer Memory**를 **Zep Memory**로 바꿉니다. 그런 다음 **Base URL**을 위에서 복사한 Zep URL로 바꿉니다.
 
 <figure><img src="../../../.gitbook/assets/Untitled (5).png" alt=""><figcaption></figcaption></figure>
 
-3. Save the chatflow and test it out to see if conversations are remembered.
+3. 챗플로우를 저장하고 테스트하여 대화가 기억되는지 확인합니다.
 
 <figure><img src="../../../.gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
 
-4. Now try clearing the chat history, you should see that it is now unable to remember the previous conversations.
+4. 이제 대화 기록을 지워보면 이제 이전 대화를 기억할 수 없음을 알 수 있습니다.
 
 <figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-## Zep Authentication
+## Zep 인증
 
-Zep allows you to secure your instance using JWT authentication. We'll be using the `zepcli` command line utility [here](https://github.com/getzep/zepcli/releases).
+Zep는 JWT 인증을 사용하여 인스턴스를 보호할 수 있게 해줍니다. [여기](https://github.com/getzep/zepcli/releases)의 `zepcli` 명령줄 유틸리티를 사용합니다.
 
-#### 1. Generate a secret and the JWT token <a href="#id-1-generate-a-secret-and-the-jwt-token" id="id-1-generate-a-secret-and-the-jwt-token"></a>
+#### 1. 시크릿과 JWT 토큰 생성 <a href="#id-1-generate-a-secret-and-the-jwt-token" id="id-1-generate-a-secret-and-the-jwt-token"></a>
 
-After downloaded the ZepCLI:
+ZepCLI를 다운로드한 후:
 
-On Linux or MacOS
+Linux 또는 MacOS에서
 
 ```
 ./zepcli -i
 ```
 
-On Windows
+Windows에서
 
 ```
 zepcli.exe -i
 ```
 
-You will first get your SECRET Token:
+먼저 SECRET 토큰을 받게 됩니다:
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-Then you will get JWT Token:
+그 다음 JWT 토큰을 받게 됩니다:
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-#### 2. Configure Auth environment variables <a href="#id-2-configure-auth-environment-variables" id="id-2-configure-auth-environment-variables"></a>
+#### 2. 인증 환경 변수 구성 <a href="#id-2-configure-auth-environment-variables" id="id-2-configure-auth-environment-variables"></a>
 
-Set the following environment variables in your Zep server environment:
+Zep 서버 환경에서 다음 환경 변수를 설정합니다:
 
 ```
 ZEP_AUTH_REQUIRED=true
 ZEP_AUTH_SECRET=<the secret you generated above>
 ```
 
-#### 3. Configure Credential on Flowise <a href="#id-2-configure-auth-environment-variables" id="id-2-configure-auth-environment-variables"></a>
+#### 3. Flowise에서 자격 증명 구성 <a href="#id-2-configure-auth-environment-variables" id="id-2-configure-auth-environment-variables"></a>
 
-Add a new credential for Zep, and put in the JWT Token in the API Key field:
+Zep의 새로운 자격 증명을 추가하고 API Key 필드에 JWT 토큰을 입력합니다:
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-#### 4. Use the created credential on Zep node <a href="#id-2-configure-auth-environment-variables" id="id-2-configure-auth-environment-variables"></a>
+#### 4. Zep 노드에서 생성된 자격 증명 사용 <a href="#id-2-configure-auth-environment-variables" id="id-2-configure-auth-environment-variables"></a>
 
-In the Zep node Connect Credential, select the credential you have just created. And that's it!
+Zep 노드의 Connect Credential에서 방금 생성한 자격 증명을 선택합니다. 그게 다입니다!
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>

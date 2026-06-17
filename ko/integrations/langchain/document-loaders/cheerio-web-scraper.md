@@ -1,75 +1,62 @@
+---
+설명: Cheerio를 사용한 웹 스크래핑
+---
+
 # Cheerio Web Scraper
 
-Cheerio is a fast, flexible, and lean implementation of core jQuery designed specifically for the server. This module provides powerful web scraping capabilities using Cheerio to extract content from web pages.
+<figure><img src="../../../.gitbook/assets/image_cheerio.png" alt="" width="271"><figcaption><p>Cheerio Web Scraper 노드</p></figcaption></figure>
 
-This module provides a sophisticated web scraper that can:
+Cheerio는 서버측 jQuery 구현으로, Node.js에서 HTML/XML을 빠르고 쉽게 파싱하고 조작할 수 있게 해줍니다. 이 모듈은 Cheerio를 사용하여 웹 페이지를 스크래핑하고 Document로 변환합니다.
 
-* Load content from single or multiple web pages
-* Crawl relative links from websites
-* Extract content using CSS selectors
-* Handle XML sitemaps
-* Process web content with text splitters
+이 모듈은 다음을 수행할 수 있는 정교한 웹 스크래퍼를 제공합니다:
 
-## Inputs
+* 다중 URL에서 웹 페이지 로드
+* jQuery 선택자를 사용한 HTML 파싱 및 추출
+* JavaScript 렌더링 없이 정적 콘텐츠 처리
+* Text Splitter로 추출된 콘텐츠 처리
+* Metadata 추출 및 커스터마이징
+* 경량 및 빠른 스크래핑 작업
 
-* **URL**: The webpage URL to scrape
-* **Text Splitter** (optional): A text splitter to process the extracted content
-* **Get Relative Links Method** (optional): Choose between:
-  * Web Crawl: Crawl relative links from HTML URL
-  * Scrape XML Sitemap: Scrape relative links from XML sitemap URL
-* **Get Relative Links Limit** (optional): Limit for number of relative links to process (default: 10, 0 for all links)
-* **Selector (CSS)** (optional): CSS selector to target specific content
-* **Additional Metadata** (optional): JSON object with additional metadata to add to documents
-* **Omit Metadata Keys** (optional): Comma-separated list of metadata keys to omit
+## 입력
 
-## Outputs
+### 필수 파라미터
 
-* **Document**: Array of document objects containing metadata and pageContent
-* **Text**: Concatenated string from pageContent of documents
+* **URLs**: 스크래핑할 URL의 쉼표로 구분된 목록
 
-## Features
+### 선택적 파라미터
 
-* CSS selector-based content extraction
-* Web crawling capabilities
-* XML sitemap processing
-* Configurable link limits
-* Error handling for invalid URLs and PDFs
-* Metadata customization
-* Debug logging support
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **Selector**: HTML 요소를 추출하기 위한 CSS 선택자
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
 
-## Notes
+## 출력
 
-* PDF files are not supported and will be skipped
-* Invalid URLs will throw an error
-* Setting link limit to 0 will retrieve all available links (may take longer)
-* Debug mode provides detailed logging of the scraping process
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-## Scrape One URL
+## 기능
 
-1. _(Optional)_ Connect [**Text Splitter**](../text-splitters/).
-2. Input desired URL to be scraped.
+* 다중 URL 스크래핑
+* jQuery 선택자 지원
+* 빠른 HTML 파싱
+* 경량 처리
+* Metadata 커스터마이징
+* 오류 처리
 
-## Crawl & Scrape Multiple URLs
+## 특징
 
-1. Select `Web Crawl` or `Scrape XML Sitemap` in **Get Relative Links Method**.
-2. Input `0` in **Get Relative Links Limit** to retrieve all links available from the provided URL.
+* JavaScript 실행 불필요 (정적 콘텐츠용)
+* 빠르고 효율적
+* 경량 리소스 사용
+* jQuery 유사 API
+* 정규식 지원
+* 네임스페이스 지원
 
-<figure><img src="../../../.gitbook/assets/image (87).png" alt="" width="563"><figcaption></figcaption></figure>
+## 참고사항
 
-### Manage Links (Optional)
-
-1. Input desired URL to be crawled.
-2. Click **Fetch Links** to retrieve links based on the inputs of the **Get Relative Links Method** and **Get Relative Links Limit** in **Additional Parameters**.
-3. In **Crawled Links** section, remove unwanted links by clicking **Red Trash Bin Icon**.
-4. Lastly, click **Save**.
-
-<figure><img src="../../../.gitbook/assets/image (88).png" alt="" width="563"><figcaption></figcaption></figure>
-
-## Output
-
-Loads URL content as Document
-
-## Resources
-
-* [LangChain JS Cheerio](https://js.langchain.com/docs/integrations/document_loaders/web_loaders/web_cheerio)
-* [Cheerio](https://cheerio.js.org/)
+* 웹사이트의 robots.txt 및 이용약관 준수
+* JavaScript로 렌더링된 동적 콘텐츠는 로드되지 않음
+* 큰 HTML 파일의 경우 메모리 사용량 주의
+* 요청 실패에 대한 적절한 오류 처리
+* Rate limiting 고려

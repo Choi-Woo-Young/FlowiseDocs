@@ -1,252 +1,197 @@
 #!/usr/bin/env python3
 """
-Batch Korean Translation for Flowise Documentation (63 files)
-Using Claude API with proper authentication
+Batch translation script for Flowise documentation using Anthropic API
+Translates markdown files from English to Korean while preserving code blocks and technical terms
 """
 
 import os
-import re
-import sys
 import json
-import time
+import subprocess
+import sys
 from pathlib import Path
-from datetime import datetime
+from typing import List, Tuple
 
-def get_anthropic_client():
-    """Get Anthropic client with proper authentication."""
-    try:
-        from anthropic import Anthropic
+class MarkdownTranslator:
+    """Translate markdown files from English to Korean using Anthropic API"""
 
-        # Try to get API key from environment
-        api_key = os.environ.get('ANTHROPIC_API_KEY')
+    def __init__(self, api_key: str = None):
+        self.api_key = api_key or os.environ.get('ANTHROPIC_API_KEY')
+        if not self.api_key:
+            raise ValueError("ANTHROPIC_API_KEY environment variable not set")
 
-        if api_key:
-            return Anthropic(api_key=api_key)
-        else:
-            # Try to use from default authentication
-            return Anthropic()
-    except ImportError:
-        print("ERROR: anthropic module not installed")
-        sys.exit(1)
+        self.api_url = "https://api.anthropic.com/v1/messages"
+        self.model = "claude-opus-4-1-20250805"
+        self.translated_count = 0
+        self.skipped_count = 0
+        self.failed_count = 0
+        self.failed_files = []
 
-# Configuration
-EN_DIR = Path("en")
-KO_DIR = Path("ko")
+    @staticmethod
+    def is_korean_file(content: str) -> bool:
+        """Check if content already contains Korean characters"""
+        return any('가' <= char <= '힯' for char in content)
 
-# 63 files to translate
-FILES_TO_TRANSLATE = [
-    "integrations/langchain/document-loaders/README.md",
-    "integrations/langchain/document-loaders/airtable.md",
-    "integrations/langchain/document-loaders/api-loader.md",
-    "integrations/langchain/document-loaders/apify-website-content-crawler.md",
-    "integrations/langchain/document-loaders/bravesearch-api.md",
-    "integrations/langchain/document-loaders/confluence.md",
-    "integrations/langchain/document-loaders/directory-loader.md",
-    "integrations/langchain/document-loaders/github-repository-loader.md",
-    "integrations/langchain/document-loaders/github.md",
-    "integrations/langchain/document-loaders/google-drive-loader.md",
-    "integrations/langchain/document-loaders/json-loader.md",
-    "integrations/langchain/document-loaders/notion-database-loader.md",
-    "integrations/langchain/document-loaders/pdf-file.md",
-    "integrations/langchain/document-loaders/s3-directory-loader.md",
-    "integrations/langchain/document-loaders/s3-file-loader.md",
-    "integrations/langchain/document-loaders/searchapi-for-web-search.md",
-    "integrations/langchain/document-loaders/sitemap-loader.md",
-    "integrations/langchain/document-loaders/web-scraper.md",
-    "integrations/langchain/document-loaders/xlsx-file.md",
-    "integrations/langchain/embeddings/anthropic-embeddings.md",
-    "integrations/langchain/embeddings/azure-openai-embeddings.md",
-    "integrations/langchain/embeddings/bedrock-embeddings.md",
-    "integrations/langchain/embeddings/cohere-embeddings.md",
-    "integrations/langchain/embeddings/google-generativeai-embeddings.md",
-    "integrations/langchain/embeddings/googlegenerativeai-embeddings.md",
-    "integrations/langchain/embeddings/googlevertexai-embeddings.md",
-    "integrations/langchain/embeddings/groq-embeddings.md",
-    "integrations/langchain/embeddings/huggingface-inference-embeddings.md",
-    "integrations/langchain/embeddings/huggingface-hub-inference-api-embeddings.md",
-    "integrations/langchain/embeddings/localai-embeddings.md",
-    "integrations/langchain/embeddings/mistralai-embeddings.md",
-    "integrations/langchain/embeddings/ollama-embeddings.md",
-    "integrations/langchain/embeddings/openai-embeddings-custom.md",
-    "integrations/langchain/embeddings/openai-embeddings.md",
-    "integrations/langchain/embeddings/README.md",
-    "integrations/langchain/embeddings/togetherai-embedding.md",
-    "integrations/langchain/embeddings/voyageai-embeddings.md",
-    "integrations/langchain/llms/README.md",
-    "integrations/langchain/llms/ai21.md",
-    "integrations/langchain/llms/aleph-alpha.md",
-    "integrations/langchain/llms/anthropic.md",
-    "integrations/langchain/llms/aws-bedrock.md",
-    "integrations/langchain/llms/azure-openai.md",
-    "integrations/langchain/llms/cohere.md",
-    "integrations/langchain/llms/googlevertex-ai.md",
-    "integrations/langchain/llms/google-vertexai.md",
-    "integrations/langchain/llms/groq.md",
-    "integrations/langchain/llms/huggingface-inference.md",
-    "integrations/langchain/llms/huggingface-llm.md",
-    "integrations/langchain/llms/ibm-watsonx.md",
-    "integrations/langchain/llms/localai.md",
-    "integrations/langchain/llms/mistral-ai.md",
-    "integrations/langchain/llms/nlp-cloud.md",
-    "integrations/langchain/llms/ollama.md",
-    "integrations/langchain/llms/openai.md",
-    "integrations/langchain/llms/openrouter.md",
-    "integrations/langchain/llms/petals.md",
-    "integrations/langchain/llms/replicate.md",
-    "integrations/langchain/llms/semafore-ai.md",
-    "integrations/langchain/llms/together.md",
-    "integrations/litellm/README.md",
-    "migration-guide/README.md",
-    "migration-guide/cloud-migration.md",
-]
+    @staticmethod
+    def is_empty_file(content: str) -> bool:
+        """Check if file is empty or only whitespace"""
+        return not content.strip()
 
-class FileTranslator:
-    """Translates files to Korean."""
+    def translate_content(self, content: str) -> str:
+        """Translate markdown content using Anthropic API"""
 
-    def __init__(self):
-        self.client = get_anthropic_client()
-        self.model = "claude-opus-4-8"
-        self.completed = []
-        self.failed = []
-        self.skipped = []
+        prompt = f"""You are a professional translator specializing in technical documentation. Translate the following markdown file from English to Korean.
 
-    def extract_code_blocks(self, text):
-        """Extract code blocks to preserve them."""
-        placeholders = {}
-        code_pattern = re.compile(r'```[\s\S]*?```', re.MULTILINE)
+Translation Rules:
+1. Translate all titles, headings, body text, table content to Korean
+2. Keep code blocks (```...```) unchanged - do not translate code
+3. Keep image paths and URLs unchanged, but translate link text
+4. Keep technical terms in English: Flowise, API, LLM, RAG, Agent, Flow, OpenAI, Azure, Docker, GitHub, HTTP, REST, JSON, YAML, Python, Node.js, JavaScript, TypeScript, React, Vue, Kubernetes, AWS, GCP, SQL, MongoDB, Redis, PostgreSQL, MySQL, etc.
+5. Preserve all markdown structure, indentation, and formatting exactly
+6. Translate YAML frontmatter metadata (description field) to Korean
+7. Keep file paths, domain names, configuration values, and command-line examples unchanged
 
-        for i, match in enumerate(code_pattern.finditer(text)):
-            placeholder = f"<<<CODE_BLOCK_{i}>>>"
-            placeholders[placeholder] = match.group(0)
+Output ONLY the translated markdown content without any explanation.
 
-        for placeholder, code in placeholders.items():
-            text = text.replace(code, placeholder, 1)
+File to translate:
 
-        return text, placeholders
+{content}"""
 
-    def restore_code_blocks(self, text, placeholders):
-        """Restore code blocks."""
-        for placeholder, code in placeholders.items():
-            text = text.replace(placeholder, code)
-        return text
-
-    def translate_text(self, text):
-        """Translate text to Korean."""
-        if not text.strip():
-            return text
-
-        # Extract code blocks
-        text_without_code, code_blocks = self.extract_code_blocks(text)
-
-        if not text_without_code.strip():
-            return self.restore_code_blocks(text, code_blocks)
-
-        # Translation prompt
-        prompt = f"""You are a professional Korean translator specializing in technical documentation.
-Translate the following English markdown to Korean (한국어).
-
-CRITICAL RULES:
-1. Translate ALL narrative, instructional text to Korean
-2. PRESERVE in English ONLY:
-   - Code variable/function/command names
-   - API names and acronyms: API, LLM, RAG, JSON, REST, HTTP, HTTPS, GraphQL, XML, HTML
-   - Product names: OpenAI, Groq, Anthropic, Claude, Flowise, Cohere, Mistral, Replicate
-   - System components: Agent, Flow, Node, Tool, Canvas, Agentflow, Chatflow, Retriever
-   - Provider names: AWS, Azure, Google, Bedrock, Vertex AI, HuggingFace, Ollama, LocalAI
-3. Keep all markdown formatting (##, **, *,  [], (), etc)
-4. Keep all HTML tags
-5. Do NOT add, remove, or change content - only translate
-
-Text to translate:
-{text_without_code}
-
-Provide ONLY the translated text, no explanations."""
+        payload = {
+            "model": self.model,
+            "max_tokens": 4096,
+            "messages": [
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ]
+        }
 
         try:
-            message = self.client.messages.create(
-                model=self.model,
-                max_tokens=4096,
-                messages=[{"role": "user", "content": prompt}]
+            result = subprocess.run(
+                ['curl', '-s', '-X', 'POST',
+                 self.api_url,
+                 '-H', 'Content-Type: application/json',
+                 '-H', f'x-api-key: {self.api_key}',
+                 '-d', json.dumps(payload)],
+                capture_output=True,
+                text=True,
+                timeout=60
             )
 
-            translated = message.content[0].text
-            translated = self.restore_code_blocks(translated, code_blocks)
-            return translated
+            response = json.loads(result.stdout)
 
-        except Exception as e:
-            raise Exception(f"Translation failed: {str(e)[:100]}")
+            if 'error' in response:
+                raise Exception(f"API Error: {response['error']}")
 
-    def translate_file(self, rel_path):
-        """Translate a single file."""
-        en_file = EN_DIR / rel_path
-        ko_file = KO_DIR / rel_path
+            if 'content' not in response or not response['content']:
+                raise Exception("No content in API response")
 
-        # Check source exists
-        if not en_file.exists():
-            self.skipped.append(rel_path)
-            return None
+            return response['content'][0]['text']
+
+        except json.JSONDecodeError as e:
+            raise Exception(f"Failed to parse API response: {str(e)}")
+        except subprocess.TimeoutExpired:
+            raise Exception("API request timed out")
+
+    def translate_file(self, file_path: str) -> bool:
+        """Translate a single markdown file"""
+
+        file_path = Path(file_path)
+
+        if not file_path.exists():
+            print(f"❌ File not found: {file_path}")
+            self.failed_count += 1
+            self.failed_files.append((str(file_path), "File not found"))
+            return False
 
         try:
-            # Read English
-            with open(en_file, 'r', encoding='utf-8') as f:
+            with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
 
-            # Translate
-            translated = self.translate_text(content)
+            # Skip empty files
+            if self.is_empty_file(content):
+                print(f"⊘  Skipped (empty): {file_path.name}")
+                self.skipped_count += 1
+                return True
 
-            # Ensure directory exists
-            ko_file.parent.mkdir(parents=True, exist_ok=True)
+            # Skip already Korean files
+            if self.is_korean_file(content):
+                print(f"⊘  Skipped (already Korean): {file_path.name}")
+                self.skipped_count += 1
+                return True
 
-            # Write Korean
-            with open(ko_file, 'w', encoding='utf-8') as f:
-                f.write(translated)
+            print(f"⏳ Translating: {file_path.name}...", end=" ", flush=True)
 
-            self.completed.append(rel_path)
+            # Translate content
+            translated_content = self.translate_content(content)
+
+            # Write back to file
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(translated_content)
+
+            print("✓")
+            self.translated_count += 1
             return True
 
         except Exception as e:
-            print(f"      ERROR: {str(e)[:80]}")
-            self.failed.append(rel_path)
+            print(f"❌")
+            print(f"  Error: {str(e)}")
+            self.failed_count += 1
+            self.failed_files.append((str(file_path), str(e)))
             return False
 
-    def run(self):
-        """Run translation."""
-        total = len(FILES_TO_TRANSLATE)
+    def translate_files(self, file_paths: List[str]) -> None:
+        """Translate multiple files"""
 
-        print(f"Translating {total} files...")
-        print("=" * 70)
+        print(f"\n{'='*60}")
+        print(f"Starting batch translation: {len(file_paths)} files")
+        print(f"{'='*60}\n")
 
-        for i, rel_path in enumerate(FILES_TO_TRANSLATE, 1):
-            print(f"[{i}/{total}] {rel_path}...", end=" ", flush=True)
+        for i, file_path in enumerate(file_paths, 1):
+            print(f"[{i}/{len(file_paths)}] ", end="")
+            self.translate_file(file_path)
 
-            try:
-                result = self.translate_file(rel_path)
-                if result is True:
-                    print("✓")
-                elif result is False:
-                    print("✗")
-                else:
-                    print("⊘")
-            except Exception as e:
-                print(f"ERROR: {str(e)[:40]}")
-                self.failed.append(rel_path)
+        self.print_summary()
 
-            # Rate limiting
-            if i % 5 == 0 and i < total:
-                time.sleep(2)
+    def print_summary(self) -> None:
+        """Print translation summary"""
 
-        # Summary
-        print("=" * 70)
-        print(f"\nTranslation Summary:")
-        print(f"  Completed: {len(self.completed)}/63")
-        print(f"  Failed: {len(self.failed)}")
-        print(f"  Skipped: {len(self.skipped)}")
+        total = self.translated_count + self.skipped_count + self.failed_count
 
-        if self.failed:
+        print(f"\n{'='*60}")
+        print(f"Translation Summary")
+        print(f"{'='*60}")
+        print(f"✓ Translated: {self.translated_count}")
+        print(f"⊘ Skipped:    {self.skipped_count}")
+        print(f"❌ Failed:     {self.failed_count}")
+        print(f"Total:       {total}")
+        print(f"{'='*60}")
+
+        if self.failed_files:
             print(f"\nFailed files:")
-            for f in self.failed:
-                print(f"  - {f}")
+            for file_path, error in self.failed_files:
+                print(f"  - {file_path}")
+                print(f"    {error}")
 
-if __name__ == "__main__":
-    translator = FileTranslator()
-    translator.run()
+def main():
+    # Define files to translate
+    files_to_translate = [
+        "/Users/service_one/StudioProjects/navisProjects/FlowiseDocs/ko/integrations/litellm/README.md",
+    ]
+
+    try:
+        translator = MarkdownTranslator()
+        translator.translate_files(files_to_translate)
+
+        # Return exit code based on failures
+        sys.exit(0 if translator.failed_count == 0 else 1)
+
+    except ValueError as e:
+        print(f"Error: {str(e)}")
+        print("\nPlease set the ANTHROPIC_API_KEY environment variable:")
+        print("export ANTHROPIC_API_KEY='your-api-key-here'")
+        sys.exit(1)
+
+if __name__ == '__main__':
+    main()

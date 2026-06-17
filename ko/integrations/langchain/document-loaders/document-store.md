@@ -1,133 +1,50 @@
-
-description: Load data from pre-configured document stores.
-
+---
+설명: Document Store에서 데이터 로드
+---
 
 # Document Store
 
-<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (2).png" alt="" width="278"><figcaption><p>Document Store Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image_document_store.png" alt="" width="271"><figcaption><p>Document Store 노드</p></figcaption></figure>
 
-The Document Store loader enables you to load data from pre-configured document stores in your database. This loader provides a convenient way to access and utilize previously processed and stored documents in your workflows.
+Document Store는 Flowise 내에 저장된 문서들을 로드하는 loader입니다. 이전에 업로드되거나 생성된 문서들을 Flowise의 Document Store에서 검색하고 활용할 수 있습니다.
 
-## Features
+이 모듈은 다음을 수행할 수 있습니다:
 
-* Load documents from synchronized stores
-* Automatic metadata handling
-* Multiple output formats
-* Asynchronous store selection
-* Database integration
-* Chunk-based document retrieval
-* JSON metadata support
+* Document Store에 저장된 모든 문서 로드
+* Store ID 또는 Store 이름으로 문서 검색
+* 문서 메타데이터 활용
+* 저장된 Document 객체 직접 활용
+* Text Splitter와 통합
 
-## How It Works
+## 입력
 
-1. **Store Selection**:
-   * Lists all available document stores that are in 'SYNC' status
-   * Provides store information including name and description
-   * Allows selection from synchronized stores only
-2. **Document Retrieval**:
-   * Fetches document chunks from the selected store
-   * Reconstructs documents with original metadata
-   * Maintains document structure and relationships
+### 필수 파라미터
 
-## Parameters
+* **Document Store**: 로드할 Document Store 선택
 
-### Required Parameters
+### 선택적 파라미터
 
-* **Select Store**: Choose from available synchronized document stores
-  * Displays store name and description
-  * Only shows stores in 'SYNC' status
-  * Dynamically updated based on database content
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
 
-## Outputs
+## 출력
 
-The loader provides two output formats:
+* **Document**: Document Store에 저장된 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-### Document Output
+## 기능
 
-Returns an array of document objects, each containing:
+* Document Store 통합
+* 저장된 문서 검색
+* Metadata 보존
+* Text Splitter 지원
+* 오류 처리
 
-* **pageContent**: The actual content of the document chunk
-* **metadata**: Original document metadata in JSON format
+## 참고사항
 
-### Text Output
-
-Returns a concatenated string containing:
-
-* All document chunks' content
-* Separated by newlines
-* Properly escaped characters
-
-## Database Integration
-
-The loader integrates with your database through:
-
-* TypeORM data source connection
-* Document store entity management
-* Chunk-based storage and retrieval
-* Metadata preservation
-
-## Document Structure
-
-Each loaded document contains:
-
-```typescript
-{
-  pageContent: string,    // The actual content
-  metadata: {            // Parsed JSON metadata
-    // Original document metadata
-    // Store-specific information
-    // Custom metadata fields
-  }
-}
-```
-
-## Usage Examples
-
-### Basic Store Selection
-
-```json
-{
-  "selectedStore": "store-id-123"
-}
-```
-
-### Accessing Document Content
-
-```typescript
-// Document output format
-[
-  {
-    "pageContent": "Document content here...",
-    "metadata": {
-      "source": "original-file.pdf",
-      "page": 1,
-      "category": "reports"
-    }
-  }
-]
-
-// Text output format
-"Document content here...\nNext document content here...\n"
-```
-
-## Best Practices
-
-1. Ensure stores are synchronized before access
-2. Choose appropriate output format for your use case
-3. Handle metadata appropriately in your workflow
-4. Consider chunk size when processing large documents
-5. Monitor database performance with large stores
-
-## Notes
-
-* Only synchronized stores are available for selection
-* Metadata is automatically parsed from JSON
-* Documents are reconstructed from chunks
-* Supports both document and text output formats
-* Integrates with TypeORM for database access
-* Handles escape characters in text output
-* Maintains original document structure
-
-{% hint style="info" %}
-This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution Guide](broken-reference/) to get started.
-{% endhint %}
+* Document Store에 먼저 문서 저장 필수
+* Store ID 또는 Store 이름 필요
+* Metadata는 원본 문서에서 유지
+* 자주 사용하는 Document Set은 Document Store에 저장 권장
+* 성능 최적화를 위해 필요한 문서만 로드

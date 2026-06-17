@@ -1,82 +1,63 @@
+---
+설명: GitHub 저장소에서 데이터 로드
+---
 
-description: Load data from a GitHub repository.
+# GitHub
 
+<figure><img src="../../../.gitbook/assets/image_github.png" alt="" width="271"><figcaption><p>GitHub 노드</p></figcaption></figure>
 
-# GitHub Document Loader
+GitHub Document Loader를 사용하여 GitHub 저장소의 파일과 콘텐츠를 로드할 수 있습니다. 이를 통해 GitHub 저장소의 코드, README, 문서 등을 Document로 변환할 수 있습니다.
 
-<figure><img src="../../../.gitbook/assets/image (79).png" alt="" width="260"><figcaption><p>Github Node</p></figcaption></figure>
+이 모듈은 다음을 수행할 수 있는 정교한 GitHub Document Loader를 제공합니다:
 
-GitHub is a platform for version control and collaboration. This module provides functionality to load and process content from GitHub repositories, supporting both public and private repositories.
+* GitHub 저장소의 파일 로드
+* 특정 Branch 선택
+* Markdown 문서 처리
+* 파일 필터링
+* Text Splitter와 통합
+* 메타데이터 추출
 
-This module provides a sophisticated GitHub document loader that can:
-- Load content from GitHub repositories
-- Support private repository access
-- Process repositories recursively
-- Handle custom GitHub instances
-- Control concurrency and retries
-- Customize file filtering
-- Process content with text splitters
+## 입력
 
-## Inputs
+### 필수 파라미터
 
-### Required Parameters
-- **Repo Link**: The GitHub repository URL (e.g., https://github.com/FlowiseAI/Flowise)
-- **Branch**: The branch to load content from (default: main)
+* **Repository**: GitHub 저장소 (예: owner/repo)
+* **Access Token**: GitHub Personal Access Token
 
-### Optional Parameters
-- **Connect Credential**: GitHub API credentials (required for private repos)
-- **Recursive**: Whether to process subdirectories
-- **Max Concurrency**: Maximum number of concurrent file loads
-- **Github Base URL**: Custom GitHub base URL for enterprise instances
-- **Github Instance API**: Custom GitHub API URL for enterprise instances
-- **Ignore Paths**: Array of glob patterns for paths to ignore
-- **Max Retries**: Maximum number of retry attempts
-- **Text Splitter**: A text splitter to process the extracted content
-- **Additional Metadata**: JSON object with additional metadata
-- **Omit Metadata Keys**: Comma-separated list of metadata keys to omit
+### 선택적 파라미터
 
-## Outputs
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **Branch**: 로드할 Branch (기본값: main)
+* **File Extensions**: 처리할 파일 확장명의 쉼표로 구분된 목록
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
 
-- **Document**: Array of document objects containing metadata and pageContent
-- **Text**: Concatenated string from pageContent of documents
+## 출력
 
-## Features
-- Public/private repo support
-- Enterprise instance support
-- Recursive directory processing
-- Concurrency control
-- Retry mechanism
-- Path filtering
-- Text splitting support
-- Metadata customization
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-## Authentication Methods
+## 기능
 
-### Public Repositories
-- No authentication required
-- Rate limits apply
-- Limited to public content
+* 저장소 파일 로드
+* Branch 선택
+* 파일 필터링
+* 메타데이터 추출
+* Text Splitter 지원
+* 오류 처리
 
-### Private Repositories
-- Requires GitHub access token
-- Higher rate limits
-- Access to private content
-- Enterprise support
+## 지원 형식
 
-## Document Structure
-Each document contains:
-- **pageContent**: File content
-- **metadata**:
-  - source: File path in repository
-  - branch: Repository branch
-  - commit: Commit hash
-  - Additional custom metadata
+* Markdown (.md)
+* JavaScript/TypeScript (.js, .ts)
+* Python (.py)
+* JSON (.json)
+* 기타 텍스트 형식
 
-## Notes
-- Supports both public and private repos
-- Enterprise GitHub instances supported
-- Rate limiting handled automatically
-- Exponential backoff for retries
-- Path filtering with glob patterns
-- Memory-efficient processing
-- Error handling for invalid repos
+## 참고사항
+
+* 유효한 GitHub Personal Access Token 필요
+* 공개 저장소는 토큰 없이도 접근 가능
+* 저장소 크기에 따라 로드 시간 증가
+* API rate limit 적용 (시간당 60개, 인증 시 5000개)
+* 대용량 파일의 메모리 사용 주의

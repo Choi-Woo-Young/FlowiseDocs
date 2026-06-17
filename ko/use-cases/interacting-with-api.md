@@ -1,8 +1,8 @@
 ---
-description: Learn how to use external API integrations with Flowise
+description: Flowise에서 외부 API 통합을 사용하는 방법을 배웁니다
 ---
 
-# Interacting with API
+# API와 상호작용
 
 ***
 

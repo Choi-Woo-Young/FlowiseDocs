@@ -1,49 +1,49 @@
 # IBM Watsonx
 
-## Prerequisite
+## 필수 요구사항
 
-1. Register an account on [IBM Watsonx](https://www.ibm.com/watsonx)
-2. Create a new project:
+1. [IBM Watsonx](https://www.ibm.com/watsonx)에서 계정을 등록합니다
+2. 새 프로젝트를 만듭니다:
 
 <figure><img src="../../../.gitbook/assets/image (238).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (239).png" alt=""><figcaption></figcaption></figure>
 
-3. After project has been created, back to the main dashboard, and click **Explore foundation models**:
+3. 프로젝트가 생성된 후 메인 대시보드로 돌아가서 **Explore foundation models**를 클릭합니다:
 
 <figure><img src="../../../.gitbook/assets/image (240).png" alt=""><figcaption></figcaption></figure>
 
-4. Choose the model you would like to use and open in Prompt Lab:
+4. 사용하려는 모델을 선택하고 Prompt Lab에서 엽니다:
 
 <figure><img src="../../../.gitbook/assets/image (241).png" alt=""><figcaption></figcaption></figure>
 
-5. From the top right corner, click on View Code:
+5. 오른쪽 상단 모서리에서 View Code를 클릭합니다:
 
 <figure><img src="../../../.gitbook/assets/image (242).png" alt=""><figcaption></figcaption></figure>
 
-6. Take note on the `model_id` and `version` parameter. In this case, it is `ibm/granite-3-8b-instruct,` and the version is `2023-05-29`.
-7. Click the navigation bar from the left side, and click Developer access
+6. `model_id` 및 `version` 매개변수를 기록해둡니다. 이 경우 `ibm/granite-3-8b-instruct`이고 버전은 `2023-05-29`입니다.
+7. 왼쪽 네비게이션 바를 클릭하고 Developer access를 클릭합니다
 
 <figure><img src="../../../.gitbook/assets/image (243).png" alt="" width="308"><figcaption></figcaption></figure>
 
-8. Take note on the `watsonx.ai URL`, `Project ID` and create a new API key from IBM Cloud Console.
-9. By now, you should have the following information:
+8. `watsonx.ai URL`, `Project ID`를 기록해두고 IBM Cloud Console에서 새 API 키를 만듭니다.
+9. 이 시점에서 다음 정보를 가지고 있어야 합니다:
    * Watsonx.ai URL
    * Project ID
    * API Key
    * Model's version
    * Model's ID
 
-## Setup
+## 설정
 
-1. **Chat Models** > drag **ChatIBMWatsonx** node
+1. **Chat Models** > **ChatIBMWatsonx** 노드를 드래그합니다
 
 <figure><img src="../../../.gitbook/assets/image (244).png" alt="" width="306"><figcaption></figcaption></figure>
 
-2. Fill in the Model with the Model ID earlier. Create New Credential and fill in all the details.
+2. Model을 이전 Model ID로 채웁니다. Create New Credential을 클릭하고 모든 세부 정보를 입력합니다.
 
 <figure><img src="../../../.gitbook/assets/image (245).png" alt="" width="419"><figcaption></figcaption></figure>
 
-2. Voila [🎉](https://emojipedia.org/party-popper/), you can now use **ChatIBMWatsonx node** in Flowise!
+2. 완료되었습니다, 이제 Flowise에서 **ChatIBMWatsonx 노드**를 사용할 수 있습니다!
 
 <figure><img src="../../../.gitbook/assets/image (246).png" alt=""><figcaption></figcaption></figure>

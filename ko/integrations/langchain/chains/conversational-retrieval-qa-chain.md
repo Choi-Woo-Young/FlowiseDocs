@@ -1,16 +1,16 @@
-# 대화형 검색 QA 체인
+# Conversational Retrieval QA Chain
 
-A chain for performing question-answering tasks with a retrieval component.
+검색 구성 요소를 사용하여 질문-답변 작업을 수행하기 위한 체인입니다.
 
 <figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-## Definitions
+## 정의
 
-**A retrieval-based question-answering chain**, which integrates with a retrieval component and allows you to configure input parameters and perform question-answering tasks.\
-**Retrieval-Based Chatbots:** Retrieval-based chatbots are chatbots that generate responses by selecting pre-defined responses from a database or a set of possible responses. They "retrieve" the most appropriate response based on the input from the user.\
-**QA (Question Answering):** QA systems are designed to answer questions posed in natural language. They typically involve understanding the question and searching for or generating an appropriate answer.
+**검색 기반 질문-답변 체인**: 검색 구성 요소와 통합되며 입력 매개변수를 구성하고 질문-답변 작업을 수행할 수 있습니다.\
+**검색 기반 챗봇**: 검색 기반 챗봇은 데이터베이스 또는 가능한 응답 세트에서 미리 정의된 응답을 선택하여 응답을 생성하는 챗봇입니다. 사용자의 입력을 기반으로 가장 적절한 응답을 "검색"합니다.\
+**QA (질문 답변)**: QA 시스템은 자연어로 제기된 질문에 답하도록 설계되었습니다. 일반적으로 질문을 이해하고 적절한 답변을 검색하거나 생성하는 작업이 포함됩니다.
 
-## 입력
+## 입력 항목
 
 * [Language Model](../chat-models/)
 * [Vector Store Retriever](../vector-stores/)
@@ -18,14 +18,14 @@ A chain for performing question-answering tasks with a retrieval component.
 
 ## 매개변수
 
-| Name                    | Description                                                                                                                                               |
+| 이름 | 설명 |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Return Source Documents | To return citations/sources that were used to build up the response                                                                                       |
-| System Message          | An instruction for LLM on how to answer query                                                                                                             |
-| Chain Option            | Method on how to summarize, answer questions, and extract information from documents. Read [more](__PRESERVE_URL_0__) |
+| Return Source Documents | 응답을 구성하는 데 사용된 인용/출처를 반환하려면 |
+| System Message | 쿼리에 답변하는 방법에 대한 LLM에 대한 지시 |
+| Chain Option | 문서를 요약하고, 질문에 답변하고, 정보를 추출하는 방법입니다. 더 읽기 [more](https://js.langchain.com/docs/modules/chains/document/) |
 
 ## 출력
 
-| Name                           | Description                   |
+| 이름 | 설명 |
 | ------------------------------ | ----------------------------- |
-| ConversationalRetrievalQAChain | Final node to return response |
+| ConversationalRetrievalQAChain | 응답을 반환하는 최종 노드 |

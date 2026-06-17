@@ -1,22 +1,22 @@
 ---
-description: Learn how Flowise integrates with LiteLLM Proxy
+description: Flowise가 LiteLLM Proxy와 통합되는 방식을 알아봅니다
 ---
 
 # LiteLLM Proxy
 
-Use [LiteLLM Proxy](https://docs.litellm.ai/docs/simple_proxy) with Flowise to:
+Flowise와 [LiteLLM Proxy](https://docs.litellm.ai/docs/simple_proxy)를 사용하여:
 
-- Load balance Azure OpenAI/LLM endpoints
-- Call 100+ LLMs in the OpenAI Format 
-- Use Virtual Keys to set budgets, rate limits and track usage
+- Azure OpenAI/LLM 엔드포인트 부하 분산
+- OpenAI 형식의 100개 이상의 LLM 호출
+- Virtual Keys를 사용하여 예산, 속도 제한 및 사용 추적
 
-## How to use LiteLLM Proxy with Flowise
+## Flowise에서 LiteLLM Proxy 사용하기
 
-### Step 1: Define your LLM Models in the LiteLLM config.yaml file
+### 단계 1: LiteLLM config.yaml 파일에서 LLM 모델 정의
 
-LiteLLM Requires a config with all your models defined - we will call this file `litellm_config.yaml`
+LiteLLM는 모든 모델이 정의된 설정 파일이 필요합니다. 이 파일을 `litellm_config.yaml`이라고 합니다.
 
-[Detailed docs on how to setup litellm config - here](https://docs.litellm.ai/docs/proxy/configs)
+[litellm 설정 방법에 대한 자세한 설명서](https://docs.litellm.ai/docs/proxy/configs)
 
 ```yaml
 model_list:
@@ -39,7 +39,7 @@ model_list:
 ```
 
 
-### Step 2. Start litellm proxy
+### 단계 2. litellm 프록시 시작
 
 ```shell
 docker run \
@@ -49,12 +49,12 @@ docker run \
     --config /app/config.yaml --detailed_debug
 ```
 
-On success, the proxy will start running on `http://localhost:4000/`
+성공하면 프록시가 `http://localhost:4000/`에서 실행됩니다.
 
-### Step 3: Use the LiteLLM Proxy in Flowise
+### 단계 3: Flowise에서 LiteLLM Proxy 사용
 
-In Flowise, specify the **standard OpenAI nodes (not the Azure OpenAI nodes)** -- this goes for **chat models, embeddings, llms -- everything**
+Flowise에서 **표준 OpenAI 노드(Azure OpenAI 노드 아님)** 를 지정합니다. 이는 **채팅 모델, 임베딩, llm -- 모든 것**에 적용됩니다.
 
-- Set `BasePath` to LiteLLM Proxy URL (`http://localhost:4000` when running locally)
-- Set the following headers `Authorization: Bearer <your-litellm-master-key>`
+- `BasePath`를 LiteLLM Proxy URL(`http://localhost:4000` (로컬 실행 시))로 설정
+- `Authorization: Bearer <your-litellm-master-key>` 헤더 설정
 

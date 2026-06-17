@@ -1,8 +1,8 @@
 ---
-description: Learn how to query multiple documents correctly
+description: 여러 문서를 올바르게 쿼리하는 방법을 배웁니다
 ---
 
-# Multiple Documents QnA
+# 다중 문서 QnA
 
 ***
 

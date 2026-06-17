@@ -1,5 +1,5 @@
 ---
-description: Execute another chatflow and get the response.
+description: 다른 Chatflow를 실행하고 응답을 받습니다.
 ---
 
 # Chatflow Tool
@@ -7,5 +7,5 @@ description: Execute another chatflow and get the response.
 <figure><img src="../../../.gitbook/assets/image (26).png" alt="" width="248"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA) to get started.
+이 섹션은 진행 중입니다. 이 섹션을 완성하는 데 도움을 주실 수 있다면 감사하겠습니다. 시작하려면 [기여 가이드](/broken/pages/G48tdmpQ3z4CTWEspqkA)를 확인해주세요.
 {% endhint %}

@@ -1,85 +1,60 @@
-# PDF Document Loader
+---
+설명: PDF 파일에서 데이터 로드
+---
 
-PDF (Portable Document Format) is a file format developed by Adobe for presenting documents consistently across software platforms. This module provides functionality to load and process PDF files using pdf.js.
+# PDF File
 
-This module provides a sophisticated PDF document loader that can:
-- Load single or multiple PDF files
-- Split documents by page or file
-- Support base64 encoded files
-- Handle file storage integration
-- Process content with text splitters
-- Support legacy PDF versions
-- Customize metadata extraction
+<figure><img src="../../../.gitbook/assets/image_pdf.png" alt="" width="271"><figcaption><p>PDF File 노드</p></figcaption></figure>
 
-## Inputs
+PDF (Portable Document Format)은 일반적으로 사용되는 문서 형식입니다. 이 모듈은 PDF 파일을 로드하고 텍스트 콘텐츠를 추출하여 Document로 변환합니다.
 
-### Required Parameters
-- **PDF File**: The PDF file(s) to process (.pdf extension)
-- **Usage**: Choose between:
-  - One document per page
-  - One document per file
+이 모듈은 다음을 수행할 수 있는 정교한 PDF Document Loader를 제공합니다:
 
-### Optional Parameters
-- **Text Splitter**: A text splitter to process the extracted content
-- **Use Legacy Build**: Whether to use legacy PDF.js build
-- **Additional Metadata**: JSON object with additional metadata
-- **Omit Metadata Keys**: Comma-separated list of metadata keys to omit
+* PDF 파일 로드 및 파싱
+* 페이지별 텍스트 추출
+* 메타데이터 추출
+* 페이지 번호 정보 유지
+* Text Splitter와 통합
+* 다양한 PDF 형식 지원
 
-## Outputs
+## 입력
 
-- **Document**: Array of document objects containing metadata and pageContent
-- **Text**: Concatenated string from pageContent of documents
+### 필수 파라미터
 
-## Features
-- Multiple file support
-- Page-level splitting
-- Legacy version support
-- Text extraction
-- Metadata handling
-- Error handling
-- Memory-efficient processing
+* **File Upload**: 로드할 PDF 파일
 
-## Processing Modes
+### 선택적 파라미터
 
-### Per Page Mode
-- Each page becomes a document
-- Preserves page numbers
-- Individual page metadata
-- Granular content access
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **Page Range**: 로드할 페이지 범위 (예: 1-10)
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
 
-### Per File Mode
-- Entire PDF as one document
-- Combined content
-- Single metadata set
-- Memory efficient
+## 출력
 
-## Document Structure
-Each document contains:
-- **pageContent**: Extracted text content
-- **metadata**:
-  - source: Original file path
-  - pdf: PDF-specific metadata
-  - page: Page number (in per-page mode)
-  - Additional custom metadata
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-## File Handling
+## 기능
 
-### Local Files
-- Direct file loading
-- Base64 encoded content
-- Multiple file support
+* PDF 파일 파싱
+* 페이지별 추출
+* 메타데이터 수집
+* 페이지 번호 추적
+* Text Splitter 지원
+* 오류 처리
 
-### Storage Integration
-- File storage system support
-- Organization-based storage
-- Chatflow-based storage
+## 지원 PDF 종류
 
-## Notes
-- Uses pdf.js for extraction
-- Legacy version support
-- Memory-efficient processing
-- Error handling for invalid files
-- Support for large PDFs
-- Flexible output formats
-- Metadata customization
-- Text encoding handling
+* 텍스트 기반 PDF
+* 스캔된 PDF (OCR 지원 가능)
+* 이미지 포함 PDF
+* 다양한 인코딩
+
+## 참고사항
+
+* 텍스트 기반 PDF 권장 (스캔 이미지는 OCR 필요)
+* 매우 큰 파일의 메모리 사용 주의
+* 파일 크기 제한 확인
+* 암호 보호 PDF는 지원 안 함
+* 페이지 범위 설정으로 성능 최적화 가능

@@ -1,63 +1,63 @@
 ---
-description: Instructions for creating chatflows with a Hugging Face chat model.
+description: Hugging Face 채팅 모델을 사용하여 chatflow를 만드는 지침입니다.
 ---
 
 # ChatHuggingFace
 
-## Prerequisite
+## 필수 요구사항
 
-1. [Log in](__PRESERVE_URL_1__) or [sign up](__PRESERVE_URL_2__) to [Hugging Face](__PRESERVE_URL_3__).
-2. Create an API key if you haven't done so:
-   1. From your Hugging Face profile, select **Access Tokens** > **Create new token**.
-   2.  Create a _Fine-grained_ token. Select all the read and write access you need. Ensure that you also select either:
+1. [Hugging Face](https://huggingface.co)에 [로그인](https://huggingface.co/login)하거나 [가입](https://huggingface.co/join)합니다.
+2. 아직 하지 않았다면 API 키를 만듭니다:
+   1. Hugging Face 프로필에서 **Access Tokens** > **Create new token**을 선택합니다.
+   2.  _Fine-grained_ 토큰을 만듭니다. 필요한 모든 읽기 및 쓰기 액세스를 선택합니다. 다음 중 하나를 선택했는지 확인하세요:
 
-       * _Make calls to Inference Providers_ - to interact with the Serverless Inference API (formerly known as the "Inference API") from Hugging Face or other third-party providers (such as Together AI, Sambanova, or Replicate) through Hugging Face.
-       * _Make calls to your Inference Endpoints_ - to interact with a dedicated standalone Hugging Face instance that you’ve deployed on your own server.
+       * _Make calls to Inference Providers_ - Hugging Face 또는 기타 타사 제공자(예: Together AI, Sambanova 또는 Replicate)의 Serverless Inference API(이전에는 "Inference API"라고 함)와 상호작용합니다.
+       * _Make calls to your Inference Endpoints_ - 자신의 서버에 배포한 전용 독립 실행형 Hugging Face 인스턴스와 상호작용합니다.
 
        <figure><img src="../../../.gitbook/assets/huggingface/HF-token.png" alt="Screenshot of a Fine-Grained Hugging Face token creation page."><figcaption><p>Hugging Face Token Creation</p></figcaption></figure>
-   3. Click **Copy** and save the API token in another location for later retrieval.
-3.  From the **Models** tab, select an LLM Model that you want to use.
+   3. **Copy**를 클릭하고 API 토큰을 다른 위치에 저장하여 나중에 검색합니다.
+3.  **Models** 탭에서 사용할 LLM 모델을 선택합니다.
 
     <figure><img src="../../../.gitbook/assets/huggingface/HF-models.png" alt="Page listing Hugging Face LLM models."><figcaption><p>Hugging Face Models</p></figcaption></figure>
-4. On the LLM model page that opens:
-   1. Click the icon next to the model name to copy the model name to the clipboard or save to another location for later retrieval.
-   2.  참고 the default Inference Provider for the model.
+4. 열리는 LLM 모델 페이지에서:
+   1. 모델 이름 옆의 아이콘을 클릭하여 모델 이름을 클립보드에 복사하거나 나중에 검색할 수 있도록 다른 위치에 저장합니다.
+   2.  모델의 기본 Inference Provider를 기록합니다.
 
        <figure><img src="../../../.gitbook/assets/huggingface/HF-LLMmodel.png" alt="Screenshot of a Hugging Face LLM model page."><figcaption><p>Hugging Face LLM Model Page</p></figcaption></figure>
-   3. If your provider is a third-party provider that requires a custom API key, first create the API key on the provider site, then copy and set the API key on your Hugging Face profile settings:
-      1. Click **Settings** under your Hugging Face profile.
-      2. Select **Inference Providers** on the left panel.
-      3. Select the **Settings** tab.
-      4. Select **Set a custom API key** for the provider, and paste in the API key.
+   3. 공급자가 사용자 정의 API 키가 필요한 타사 공급자인 경우, 먼저 공급자 사이트에서 API 키를 만든 다음 Hugging Face 프로필 설정에서 API 키를 복사하여 설정합니다:
+      1. Hugging Face 프로필의 **Settings**를 클릭합니다.
+      2. 왼쪽 패널에서 **Inference Providers**를 선택합니다.
+      3. **Settings** 탭을 선택합니다.
+      4. 공급자에 대해 **Set a custom API key**를 선택하고 API 키를 붙여넣습니다.
 
 ## 설정
 
 ### Flowise
 
-To get started, you need to deploy Flowise. Install and run Flowise, either locally or on the cloud. You can follow the official Flowise documentation or tutorials for deployment.
+시작하려면 Flowise를 배포해야 합니다. 로컬 또는 클라우드에서 Flowise를 설치하고 실행합니다. 배포를 위해 공식 Flowise 문서 또는 자습서를 따를 수 있습니다.
 
-To create a chatflow in Flowise with a ChatHuggingFace chat model:
+ChatHuggingFace 채팅 모델을 사용하여 Flowise에서 chatflow를 만들려면:
 
-1. From **Chatflows**, click **+ Add New** to create a new chatflow.
-2. Click **+** and drag **Chains** > **LLM 체인**.
-3.  Click **+** and drag **채팅 모델** > **ChatHuggingFace**:
+1. **Chatflows**에서 **+ Add New**를 클릭하여 새 chatflow를 만듭니다.
+2. **+**를 클릭하고 **Chains** > **LLM Chain**을 드래그합니다.
+3.  **+**를 클릭하고 **Chat Models** > **ChatHuggingFace**를 드래그합니다:
 
-    *   **Connect Credential**: Click **Create New** to create a new credential and enter the Hugging Face access token in the **HuggingFace API Key** field.
+    *   **Connect Credential**: **Create New**를 클릭하여 새 자격증명을 만들고 **HuggingFace API Key** 필드에 Hugging Face 액세스 토큰을 입력합니다.
 
         <figure><img src="../../../.gitbook/assets/huggingface/HF-credential.png" alt="Screenshot of a Hugging Face Connect credential."><figcaption><p>Hugging Face Connect Credential</p></figcaption></figure>
-    * **Model**: Paste the model name from the clipboard (saved from the model page on Hugging Face).
+    * **Model**: 클립보드에서 모델 이름을 붙여넣습니다(Hugging Face의 모델 페이지에서 저장됨).
 
     <figure><img src="../../../.gitbook/assets/huggingface/HF-node.png" alt="Screenshot of a Hugging Face Chatmodel node" width="259"><figcaption><p>ChatHuggingFace Node</p></figcaption></figure>
-4. Click **+** and drag **Prompts** > **Prompt Template**:
-   * Expand the Template and enter an instruction. Example: "User Question: {question}".
-5. Connect the **ChatHuggingFace** output to the **Language Model** input of the LLM Chain.
-6. Connect the **PromptTemplate** output to the **Prompt** input of the LLM Chain.
-7. Save your 구성 before running your chatflow.
-8.  Voila [🎉](__PRESERVE_URL_4__), you have created a chatflow with a **ChatHuggingFace node** in Flowise.
+4. **+**를 클릭하고 **Prompts** > **Prompt Template**을 드래그합니다:
+   * Template을 확장하고 지시사항을 입력합니다. 예: "User Question: {question}".
+5. **ChatHuggingFace**의 출력을 LLM Chain의 **Language Model** 입력에 연결합니다.
+6. **PromptTemplate**의 출력을 LLM Chain의 **Prompt** 입력에 연결합니다.
+7. chatflow를 실행하기 전에 구성을 저장합니다.
+8.  완료되었습니다, Flowise에서 **ChatHuggingFace 노드**를 사용하여 chatflow를 만들었습니다.
 
     <figure><img src="../../../.gitbook/assets/huggingface/HF-chain.png" alt="Screenshot of an LLM Chain with ChatHuggingFace chat model."><figcaption><p>Hugging Face Chatflow</p></figcaption></figure>
 
-## Resources
+## 리소스
 
-* [HuggingFace Documentation](__PRESERVE_URL_5__)
-* [HuggingFace Forum](__PRESERVE_URL_6__)
+* [HuggingFace Documentation](https://huggingface.co/docs)
+* [HuggingFace Forum](https://discuss.huggingface.co/)

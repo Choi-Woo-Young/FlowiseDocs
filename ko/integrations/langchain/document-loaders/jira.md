@@ -1,76 +1,64 @@
-# Jira Document Loader
+---
+설명: Jira Issue에서 데이터 로드
+---
 
-<figure><img src="../../../.gitbook/assets/image (284).png" alt="" width="234"><figcaption></figcaption></figure>
+# Jira
 
-Jira is a popular issue tracking and project management tool. This module provides functionality to load and process issues from Jira projects, supporting various filtering options and metadata customization.
+<figure><img src="../../../.gitbook/assets/image_jira.png" alt="" width="271"><figcaption><p>Jira 노드</p></figcaption></figure>
 
-This module provides a sophisticated Jira document loader that can:
-- Load issues from Jira projects
-- Filter issues by creation date
-- Control batch size for requests
-- Process content with text splitters
-- Customize metadata extraction
-- Handle API authentication
+Jira Document Loader를 사용하여 Jira 프로젝트의 Issue를 로드하고 Document로 변환할 수 있습니다. 이를 통해 Issue의 제목, 설명, 댓글 등을 처리할 수 있습니다.
 
-## Inputs
+이 모듈은 다음을 수행할 수 있는 정교한 Jira Document Loader를 제공합니다:
 
-### Required Parameters
-- **Connect Credential**: Jira API credentials (username and access token)
-- **Host**: Jira instance URL (e.g., https://jira.example.com)
-- **Project Key**: The key of the Jira project to load issues from
+* Jira Issue 로드
+* JQL (Jira Query Language) 지원
+* Issue 검색 및 필터링
+* 댓글 및 히스토리 추출
+* Text Splitter와 통합
+* 메타데이터 추출
 
-### Optional Parameters
-- **Limit Per Request**: Number of issues to fetch per API request (default: 100)
-- **Created After**: Filter issues created after a specific date (e.g., 2024-01-01)
-- **Text Splitter**: A text splitter to process the extracted content
-- **Additional Metadata**: JSON object with additional metadata
-- **Omit Metadata Keys**: Comma-separated list of metadata keys to omit
+## 입력
 
-## Outputs
+### 필수 파라미터
 
-- **Document**: Array of document objects containing metadata and pageContent
-- **Text**: Concatenated string from pageContent of documents
+* **Domain**: Jira 인스턴스의 도메인 (예: https://yourcompany.atlassian.net)
+* **Connect Credential**: Jira API 자격증명
 
-## Features
-- API token authentication
-- Project-based issue loading
-- Creation date filtering
-- Batch size control
-- Text splitting support
-- Metadata customization
-- Flexible output formats
+### 선택적 파라미터
 
-## Authentication
-The loader requires:
-- Jira username
-- API access token
-- Host URL of your Jira instance
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **JQL**: Jira Query Language로 Issue 필터링
+* **Max Results**: 반환할 최대 Issue 수
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
 
-## Document Structure
-Each document contains:
-- **pageContent**: Issue content and description
-- **metadata**:
-  - Issue-specific metadata (customizable)
-  - Project information
-  - Creation dates
-  - Issue status
-  - Additional custom metadata
+## 출력
 
-## Metadata Handling
-Two ways to customize metadata:
-1. **Additional Metadata**: Add new metadata fields
-   - Specify as JSON object
-   - Merged with existing metadata
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-2. **Omit Metadata Keys**: Remove unwanted metadata
-   - Comma-separated list of keys
-   - Use * to remove all default metadata
-   - Nested keys supported (e.g., key1, key2, key3.nestedKey1)
+## 기능
 
-## Notes
-- Handles API rate limiting
-- Efficient batch processing
-- Memory-efficient loading
-- Error handling for API requests
-- Supports both cloud and self-hosted Jira
-- Real-time issue data access
+* Jira Issue 로드
+* JQL 기반 검색
+* Issue 필터링
+* 메타데이터 추출
+* 댓글 처리
+* Text Splitter 지원
+
+## 추출 내용
+
+* Issue ID 및 Key
+* 제목 및 설명
+* 담당자 및 reporter
+* 상태 및 우선순위
+* 댓글 및 히스토리
+* 첨부 파일 정보
+
+## 참고사항
+
+* 유효한 Jira API 토큰 필요
+* 프로젝트 접근 권한 필수
+* API rate limit 적용
+* JQL 쿼리 문법 확인
+* 대규모 Issue 검색의 성능 고려

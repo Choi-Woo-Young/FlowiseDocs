@@ -1,116 +1,62 @@
+---
+설명: Notion 페이지에서 데이터 로드
+---
+
 # Notion
 
-Notion is a collaboration platform that combines note-taking, knowledge management, and project management. This module provides three different loaders to process Notion content: Database, Page, and Folder loaders.
+<figure><img src="../../../.gitbook/assets/image_notion.png" alt="" width="271"><figcaption><p>Notion 노드</p></figcaption></figure>
 
-## Notion Database Loader
+Notion은 팀 협업 및 문서화를 위한 올-인-원 워크스페이스입니다. 이 모듈은 Notion 페이지를 로드하고 Document로 변환합니다.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2).png" alt="" width="260"><figcaption><p>Notion Database Node</p></figcaption></figure>
+이 모듈은 다음을 수행할 수 있는 정교한 Notion Document Loader를 제공합니다:
 
-The Database loader extracts content from Notion databases, treating each row as a separate document.
+* Notion 페이지 및 데이터베이스 로드
+* 페이지 계층 구조 탐색
+* 텍스트 및 블록 콘텐츠 추출
+* 메타데이터 추출
+* Text Splitter와 통합
+* Database 쿼리 지원
 
-### Features
+## 입력
 
-* Load database rows as documents
-* Extract properties as metadata
-* Support property headers
-* Handle concurrent loading
-* Process content with text splitters
-* Customize metadata extraction
+### 필수 파라미터
 
-### Required Parameters
+* **Page ID**: Notion 페이지의 ID
+* **Connect Credential**: Notion API 자격증명
 
-* **Connect Credential**: Notion API credentials
-* **Database Id**: The unique identifier of the Notion database
+### 선택적 파라미터
 
-## Notion Page Loader
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **Database Query**: Database인 경우 필터 쿼리
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (2).png" alt="" width="262"><figcaption><p>Notion Page Node</p></figcaption></figure>
+## 출력
 
-The Page loader extracts content from Notion pages, including all child pages as separate documents.
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-### Features
+## 기능
 
-* Load page content as documents
-* Process child pages recursively
-* Extract page properties
-* Handle page hierarchy
-* Support text splitting
-* Customize metadata extraction
+* Notion 페이지 로드
+* Database 쿼리
+* 계층 구조 탐색
+* 블록 콘텐츠 추출
+* 메타데이터 추출
+* Text Splitter 지원
 
-### Required Parameters
+## 지원 콘텐츠
 
-* **Connect Credential**: Notion API credentials
-* **Page Id**: The 32-character hex identifier from the page URL
+* 제목 및 텍스트 블록
+* 목록 및 토글
+* 표 및 코드 블록
+* 임베드 콘텐츠
+* Database 항목
 
-## Notion Folder Loader
+## 참고사항
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2).png" alt="" width="259"><figcaption><p>Notion Folder Node</p></figcaption></figure>
-
-The Folder loader processes exported and unzipped Notion content from a local folder.
-
-### Features
-
-* Process exported Notion content
-* Handle multiple pages
-* Support local file system
-* Extract page content
-* Maintain document structure
-* Support text splitting
-* Customize metadata extraction
-
-### Required Parameters
-
-* **Notion Folder**: Path to the exported and unzipped Notion folder
-
-## Common Features
-
-All Notion loaders support:
-
-### Optional Parameters
-
-* **Text Splitter**: A text splitter to process the extracted content
-* **Additional Metadata**: JSON object with additional metadata
-* **Omit Metadata Keys**: Comma-separated list of metadata keys to omit
-
-### Outputs
-
-* **Document**: Array of document objects containing metadata and pageContent
-* **Text**: Concatenated string from pageContent of documents
-
-## Authentication
-
-### API Authentication (Database & Page Loaders)
-
-* Requires Notion Integration Token
-* API rate limiting handled automatically
-* Support for workspace-level access
-* Secure credential management
-
-### Local Access (Folder Loader)
-
-* No authentication required
-* Direct file system access
-* Process offline content
-* Handle exported data
-
-## Document Structure
-
-Each document contains:
-
-* **pageContent**: Extracted text content
-* **metadata**:
-  * source: Original source (URL or file path)
-  * title: Page or database title
-  * properties: Notion properties
-  * Additional custom metadata
-
-## Notes
-
-* API loaders require Notion integration setup
-* Folder loader needs exported content
-* Rate limiting handled automatically
-* Memory-efficient processing
-* Error handling for invalid inputs
-* Support for large datasets
-* Flexible output formats
-* Metadata customization
+* Notion API 자격증명 필수
+* 페이지 공유 권한 필요
+* API rate limit 적용 (초당 3-5 요청)
+* 매우 큰 Database의 성능 고려
+* Page ID는 URL에서 추출

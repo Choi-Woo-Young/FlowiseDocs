@@ -1,5 +1,5 @@
 ---
-description: Learn how to query structured data
+description: 구조화된 데이터를 쿼리하는 방법을 배웁니다
 ---
 
 # SQL QnA

@@ -1,65 +1,54 @@
+---
+설명: Figma 디자인에서 데이터 로드
+---
 
-description: Load data from a Figma file.
+# Figma
 
+<figure><img src="../../../.gitbook/assets/image_figma.png" alt="" width="271"><figcaption><p>Figma 노드</p></figcaption></figure>
 
-# Figma Document Loader
+Figma는 클라우드 기반 디자인 협업 도구입니다. 이 모듈은 Figma 파일의 구조, 컴포넌트, 메타데이터를 로드하고 Document로 변환합니다.
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="264"><figcaption><p>Figma Node</p></figcaption></figure>
+이 모듈은 다음을 수행할 수 있는 정교한 Figma Document Loader를 제공합니다:
 
-Figma is a collaborative web application for interface design. This module provides functionality to load and process content from Figma files, including text, components, and metadata.
+* Figma 파일 및 프레임 로드
+* 컴포넌트 및 스타일 정보 추출
+* 텍스트 콘텐츠 추출
+* 디자인 메타데이터 추출
+* 계층 구조 정보 보존
+* Text Splitter와 통합
 
-This module provides a sophisticated Figma document loader that can:
-- Load content from specific Figma files
-- Extract text from selected nodes
-- Process content recursively
-- Handle authentication with Figma API
-- Process content with text splitters
-- Customize metadata extraction
+## 입력
 
-## Inputs
+### 필수 파라미터
 
-### Required Parameters
-- **File Key**: The unique identifier for the Figma file (from file URL)
-- **Node IDs**: Comma-separated list of node identifiers to extract
-- **Connect Credential**: Figma API credentials (access token)
+* **File Key**: Figma 파일의 File Key (URL에서 추출)
+* **Connect Credential**: Figma API 자격증명
 
-### Optional Parameters
-- **Recursive**: Whether to process nodes recursively
-- **Text Splitter**: A text splitter to process the extracted content
-- **Additional Metadata**: JSON object with additional metadata
-- **Omit Metadata Keys**: Comma-separated list of metadata keys to omit
+### 선택적 파라미터
 
-## Outputs
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **Frame Names**: 추출할 Frame 이름의 쉼표로 구분된 목록
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
 
-- **Document**: Array of document objects containing metadata and pageContent
-- **Text**: Concatenated string from pageContent of documents
+## 출력
 
-## Features
-- API-based content extraction
-- Node-level content selection
-- Recursive processing
-- Text splitting support
-- Metadata customization
-- Error handling
-- Authentication management
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-## File Key Format
-The file key can be found in the Figma file URL:
-__CODE_BLOCK_0__
-Example: In `https://www.figma.com/file/12345/Website`, the file key is `12345`
+## 기능
 
-## Node IDs
-To get Node IDs:
-1. Install the Node Inspector plugin in Figma
-2. Select the desired elements
-3. Copy the Node IDs from the inspector
-4. Use comma-separated format: "0, 1, 2"
+* Figma 파일 접근
+* Frame 추출
+* 컴포넌트 정보 추출
+* 메타데이터 수집
+* Text Splitter 지원
+* 오류 처리
 
-## Notes
-- Requires valid Figma access token
-- Node IDs must be valid for the file
-- Supports recursive content extraction
-- Can process multiple nodes at once
-- Handles API rate limits and errors
-- Preserves node hierarchy in metadata
-- Supports custom metadata addition
+## 참고사항
+
+* 유효한 Figma API 토큰 필요
+* File Key 필수
+* 파일 공유 권한 필요
+* API rate limit 적용
+* 대용량 파일의 성능 고려

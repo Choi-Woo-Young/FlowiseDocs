@@ -1,13 +1,12 @@
 ---
 description: >-
-  Generate multiple queries from different perspectives for a given user input
-  query.
+  주어진 사용자 입력 쿼리에 대해 다양한 관점에서 여러 쿼리를 생성합니다.
 ---
 
 # Multi Query Retriever
 
-<figure><img src="../../../.gitbook/assets/up-006.png" alt="" width="283"><figcaption><p>Multi Query Retriever Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/up-006.png" alt="" width="283"><figcaption><p>Multi Query Retriever 노드</p></figcaption></figure>
 
 {% hint style="info" %}
-This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA) to get started.
+이 섹션은 진행 중입니다. 이 섹션을 완성하는 데 도움을 주시면 감사하겠습니다. [기여 가이드](/broken/pages/G48tdmpQ3z4CTWEspqkA)를 확인하여 시작하세요.
 {% endhint %}

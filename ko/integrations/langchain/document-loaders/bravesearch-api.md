@@ -1,50 +1,63 @@
-# BraveSearch API Document Loader
+---
+설명: BraveSearch API를 사용한 검색 결과 로드
+---
 
-BraveSearch is a privacy-focused search engine that provides a powerful API for web search. This module enables loading and processing search results from BraveSearch into documents.
+# BraveSearch API
 
-This module provides a sophisticated search document loader that can:
-- Execute web searches using BraveSearch API
-- Convert search results into structured documents
-- Extract snippets and metadata from results
-- Process results with text splitters
-- Customize metadata extraction
+<figure><img src="../../../.gitbook/assets/image_bravesearch.png" alt="" width="271"><figcaption><p>BraveSearch API 노드</p></figcaption></figure>
 
-## Inputs
+BraveSearch는 개인정보 보호를 중심으로 하는 검색 엔진으로, 강력한 웹 검색 API를 제공합니다. 이 모듈은 BraveSearch의 검색 결과를 로드하고 Document로 처리할 수 있게 합니다.
 
-### Required Parameters
-- **Query**: The search query to execute
-- **Connect Credential**: BraveSearch API credentials
+이 모듈은 다음을 수행할 수 있는 정교한 검색 document loader를 제공합니다:
 
-### Optional Parameters
-- **Text Splitter**: A text splitter to process the extracted content
-- **Additional Metadata**: JSON object with additional metadata
-- **Omit Metadata Keys**: Comma-separated list of metadata keys to omit
+* BraveSearch API를 사용한 웹 검색 실행
+* 검색 결과를 구조화된 Document로 변환
+* 결과에서 Snippet 및 Metadata 추출
+* Text Splitter로 결과 처리
+* Metadata 추출 커스터마이징
 
-## Outputs
+## 입력
 
-- **Document**: Array of document objects containing metadata and pageContent
-- **Text**: Concatenated string from pageContent of documents
+### 필수 파라미터
 
-## Features
-- Privacy-focused web search
-- Structured result processing
-- Automatic metadata extraction
-- Result content splitting
-- Customizable metadata handling
-- Error handling for API responses
+* **Query**: 실행할 검색 쿼리
+* **Connect Credential**: BraveSearch API 자격증명
 
-## Document Structure
-Each search result is converted into a document with:
-- **pageContent**: The snippet/content from the search result
-- **metadata**:
-  - title: The title of the webpage
-  - link: The URL of the webpage
-  - Additional custom metadata as specified
+### 선택적 파라미터
 
-## Notes
-- Requires valid BraveSearch API key
-- Results include webpage snippets and metadata
-- Can be combined with text splitters for content processing
-- Supports custom metadata addition and omission
-- Handles API rate limits and errors
-- Preserves privacy-focused search features 
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
+
+## 출력
+
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
+
+## 기능
+
+* 개인정보 보호 중심 웹 검색
+* 구조화된 결과 처리
+* 자동 metadata 추출
+* 결과 콘텐츠 분할
+* 커스터마이즈 가능한 metadata 처리
+* API 응답에 대한 오류 처리
+
+## Document 구조
+
+각 검색 결과는 다음을 포함하는 document로 변환됩니다:
+
+* **pageContent**: 검색 결과의 snippet/콘텐츠
+* **metadata**:
+  * title: 웹페이지의 제목
+  * link: 웹페이지의 URL
+  * 지정된 추가 커스텀 metadata
+
+## 참고사항
+
+* 유효한 BraveSearch API 키 필요
+* 결과에는 웹페이지 snippet 및 metadata 포함
+* 콘텐츠 처리를 위해 text splitter와 결합 가능
+* 커스텀 metadata 추가 및 생략 지원
+* API rate limit 및 오류 처리
+* 개인정보 보호 중심 검색 기능 유지

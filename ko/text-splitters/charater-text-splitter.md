@@ -1,8 +1,8 @@
-# Character Text Splitter
-This is the simplest method of text splitting. This splits based on characters (by default "\n\n") and measure chunk length by number of characters.
-## Inputs
-Separator: default "\n\n" <br>
-Chunck Size: the maximum size of your chunk length by number of characters <br>
-Chunck Overlap: the maximum overlap between chunks. It can be nice to have some overlap to maintain some continuity between chunks (e.g. do a sliding window) <br>
-## Output 
-Charater Text Splitter: the split chunks of text
+# 문자 텍스트 분할기
+이것은 가장 간단한 텍스트 분할 방법입니다. 문자(기본값 "\n\n")를 기준으로 분할하고 청크 길이를 문자 수로 측정합니다.
+## 입력
+Separator: 기본값 "\n\n" <br>
+Chunck Size: 문자 수로 측정한 청크 길이의 최대 크기 <br>
+Chunck Overlap: 청크 사이의 최대 겹침. 청크 사이의 연속성을 유지하기 위해 일부 겹침을 가지는 것이 좋을 수 있습니다 (예: 슬라이딩 윈도우) <br>
+## 출력
+Character Text Splitter: 분할된 텍스트 청크

@@ -1,99 +1,62 @@
+---
+설명: Google Sheets 데이터에서 데이터 로드
+---
+
 # Google Sheets
 
-<figure><img src="../../../.gitbook/assets/image (283).png" alt="" width="234"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image_google_sheets.png" alt="" width="271"><figcaption><p>Google Sheets 노드</p></figcaption></figure>
 
-Google Sheets is a web-based spreadsheet application. This module provides functionality to load and process data from Google Sheets documents, supporting various data formatting options and sheet selection.
+Google Sheets Document Loader를 사용하여 Google Sheets의 데이터를 로드하고 Document로 변환할 수 있습니다. 이를 통해 스프레드시트 데이터를 구조화된 Document로 변환할 수 있습니다.
 
-This module provides a sophisticated Google Sheets document loader that can:
+이 모듈은 다음을 수행할 수 있는 정교한 Google Sheets Document Loader를 제공합니다:
 
-* Load data from multiple spreadsheets
-* Select specific sheets and ranges
-* Handle formatted and unformatted values
-* Process formulas and calculations
-* Customize header handling
-* Process content with text splitters
-* Handle OAuth2 authentication
+* Google Sheets 데이터 로드
+* 특정 Sheet 선택
+* 행/열 범위 지정
+* 헤더 행 처리
+* Text Splitter와 통합
+* 메타데이터 추출
 
-## Inputs
+## 입력
 
-### Required Parameters
+### 필수 파라미터
 
-* **Connect Credential**: Google Sheets OAuth2 credentials. Refer to [#Google Sheets](../tools/google-sheets.md)
-* **Select Spreadsheet**: Choose spreadsheet(s) from your Google Drive
+* **Spreadsheet ID**: Google Sheet의 Spreadsheet ID
+* **Connect Credential**: Google Sheets API 자격증명
 
-### Optional Parameters
+### 선택적 파라미터
 
-* **Sheet Names**: Comma-separated list of sheet names to load
-* **Range**: Specific range to load (e.g., A1:E10)
-* **Include Headers**: Whether to include first row as headers (default: true)
-* **Value Render Option**: How values should be represented:
-  * Formatted Value: As shown in the UI
-  * Unformatted Value: Raw values
-  * Formula: Original formulas
-* **Text Splitter**: A text splitter to process the extracted content
-* **Additional Metadata**: JSON object with additional metadata
-* **Omit Metadata Keys**: Comma-separated list of metadata keys to omit
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **Sheet Name**: 로드할 Sheet 이름
+* **Row Limit**: 처리할 최대 행 수
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
 
-## Outputs
+## 출력
 
-* **Document**: Array of document objects containing metadata and pageContent
-* **Text**: Concatenated string from pageContent of documents
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-## Features
+## 기능
 
-* OAuth2 authentication
-* Multiple spreadsheet support
-* Sheet selection
-* Range specification
-* Header handling
-* Value formatting options
-* Text splitting support
-* Metadata customization
+* Google Sheets 데이터 로드
+* 특정 Sheet 선택
+* 행/열 필터링
+* 메타데이터 추출
+* Text Splitter 지원
+* 오류 처리
 
-## Value Render Options
+## 데이터 형식
 
-### Formatted Value
+* 행 기반 처리 (각 행이 하나의 Document)
+* 열 기반 메타데이터
+* 유형 자동 감지
+* 빈 셀 처리
 
-* Values as displayed in UI
-* Includes formatting
-* Numbers with decimals/currency
-* Dates in specified format
+## 참고사항
 
-### Unformatted Value
-
-* Raw cell values
-* Numbers without formatting
-* Dates as serial numbers
-* Boolean as true/false
-
-### Formula
-
-* Original formulas
-* Cell references
-* Functions
-* Calculations
-
-## Document Structure
-
-Each document contains:
-
-* **pageContent**: Formatted sheet content
-* **metadata**:
-  * spreadsheetId: Google Sheets ID
-  * spreadsheetName: Document name
-  * sheetName: Sheet name
-  * range: Selected range
-  * headers: Column headers (if included)
-  * lastModified: Last modification date
-  * url: Web view link
-  * Additional custom metadata
-
-## Notes
-
-* Requires OAuth2 authentication
-* Handles rate limiting
-* Supports large spreadsheets
-* Memory-efficient processing
-* Error handling for invalid ranges
-* Automatic token refresh
-* Real-time data access
+* Google Sheets API 자격증명 필요
+* Spreadsheet ID는 공유 권한 필요
+* API rate limit 적용
+* 대규모 시트의 로드 시간 주의
+* 공개 Sheet도 기술적으로 접근 가능

@@ -1,8 +1,8 @@
 ---
-description: Learn how to scrape, upsert, and query a website
+description: 웹사이트를 스크래핑, upsert 및 쿼리하는 방법을 배웁니다
 ---
 
-# Web Scrape QnA
+# 웹 스크래핑 QnA
 
 ***
 

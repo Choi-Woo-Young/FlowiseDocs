@@ -1,11 +1,11 @@
-# ReAct 에이전트 LLM
+# ReAct Agent LLM
 
-Agent that uses the [ReAct](__PRESERVE_URL_0__) (Reasoning and Acting) logic to decide what action to take, optimized to be used with Non Chat Models.
+[ReAct](https://react-lm.github.io/) (추론과 행동) 로직을 사용하여 수행할 작업을 결정하고 Non Chat Models와 함께 사용하기 위해 최적화된 Agent입니다.
 
 <figure><img src="../../../.gitbook/assets/image (173).png" alt="" width="325"><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="335"><figcaption><p>ReAct 에이전트 LLM Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="335"><figcaption><p>ReAct Agent LLM Node</p></figcaption></figure>
 
 {% hint style="info" %}
-This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA) to get started.
+이 섹션은 진행 중입니다. 이 섹션을 완성하는 데 도움을 주실 수 있다면 감사하겠습니다. 시작하려면 [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA)를 확인해 주십시오.
 {% endhint %}

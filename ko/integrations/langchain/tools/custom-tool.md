@@ -1,12 +1,12 @@
 # Custom Tool
 
-Watch how to use custom tools
+Custom Tool 사용 방법 보기
 
 {% embed url="https://youtu.be/HSp9LkkTVY0" %}
 
-## Problem
+## 문제
 
-Function usually takes in structured input data. Let's say you want the LLM to be able to call Airtable Create Record [API](https://airtable.com/developers/web/api/create-records), the body parameters has to be structured in a specific way. For example:
+함수는 보통 구조화된 입력 데이터를 가져갑니다. LLM이 Airtable Create Record [API](https://airtable.com/developers/web/api/create-records)를 호출할 수 있기를 원한다고 가정해봅시다. 본문 매개변수는 특정 방식으로 구조화되어야 합니다. 예를 들어:
 
 ```json
 "records": [
@@ -20,7 +20,7 @@ Function usually takes in structured input data. Let's say you want the LLM to b
 ]
 ```
 
-Ideally, we want LLM to return a proper structured data like this:
+이상적으로는 LLM이 다음과 같은 적절히 구조화된 데이터를 반환하기를 원합니다:
 
 ```json
 {
@@ -30,42 +30,42 @@ Ideally, we want LLM to return a proper structured data like this:
 }
 ```
 
-So we can extract the value and parse it into the body needed for API. However, instructing LLM to output the exact pattern is difficult.
+그러면 값을 추출하여 API에 필요한 본문으로 구문 분석할 수 있습니다. 하지만 LLM에 정확한 패턴을 출력하도록 지시하는 것은 어렵습니다.
 
-With the new [OpenAI Function Calling](https://openai.com/blog/function-calling-and-other-api-updates) models, it is now possible. `gpt-4-0613` and `gpt-3.5-turbo-0613` are specifically trained to return structured data. The model will intelligently choose to output a JSON object containing arguments to call those functions.
+새로운 [OpenAI Function Calling](https://openai.com/blog/function-calling-and-other-api-updates) 모델을 사용하면 이제 가능합니다. `gpt-4-0613`과 `gpt-3.5-turbo-0613`은 구조화된 데이터를 반환하도록 특별히 훈련되었습니다. 모델은 이러한 함수를 호출하기 위한 인수를 포함하는 JSON 객체를 출력하도록 지능적으로 선택합니다.
 
-## Tutorial
+## 튜토리얼
 
-**Goal**: Have the agent automatically get the stock price movement, retrieve related stock news, and add a new record to Airtable.
+**목표**: Agent가 자동으로 주식 가격 변동을 얻고, 관련 주식 뉴스를 검색하고, Airtable에 새 기록을 추가하도록 합니다.
 
-Let's get started[🚀](https://emojipedia.org/rocket/)
+시작해봅시다[🚀](https://emojipedia.org/rocket/)
 
-### Create Tools
+### Tool 생성
 
-We need 3 tools to achieve the goal:
+목표를 달성하기 위해 3개의 Tool이 필요합니다:
 
-* Get Stock Price Movement
-* Get Stock News
-* Add Airtable Record
+* 주식 가격 변동 얻기
+* 주식 뉴스 얻기
+* Airtable 기록 추가
 
-#### Get Stock Price Movement
+#### 주식 가격 변동 얻기
 
-Create a new Tool with the following details (you can change as you want):
+다음 세부 정보로 새 Tool을 생성합니다 (원하는 대로 변경할 수 있습니다):
 
-* Name: get\_stock\_movers
-* Description: Get the stocks that has biggest price/volume moves, e.g. actives, gainers, losers, etc.
+* 이름: get\_stock\_movers
+* 설명: 가장 큰 가격/거래량 변동을 가진 주식을 얻습니다. 예: 활발한 주식, 상승주, 하락주 등.
 
-Description is an important piece as ChatGPT is relying on this to decide when to use this tool.
+설명은 ChatGPT가 이 Tool을 사용할 시기를 결정하는 데 의존하므로 중요한 부분입니다.
 
 <figure><img src="../../../.gitbook/assets/image (6) (3).png" alt=""><figcaption></figcaption></figure>
 
-* JavaScript Function: We are going to use [Morning Star](https://rapidapi.com/apidojo/api/morning-star) `/market/v2/get-movers` API to get data. First you have to click Subscribe to Test if you haven't already, then copy the code and paste it into JavaScript Function.
-  * Add `const fetch = require('node-fetch');` at the top to import the library. You can import any built-in NodeJS [modules](https://www.w3schools.com/nodejs/ref_modules.asp) and [external libraries](https://github.com/FlowiseAI/Flowise/blob/main/packages/components/src/utils.ts#L289).
-  * Return the `result` at the end.
+* JavaScript 함수: 데이터를 얻기 위해 [Morning Star](https://rapidapi.com/apidojo/api/morning-star) `/market/v2/get-movers` API를 사용할 것입니다. 아직 하지 않았다면 먼저 구독 테스트를 클릭한 다음 코드를 복사하여 JavaScript 함수에 붙여넣습니다.
+  * 라이브러리를 가져오기 위해 맨 위에 `const fetch = require('node-fetch');`를 추가합니다. 모든 내장 NodeJS [모듈](https://www.w3schools.com/nodejs/ref_modules.asp)과 [외부 라이브러리](https://github.com/FlowiseAI/Flowise/blob/main/packages/components/src/utils.ts#L289)를 가져올 수 있습니다.
+  * 끝에 `result`를 반환합니다.
 
 <figure><img src="../../../.gitbook/assets/Untitled (4) (1).png" alt=""><figcaption></figcaption></figure>
 
-The final code should be:
+최종 코드는 다음과 같아야 합니다:
 
 ```javascript
 const fetch = require('node-fetch');
@@ -89,32 +89,32 @@ try {
 }
 ```
 
-You can now save it.
+이제 저장할 수 있습니다.
 
-#### Get Stock news
+#### 주식 뉴스 얻기
 
-Create a new Tool with the following details (you can change as you want):
+다음 세부 정보로 새 Tool을 생성합니다 (원하는 대로 변경할 수 있습니다):
 
-* Name: get\_stock\_news
-* Description: Get latest news for a stock
+* 이름: get\_stock\_news
+* 설명: 주식의 최신 뉴스를 얻습니다
 * Input Schema:
   * Property: performanceId
   * Type: string
-  * Description: id of the stock, which is referred as performanceID in the API
+  * Description: 주식의 ID이며 API에서 performanceID로 참조됩니다
   * Required: true
 
-Input Schema tells LLM what to return as a JSON object. In this case, we are expecting a JSON object like below:
+Input Schema는 LLM에 JSON 객체로 반환할 내용을 알려줍니다. 이 경우 다음과 같은 JSON 객체를 예상합니다:
 
 <pre class="language-json"><code class="lang-json"><strong>{ "performanceId": "SOME TICKER" }
 </strong></code></pre>
 
 <figure><img src="../../../.gitbook/assets/image (4) (2).png" alt=""><figcaption></figcaption></figure>
 
-* JavaScript Function: We are going to use [Morning Star](https://rapidapi.com/apidojo/api/morning-star) `/news/list` API to get the data. First you have to click Subscribe to Test if you haven't already, then copy the code and paste it into JavaScript Function.
-  * Add `const fetch = require('node-fetch');` at the top to import the library. You can import any built-in NodeJS [modules](https://www.w3schools.com/nodejs/ref_modules.asp) and [external libraries](https://github.com/FlowiseAI/Flowise/blob/main/packages/components/src/utils.ts#L289).
-  * Return the `result` at the end.
-* Next, replace the hard-coded url query parameter performanceId: `0P0000OQN8` to the property variable specified in Input Schema: `$performanceId`
-* You can use any properties specified in Input Schema as variables in the JavaScript Function by appending a prefix `$` at the front of the variable name.
+* JavaScript 함수: 데이터를 얻기 위해 [Morning Star](https://rapidapi.com/apidojo/api/morning-star) `/news/list` API를 사용할 것입니다. 아직 하지 않았다면 먼저 구독 테스트를 클릭한 다음 코드를 복사하여 JavaScript 함수에 붙여넣습니다.
+  * 라이브러리를 가져오기 위해 맨 위에 `const fetch = require('node-fetch');`를 추가합니다. 모든 내장 NodeJS [모듈](https://www.w3schools.com/nodejs/ref_modules.asp)과 [외부 라이브러리](https://github.com/FlowiseAI/Flowise/blob/main/packages/components/src/utils.ts#L289)를 가져올 수 있습니다.
+  * 끝에 `result`를 반환합니다.
+* 다음으로 하드코딩된 URL 쿼리 매개변수 performanceId: `0P0000OQN8`를 Input Schema에 지정된 속성 변수 `$performanceId`로 바꿉니다
+* Input Schema에 지정된 모든 속성을 변수 이름 앞에 `$` 접두사를 추가하여 JavaScript 함수에서 변수로 사용할 수 있습니다.
 
 <figure><img src="../../../.gitbook/assets/Untitled (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -142,29 +142,29 @@ try {
 }
 ```
 
-You can now save it.
+이제 저장할 수 있습니다.
 
-#### Add Airtable Record
+#### Airtable 기록 추가
 
-Create a new Tool with the following details (you can change as you want):
+다음 세부 정보로 새 Tool을 생성합니다 (원하는 대로 변경할 수 있습니다):
 
-* Name: add\_airtable
-* Description: Add the stock, news summary & price move to Airtable
+* 이름: add\_airtable
+* 설명: 주식, 뉴스 요약 및 가격 변동을 Airtable에 추가합니다
 * Input Schema:
   * Property: stock
   * Type: string
-  * Description: stock ticker
+  * Description: 주식 티커
   * Required: true
   * Property: move
   * Type: string
-  * Description: price move in %
+  * Description: 가격 변동 백분율
   * Required: true
   * Property: news\_summary
   * Type: string
-  * Description: news summary of the stock
+  * Description: 주식의 뉴스 요약
   * Required: true
 
-ChatGPT will returns a JSON object like this:
+ChatGPT는 다음과 같은 JSON 객체를 반환합니다:
 
 ```json
 { "stock": "SOME TICKER", "move": "20%", "news_summary": "Some summary" }
@@ -172,9 +172,9 @@ ChatGPT will returns a JSON object like this:
 
 <figure><img src="../../../.gitbook/assets/image (36).png" alt=""><figcaption></figcaption></figure>
 
-* JavaScript Function: We are going to use [Airtable Create Record API](https://airtable.com/developers/web/api/create-records) to create a new record to an existing table. You can find the tableId and baseId from [here](https://www.highviewapps.com/kb/where-can-i-find-the-airtable-base-id-and-table-id/). You'll also need to create a personal access token, find how to do it [here](https://www.highviewapps.com/kb/how-do-i-create-an-airtable-personal-access-token/).
+* JavaScript 함수: [Airtable Create Record API](https://airtable.com/developers/web/api/create-records)를 사용하여 기존 테이블에 새 기록을 생성합니다. tableId와 baseId는 [여기](https://www.highviewapps.com/kb/where-can-i-find-the-airtable-base-id-and-table-id/)에서 찾을 수 있습니다. 개인 액세스 토큰도 생성해야 하며, [여기](https://www.highviewapps.com/kb/how-do-i-create-an-airtable-personal-access-token/)에서 방법을 찾을 수 있습니다.
 
-Final code should looks like below. Note how we pass in `$stock`, `$move` and `$news_summary` as variables:
+최종 코드는 다음과 같아야 합니다. `$stock`, `$move` 및 `$news_summary`을 변수로 전달하는 방법에 주의합니다:
 
 ```javascript
 const fetch = require('node-fetch');
@@ -215,52 +215,52 @@ try {
 }
 ```
 
-You can now save it.
+이제 저장할 수 있습니다.
 
-You should see 3 tools created:
+생성된 3개의 Tool이 표시되어야 합니다:
 
 <figure><img src="../../../.gitbook/assets/image (3) (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-### Create Chatflow
+### Chatflow 생성
 
-You can use the template **OpenAI Function** **Agent** from marketplace, and replace the tools with **Custom Tool**. Select the tool you have created.
+Marketplace에서 **OpenAI Function Agent** 템플릿을 사용할 수 있으며 Tool을 **Custom Tool**로 바꿀 수 있습니다. 생성한 Tool을 선택합니다.
 
-Note: OpenAI Function Agent only supports 0613 models currently.
+참고: OpenAI Function Agent는 현재 0613 모델만 지원합니다.
 
 <figure><img src="../../../.gitbook/assets/image (15) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-Save the chatflow and start testing it. For starter, you can try asking:
+Chatflow를 저장하고 테스트를 시작합니다. 시작으로 다음을 시도해볼 수 있습니다:
 
-_<mark style="color:blue;">What is the stock that has the biggest price movement today?</mark>_
+_<mark style="color:blue;">오늘 가장 큰 가격 변동을 가진 주식은 무엇입니까?</mark>_
 
-_<mark style="color:orange;">The stock that has the biggest price movement today is Overstock.com (OSTK) with a price move of 17.47%.</mark>_
+_<mark style="color:orange;">오늘 가장 큰 가격 변동을 가진 주식은 Overstock.com(OSTK)이며 17.47%의 가격 변동을 가집니다.</mark>_
 
-You can then follow up with another question to get the news of that particular stock:
+그런 다음 다른 질문을 하여 해당 주식의 뉴스를 얻을 수 있습니다:
 
-_<mark style="color:blue;">What are the latest news about this stock that might cause the price movement?</mark>_
+_<mark style="color:blue;">이 주식에 대한 최신 뉴스 중 가격 변동을 야기할 수 있는 것은 무엇입니까?</mark>_
 
-_<mark style="color:orange;">Here are the latest news about Overstock.com (OSTK) that might have caused the price movement:</mark>_
+_<mark style="color:orange;">Overstock.com(OSTK)에 대한 최신 뉴스로 가격 변동을 야기했을 수 있습니다:</mark>_
 
-1. _<mark style="color:orange;">Title: "Overstock's shares soar on successful 21.5 million bid for Bed Bath & Beyond assets" Source: MarketWatch Published Date: June 22, 2023 Summary: Overstock.com's shares experienced a significant increase after successfully winning a bid for Bed Bath & Beyond assets worth 21.5 million.</mark>_
-2. _<mark style="color:orange;">Title: "Thinking about trading options or stock in Meta Platforms, Overstock.com, Walmart, Home Depot, or United Parcel Service?" Source: PR Newswire Published Date: June 22, 2023 Summary: This news article discusses the potential trading options and stocks, including Overstock.com, that investors may consider.</mark>_
+1. _<mark style="color:orange;">제목: "Overstock의 Bed Bath & Beyond 자산 2,150만 달러 입찰 성공으로 주가 상승" 출처: MarketWatch 발행일: 2023년 6월 22일 요약: Overstock.com은 Bed Bath & Beyond 자산에 대해 2,150만 달러의 입찰에 성공한 후 주가가 크게 상승했습니다.</mark>_
+2. _<mark style="color:orange;">제목: "Meta Platforms, Overstock.com, Walmart, Home Depot 또는 United Parcel Service의 거래 옵션 또는 주식을 생각 중이신가요?" 출처: PR Newswire 발행일: 2023년 6월 22일 요약: 이 뉴스 기사는 투자자가 고려할 수 있는 잠재적인 거래 옵션 및 주식(Overstock.com 포함)에 대해 설명합니다.</mark>_
 
-_<mark style="color:orange;">Please note that these news articles are for informational purposes only and may not be the sole reason for the price movement. It is always recommended to conduct thorough research and analysis before making any investment decisions.</mark>_
+_<mark style="color:orange;">이러한 뉴스 기사는 정보 제공 목적으로만 제공되며 가격 변동의 유일한 이유가 아닐 수 있습니다. 투자 결정을 내리기 전에 항상 철저한 조사 및 분석을 수행하는 것이 좋습니다.</mark>_
 
-Lastly, you can ask ChatGPT to add a new record to Airtable:
+마지막으로 ChatGPT에 Airtable에 새 기록을 추가하도록 요청할 수 있습니다:
 
-_<mark style="color:blue;">Can you add a record to Airtable with the stock ticker, price move and news summary?</mark>_
+_<mark style="color:blue;">주식 티커, 가격 변동 및 뉴스 요약이 포함된 기록을 Airtable에 추가할 수 있습니까?</mark>_
 
-_<mark style="color:orange;">I have added a record to Airtable with the following details:</mark>_
+_<mark style="color:orange;">다음 세부 정보와 함께 Airtable에 기록을 추가했습니다:</mark>_
 
-_<mark style="color:orange;">Stock Ticker: OSTK Price Move: 17.47% News Summary: Overstock.com's shares experienced a significant increase after successfully winning a bid for Bed Bath & Beyond assets worth $21.5 million.</mark>_
+_<mark style="color:orange;">주식 티커: OSTK 가격 변동: 17.47% 뉴스 요약: Overstock.com은 Bed Bath & Beyond 자산에 대해 2,150만 달러의 입찰에 성공한 후 주가가 크게 상승했습니다.</mark>_
 
-[🎉](https://emojipedia.org/party-popper/)[🎉](https://emojipedia.org/party-popper/)**Voila!** That's how you can create your own custom tool and use it with the OpenAI Function Agent!
+[🎉](https://emojipedia.org/party-popper/)[🎉](https://emojipedia.org/party-popper/)**완료!** 이것이 자신의 Custom Tool을 만들고 OpenAI Function Agent와 함께 사용하는 방법입니다!
 
-## Additional
+## 추가
 
-### Pass Session ID to Function
+### 함수에 Session ID 전달
 
-By default, Function in custom tool has access to the following flow configurations:
+기본적으로 Custom Tool의 함수는 다음 Flow 구성에 액세스할 수 있습니다:
 
 ```json5
 $flow.sessionId 
@@ -269,7 +269,7 @@ $flow.chatflowId
 $flow.input
 ```
 
-Below is an example of sending the sessionId to Discord webhook:
+다음은 sessionId를 Discord 웹훅으로 전송하는 예입니다:
 
 {% tabs %}
 {% tab title="Javascript" %}
@@ -305,19 +305,19 @@ try {
 {% endtab %}
 {% endtabs %}
 
-### Pass variables to Function
+### 함수에 변수 전달
 
-In some cases, you would like to pass variables to custom tool function.
+경우에 따라 Custom Tool 함수에 변수를 전달하고 싶을 수 있습니다.
 
-For example, you are creating a chatbot that uses a custom tool. The custom tool is executing a HTTP POST call and API key is needed for successful authenticated request. You can pass it as a variable.
+예를 들어 Custom Tool을 사용하는 Chatbot을 만들고 있습니다. Custom Tool은 HTTP POST 호출을 실행하고 성공적인 인증 요청을 위해 API 키가 필요합니다. 변수로 전달할 수 있습니다.
 
-By default, Function in custom tool has access to variables:
+기본적으로 Custom Tool의 함수는 변수에 액세스할 수 있습니다:
 
 ```
 $vars.<variable-name>
 ```
 
-Example of how to pass variables in Flowise using API and Embedded:
+Flowise에서 API 및 Embedded를 사용하여 변수를 전달하는 방법의 예:
 
 {% tabs %}
 {% tab title="Javascript API" %}
@@ -406,18 +406,18 @@ try {
 {% endtab %}
 {% endtabs %}
 
-### Override Custom Tool
+### Custom Tool 재정의
 
-Parameters below can be overriden
+아래 매개변수를 재정의할 수 있습니다
 
-| Parameter        | Description      |
-| ---------------- | ---------------- |
-| customToolName   | tool name        |
-| customToolDesc   | tool description |
-| customToolSchema | tool schema      |
-| customToolFunc   | tool function    |
+| 매개변수           | 설명              |
+| ------------------- | -------------------- |
+| customToolName      | Tool 이름           |
+| customToolDesc      | Tool 설명           |
+| customToolSchema    | Tool Schema         |
+| customToolFunc      | Tool 함수           |
 
-Example of an API call to override custom tool parameters:
+Custom Tool 매개변수를 재정의하는 API 호출의 예:
 
 {% tabs %}
 {% tab title="Javascript API" %}
@@ -450,11 +450,11 @@ query({
 {% endtab %}
 {% endtabs %}
 
-### Import External Dependencies
+### 외부 종속성 가져오기
 
-You can import any built-in NodeJS [modules](https://www.w3schools.com/nodejs/ref_modules.asp) and supported [external libraries](https://github.com/FlowiseAI/Flowise/blob/main/packages/components/src/utils.ts#L289) into Function.
+모든 내장 NodeJS [모듈](https://www.w3schools.com/nodejs/ref_modules.asp)과 지원되는 [외부 라이브러리](https://github.com/FlowiseAI/Flowise/blob/main/packages/components/src/utils.ts#L289)를 함수로 가져올 수 있습니다.
 
-1. To import any non-supported libraries, you can easily add the new npm package to `package.json` in `packages/components` folder.
+1. 지원되지 않는 라이브러리를 가져오려면 `packages/components` 폴더의 `package.json`에 새로운 npm 패키지를 쉽게 추가할 수 있습니다.
 
 ```bash
 cd Flowise && cd packages && cd components
@@ -464,19 +464,19 @@ pnpm install
 pnpm build
 ```
 
-2. Then, add the imported libraries to `TOOL_FUNCTION_EXTERNAL_DEP` environment variable. Refer [#builtin-and-external-dependencies](../../../configuration/environment-variables.md#builtin-and-external-dependencies "mention") for more details.
-3. Start the app
+2. 그런 다음 가져온 라이브러리를 `TOOL_FUNCTION_EXTERNAL_DEP` 환경 변수에 추가합니다. 자세한 내용은 [#builtin-and-external-dependencies](../../../configuration/environment-variables.md#builtin-and-external-dependencies "mention")를 참조하십시오.
+3. 앱 시작
 
 ```bash
 pnpm start
 ```
 
-4. You can then use the newly added library in the **JavaScript Function** like so:
+4. 그런 다음 **JavaScript 함수**에서 새로 추가된 라이브러리를 다음과 같이 사용할 수 있습니다:
 
 ```javascript
 const axios = require('axios')
 ```
 
-Watch how to add additional dependencies and import libraries
+외부 종속성을 추가하고 라이브러리를 가져오는 방법 보기
 
 {% embed url="https://youtu.be/0H1rrisc0ok" %}

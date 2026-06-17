@@ -1,13 +1,12 @@
 ---
 description: >-
-  Agent that is designed for LLMs that are good for reasoning/writing XML (e.g:
-  Anthropic Claude).
+  XML 추론/작성에 능한 LLM을 위해 설계된 Agent입니다 (예: Anthropic Claude).
 ---
 
-# XML 에이전트
+# XML Agent
 
-<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="335"><figcaption><p>XML 에이전트 Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="335"><figcaption><p>XML Agent Node</p></figcaption></figure>
 
 {% hint style="info" %}
-This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA) to get started.
+이 섹션은 진행 중입니다. 이 섹션을 완성하는 데 도움을 주실 수 있다면 감사하겠습니다. 시작하려면 [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA)를 확인해 주십시오.
 {% endhint %}

@@ -1,15 +1,11 @@
 ---
-description: Groq의 고속 LLM 추론을 사용하는 챗 모델입니다.
+description: LPU Inference Engine를 사용한 Groq API 주변의 래퍼입니다.
 ---
 
 # GroqChat
 
-<figure><img src="../../../.gitbook/assets/image (450).png" alt="" width="271"><figcaption><p>Groq Chat Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (69).png" alt="" width="262"><figcaption><p>GroqChat Node</p></figcaption></figure>
 
-Groq 챗 모델에 대한 더 많은 정보는 [공식 문서](https://console.groq.com/)를 참조하세요.
-
-## 입력
-
-- **Language Model**: 쿼리 처리에 사용할 언어 모델입니다.
-- **API Key**: Groq API 키입니다.
-- **Temperature**: 0과 1 사이의 값으로, 값이 높을수록 응답이 더 창의적입니다.
+{% hint style="info" %}
+이 섹션은 진행 중입니다. 이 섹션을 완성하는 데 도움을 주실 수 있다면 감사하겠습니다. 시작하려면 [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA)를 확인해 주십시오.
+{% endhint %}

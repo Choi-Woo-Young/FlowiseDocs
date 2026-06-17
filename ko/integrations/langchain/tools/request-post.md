@@ -1,14 +1,11 @@
 ---
-
-description: Execute HTTP POST requests.
-
+description: HTTP POST 요청을 실행합니다.
 ---
 
+# Request Post
 
-# Request POST
-
-<figure><img src="../../../.gitbook/assets/up-010.png" alt="" width="280"><figcaption><p>Request POST Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/up-010.png" alt="" width="280"><figcaption><p>Request Post Node</p></figcaption></figure>
 
 {% hint style="info" %}
-This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution 가이드](/broken/pages/G48tdmpQ3z4CTWEspqkA) to get started.
+이 섹션은 현재 작성 중입니다. 이 섹션을 완성하는 데 도움을 주실 수 있다면 감사하겠습니다. [기여 가이드](/broken/pages/G48tdmpQ3z4CTWEspqkA)를 확인하여 시작하세요.
 {% endhint %}

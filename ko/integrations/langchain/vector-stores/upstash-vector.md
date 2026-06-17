@@ -1,41 +1,41 @@
 # Upstash Vector
 
-## Prequisites
+## 사전 준비 사항
 
-1. Sign up or Sign In to [Upstash Console](https://console.upstash.com)
-2.  Navigate to Vector page and click **Create Index**
+1. [Upstash Console](https://console.upstash.com)에 가입하거나 로그인합니다
+2.  Vector 페이지로 이동한 후 **Create Index**를 클릭합니다
 
     <figure><img src="../../../.gitbook/assets/upstash/list-index.jpeg" alt=""><figcaption></figcaption></figure>
-3.  Do the necessary configurations and create the index.
+3.  필요한 설정을 진행하고 index를 생성합니다.
 
-    1. **Index Name**, name of the index to be created. (e.g. "flowise-upstash-demo")
-    2. **Dimensions**, size of the vectors to be inserted in the index. (e.g. 1536)
-    3. **Embedding Model**, the model to be used in [Upstash Embeddings](https://upstash.com/docs/vector/features/embeddingmodels). This is optional. If you enable it, you don't need to provide embeddings model.
+    1. **Index Name**, 생성할 index의 이름입니다. (예: "flowise-upstash-demo")
+    2. **Dimensions**, index에 삽입될 vector의 크기입니다. (예: 1536)
+    3. **Embedding Model**, [Upstash Embeddings](https://upstash.com/docs/vector/features/embeddingmodels)에서 사용할 model입니다. 이는 선택 사항입니다. 활성화하면 embeddings model을 제공할 필요가 없습니다.
 
     <figure><img src="../../../.gitbook/assets/upstash/create-index.jpeg" alt=""><figcaption></figcaption></figure>
 
-## Setup
+## 설정
 
-1. Get your index credentials
+1. index credential을 가져옵니다
 
 <figure><img src="../../../.gitbook/assets/upstash/create-index.jpeg" alt=""><figcaption></figcaption></figure>
 
-1. Create new Upstash Vector credential and fill in
-   1. Upstash Vector REST URL from UPSTASH\_VECTOR\_REST\_URL on console
-   2. Upstash Vector Rest Token from UPSTASH\_VECTOR\_REST\_TOKEN on console
+1. 새로운 Upstash Vector credential을 생성하고 입력합니다
+   1. console의 UPSTASH\_VECTOR\_REST\_URL에서 가져온 Upstash Vector REST URL
+   2. console의 UPSTASH\_VECTOR\_REST\_TOKEN에서 가져온 Upstash Vector Rest Token
 
 <figure><img src="../../../.gitbook/assets/upstash/credentials.jpeg" alt="" width="563"><figcaption></figcaption></figure>
 
-1. Add a new **Upstash Vector** node to canvas
+1. canvas에 새로운 **Upstash Vector** node를 추가합니다
 
 <figure><img src="../../../.gitbook/assets/upstash/upstash-node.jpeg" alt="" width="279"><figcaption></figcaption></figure>
 
-1. Add additional nodes to canvas and start the upsert process
-   * **Document** can be connected with any node under [**Document Loader**](../document-loaders/) category
-   * **Embeddings** can be connected with any node under [**Embeddings** ](../embeddings/)category
+1. canvas에 추가 node를 더하고 upsert 과정을 시작합니다
+   * **Document**는 [**Document Loader**](../document-loaders/) 카테고리 아래의 모든 node와 연결할 수 있습니다
+   * **Embeddings**는 [**Embeddings** ](../embeddings/)카테고리 아래의 모든 node와 연결할 수 있습니다
 
 <figure><img src="../../../.gitbook/assets/upstash/flowise-design.jpeg" alt=""><figcaption></figcaption></figure>
 
-1. Verify from [Upstash dashboard](https://console.upstash.com) to see if data has been successfully updated:
+1. 데이터가 성공적으로 업데이트되었는지 [Upstash dashboard](https://console.upstash.com)에서 확인합니다:
 
 <figure><img src="../../../.gitbook/assets/upstash/databrowser.jpeg" alt=""><figcaption></figcaption></figure>

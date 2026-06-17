@@ -1,11 +1,11 @@
 ---
-description: Caches LLM response in local memory, will be cleared when app is restarted.
+description: LLM 응답을 로컬 메모리에 캐시하며, 앱이 다시 시작되면 삭제됩니다.
 ---
 
-# 메모리 내 캐시
+# InMemory Cache
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2).png" alt="" width="344"><figcaption><p>메모리 내 캐시 Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2).png" alt="" width="344"><figcaption><p>InMemory Cache Node</p></figcaption></figure>
 
 {% hint style="info" %}
-This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA) to get started.
+이 섹션은 진행 중입니다. 이 섹션을 완성하는 데 도움을 주실 수 있다면 감사하겠습니다. 시작하려면 [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA)를 확인해 주십시오.
 {% endhint %}

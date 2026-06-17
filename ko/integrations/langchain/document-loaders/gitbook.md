@@ -1,77 +1,54 @@
-
-description: Load data from GitBook.
-
+---
+설명: GitBook 문서에서 데이터 로드
+---
 
 # GitBook
 
-<figure><img src="../../../.gitbook/assets/image (74).png" alt="" width="270"><figcaption><p>GitBook Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image_gitbook.png" alt="" width="271"><figcaption><p>GitBook 노드</p></figcaption></figure>
 
-# GitBook Document Loader
+GitBook은 팀 문서화를 위한 현대적인 플랫폼입니다. 이 모듈은 GitBook Space의 페이지를 로드하고 Document로 변환합니다.
 
-GitBook is a modern documentation platform that helps teams share knowledge. This module provides functionality to load and process content from GitBook documentation sites.
+이 모듈은 다음을 수행할 수 있는 정교한 GitBook Document Loader를 제공합니다:
 
-This module provides a sophisticated GitBook document loader that can:
-- Load content from specific GitBook pages
-- Crawl entire GitBook documentation sites
-- Extract structured content
-- Process content with text splitters
-- Customize metadata extraction
-- Handle recursive page loading
+* GitBook Space의 모든 페이지 로드
+* 페이지 계층 구조 유지
+* 페이지 메타데이터 추출
+* 자식 페이지 처리
+* Text Splitter와 통합
+* 링크 및 참조 보존
 
-## Inputs
+## 입력
 
-### Required Parameters
-- **Web Path**: The URL to the GitBook page or root path
-  - Single page: e.g., https://docs.gitbook.com/product-tour/navigation
-  - Root path: e.g., https://docs.gitbook.com/
+### 필수 파라미터
 
-### Optional Parameters
-- **Should Load All Paths**: Whether to recursively load all pages from the root path
-- **Text Splitter**: A text splitter to process the extracted content
-- **Additional Metadata**: JSON object with additional metadata
-- **Omit Metadata Keys**: Comma-separated list of metadata keys to omit
+* **Space ID**: GitBook Space의 ID
+* **Access Token**: GitBook API Access Token
 
-## Outputs
+### 선택적 파라미터
 
-- **Document**: Array of document objects containing metadata and pageContent
-- **Text**: Concatenated string from pageContent of documents
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **Page Limit**: 로드할 최대 페이지 수
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
 
-## Features
-- Single page loading
-- Recursive site crawling
-- Content extraction
-- Text splitting support
-- Metadata customization
-- Error handling
-- Path management
+## 출력
 
-## Loading Modes
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-### Single Page Mode
-- Loads content from a specific page
-- Extracts page content and metadata
-- Preserves page structure
-- Faster for single page access
+## 기능
 
-### All Paths Mode
-- Recursively loads all pages from root
-- Maintains site hierarchy
-- Extracts all available content
-- Preserves navigation structure
+* Space에서 페이지 로드
+* 계층 구조 유지
+* 메타데이터 추출
+* 자식 페이지 처리
+* Text Splitter 지원
+* 오류 처리
 
-## Document Structure
-Each document contains:
-- **pageContent**: Extracted content from the page
-- **metadata**:
-  - title: Page title
-  - url: Original page URL
-  - Additional custom metadata
+## 참고사항
 
-## Notes
-- Supports both single page and full site loading
-- Handles GitBook's dynamic content
-- Preserves document structure
-- Supports custom metadata addition
-- Error handling for invalid URLs
-- Memory-efficient processing
-- Flexible output formats
+* 유효한 GitBook API 토큰 필요
+* Space ID 필수
+* 페이지 권한 존중
+* API rate limit 적용
+* 대용량 Space의 성능 고려

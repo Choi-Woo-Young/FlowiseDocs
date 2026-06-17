@@ -1,16 +1,16 @@
-# Conversation Summary Buffer Memory
+# 대화 요약 버퍼 메모리
 
-Use Flowise database table `chat_message` as the storage mechanism for storing/retrieving conversations.
+Flowise 데이터베이스 테이블 `chat_message`를 대화 저장/검색의 저장소 메커니즘으로 사용합니다.
 
-This memory keeps a buffer of recent interactions and compiles old ones into a summary, using both in its storage. Instead of flushing old interactions based solely on their number, it now considers the total length of tokens to decide when to clear them out.
+이 메모리는 최근 상호작용의 버퍼를 유지하고 이전 상호작용을 요약으로 컴파일하여 저장소에서 둘 다 사용합니다. 더 이상 오래된 상호작용을 개수만을 기준으로 삭제하지 않고, 이제는 토큰의 총 길이를 고려하여 언제 삭제할지 결정합니다.
 
 <figure><img src="../../../.gitbook/assets/image (4) (1) (2) (1).png" alt="" width="297"><figcaption></figcaption></figure>
 
-## Input
+## 입력
 
 | Parameter       | Description                                                                   | Default       |
 | --------------- | ----------------------------------------------------------------------------- | ------------- |
-| Chat Model      | LLM used to perform summarization                                             |               |
-| Max Token Limit | Summarize conversations once token limit is reached                           | 2000          |
-| Session Id      | An ID to retrieve/store messages. If not specified, a random ID will be used. |               |
-| Memory Key      | A key used to format messages in prompt template                              | chat\_history |
+| Chat Model      | 요약을 수행하는 데 사용되는 LLM                                                   |               |
+| Max Token Limit | 토큰 제한에 도달하면 대화 요약                                                   | 2000          |
+| Session Id      | 메시지를 검색/저장하기 위한 ID입니다. 지정하지 않으면 무작위 ID가 사용됩니다.       |               |
+| Memory Key      | 프롬프트 템플릿에서 메시지의 형식을 지정하는 데 사용되는 키                        | chat\_history |

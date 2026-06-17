@@ -1,8 +1,8 @@
 ---
-description: Learn how to upsert data to Vector Stores with Flowise
+description: Flowise를 사용하여 Vector Stores에 데이터를 upsert하는 방법을 배웁니다
 ---
 
-# Upserting Data
+# 데이터 Upserting
 
 ***
 

@@ -1,94 +1,61 @@
+---
+설명: Firecrawl을 사용한 웹 스크래핑
+---
 
-description: Load data from URL using FireCrawl.
+# Firecrawl
 
+<figure><img src="../../../.gitbook/assets/image_firecrawl.png" alt="" width="271"><figcaption><p>Firecrawl 노드</p></figcaption></figure>
 
-# FireCrawl
+Firecrawl은 웹사이트를 스크래핑하고 LLM-ready한 markdown으로 변환하는 서비스입니다. 이 모듈은 Firecrawl API를 사용하여 웹 콘텐츠를 로드합니다.
 
-<figure><img src="../../../.gitbook/assets/up-004.png" alt="" width="347"><figcaption><p>FireCrawl Node</p></figcaption></figure>
+이 모듈은 다음을 수행할 수 있는 정교한 웹 스크래퍼를 제공합니다:
 
-# FireCrawl Document Loader
+* 웹페이지를 Markdown으로 변환
+* JavaScript 렌더링 지원
+* 메타데이터 추출
+* 여러 URL 처리
+* Text Splitter와 통합
+* 구조화된 출력
 
-[FireCrawl](https://www.firecrawl.dev) is a powerful web crawling and scraping service that provides advanced capabilities for extracting content from websites. This module enables loading and processing web content through the FireCrawl API.
+## 입력
 
-This module provides a sophisticated web crawler that can:
-- Scrape single web pages
-- Crawl entire websites
-- Extract structured data
-- Handle JavaScript-rendered content
-- Process content with text splitters
-- Customize metadata extraction
-- Support multiple operation modes
+### 필수 파라미터
 
-## Inputs
+* **URLs**: 스크래핑할 URL의 쉼표로 구분된 목록
+* **Connect Credential**: Firecrawl API 자격증명
 
-### Required Parameters
-- **URL**: The webpage or website URL to process
-- **Connect Credential**: FireCrawl API credentials
-- **Mode**: Choose between:
-  - Scrape: Single page extraction
-  - Crawl: Multi-page website crawling
-  - Extract: Structured data extraction
+### 선택적 파라미터
 
-### Optional Parameters
-- **Text Splitter**: A text splitter to process the extracted content
-- **Scrape Options**:
-  - Include Tags: HTML tags to include
-  - Exclude Tags: HTML tags to exclude
-  - Mobile: Use mobile user agent
-  - Skip TLS Verification: Bypass SSL checks
-  - Timeout: Request timeout
-- **Additional Metadata**: JSON object with additional metadata
-- **Omit Metadata Keys**: Comma-separated list of metadata keys to omit
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
 
-## Outputs
+## 출력
 
-- **Document**: Array of document objects containing metadata and pageContent
-- **Text**: Concatenated string from pageContent of documents
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-## Features
-- Multiple operation modes
-- Advanced scraping options
-- Structured data extraction
-- JavaScript rendering
-- Mobile device emulation
-- Custom timeout settings
-- Error handling
+## 기능
 
-## Operation Modes
+* HTML을 Markdown으로 변환
+* JavaScript 렌더링
+* 메타데이터 자동 추출
+* 다중 URL 처리
+* Text Splitter 지원
+* 오류 처리
 
-### Scrape Mode
-- Single page processing
-- Main content extraction
-- Format selection
-- Custom tag filtering
+## 특징
 
-### Crawl Mode
-- Multi-page crawling
-- Subdomain handling
-- Sitemap processing
-- Link extraction
+* LLM-ready 형식
+* 깨끗한 markdown 출력
+* 이미지 URL 보존
+* 링크 구조 유지
+* 메타데이터 포함
 
-### Extract Mode
-- Structured data extraction
-- Schema-based parsing
-- LLM-powered extraction
-- Custom extraction prompts
+## 참고사항
 
-## Document Structure
-Each document contains:
-- **pageContent**: Extracted content in markdown format
-- **metadata**:
-  - title: Page title
-  - description: Meta description
-  - language: Content language
-  - sourceURL: Original URL
-  - Additional custom metadata
-
-## Notes
-- Requires a valid [FireCrawl API key](https://www.firecrawl.dev/app/api-keys)
-- Supports multiple content formats
-- Handles rate limiting
-- Job status monitoring
-- Error handling and retries
-- Customizable request options
-- Memory-efficient processing
+* 유효한 Firecrawl API 키 필요
+* API rate limit 적용
+* 웹사이트 이용약관 준수
+* 크롤링 속도 제한 가능
+* robots.txt 준수

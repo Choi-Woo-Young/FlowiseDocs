@@ -1,16 +1,16 @@
 ---
-description: LangChain Agent Node
+description: LangChain Agent Nodes
 ---
 
 # Agents
 
 ***
 
-언어 모델은 그 자체로는 동작을 취할 수 없으며, 단지 텍스트를 출력할 뿐입니다.
+언어 모델만으로는 행동을 취할 수 없습니다. 단지 텍스트만 출력합니다.
 
-Agent는 LLM을 추론 엔진으로 사용하여 어떤 동작을 취할지, 그리고 그 동작에 대한 input이 무엇이어야 하는지를 결정하는 시스템입니다. 그런 다음 이러한 동작의 결과를 agent에 다시 입력하여, 더 많은 동작이 필요한지 또는 종료해도 되는지를 결정할 수 있습니다.
+Agent는 LLM을 추론 엔진으로 사용하여 어떤 작업을 수행할지, 그 작업의 입력이 무엇인지를 결정하는 시스템입니다. 이러한 작업의 결과를 agent에게 다시 피드백하면 더 많은 작업이 필요한지, 또는 완료해도 되는지를 결정할 수 있습니다.
 
-### Agent Node:
+### Agent Nodes:
 
 * [Airtable Agent](airtable-agent.md)
 * [AutoGPT](autogpt.md)

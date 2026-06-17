@@ -1,10 +1,10 @@
 # Azure OpenAI Embeddings
 
-## 사전 요구사항
+## 필수 조건
 
-1. Azure에 [로그인](https://portal.azure.com/)하거나 [가입](https://azure.microsoft.com/en-us/free/)
+1. [로그인](https://portal.azure.com/) 또는 [가입](https://azure.microsoft.com/en-us/free/)하여 Azure에 접속
 2. [Azure OpenAI 생성](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)하고 약 10 영업일 동안 승인 대기
-3. API 키는 **Azure OpenAI** > **name\_azure\_openai** 클릭 > **Click here to manage keys** 클릭에서 확인 가능
+3. API 키는 **Azure OpenAI** > **name\_azure\_openai** 클릭 > **Click here to manage keys** 클릭에서 사용 가능합니다.
 
 <figure><img src="../../../.gitbook/assets/azure/azure-general/1.png" alt=""><figcaption></figcaption></figure>
 
@@ -28,7 +28,7 @@
 
 <figure><img src="../../../.gitbook/assets/azure/azure-openai-embeddings/1.png" alt="" width="559"><figcaption></figcaption></figure>
 
-5. **Azure OpenAI Embeddings** 생성 완료
+5. **Azure OpenAI Embeddings** 성공적으로 생성됨
 
 * Deployment name: `text-embedding-ada-002`
 * Instance name: `top right conner`
@@ -45,11 +45,11 @@
 
 <figure><img src="../../../.gitbook/assets/azure/azure-openai-embeddings/4.png" alt="" width="386"><figcaption></figcaption></figure>
 
-3. 각 세부 정보(API Key, Instance & Deployment name, [API Version](https://learn.microsoft.com/en-us/azure/ai-services/openai/reference#chat-completions))를 **Azure OpenAI Embeddings** 자격증명에 복사 및 붙여넣기
+3. 각 세부 정보(API Key, Instance & Deployment name, [API Version](https://learn.microsoft.com/en-us/azure/ai-services/openai/reference#chat-completions))를 복사하여 **Azure OpenAI Embeddings** 자격증명에 붙여넣기
 
 <figure><img src="../../../.gitbook/assets/azure/azure-openai-embeddings/5.png" alt="" width="554"><figcaption></figcaption></figure>
 
-4. 완료, Flowise에서 **Azure OpenAI Embeddings 노드**를 생성했습니다.
+4. 완료되었습니다 [🎉](https://emojipedia.org/party-popper/), Flowise에서 **Azure OpenAI Embeddings node**를 생성했습니다.
 
 <figure><img src="../../../.gitbook/assets/azure/azure-general/5.png" alt=""><figcaption></figcaption></figure>
 

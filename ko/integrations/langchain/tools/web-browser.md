@@ -1,5 +1,5 @@
 ---
-description: Gives agent the ability to visit a website and extract information.
+description: Agent에 웹사이트를 방문하고 정보를 추출할 수 있는 능력을 제공합니다.
 ---
 
 # Web Browser
@@ -7,5 +7,5 @@ description: Gives agent the ability to visit a website and extract information.
 <figure><img src="../../../.gitbook/assets/image (12) (1) (1) (2).png" alt="" width="309"><figcaption><p>Web Browser Node</p></figcaption></figure>
 
 {% hint style="info" %}
-This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA) to get started.
+이 섹션은 현재 작성 중입니다. 이 섹션을 완성하는 데 도움을 주실 수 있다면 감사하겠습니다. [기여 가이드](/broken/pages/G48tdmpQ3z4CTWEspqkA)를 확인하여 시작하세요.
 {% endhint %}

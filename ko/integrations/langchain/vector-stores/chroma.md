@@ -1,43 +1,43 @@
 # Chroma
 
-## Prerequisite
+## 사전 요구사항
 
-You need a Chroma server. You can:
+Chroma 서버가 필요합니다. 다음 중 하나를 수행할 수 있습니다:
 
-1. Install Chroma CLI and run the server using `chroma run`
-2. Sign up for [Chroma Cloud](https://trychroma.com/home).
-3. Deploy your own Chroma instance in [Docker](https://docs.trychroma.com/guides/deploy/docker).
+1. Chroma CLI를 설치하고 `chroma run`을 사용하여 서버를 실행합니다.
+2. [Chroma Cloud](https://trychroma.com/home)에 가입합니다.
+3. [Docker](https://docs.trychroma.com/guides/deploy/docker)에서 자신의 Chroma 인스턴스를 배포합니다.
 
-## Setup
+## 설정
 
 | Input           | Description                                                                                                                                        | Default               | Cloud |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | ----- |
-| Document        | Can be connected with nodes from [Document Loader](../document-loaders/)                                                                           |                       |       |
-| Embeddings      | Can be connected with nodes from [Embeddings](../embeddings/)                                                                                      |                       |       |
-| Collection Name | Chroma collection name. Refer to [here](https://docs.trychroma.com/usage-guide#creating-inspecting-and-deleting-collections) for naming convention |                       |       |
-| Chroma URL      | Specify the URL of your chroma instance                                                                                                            | http://localhost:8000 | https://api.trychroma.com:8000 |
+| Document        | [Document Loader](../document-loaders/) 노드와 연결할 수 있습니다.                                                                           |                       |       |
+| Embeddings      | [Embeddings](../embeddings/) 노드와 연결할 수 있습니다.                                                                                      |                       |       |
+| Collection Name | Chroma collection 이름입니다. 명명 규칙에 대해서는 [여기](https://docs.trychroma.com/usage-guide#creating-inspecting-and-deleting-collections)를 참조하세요. |                       |       |
+| Chroma URL      | Chroma 인스턴스의 URL을 지정합니다.                                                                                                            | http://localhost:8000 | https://api.trychroma.com:8000 |
 
-For Chroma Cloud, you will need to get your tenant ID, and create your database and API key.
+Chroma Cloud의 경우 tenant ID를 얻고 데이터베이스 및 API 키를 생성해야 합니다.
 
 <figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (2) (1).png" alt="" width="238"><figcaption></figcaption></figure>
 
-### Additional
+### 추가사항
 
-If you are running both Flowise and Chroma on Docker, there are additional steps involved.
+Flowise와 Chroma를 모두 Docker에서 실행하는 경우 추가 단계가 필요합니다.
 
-1. Spin up Chroma docker first
+1. 먼저 Chroma Docker를 실행합니다.
 
 ```bash
 docker compose up -d --build
 ```
 
-2. Open `docker-compose.yml` in Flowise
+2. Flowise에서 `docker-compose.yml`을 엽니다.
 
 ```bash
 cd Flowise && cd docker
 ```
 
-3. Modify the file to:
+3. 파일을 다음과 같이 수정합니다:
 
 ```sh
 version: '3.1'
@@ -68,17 +68,17 @@ networks:
         external: true
 ```
 
-4. Spin up Flowise docker image
+4. Flowise Docker 이미지를 실행합니다.
 
 ```bash
 docker compose up -d
 ```
 
-5. On the Chroma URL, for Windows and MacOS Operating Systems specify [http://host.docker.internal:8000](http://host.docker.internal:8000/). For Linux based systems the default docker gateway should be used since host.docker.internal is not available: [http://172.17.0.1:8000](http://172.17.0.1:8000/)
+5. Chroma URL에서 Windows 및 MacOS 운영 체제의 경우 [http://host.docker.internal:8000](http://host.docker.internal:8000/)을 지정합니다. Linux 기반 시스템의 경우 host.docker.internal을 사용할 수 없으므로 기본 Docker 게이트웨이를 사용해야 합니다: [http://172.17.0.1:8000](http://172.17.0.1:8000/)
 
 <figure><img src="../../../.gitbook/assets/image (5) (5).png" alt="" width="256"><figcaption></figcaption></figure>
 
-## Resources
+## 리소스
 
 * [LangChain JS Chroma](https://js.langchain.com/docs/modules/indexes/vector_stores/integrations/chroma)
 * [Chroma Getting Started](https://docs.trychroma.com/getting-started)

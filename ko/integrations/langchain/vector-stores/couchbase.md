@@ -1,51 +1,50 @@
 ---
 description: >-
-  Upsert embedded data and perform vector search upon query using Couchbase, a
-  NoSQL cloud developer data platform for critical, AI-powered applications.
+  Couchbase를 사용하여 임베딩된 데이터를 upsert하고 쿼리 시 벡터 검색을 수행합니다. Couchbase는 AI 기반 애플리케이션을 위한 NoSQL 클라우드 개발자 데이터 플랫폼입니다.
 ---
 
 # Couchbase
 
-## Prerequisite
+## 사전 요구사항
 
-### Requirements
+### 요구사항
 
-1. Couchbase Cluster (Self Managed or Capella) version **7.6+** with [Search Service](https://docs.couchbase.com/server/current/search/search.html).
-2.  Capella Setup: To know more about connecting to your Capella cluster, please follow the [instructions](https://docs.couchbase.com/cloud/get-started/connect.html?_gl=1*1yhpmel*_gcl_au*MTMzNDE3NTQxLjE3MzY5MjA5MzQ.).
+1. **7.6+** 버전의 Couchbase Cluster (자체 관리 또는 Capella)에 [Search Service](https://docs.couchbase.com/server/current/search/search.html)가 있어야 합니다.
+2.  Capella 설정: Capella 클러스터에 연결하는 방법에 대해 자세히 알아보려면 [지침](https://docs.couchbase.com/cloud/get-started/connect.html?_gl=1*1yhpmel*_gcl_au*MTMzNDE3NTQxLjE3MzY5MjA5MzQ.)을 따르세요.
 
-    Specifically, you need to do the following:
+    구체적으로 다음을 수행해야 합니다:
 
-    * Create the [database credentials](https://docs.couchbase.com/cloud/clusters/manage-database-users.html?_gl=1*19zk7vq*_gcl_au*MTMzNDE3NTQxLjE3MzY5MjA5MzQ.) to access cluster.
-    * [Allow access](https://docs.couchbase.com/cloud/clusters/allow-ip-address.html?_gl=1*19zk7vq*_gcl_au*MTMzNDE3NTQxLjE3MzY5MjA5MzQ.) to the Cluster from the IP on which the application is running.
+    * 클러스터에 접근하기 위해 [데이터베이스 자격증명](https://docs.couchbase.com/cloud/clusters/manage-database-users.html?_gl=1*19zk7vq*_gcl_au*MTMzNDE3NTQxLjE3MzY5MjA5MzQ.)을 생성합니다.
+    * 애플리케이션이 실행되는 IP에서 Cluster로의 [접근을 허용](https://docs.couchbase.com/cloud/clusters/allow-ip-address.html?_gl=1*19zk7vq*_gcl_au*MTMzNDE3NTQxLjE3MzY5MjA5MzQ.)합니다.
 
-    Self Managed Setup:
+    자체 관리 설정:
 
-    * Follow [Couchbase Installation Options](https://developer.couchbase.com/tutorial-couchbase-installation-options) for installing the latest Couchbase Database Server Instance. Make sure to add the Search Service.
-3. Search Index Creation on the Full Text Service in Couchbase.
+    * 최신 Couchbase Database Server Instance를 설치하기 위해 [Couchbase 설치 옵션](https://developer.couchbase.com/tutorial-couchbase-installation-options)을 따르세요. Search Service를 추가해야 합니다.
+3. Couchbase의 Full Text Service에서 Search Index 생성합니다.
 
-### Importing Search Index
+### Search Index 가져오기
 
-#### [Couchbase Capella](\(https:/docs.couchbase.com/cloud/search/import-search-index.html)
+#### [Couchbase Capella](https://docs.couchbase.com/cloud/search/import-search-index.html)
 
-Follow these steps to import a Search Index in Capella:
+Capella에서 Search Index를 가져오는 단계:
 
-* Copy the index definition to a new file named `index.json`.
-* Import the file in Capella following the instructions in the documentation.
-* Click Create Index to finalize the index creation.
+* Index 정의를 `index.json`이라는 새 파일로 복사합니다.
+* 문서의 지침에 따라 Capella에서 파일을 가져옵니다.
+* Create Index를 클릭하여 Index 생성을 완료합니다.
 
-#### [Couchbase Server](\(https:/docs.couchbase.com/server/current/search/import-search-index.html)
+#### [Couchbase Server](https://docs.couchbase.com/server/current/search/import-search-index.html)
 
-Follow these steps for Couchbase Server:
+Couchbase Server의 경우:
 
-* Navigate to Search → Add Index → Import.
-* Copy the provided Index definition into the Import screen.
-* Click Create Index to finalize the index creation.
+* Search → Add Index → Import로 이동합니다.
+* 제공된 Index 정의를 Import 화면에 복사합니다.
+* Create Index를 클릭하여 Index 생성을 완료합니다.
 
-You may also create a vector index using Search UI on both [Couchbase Capella](https://docs.couchbase.com/cloud/vector-search/create-vector-search-index-ui.html?_gl=1*1rglcpj*_gcl_au*MTMzNDE3NTQxLjE3MzY5MjA5MzQ.) and [Couchbase Self Managed Server](https://docs.couchbase.com/server/current/vector-search/create-vector-search-index-ui.html?_gl=1*t7aeet*_gcl_au*MTMzNDE3NTQxLjE3MzY5MjA5MzQ.).
+[Couchbase Capella](https://docs.couchbase.com/cloud/vector-search/create-vector-search-index-ui.html?_gl=1*1rglcpj*_gcl_au*MTMzNDE3NTQxLjE3MzY5MjA5MzQ.)와 [Couchbase 자체 관리 Server](https://docs.couchbase.com/server/current/vector-search/create-vector-search-index-ui.html?_gl=1*t7aeet*_gcl_au*MTMzNDE3NTQxLjE3MzY5MjA5MzQ.)의 Search UI를 사용하여 Vector Index를 생성할 수도 있습니다.
 
-### Index Definition
+### Index 정의
 
-Here, we are creating the index `vector-index` on the documents. The Vector field is set to `embedding` with 1536 dimensions and the text field set to `text`. We are also indexing and storing all the fields under `metadata` in the document as a dynamic mapping to account for varying document structures. The similarity metric is set to `dot_product`. If there is a change in these parameters, please adapt the index accordingly.
+여기서는 문서에 `vector-index`를 생성합니다. Vector 필드는 1536 차원의 `embedding`으로 설정되고, 텍스트 필드는 `text`로 설정됩니다. 또한 다양한 문서 구조를 처리하기 위해 문서의 `metadata` 아래에 있는 모든 필드를 동적 매핑으로 인덱싱하고 저장합니다. 유사도 메트릭은 `dot_product`로 설정됩니다. 이러한 매개변수에 변경이 있으면 Index를 적절히 조정하세요.
 
 ```json
 {
@@ -127,32 +126,32 @@ Here, we are creating the index `vector-index` on the documents. The Vector fiel
 
 ```
 
-## Setup
+## 설정
 
-1. Add a new **Couchbase** node on canvas and fill in the Bucket Name, Scope Name, Collection Name and Index Name
+1. 캔버스에 새 **Couchbase** 노드를 추가하고 Bucket Name, Scope Name, Collection Name, Index Name을 입력합니다.
 
 <figure><img src="../../../.gitbook/assets/couchbase_1.png" alt=""><figcaption></figcaption></figure>
 
-2. Add new credential and fill in the parameters:
+2. 새 자격증명을 추가하고 매개변수를 입력합니다:
    * Couchbase Connection String
    * Cluster Username
    * Cluster Password
 
 <figure><img src="../../../.gitbook/assets/couchbase_2.png" alt=""><figcaption></figcaption></figure>
 
-3. Add additional nodes to canvas and start the upsert process
-   * **Document** can be connected with any node under [**Document Loader**](../document-loaders/) category
-   * **Embeddings** can be connected with any node under [**Embeddings** ](../embeddings/)category
+3. 캔버스에 추가 노드를 추가하고 upsert 프로세스를 시작합니다.
+   * **Document**는 [**Document Loader**](../document-loaders/) 카테고리의 모든 노드와 연결할 수 있습니다.
+   * **Embeddings**은 [**Embeddings** ](../embeddings/)카테고리의 모든 노드와 연결할 수 있습니다.
 
 <figure><img src="../../../.gitbook/assets/couchbase_3.png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/couchbase_4.png" alt=""><figcaption></figcaption></figure>
 
-5. Verify from the Couchbase UI to see if data has been successfully upserted!
+5. Couchbase UI에서 데이터가 성공적으로 upsert되었는지 확인합니다!
 
-## Resources
+## 리소스
 
-* LangChain Couchbase vectorstore integrations
+* LangChain Couchbase Vectorstore 통합
   * [Python](https://python.langchain.com/docs/integrations/vectorstores/couchbase/)
   * [NodeJS](https://js.langchain.com/docs/integrations/vectorstores/couchbase/)
-* Refer to the [Couchbase Documentation](https://docs.couchbase.com/home/index.html) to learn about Couchbase.
+* [Couchbase 문서](https://docs.couchbase.com/home/index.html)를 참조하여 Couchbase에 대해 알아봅니다.

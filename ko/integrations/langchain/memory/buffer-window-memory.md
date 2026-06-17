@@ -1,15 +1,15 @@
-# Buffer Window Memory
+# 버퍼 윈도우 메모리
 
-Use Flowise database table `chat_message` as the storage mechanism for storing/retrieving conversations.
+Flowise 데이터베이스 테이블 `chat_message`를 대화 저장/검색을 위한 저장소 메커니즘으로 사용합니다.
 
-Difference being it only fetches the last K interactions. This approach is beneficial for preserving a sliding window of the most recent interactions, ensuring the buffer remains manageable in size.
+차이점은 마지막 K개의 상호작용만 가져온다는 것입니다. 이 접근 방식은 가장 최근의 상호작용의 슬라이딩 윈도우를 유지하여 버퍼 크기를 관리 가능하게 유지하는 데 유용합니다.
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (3) (1).png" alt="" width="298"><figcaption></figcaption></figure>
 
-## Input
+## 입력
 
-| Parameter  | Description                                                                   | Default       |
+| 파라미터 | 설명 | 기본값 |
 | ---------- | ----------------------------------------------------------------------------- | ------------- |
-| Size       | Last K messages to fetch                                                      | 4             |
-| Session Id | An ID to retrieve/store messages. If not specified, a random ID will be used. |               |
-| Memory Key | A key used to format messages in prompt template                              | chat\_history |
+| Size | 가져올 마지막 K개의 메시지 | 4 |
+| Session Id | 메시지를 검색/저장하기 위한 ID입니다. 지정하지 않으면 임의의 ID가 사용됩니다. | |
+| Memory Key | 프롬프트 템플릿에서 메시지를 포맷하는 데 사용되는 키 | chat\_history |

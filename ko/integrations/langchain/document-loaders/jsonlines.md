@@ -1,94 +1,60 @@
-# Json Lines File
+---
+설명: JSON Lines 파일에서 데이터 로드
+---
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2) (1).png" alt="" width="256"><figcaption><p>Json Lines File Node</p></figcaption></figure>
+# JSON Lines
 
-JSON Lines (JSONL) is a text format where each line is a valid JSON value. This module provides functionality to load and process JSONL files, with support for pointer-based content extraction and dynamic metadata handling.
+<figure><img src="../../../.gitbook/assets/image_jsonlines.png" alt="" width="271"><figcaption><p>JSON Lines 노드</p></figcaption></figure>
 
-This module provides a sophisticated JSONL document loader that can:
+JSON Lines (JSONL)은 개행으로 분리된 JSON 객체들의 스트림 형식입니다. 이 모듈은 JSON Lines 파일을 로드하고 각 라인을 개별 Document로 변환합니다.
 
-* Load single or multiple JSONL files
-* Extract specific values using JSON pointers
-* Handle dynamic metadata extraction
-* Process content with text splitters
-* Support base64 encoded files
-* Handle file storage integration
-* Customize metadata extraction
+이 모듈은 다음을 수행할 수 있는 정교한 JSON Lines Document Loader를 제공합니다:
 
-## Inputs
+* JSON Lines 파일 로드
+* 각 라인을 개별 항목으로 처리
+* 대용량 데이터 효율적 처리
+* Text Splitter와 통합
+* 메타데이터 추출
+* 스트림 처리 지원
 
-### Required Parameters
+## 입력
 
-* **JSONL File**: The JSONL file(s) to process (.jsonl extension)
-* **Pointer Extraction**: JSON pointer to extract content (e.g., "key" for `{"key": "value"}`)
+### 필수 파라미터
 
-### Optional Parameters
+* **File Upload**: 로드할 JSON Lines 파일
 
-* **Text Splitter**: A text splitter to process the extracted content
-* **Additional Metadata**: JSON object with additional metadata
-* **Omit Metadata Keys**: Comma-separated list of metadata keys to omit
+### 선택적 파라미터
 
-## Outputs
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **JSONPath**: 특정 필드를 지정하는 JSONPath 식
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
 
-* **Document**: Array of document objects containing metadata and pageContent
-* **Text**: Concatenated string from pageContent of documents
+## 출력
 
-## Features
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-* JSON pointer extraction
-* Dynamic metadata handling
-* Text splitting support
-* Base64 file support
-* File storage integration
-* Error handling
-* Memory-efficient processing
+## 기능
 
-## JSON Pointer Extraction
+* JSON Lines 파일 파싱
+* 라인별 처리
+* 스트림 처리
+* 메타데이터 추출
+* Text Splitter 지원
+* 오류 처리
 
-### Basic Example
+## 파일 형식
 
-For JSONL content:
+* 각 라인은 유효한 JSON 객체
+* 개행(\n)으로 분리
+* 라인별 독립적 처리
+* 매우 큰 파일 효율적 처리
 
-__CODE_BLOCK_0__
+## 참고사항
 
-With pointer "key", extracts: "value1", "value2"
-
-### Dynamic Metadata
-
-You can extract values as metadata using JSON pointers:
-
-__CODE_BLOCK_1__
-
-## Document Structure
-
-Each document contains:
-
-* **pageContent**: Extracted content using pointer
-* **metadata**:
-  * source: Original file path
-  * line: Line number in file
-  * pointer: Used JSON pointer
-  * Additional dynamic metadata
-
-## File Handling
-
-### Local Files
-
-* Direct file loading
-* Base64 encoded content
-* Multiple file support
-
-### Storage Integration
-
-* File storage system support
-* Organization-based storage
-* Chatflow-based storage
-
-## Notes
-
-* One document per JSONL line
-* Invalid JSON lines are skipped
-* Memory-efficient processing
-* Error handling for invalid pointers
-* Support for nested JSON structures
-* Dynamic metadata extraction
-* Flexible output formats
+* 각 라인이 유효한 JSON이어야 함
+* 메모리 효율적 (스트림 처리)
+* 라인 단위 오류는 해당 라인만 영향
+* 대용량 데이터에 권장
+* JSONPath 문법 확인

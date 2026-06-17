@@ -1,11 +1,11 @@
-
-description: Wrapper around TogetherAI large language models
-
+---
+description: TogetherAI 대규모 언어 모델 주변의 래퍼입니다
+---
 
 # ChatTogetherAI
 
 <figure><img src="../../../.gitbook/assets/image (68).png" alt="" width="266"><figcaption><p>ChatTogetherAI Node</p></figcaption></figure>
 
 {% hint style="info" %}
-This section is a work in progress. We appreciate any help you can provide in completing this section. Please check our [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA) to get started.
+이 섹션은 진행 중입니다. 이 섹션을 완성하는 데 도움을 주실 수 있다면 감사하겠습니다. 시작하려면 [Contribution Guide](/broken/pages/G48tdmpQ3z4CTWEspqkA)를 확인해 주십시오.
 {% endhint %}

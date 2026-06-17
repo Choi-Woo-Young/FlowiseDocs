@@ -1,65 +1,64 @@
+---
+설명: Playwright를 사용한 웹 스크래핑
+---
+
 # Playwright Web Scraper
 
-Playwright is a powerful library for browser automation that can control Chromium, Firefox, and WebKit with a single API. This module provides advanced web scraping capabilities using Playwright to extract content from web pages, including dynamic content that requires JavaScript execution.
+<figure><img src="../../../.gitbook/assets/image_playwright.png" alt="" width="271"><figcaption><p>Playwright Web Scraper 노드</p></figcaption></figure>
 
-This module provides a sophisticated web scraper that can:
-- Load content from single or multiple web pages
-- Handle JavaScript-rendered content
-- Support various page load strategies
-- Wait for specific elements to load
-- Crawl relative links from websites
-- Process XML sitemaps
+Playwright는 최신 웹 애플리케이션을 자동화하기 위한 Node.js 라이브러리입니다. 이 모듈은 Playwright를 사용하여 JavaScript 렌더링이 필요한 웹 페이지를 스크래핑합니다.
 
-## Inputs
+이 모듈은 다음을 수행할 수 있는 정교한 웹 스크래퍼를 제공합니다:
 
-- **URL**: The webpage URL to scrape
-- **Text Splitter** (optional): A text splitter to process the extracted content
-- **Get Relative Links Method** (optional): Choose between:
-  - Web Crawl: Crawl relative links from HTML URL
-  - Scrape XML Sitemap: Scrape relative links from XML sitemap URL
-- **Get Relative Links Limit** (optional): Limit for number of relative links to process (default: 10, 0 for all links)
-- **Wait Until** (optional): Page load strategy:
-  - Load: Wait for the load event to fire
-  - DOM Content Loaded: Wait for the DOMContentLoaded event
-  - Network Idle: Wait until no network connections for 500ms
-  - Commit: Wait for initial network response and document loading
-- **Wait for selector to load** (optional): CSS selector to wait for before scraping
-- **Additional Metadata** (optional): JSON object with additional metadata to add to documents
-- **Omit Metadata Keys** (optional): Comma-separated list of metadata keys to omit
+* Playwright 브라우저 자동화
+* 동적 웹 페이지 로드 및 렌더링
+* JavaScript 실행 및 콘텐츠 동적 생성 처리
+* 페이지 상호작용 (클릭, 입력 등)
+* CSS 선택자를 사용한 요소 추출
+* Text Splitter와 통합
 
-## Outputs
+## 입력
 
-- **Document**: Array of document objects containing metadata and pageContent
-- **Text**: Concatenated string from pageContent of documents
+### 필수 파라미터
 
-## Features
-- Multi-browser engine support (Chromium, Firefox, WebKit)
-- JavaScript execution support
-- Configurable page load strategies
-- Element wait capabilities
-- Web crawling functionality
-- XML sitemap processing
-- Headless browser operation
-- Sandbox configuration
-- Error handling for invalid URLs
-- Metadata customization
+* **URLs**: 스크래핑할 URL의 쉼표로 구분된 목록
 
-## Notes
-- Runs in headless mode by default
-- Uses no-sandbox mode for compatibility
-- Invalid URLs will throw an error
-- Setting link limit to 0 will retrieve all available links (may take longer)
-- Supports waiting for specific DOM elements before extraction
+### 선택적 파라미터
 
-## Scrape One URL
+* **Text Splitter**: 추출된 콘텐츠를 처리하기 위한 Text Splitter
+* **Selector**: 추출할 HTML 요소의 CSS 선택자
+* **Wait For Selector**: 페이지 로드 대기 조건 (CSS 선택자)
+* **Timeout**: 페이지 로드 제한시간 (밀리초)
+* **Additional Metadata**: 추가 metadata가 있는 JSON 객체
+* **Omit Metadata Keys**: 생략할 metadata 키의 쉼표로 구분된 목록
 
-1.  _(Optional)_ Connect **[Text Splitter](../text-splitters/)**.
-2. Input desired URL to be scraped.
+## 출력
 
-## Crawl & Scrape Multiple URLs
-Visit **[Web Crawl](../../use-cases/web-crawl.md)** guide to allow scraping of multiple pages.
+* **Document**: Metadata 및 pageContent를 포함하는 document 객체의 배열
+* **Text**: Document의 pageContent에서 연결된 문자열
 
-## Resources
+## 기능
 
-* [LangChain JS Playwright](https://js.langchain.com/docs/integrations/document_loaders/web_loaders/web_playwright)
-* [Playwright](https://playwright.dev/)
+* 동적 페이지 렌더링
+* JavaScript 실행
+* 페이지 상호작용
+* CSS 선택자 지원
+* 메타데이터 추출
+* Text Splitter 지원
+
+## 특징
+
+* 현대적 웹 애플리케이션 지원
+* Chromium, Firefox, WebKit 지원
+* 완전한 자동화 가능
+* 높은 리소스 사용
+* 느린 처리 속도
+
+## 참고사항
+
+* 높은 리소스 사용 (브라우저 실행 필요)
+* 처리 속도가 느림 (동적 로드)
+* 제한된 동시 실행 (시스템 리소스)
+* 웹사이트 이용약관 준수
+* robots.txt 존중
+* CSS 선택자 문법 확인

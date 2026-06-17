@@ -1,18 +1,18 @@
 ---
-description: Wrapper around SambaNova API with RDU Inference Engine.
+description: RDU Inference Engine를 사용한 SambaNova API 주변의 래퍼입니다.
 ---
 
 # ChatSambanova
 
-## **Prerequisites**
-Before getting started, ensure you have:
+## **필수 요구사항**
+시작하기 전에 다음을 확인하세요:
 
-1. A [SambaNova Cloud](__PRESERVE_URL_1__) account
-2. Your [SambaNova API keys](__PRESERVE_URL_2__)
-3. Save your API keys
+1. [SambaNova Cloud](https://cloud.sambanova.ai/apis) 계정
+2. [SambaNova API 키](https://cloud.sambanova.ai/apis) 
+3. API 키를 저장합니다
 
-## Step by Step Guide
+## 단계별 가이드
 <figure><img src="../../../.gitbook/assets/sambanova-chat-model.png" alt="" width="262"><figcaption><p>ChatSambanova Node</p></figcaption></figure>
 
-1. **채팅 모델** > Drag the **ChatSambanova** node.
-2. Create a new credential with SambaNova API key.
+1. **Chat Models** > **ChatSambanova** 노드를 드래그합니다.
+2. SambaNova API 키로 새 자격증명을 생성합니다.

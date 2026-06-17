@@ -1,8 +1,8 @@
 ---
-description: Learn how to call a webhook on Make
+description: Make에서 webhook을 호출하는 방법을 배웁니다
 ---
 
-# Calling Webhook
+# Webhook 호출
 
 ***
 
