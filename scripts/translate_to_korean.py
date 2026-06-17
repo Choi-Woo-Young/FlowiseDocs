@@ -1,294 +1,299 @@
 #!/usr/bin/env python3
 """
-Flowise Documentation Korean Translation Tool
-Translates markdown files from English to Korean using Anthropic Claude API
+Flowise Documentation Translator
+Translates all English markdown files to Korean using the Anthropic API
+
+Usage:
+    python3 translate_to_korean.py
+
+Requirements:
+    - ANTHROPIC_API_KEY environment variable set
+    - anthropic SDK installed: pip install anthropic
 """
 
 import os
-import json
 import sys
-import time
-import argparse
+import re
 from pathlib import Path
-from typing import Tuple
-
-try:
-    import requests
-except ImportError:
-    print("Error: requests library not found. Install with: pip install requests")
-    sys.exit(1)
+from typing import Tuple, Optional
+import anthropic
 
 # Configuration
-API_ENDPOINT = "https://api.anthropic.com/v1/messages"
-MODEL = "claude-opus-4-1-20250805"
+EN_DIR = Path(__file__).parent / "en"
+KO_DIR = Path(__file__).parent / "ko"
 
-TRANSLATION_PROMPT = """You are a professional translator specializing in technical documentation for Flowise, an open-source LLM orchestration platform. Your task is to translate English markdown content to Korean while following these rules:
+# Technical terms that should NOT be translated
+TECHNICAL_TERMS = {
+    # Core concepts
+    'API', 'LLM', 'RAG', 'Node', 'Agent', 'Tool', 'Flowise', 'JSON', 'HTTP', 'REST',
+    'CLI', 'SDK', 'Docker', 'Kubernetes', 'AWS', 'Azure', 'GCP', 'OCI',
 
-TRANSLATION RULES:
-1. Translate all titles, headings, body text, and table content to Korean
-2. Keep code blocks completely unchanged (do not translate code inside code blocks)
-3. Keep image paths and URLs unchanged
-4. Translate link text, but keep the actual URLs unchanged
-5. Keep these technical terms in ENGLISH (do not translate):
-   - Flowise, API, LLM, RAG, Agent, Flow, OpenAI, Azure, Docker, GitHub, HTTP, REST, JSON, YAML
-   - Python, Node.js, JavaScript, TypeScript, React, Vue
-   - Kubernetes, AWS, GCP, EC2, S3
-   - SQL, MongoDB, Redis, PostgreSQL, MySQL, Pinecone, Weaviate, Chroma, Milvus
-   - LlamaIndex, Langchain, OpenAI API, GPT-4, ChatGPT
-   - Node, Express, Next.js, FastAPI, Flask
-   - Any environment variables, configuration keys, and command-line flags
-   - Any product names and service names (e.g., Supabase, Firebase, Vercel)
-6. Preserve all Markdown/HTML structure exactly:
-   - Keep all heading levels (#, ##, ###, etc.)
-   - Preserve all lists, tables, code blocks
-   - Keep all links and images intact
-   - Preserve YAML frontmatter structure
-7. Translate YAML frontmatter metadata (especially description field) to Korean
-8. Use formal, professional Korean tone appropriate for technical documentation
-9. Ensure readability and clarity in Korean
-10. Return ONLY the translated markdown content without any explanations or commentary
+    # Databases & Storage
+    'Redis', 'PostgreSQL', 'MongoDB', 'MySQL', 'Postgres', 'SQLite', 'Elasticsearch',
+    'Cassandra', 'DynamoDB', 's3', 'GCS', 'Blob',
 
-ENGLISH CONTENT TO TRANSLATE:
-"""
+    # Languages & Frameworks
+    'JavaScript', 'TypeScript', 'Python', 'Node.js', 'Express', 'React', 'Vue', 'Angular',
+    'FastAPI', 'Django', 'Flask', 'Spring', 'Boot', 'Gradle',
 
-# Default files to translate
-DEFAULT_FILES = [
-    "ko/integrations/llamaindex/README.md",
-    "ko/integrations/README.md",
-    "ko/text-splitters/charater-text-splitter.md",
-    "ko/migration-guide/v1.4.3-migration-guide.md",
-    "ko/migration-guide/v2.1.4-migration-guide.md",
-    "ko/migration-guide/v1.3.0-migration-guide.md",
-    "ko/use-cases/multiple-documents-qna.md",
-    "ko/use-cases/web-scrape-qna.md",
-    "ko/use-cases/sql-qna.md",
-    "ko/use-cases/README.md",
-    "ko/use-cases/webhook-tool.md",
-    "ko/use-cases/interacting-with-api.md",
-    "ko/use-cases/upserting-data.md",
-    "ko/using-flowise/agentflowv1/README.md",
-    "ko/using-flowise/analytics/langfuse.md",
-    "ko/integrations/utilities/README.md",
-    "ko/integrations/llamaindex/vector-stores/README.md",
-]
+    # AI/ML Services
+    'OpenAI', 'Anthropic', 'Claude', 'GPT', 'LLAMA', 'Gemini', 'Vertex', 'Bedrock',
+    'Vector', 'Embedding', 'Langchain', 'LlamaIndex', 'Hugging', 'Face', 'HuggingFace',
 
+    # Queue & Messaging
+    'BullMQ', 'Kafka', 'RabbitMQ', 'Pub/Sub', 'Topic', 'Queue', 'Message', 'Consumer',
 
-class KoreanTranslator:
-    """Handles translation of markdown files to Korean using Anthropic API"""
+    # Communication
+    'SSE', 'WebSocket', 'Webhook', 'OAuth', 'JWT', 'CORS', 'SSL', 'TLS', 'HTTP2',
+    'GraphQL', 'SAML', 'LDAP', 'gRPC',
 
-    def __init__(self, api_key: str, base_path: str = "."):
-        """Initialize translator with API key and base path"""
-        self.api_key = api_key
-        self.base_path = Path(base_path)
-        self.success_count = 0
-        self.failed_count = 0
-        self.results = []
+    # Infrastructure
+    'Container', 'Image', 'Volume', 'Network', 'Service', 'Pod', 'Deployment', 'Ingress',
+    'LoadBalancer', 'StatefulSet', 'DaemonSet', 'CronJob', 'ConfigMap', 'Secret',
+    'PersistentVolume', 'StorageClass', 'Registry',
 
-        if not self.api_key:
-            raise ValueError("ANTHROPIC_API_KEY environment variable is not set")
+    # Version Control
+    'GitHub', 'GitLab', 'Bitbucket', 'Git', 'Branch', 'Commit', 'Pull', 'Request',
+    'Merge', 'Rebase', 'Tag', 'Release', 'Fork',
 
-    def translate_file(self, file_path: str) -> Tuple[bool, str]:
-        """
-        Translate a single markdown file
+    # Package Managers
+    'npm', 'yarn', 'pnpm', 'bun', 'pip', 'poetry', 'cargo', 'maven',
 
-        Args:
-            file_path: Path to the markdown file
+    # Tools & IDEs
+    'VSCode', 'WebStorm', 'IntelliJ', 'Sublime', 'Vim', 'IDE', 'Terminal', 'Console',
+    'bash', 'zsh', 'sh', 'powershell', 'cmd',
 
-        Returns:
-            Tuple of (success: bool, message: str)
-        """
-        full_path = self.base_path / file_path
+    # Flowise-specific
+    'flow', 'workflow', 'canvas', 'node', 'edge', 'connection', 'endpoint', 'component',
+    'integration', 'input', 'output', 'parameter', 'property', 'attribute', 'handler',
+    'callback', 'promise', 'async', 'await',
 
-        if not full_path.exists():
-            return False, f"File not found: {full_path}"
+    # Data & Serialization
+    'Schema', 'Table', 'Row', 'Column', 'Index', 'Query', 'Transaction', 'ACID', 'CAP',
+    'Serialization', 'Deserialization', 'Parser', 'Formatter',
 
+    # Deployment & Operations
+    'Deployment', 'Environment', 'Production', 'Staging', 'Development', 'CI', 'CD',
+    'Pipeline', 'Build', 'Test', 'Release', 'Rollback', 'Version', 'Scaling',
+
+    # Request/Response
+    'request', 'response', 'status', 'code', 'header', 'body', 'payload', 'stream',
+    'event', 'hook', 'middleware', 'plugin', 'extension', 'adapter',
+
+    # Code Structure
+    'function', 'method', 'property', 'class', 'interface', 'type', 'implementation',
+    'inheritance', 'polymorphism', 'encapsulation', 'abstraction', 'object', 'instance',
+    'prototype', 'closure', 'scope', 'variable', 'constant', 'parameter', 'argument',
+
+    # Design Patterns
+    'pattern', 'strategy', 'factory', 'singleton', 'observer', 'decorator', 'builder',
+    'adapter', 'proxy', 'state', 'iterator', 'template', 'composite', 'bridge',
+
+    # File & Path Related
+    'path', 'directory', 'folder', 'file', 'filename', 'extension', 'repository',
+    'module', 'package', 'library', 'dependency', 'version',
+}
+
+def extract_code_blocks(content: str) -> Tuple[str, dict]:
+    """Extract code blocks from markdown to preserve them."""
+    code_blocks = {}
+    counter = 0
+
+    # Match all code blocks (triple backticks)
+    pattern = r'```(?:[a-zA-Z0-9_\-+]*\n)?(.*?)```'
+
+    def replace_code(match):
+        nonlocal counter
+        placeholder = f"__CODE_BLOCK_{counter}__"
+        code_blocks[placeholder] = match.group(0)
+        counter += 1
+        return placeholder
+
+    content_without_code = re.sub(pattern, replace_code, content, flags=re.DOTALL)
+
+    # Handle inline code (single backticks) - be careful with URLs
+    pattern_inline = r'(?<![:/])`([^`\n]+)`(?!(?:[a-zA-Z0-9]|/))'
+
+    def replace_inline_code(match):
+        nonlocal counter
+        placeholder = f"__INLINE_CODE_{counter}__"
+        code_blocks[placeholder] = match.group(0)
+        counter += 1
+        return placeholder
+
+    content_without_code = re.sub(pattern_inline, replace_inline_code, content_without_code)
+
+    return content_without_code, code_blocks
+
+def restore_code_blocks(content: str, code_blocks: dict) -> str:
+    """Restore code blocks back into the translated content."""
+    for placeholder, code in code_blocks.items():
+        content = content.replace(placeholder, code)
+    return content
+
+def build_technical_terms_str(max_items: int = 150) -> str:
+    """Build a comma-separated string of technical terms."""
+    terms_list = sorted(list(TECHNICAL_TERMS))
+    return ", ".join(terms_list[:max_items])
+
+def translate_content(client: anthropic.Anthropic, content: str, file_path: str) -> Optional[str]:
+    """Translate English markdown content to Korean using Claude API."""
+
+    # Extract code blocks first
+    content_without_code, code_blocks = extract_code_blocks(content)
+
+    # Build technical terms preservation instruction
+    tech_terms_str = build_technical_terms_str()
+
+    translation_prompt = f"""You are a professional Korean translator specializing in technical documentation.
+
+Translate the following English technical documentation to Korean.
+
+CRITICAL RULES:
+1. Translate ALL non-code text to Korean (headings, paragraphs, lists, table cells, captions)
+2. PRESERVE these technical terms in English: {tech_terms_str}
+3. Preserve ALL markdown formatting exactly (# ## ###, -, *, **, [text](url), |, ```, etc.)
+4. Keep URLs and file paths unchanged
+5. For links [text](url): translate text only, keep URL unchanged
+6. Keep placeholder markers __CODE_BLOCK_0__ as-is
+7. For tables: translate content, keep table structure unchanged
+
+Content to translate:
+---
+{content_without_code}
+---
+
+Provide ONLY the translated content. No explanations."""
+
+    # Call Claude API with streaming
+    translated = ""
+    try:
+        with client.messages.stream(
+            model="claude-3-5-sonnet-20241022",
+            max_tokens=4000,
+            messages=[
+                {
+                    "role": "user",
+                    "content": translation_prompt
+                }
+            ]
+        ) as stream:
+            for text in stream.text_stream:
+                translated += text
+
+        # Restore code blocks
+        translated = restore_code_blocks(translated, code_blocks)
+        return translated
+
+    except Exception as e:
+        print(f"  API Error: {str(e)[:100]}")
+        return None
+
+def process_files(client: anthropic.Anthropic) -> Tuple[int, int, int]:
+    """Process all English markdown files and create Korean translations."""
+
+    # Get all English markdown files
+    all_files = sorted(EN_DIR.rglob("*.md"))
+
+    print(f"Found {len(all_files)} markdown files to process")
+    print(f"Source: {EN_DIR}")
+    print(f"Target: {KO_DIR}")
+    print(f"\nStarting translation...\n")
+
+    successful = 0
+    failed = 0
+    skipped = 0
+    failed_files = []
+
+    for idx, en_file in enumerate(all_files, 1):
         try:
-            # Read the file
-            with open(full_path, 'r', encoding='utf-8') as f:
+            rel_path = en_file.relative_to(EN_DIR)
+            ko_file = KO_DIR / rel_path
+
+            # Skip .gitbook directory
+            if '.gitbook' in en_file.parts:
+                skipped += 1
+                continue
+
+            # Show progress
+            status = f"[{idx}/{len(all_files)}] {rel_path}"
+            print(status, end="", flush=True)
+
+            # Read English file
+            with open(en_file, 'r', encoding='utf-8') as f:
                 content = f.read()
 
-            # Create the request payload
-            payload = {
-                "model": MODEL,
-                "max_tokens": 4096,
-                "messages": [
-                    {
-                        "role": "user",
-                        "content": TRANSLATION_PROMPT + content
-                    }
-                ]
-            }
+            # Translate content
+            translated_content = translate_content(client, content, str(en_file))
 
-            # Make the API request
-            headers = {
-                "x-api-key": self.api_key,
-                "Content-Type": "application/json"
-            }
+            if translated_content is None:
+                raise Exception("Translation returned None")
 
-            response = requests.post(API_ENDPOINT, json=payload, headers=headers, timeout=60)
+            # Create directory if it doesn't exist
+            ko_file.parent.mkdir(parents=True, exist_ok=True)
 
-            if response.status_code != 200:
-                error_text = response.text
-                try:
-                    error_data = response.json()
-                    error_msg = error_data.get('error', {}).get('message', error_text)
-                except:
-                    error_msg = error_text
-                return False, f"API error {response.status_code}: {error_msg}"
-
-            response_data = response.json()
-
-            if "error" in response_data:
-                return False, f"API error: {response_data['error'].get('message', 'Unknown error')}"
-
-            # Extract the translated content
-            if not response_data.get("content"):
-                return False, "No content in API response"
-
-            translated_content = response_data["content"][0]["text"]
-
-            # Write the translated content back to file
-            with open(full_path, 'w', encoding='utf-8') as f:
+            # Write translated content
+            with open(ko_file, 'w', encoding='utf-8') as f:
                 f.write(translated_content)
 
-            return True, "Successfully translated"
+            print(" ✓")
+            successful += 1
 
-        except requests.exceptions.Timeout:
-            return False, "API request timed out"
-        except requests.exceptions.RequestException as e:
-            return False, f"Request error: {str(e)}"
         except Exception as e:
-            return False, f"Error: {str(e)}"
+            failed += 1
+            error_msg = str(e)[:80]
+            failed_files.append((str(rel_path), error_msg))
+            print(f" ✗ ({error_msg})")
 
-    def translate_files(self, files: list, delay: float = 2.0) -> dict:
-        """
-        Translate multiple files with rate limiting
+    # Print summary
+    print(f"\n{'='*80}")
+    print(f"Translation Summary:")
+    print(f"{'='*80}")
+    print(f"Successfully translated: {successful}")
+    print(f"Failed:                  {failed}")
+    print(f"Skipped:                 {skipped}")
+    print(f"Total processed:         {successful + failed + skipped}")
 
-        Args:
-            files: List of file paths to translate
-            delay: Delay between API calls in seconds
+    if failed_files and failed <= 10:
+        print(f"\nFailed files:")
+        for file_path, error in failed_files:
+            print(f"  - {file_path}: {error}")
 
-        Returns:
-            Dictionary with summary statistics
-        """
-        total = len(files)
-        print(f"Starting translation of {total} files...")
-        print(f"Using model: {MODEL}")
-        print("")
-
-        for i, file_path in enumerate(files, 1):
-            file_name = Path(file_path).name
-            print(f"[{i}/{total}] {file_name}...", end=" ", flush=True)
-
-            success, message = self.translate_file(file_path)
-
-            if success:
-                print("✓")
-                self.success_count += 1
-                self.results.append((file_path, True, message))
-            else:
-                print(f"✗ ({message})")
-                self.failed_count += 1
-                self.results.append((file_path, False, message))
-
-            # Rate limiting: delay between requests
-            if i < total:
-                time.sleep(delay)
-
-        return self.get_summary()
-
-    def get_summary(self) -> dict:
-        """Get translation summary"""
-        return {
-            "total": self.success_count + self.failed_count,
-            "success": self.success_count,
-            "failed": self.failed_count,
-            "results": self.results
-        }
-
-    def print_summary(self):
-        """Print summary in Korean"""
-        summary = self.get_summary()
-        print("")
-        print("=" * 50)
-        print(f"최종 배치 완료: {summary['success']}개 파일 번역 완료")
-        print(f"실패: {summary['failed']}개")
-        print("=" * 50)
-
-        if summary['failed'] > 0:
-            print("\n실패한 파일:")
-            for file_path, success, message in summary['results']:
-                if not success:
-                    print(f"  - {file_path}: {message}")
-
+    return successful, failed, skipped
 
 def main():
-    """Main entry point"""
-    parser = argparse.ArgumentParser(
-        description="Translate Flowise documentation to Korean",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-  # Translate default files
-  python translate_to_korean.py
-
-  # Translate specific files
-  python translate_to_korean.py ko/README.md ko/configuration/README.md
-
-  # Set custom API key
-  ANTHROPIC_API_KEY=your_key python translate_to_korean.py
-"""
-    )
-
-    parser.add_argument(
-        "files",
-        nargs="*",
-        help="Files to translate (uses default list if not provided)"
-    )
-
-    parser.add_argument(
-        "--delay",
-        type=float,
-        default=2.0,
-        help="Delay between API calls in seconds (default: 2.0)"
-    )
-
-    parser.add_argument(
-        "--base-path",
-        default=".",
-        help="Base path for file operations (default: current directory)"
-    )
-
-    args = parser.parse_args()
-
-    # Get API key
+    # Initialize Anthropic client
     api_key = os.environ.get('ANTHROPIC_API_KEY')
     if not api_key:
-        print("Error: ANTHROPIC_API_KEY environment variable is not set")
-        print("")
-        print("Please set your API key:")
-        print("  export ANTHROPIC_API_KEY='your-api-key'")
+        print("Error: ANTHROPIC_API_KEY environment variable not set")
+        print("\nTo use this script, set your API key:")
+        print("  export ANTHROPIC_API_KEY='your-api-key-here'")
+        print("\nThen run: python3 translate_to_korean.py")
         sys.exit(1)
 
-    # Determine files to translate
-    files = args.files if args.files else DEFAULT_FILES
+    client = anthropic.Anthropic(api_key=api_key)
 
-    # Create translator and run
-    try:
-        translator = KoreanTranslator(api_key, base_path=args.base_path)
-        translator.translate_files(files, delay=args.delay)
-        translator.print_summary()
-
-        # Exit with appropriate code
-        sys.exit(0 if translator.failed_count == 0 else 1)
-
-    except ValueError as e:
-        print(f"Error: {e}")
-        sys.exit(1)
-    except KeyboardInterrupt:
-        print("\n\nTranslation interrupted by user")
+    # Check directories
+    if not EN_DIR.exists():
+        print(f"Error: English directory not found: {EN_DIR}")
         sys.exit(1)
 
+    if not KO_DIR.exists():
+        KO_DIR.mkdir(parents=True, exist_ok=True)
+        print(f"Created Korean directory: {KO_DIR}\n")
+
+    # Process all files
+    successful, failed, skipped = process_files(client)
+
+    print(f"\n{'='*80}")
+    if failed == 0:
+        print("✓ All translations completed successfully!")
+        print(f"  {successful} files translated to Korean")
+        return 0
+    else:
+        print(f"⚠ Translation completed with {failed} error(s)")
+        print(f"  {successful} files translated successfully")
+        return 1
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
